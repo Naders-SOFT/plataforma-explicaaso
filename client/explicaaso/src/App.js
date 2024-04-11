@@ -8,7 +8,7 @@ const AppContainer = styled.div`
   width: 100vw;
   min-height: 100vh;
   height: auto;
-  background-color: gray;
+  background-color: white;
   display: flex;
   flex-direction: column;
 `

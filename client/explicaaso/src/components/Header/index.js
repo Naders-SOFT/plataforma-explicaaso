@@ -1,4 +1,5 @@
 import LogoUsp from '../LogoUsp';
+import LogoExpliCaaso from '../LogoExpliCaaso';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
@@ -9,11 +10,12 @@ const HeaderContainer = styled.div`
     align-items: center;
 `
 
+
 function Header() {
     return  (
         <HeaderContainer>
             <LogoUsp/>
-            <p>Teste</p>
+            <LogoExpliCaaso/>
         </HeaderContainer>
     );
 }
