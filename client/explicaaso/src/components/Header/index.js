@@ -1,21 +1,24 @@
-import LogoUsp from '../LogoUsp';
-import LogoExpliCaaso from '../LogoExpliCaaso';
+import LogosHeader from '../LogosHeader';
+import NavigationHeader from '../NavigationHeader';
+import LoginButton from '../LoginButton';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
     display: flex;
     background-color: #003466;
     width: 100%;
-    height: 125px;
+    height: 90px;
     align-items: center;
+    justify-content: flex-start;
 `
 
 
 function Header() {
     return  (
         <HeaderContainer>
-            <LogoUsp/>
-            <LogoExpliCaaso/>
+            <LogosHeader/>
+            <NavigationHeader/>
+            <LoginButton/>
         </HeaderContainer>
     );
 }

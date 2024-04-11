@@ -7,8 +7,8 @@ const LogoContainer = styled.div`
 `
 
 const LogoImage = styled.img`
-    width: 130px;
-    height: 53px;
+    width: 100px;
+    height: 42px;
 `
 
 function LogoUsp() {
