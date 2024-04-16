@@ -1,3 +1,4 @@
+import BarrinhaTurquesa from './components/BarrinhaTurquesa';
 import Header from './components/Header';
 import styled from 'styled-components';
 
@@ -22,6 +23,7 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <Header/>
+      <BarrinhaTurquesa/>
     </AppContainer>
   );
 }
