@@ -18,10 +18,9 @@ const ContainerPag = styled.div`
 function PaginaAluno(props) {
     return (
         <ContainerPag>
-            <Header></Header>
+            <Header>
+            </Header>
             <ContainerMateria>
-                <li>lalallala</li>
-                <p>lalaskdadhuady8gad7</p>
             </ContainerMateria>
         </ContainerPag>
     );

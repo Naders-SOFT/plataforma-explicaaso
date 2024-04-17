@@ -1,27 +1,39 @@
 import styled from 'styled-components';
 import CardMateria from '../CardMateria';
 
-import imgMatematica from '../../images/materias/matematica.jpg'
+import imgMatematica from '../../images/materias/matematica.jpg';
+import imgHistoria from '../../images/materias/historia.jpg'
+import imgGeografia from '../../images/materias/geografia.jpg'
+import imgQuimica from '../../images/materias/quimica.jpg'
+import imgFisica from '../../images/materias/fisica.png'
+import imgBiologia from '../../images/materias/biologia.jpg'
+import imgLiteratura from '../../images/materias/literatura2.jpg'
+import imgGramatica from '../../images/materias/literatura.webp'
+import imgRedacao from '../../images/materias/redacao.jpg'
+
 
 const Materias = styled.ul`
-    display: block;
+    display: flex;
     flex-wrap: wrap;
     list-style-type: none;
+    padding: 0px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
 `
 
 function ContainerMateria(props) {
     return (
         <Materias>
-            <CardMateria imgSrc={imgMatematica} materia='Química'></CardMateria>
-            {/* <CardMateria>Português</CardMateria>
-            <CardMateria>Física</CardMateria>
-            <CardMateria>Biologia</CardMateria>
-            <CardMateria>Geografia</CardMateria>
-            <CardMateria>Redação</CardMateria>
-            <CardMateria>Matemática</CardMateria>
-            <CardMateria>História</CardMateria>
-            <CardMateria>CardCardMateriateratura</CardMateria>
-            <CardMateria>Gramática</CardMateria> */}
+            <CardMateria imgSrc={imgQuimica} materia='Química'></CardMateria>
+            <CardMateria imgSrc={imgGramatica}materia='Gramática'></CardMateria>
+            <CardMateria imgSrc={imgFisica} materia='Física'></CardMateria>
+            <CardMateria imgSrc={imgBiologia} materia='Biologia'></CardMateria>
+            <CardMateria imgSrc={imgGeografia} materia='Geografia'></CardMateria>
+            <CardMateria imgSrc={imgMatematica} materia='Redação'></CardMateria>
+            <CardMateria imgSrc={imgHistoria} materia='História'></CardMateria>
+            <CardMateria imgSrc={imgLiteratura} materia='Literatura'></CardMateria>
         </Materias>
     );
 }
