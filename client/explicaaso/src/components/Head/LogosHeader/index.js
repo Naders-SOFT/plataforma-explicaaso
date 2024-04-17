@@ -1,4 +1,4 @@
-import LogoUsp from '../LogoUsp';
+import LogoUsp from '../Head/LogoUsp';
 import LogoExpliCaaso from '../LogoExpliCaaso';
 import styled from 'styled-components';
 
@@ -6,12 +6,13 @@ const LogosHeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  min-width: auto;
 `
 
-function LogosHeader() {
+function LogosHeader({isMobile}) {
   return (
     <LogosHeaderContainer>
-      <LogoUsp/>
+      {!isMobile && <LogoUsp/>}
       <LogoExpliCaaso/>
     </LogosHeaderContainer>
   );

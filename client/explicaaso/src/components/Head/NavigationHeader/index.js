@@ -7,7 +7,7 @@ const NavigationHeaderContainer = styled.ul`
   align-items: center;
   color: white;
   padding: 0;
-  margin: 0 3%;
+  margin: 0;
 `
 
 const NavigationItem = styled.li`

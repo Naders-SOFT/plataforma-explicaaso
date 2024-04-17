@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 
 const LogoExpliCaasoContainer = styled.div`
-    margin: 0 15%;
+    width: auto;
+    margin: 0 15px;
 `
 
 const LogoExpliCaasoImg = styled.img`

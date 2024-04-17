@@ -10,7 +10,7 @@ const LoginButtonContainer = styled.button`
   height: 40px;
   border: none;
   border-radius: 10px;
-  margin: 10px 0 0 0;
+  margin: 0 0 0 0;
   color: #003466;
   font-size: 20px;
   font-weight: 600;
