@@ -1,4 +1,6 @@
 import Header from './components/Header';
+import PaginaAluno from './components/PaginaAluno';
+import ContainerMateria from './components/ContainerMateria';
 import styled from 'styled-components';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
@@ -20,9 +22,11 @@ function App() {
     // inteira, nele temos apenas o componente Header, por enquanto. 
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
-    <AppContainer>
-      <Header/>
-    </AppContainer>
+    // <AppContainer>
+    //   <Header/>
+    // </AppContainer>
+    <PaginaAluno>
+    </PaginaAluno>
   );
 }
 
