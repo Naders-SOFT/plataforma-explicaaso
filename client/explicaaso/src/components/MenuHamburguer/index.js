@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import LoginButton from '../LoginButton';
 
 const MenuHambContainer = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   height: 40px;
-  width: 40px;
-  margin: 0 30px;
+  width: auto;
+  padding: 0 20px;
+  right: 0;
 `
 
 const HamburguerButton = styled.button`
@@ -48,6 +51,27 @@ const HamburguerButton = styled.button`
   }
 `
 
+const MenuList = styled.ul`
+  background-color: #003466;
+  list-style: none;
+  width: auto;
+  padding: 0 44px 30px 44px;
+  position: absolute;
+  top: 100%; 
+  opacity: ${({ active }) => (active ? '1' : '0')};
+  transform: translateY(${({ active }) => (active ? '0' : '-10px')});
+  transition: opacity 0.9s ease, transform 0.9s ease; 
+  z-index: 1;
+  flex-direction: column;
+  color: white;
+  right: 0;
+`
+
+const NavigationItem = styled.li`
+  display: flex;
+  font-size: 20px;
+  white-space: nowrap; 
+`
 
 function Menu() {
   const [active, setMode] = useState(false);
@@ -56,6 +80,8 @@ function Menu() {
     setMode(!active);
   }
 
+  const itensNavigation = ['Início', 'Sobre nós', 'Contato', 'Notícias', 'Blog']
+
   return (
     <MenuHambContainer>
       <HamburguerButton active={active} onClick={toggleActive}>
@@ -63,6 +89,14 @@ function Menu() {
         <div/>
         <div/>
       </HamburguerButton>
+      <MenuList active={active}>
+        {
+          itensNavigation.map( item => (
+            <NavigationItem><p>{item}</p></NavigationItem>
+          ))
+        }
+        <NavigationItem><LoginButton/></NavigationItem>
+      </MenuList>
     </MenuHambContainer>
   );
 }
