@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 
 const LogoExpliCaasoContainer = styled.div`
-    margin-right: 56px;
+    margin: 0 15%;
 `
 
 const LogoExpliCaasoImg = styled.img`
-    width: 90px;
-    height: 90px;
+    width: 75px;
+    height: 75px;
 `
 
 

@@ -2,8 +2,10 @@ import logoUsp from '../../images/logos/logo-usp.png';
 import styled from 'styled-components';
 
 const LogoContainer = styled.div`
-    display: flex;
-    margin: 0 36px;
+    display: none;
+
+    // display: flex;
+    // margin: 0 36px;
 `
 
 const LogoImage = styled.img`

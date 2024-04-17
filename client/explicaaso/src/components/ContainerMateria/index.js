@@ -32,8 +32,9 @@ const Materias = styled.ul`
 function ContainerMateria(props) {
     return (
         <Materias>
+            <CardMateria imgSrc={imgMatematica} materia='Matemática'></CardMateria>
             <CardMateria imgSrc={imgQuimica} materia='Química'></CardMateria>
-            <CardMateria imgSrc={imgGramatica}materia='Gramática'></CardMateria>
+            <CardMateria imgSrc={imgGramatica} materia='Gramática'></CardMateria>
             <CardMateria imgSrc={imgFisica} materia='Física'></CardMateria>
             <CardMateria imgSrc={imgBiologia} materia='Biologia'></CardMateria>
             <CardMateria imgSrc={imgGeografia} materia='Geografia'></CardMateria>

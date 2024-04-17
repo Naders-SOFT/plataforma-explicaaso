@@ -1,3 +1,4 @@
+import BarrinhaTurquesa from './components/BarrinhaTurquesa';
 import Header from './components/Header';
 import PaginaAluno from './components/PaginaAluno';
 import ContainerMateria from './components/ContainerMateria';
@@ -24,6 +25,7 @@ function App() {
     // de styled-components algumas linhas acima.
     // <AppContainer>
     //   <Header/>
+    //   <BarrinhaTurquesa/>
     // </AppContainer>
     <PaginaAluno>
     </PaginaAluno>
