@@ -12,7 +12,6 @@ const HeaderContainer = styled.div`
     justify-content: flex-start;
 `
 
-
 function Header() {
     return  (
         <HeaderContainer>

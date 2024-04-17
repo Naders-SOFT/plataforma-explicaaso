@@ -1,6 +1,4 @@
 import Header from './components/Header';
-//import Footer from './components/Footer';
-import ContactForm from './components/ContactForm/ContactForm';
 import styled from 'styled-components';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
@@ -18,15 +16,13 @@ const AppContainer = styled.div`
 // ESTRUTURA DO COMPONENTE
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div className="container">
-        <div className="content">
-          <ContactForm />
-        </div>
-      </div>
-      {/* <Footer /> */}
-    </div>
+    // Aqui temos um container global que inclui a página 
+    // inteira, nele temos apenas o componente Header, por enquanto. 
+    // Note que a estilização desse container é feita através 
+    // de styled-components algumas linhas acima.
+    <AppContainer>
+      <Header/>
+    </AppContainer>
   );
 }
 

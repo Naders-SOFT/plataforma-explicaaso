@@ -1,0 +1,176 @@
+body {
+    font-family: "Inter";
+}
+
+.contactContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    padding: 5%;
+    width: 60%;
+}
+
+.contactForm {
+    padding: 5%;
+}
+
+.contactForm .inputField {
+    background-color: #319190;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    margin-bottom: 5%;
+    padding: 5%;
+    width: 100%;
+}
+
+.contactForm .submitButton {
+    background-color: #FF6600;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    color: #FFFFFF;
+    cursor: pointer;
+    height: 100%;
+    padding: 10px 20px;
+    width: 80px;
+}
+
+.contactForm .submitButton:hover {
+    background-color: #FF6600;
+}
+
+.contactForm form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contactForm h2 {
+    color: #FF6600;
+    font-size: 50px;
+    margin-top: 0;
+    width: 500px;
+}
+
+.contactForm label {
+    margin-bottom: 5px;
+}
+
+.contactForm p {
+    color: #828282;
+}
+
+.contactForm .textArea {
+    background-color: #319190;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 380px;
+}
+
+.contactInfo {
+    display: flex;
+    gap: 7.5%;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.info h2 {
+    color: #FF6600;
+    font-size: 25px;
+}
+
+.info p {
+    color: #828282;
+}
+
+.label {
+    color: #FF6600;
+}
+
+/* Mídia Query para dispositivos com largura máxima de 768px (típico de dispositivos móveis) */
+@media only screen and (max-width: 768px) {
+    body {
+        font-family: "Inter";
+    }
+    
+    .contactContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 15%;
+    }
+    
+    .contactForm {
+        padding: 5%;
+        width: 100%;
+        max-width: 100%;
+        align-items: center;
+    }
+    
+    .contactForm .inputField {
+        background-color: #319190;
+        padding: 10px 10px;
+        width: 200px;
+    }
+
+    .contactForm .textArea {
+        background-color: #319190;
+        padding: 10px 10px;
+        width: 200px;
+    }
+    
+    .contactForm .submitButton {
+        width: 220px;
+    }
+    
+    .contactForm form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contactForm h2 {
+        font-size: 30px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .contactForm label {
+        margin-bottom: 5px;
+    }
+    
+    .contactForm p {
+        color: #828282;
+        text-align: center;
+    }
+    
+    .contactInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10%;
+    }
+    
+    .info {
+        text-align: center;
+    }
+    
+    .info h2 {
+        font-size: 25px;
+    }
+    
+    .info p {
+        color: #828282;
+    }
+    
+    .label {
+        color: #FF6600;
+    }
+
+    .map {
+        width: 200px;
+    }
+}
