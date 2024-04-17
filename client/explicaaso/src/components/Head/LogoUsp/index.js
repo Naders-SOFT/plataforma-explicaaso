@@ -1,4 +1,4 @@
-import logoUsp from '../../images/logos/logo-usp.png';
+import logoUsp from '../../../images/logos/logo-usp.png';
 import styled from 'styled-components';
 
 const LogoContainer = styled.div`

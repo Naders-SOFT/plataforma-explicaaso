@@ -1,5 +1,5 @@
-import LogosHeader from '../../LogosHeader';
-import MenuHamburguer from '../../MenuHamburguer';
+import LogosHeader from '../LogosHeader';
+import MenuHamburguer from '../MenuHamburguer';
 import NavigationHeader from '../NavigationHeader';
 import LoginButton from '../LoginButton';
 import styled from 'styled-components';

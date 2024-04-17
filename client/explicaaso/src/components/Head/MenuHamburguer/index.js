@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import LoginButton from '../Head/LoginButton';
+import LoginButton from '../LoginButton';
 
 const MenuHambContainer = styled.div`
   display: flex;

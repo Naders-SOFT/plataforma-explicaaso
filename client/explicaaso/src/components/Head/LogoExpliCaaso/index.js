@@ -1,4 +1,4 @@
-import logoExpliCaaso from '../../images/logos/logo-explicaaso.png';
+import logoExpliCaaso from '../../../images/logos/logo-explicaaso.png';
 import styled from 'styled-components';
 
 
