@@ -21,6 +21,12 @@ const Materias = styled.ul`
     align-items: center;
     justify-content: center;
     margin: 0px;
+
+    @media (min-width: 350px) {
+        {
+            display:grid;
+        }
+    }
 `
 
 function ContainerMateria(props) {
@@ -31,7 +37,7 @@ function ContainerMateria(props) {
             <CardMateria imgSrc={imgFisica} materia='Física'></CardMateria>
             <CardMateria imgSrc={imgBiologia} materia='Biologia'></CardMateria>
             <CardMateria imgSrc={imgGeografia} materia='Geografia'></CardMateria>
-            <CardMateria imgSrc={imgMatematica} materia='Redação'></CardMateria>
+            <CardMateria imgSrc={imgRedacao} materia='Redação'></CardMateria>
             <CardMateria imgSrc={imgHistoria} materia='História'></CardMateria>
             <CardMateria imgSrc={imgLiteratura} materia='Literatura'></CardMateria>
         </Materias>
