@@ -10,8 +10,8 @@ const Card = styled.li`
 `
 
 const ImgCard = styled.img`
-    width: 50%;
-    height: 50%;
+    width: 30vh;
+    height: 20vh;
     border-radius: 2vh;
 `
 

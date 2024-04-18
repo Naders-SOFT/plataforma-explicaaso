@@ -1,7 +1,5 @@
-import BarrinhaTurquesa from './components/BarrinhaTurquesa';
-import Header from './components/Header';
-import PaginaAluno from './components/PaginaAluno';
-import ContainerMateria from './components/ContainerMateria';
+
+import PaginaAluno from './pages/PaginaAluno';
 import styled from 'styled-components';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------

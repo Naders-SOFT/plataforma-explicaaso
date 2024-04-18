@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CardMateria from '../CardMateria';
+import CardMateria from './CardMateria';
 
 import imgMatematica from '../../images/materias/matematica.jpg';
 import imgHistoria from '../../images/materias/historia.jpg'
@@ -22,10 +22,9 @@ const Materias = styled.ul`
     justify-content: center;
     margin: 0px;
 
-    @media (min-width: 350px) {
-        {
-            display:grid;
-        }
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
     }
 `
 
