@@ -6,11 +6,11 @@ const LoginButtonContainer = styled.button`
   align-items: center;
   justify-content: center;
   background-color: #FFCC00;
-  width: 7%;
-  height: 48%;
+  width: 120px;
+  height: 40px;
   border: none;
   border-radius: 10px;
-  margin: 0 0 0 6%;
+  margin: 10px 0 0 0;
   color: #003466;
   font-size: 20px;
   font-weight: 600;
