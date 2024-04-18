@@ -16,12 +16,7 @@ function PaginaNoticias() {
             <BarrinhaTurquesa />
             <BlocoAzul/>
         </ContainerPag>
-
-
-
     )
-
-
 }
 
 export default PaginaNoticias;
