@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import LoginButton from '../Head/LoginButton';
+import LoginButton from '../LoginButton';
 
 const MenuHambContainer = styled.div`
   display: flex;
@@ -21,15 +21,15 @@ const HamburguerButton = styled.button`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 60px;
-  height: 50px;
+  width: 54px;
+  height: 45px;
 
   &:focus {
     outline: none;
   }
 
   div {
-    width: 36px;
+    width: 34px;
     height: 4px;
     border-radius: 2px;
     background-color: #FFCC00;

@@ -1,4 +1,4 @@
-import LogoUsp from '../Head/LogoUsp';
+import LogoUsp from '../LogoUsp';
 import LogoExpliCaaso from '../LogoExpliCaaso';
 import styled from 'styled-components';
 
