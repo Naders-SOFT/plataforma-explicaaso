@@ -8,11 +8,24 @@ const NavigationHeaderContainer = styled.ul`
   color: white;
   padding: 0;
   margin: 0;
+  width: 100%;
+  justify-content: center;
 `
 
 const NavigationItem = styled.li`
   font-size: 24px;
-  margin: 0 50px;
+  margin: 0 5%;
+  white-space: nowrap; 
+
+  @media (min-width: 861px) and (max-width: 1050px) {
+    font-size: 22px;
+    margin: 0 4%;
+  }
+
+  @media (max-width: 860px) {
+    font-size: 18px;
+    margin: 0 3%;
+  }
 `
 
 function NavigationHeader() {
@@ -22,7 +35,7 @@ function NavigationHeader() {
     <NavigationHeaderContainer>
       {
         itensNavigation.map( (item) => (
-          <NavigationItem><p>{item}</p></NavigationItem>
+          <NavigationItem key={item}><p>{item}</p></NavigationItem>
         ))
       }
     </NavigationHeaderContainer>

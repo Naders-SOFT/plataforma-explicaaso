@@ -9,17 +9,9 @@ const HeaderContainer = styled.div`
     display: flex;
     background-color: #003466;
     width: 100%;
-    height: 90px;
+    height: ${({isMobile}) => (isMobile ? '78px' : '90px')};
     align-items: center;
     justify-content: space-between;
-`
-
-const ItensDesktop = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 20px 0 0;
 `
 
 
@@ -41,19 +33,11 @@ function Header() {
     }, [])
 
     return  (
-        <HeaderContainer>
+        <HeaderContainer isMobile={isMobile}>
             <LogosHeader isMobile={isMobile}/>
-            {
-                isMobile ? (
-                    <MenuHamburguer/>
-                ) : 
-                (
-                    <ItensDesktop>
-                        <NavigationHeader/>
-                        <LoginButton/>
-                    </ItensDesktop>
-                )
-            }
+            {isMobile && <MenuHamburguer/>}
+            {!isMobile && <NavigationHeader/>}
+            {!isMobile && <LoginButton/>}
         </HeaderContainer>
     );
 }
