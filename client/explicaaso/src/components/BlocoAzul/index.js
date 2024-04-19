@@ -14,28 +14,28 @@ const ContainerPag = styled.div`
 const BlocoAzulContainer = styled.section`
     align-items: center;
     background-color: #003466;
-    border-radius: 8px;
+    border-radius: 4vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 10px;
+    margin: 5%;
     width: 70%;
 
 `
 const H2 = styled.h2`
     color: #FF6600;
-    font-size: 40px;
+    font-size: 200%;
     margin-top: 10px;
-    margin-bottom: 4px;;
+    margin-bottom: 4px;
     width: 500px;
     text-align: center;
 `
 
 const LI = styled.li`
     color: white;
-    font-size: 30px;
-    padding-right: 20px;
-    padding-bottom: 20px;
+    font-size: 180%;
+    padding-right: 10%;
+    padding-bottom: 10%;
 `
 const IMG = styled.img`
     width: 200px;
@@ -57,6 +57,7 @@ function BlocoAzul() {
 
             <BlocoAzulContainer>
                 <H2>Nossos <br/> Aprovados</H2>
+                <IMG src = {placeholder} alt="placeholder"></IMG>
                 <IMG src = {placeholder} alt="placeholder"></IMG>
             </BlocoAzulContainer>
         </ContainerPag>
