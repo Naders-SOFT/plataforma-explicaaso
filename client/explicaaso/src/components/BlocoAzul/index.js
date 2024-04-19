@@ -18,7 +18,7 @@ const BlocoAzulContainer = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 30px;
+    margin: 10px;
     width: 70%;
 
 `
