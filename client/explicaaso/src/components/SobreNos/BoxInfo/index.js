@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+/**
+ * Container das informações do cursinho.
+ */
 const BlocoInfo = styled.div`
     align-items: center;
     background-color: #003466;
@@ -11,6 +14,11 @@ const BlocoInfo = styled.div`
     width: 70%;
 `
 
+/**
+ * Container pra imagem e para o título.
+ * Necessário para poder ajustar a posição do
+ * título para que ele sobreponha a imagem.
+ */
 const IMGDIV = styled.div`
     align-items: center;
     display: flex;
@@ -25,6 +33,10 @@ const IMG = styled.img`
     width: 100%;
 `
 
+/**
+ * Posição absoluta do título para que ele sobreponha
+ * a imagem de capa.
+ */
 const H2 = styled.h2`
     color: #FF6600;
     font-size: 40px;

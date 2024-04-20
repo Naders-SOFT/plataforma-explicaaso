@@ -11,25 +11,31 @@ const ContainerPag = styled.div`
 `
 
 function ContainerInfo() {
+    /**
+     * Usando o template da caixa de informações,
+     * passamos o texto, o título e a imagem por parâmetro,
+     * facilitando a manutenção futura, caso precise alterar
+     * algum campo ou adicionar um novo.
+     */
     return (
         <ContainerPag>
             <BoxInfo 
             imgSrc={placeholder} 
-            imgAlt="Quem somos"
+            imgAlt="placeholder"
             titulo="Quem Somos?"
             texto="Somos  mais do que apenas um cursinho preparatório. Somos uma comunidade  apaixonada de estudantes da Universidade de São Paulo (USP), unidos por  um propósito comum: ajudá-lo a alcançar seus objetivos acadêmicos. Nossa  equipe é composta por alunos dedicados, que entendem os desafios  enfrentados por quem busca ingressar no ensino superior.
             No Cursinho Popular ExplicaAso, acreditamos que todos merecem  acesso a uma educação de qualidade, independentemente de suas origens ou  condições financeiras. Nossa missão é clara: capacitar estudantes como  você a conquistarem suas vagas nas melhores universidades, abrindo  portas para um futuro repleto de oportunidades."/>
 
             <BoxInfo 
             imgSrc={placeholder} 
-            imgAlt="Informações Sobre as Aulas"
+            imgAlt="placeholder"
             titulo="Informações Sobre as Aulas"
             texto="Somos  mais do que apenas um cursinho preparatório. Somos uma comunidade  apaixonada de estudantes da Universidade de São Paulo (USP), unidos por  um propósito comum: ajudá-lo a alcançar seus objetivos acadêmicos. Nossa  equipe é composta por alunos dedicados, que entendem os desafios  enfrentados por quem busca ingressar no ensino superior.
             No Cursinho Popular ExplicaAso, acreditamos que todos merecem  acesso a uma educação de qualidade, independentemente de suas origens ou  condições financeiras. Nossa missão é clara: capacitar estudantes como  você a conquistarem suas vagas nas melhores universidades, abrindo  portas para um futuro repleto de oportunidades."/>
         
             <BoxInfo 
             imgSrc={placeholder} 
-            imgAlt="Corpo Docente"
+            imgAlt="placeholder"
             titulo="Corpo Docente"
             texto="Somos  mais do que apenas um cursinho preparatório. Somos uma comunidade  apaixonada de estudantes da Universidade de São Paulo (USP), unidos por  um propósito comum: ajudá-lo a alcançar seus objetivos acadêmicos. Nossa  equipe é composta por alunos dedicados, que entendem os desafios  enfrentados por quem busca ingressar no ensino superior.
             No Cursinho Popular ExplicaAso, acreditamos que todos merecem  acesso a uma educação de qualidade, independentemente de suas origens ou  condições financeiras. Nossa missão é clara: capacitar estudantes como  você a conquistarem suas vagas nas melhores universidades, abrindo  portas para um futuro repleto de oportunidades."/>
