@@ -67,11 +67,10 @@ const IMG = styled.img`
         width: 500px;
         height: 500px;
         padding: 20px;
-        diplay: flex;
-        justify-content: center;
+        display: block;
+        margin: auto;
     }
 `
-
 
 const Postagem = styled.section`
     font-size: 100%;
@@ -87,9 +86,6 @@ const Postagem = styled.section`
     }
 
 `
-
-
-
 
 function BlocoBlog() {
     return(
