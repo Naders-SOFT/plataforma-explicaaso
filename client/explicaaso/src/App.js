@@ -1,7 +1,6 @@
 import BarrinhaTurquesa from './components/Head/BarrinhaTurquesa';
 import Header from './components/Head/Header';
 import styled from 'styled-components';
-import PaginaNoticias from './pages/pagina-noticias';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -22,10 +21,12 @@ function App() {
     // inteira, nele temos apenas o componente Header, por enquanto. 
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
-    <AppContainer>
-      <Header/>
-      <BarrinhaTurquesa/>
-    </AppContainer>
+    // <AppContainer>
+    //   <Header/>
+    //   <BarrinhaTurquesa/>
+      
+    // </AppContainer>
+    <PaginaBlog/>
   );
 }
 
