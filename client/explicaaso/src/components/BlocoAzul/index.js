@@ -18,8 +18,8 @@ const BlocoAzulContainer = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 5%;
-    width: 70%;
+    margin: 2%;
+    width: 90%;
 
 `
 const H2 = styled.h2`
@@ -27,8 +27,12 @@ const H2 = styled.h2`
     font-size: 200%;
     margin-top: 10px;
     margin-bottom: 4px;
-    width: 500px;
+    width: 50%;
     text-align: center;
+
+    @media (min-width: 768px) {
+        font-size: 250%;
+    }
 `
 
 const LI = styled.li`
@@ -36,11 +40,29 @@ const LI = styled.li`
     font-size: 180%;
     padding-right: 10%;
     padding-bottom: 10%;
+
+    @media (min-width: 768px) {
+        font-size: 240%;
+        display: flex;
+        justify-content: flex-start;
+        padding-right: 1%;
+        padding-bottom: 8%;
+    }
 `
 const IMG = styled.img`
     width: 200px;
     height: 200px;
     padding: 20px;
+
+    @media (min-width: 768px) {
+        width: 500px;
+        height: 500px;
+        padding: 20px;
+        display: grid;
+        margin: auto;
+    }
+
+    
 `
 
 function BlocoAzul() {
