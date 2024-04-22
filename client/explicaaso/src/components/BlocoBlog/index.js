@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import placeholder from '../../images/aprovados/placeholder.png'
+
 
 const ContainerPag = styled.div`
     align-items: center;
@@ -23,6 +25,10 @@ const BlocoContainer = styled.section`
 
 const H1 = styled.h1`
     color: white;
+
+    @media (min-width: 768px) {
+        font-size: 220%;
+    }
     
 `
 const H2 = styled.h2`
@@ -33,6 +39,10 @@ const H2 = styled.h2`
     width: 500vw;
     text-align: center;
 
+    @media (min-width: 768px) {
+        font-size: 250%;
+    }
+
 `
 
 const TituloPost = styled.h3`
@@ -41,6 +51,25 @@ const TituloPost = styled.h3`
     padding: 0;
     text-decoration: underline;
 
+    @media (min-width: 768px) {
+        font-size: 200%;
+    }
+
+`
+
+const IMG = styled.img`
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    
+
+    @media (min-width: 768px) {
+        width: 500px;
+        height: 500px;
+        padding: 20px;
+        diplay: flex;
+        justify-content: center;
+    }
 `
 
 
@@ -48,9 +77,18 @@ const Postagem = styled.section`
     font-size: 100%;
     color: white;
     margin-top: 0%;
-    text-align: left;
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+
+    @media (min-width: 768px) {
+        font-size: 150%;
+        flex-direction: column
+    }
 
 `
+
+
 
 
 function BlocoBlog() {
@@ -63,8 +101,20 @@ function BlocoBlog() {
 
             <TituloPost>A educação no Brasil</TituloPost>
             <Postagem>
-                
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras semper neque eget mi ullamcorper, eget lacinia mauris pretium. Mauris fringilla efficitur arcu, ac eleifend quam...</p>
+                <IMG src = {placeholder} alt="placeholder"></IMG>
+            </Postagem>
 
+            <TituloPost>A importância dos cursinhos populares</TituloPost>
+            <Postagem>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras semper neque eget mi ullamcorper, eget lacinia mauris pretium. Mauris fringilla efficitur arcu, ac eleifend quam...</p>
+                <IMG src = {placeholder} alt="placeholder"></IMG>
+            </Postagem>
+
+            <TituloPost>Como estudar para o vestibular</TituloPost>
+            <Postagem>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras semper neque eget mi ullamcorper, eget lacinia mauris pretium. Mauris fringilla efficitur arcu, ac eleifend quam...</p>
+                <IMG src = {placeholder} alt="placeholder"></IMG>
             </Postagem>
 
 

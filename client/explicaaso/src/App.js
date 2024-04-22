@@ -1,5 +1,6 @@
 import BarrinhaTurquesa from './components/Head/BarrinhaTurquesa';
 import Header from './components/Head/Header';
+import PaginaBlog from './pages/pagina-blog';
 import styled from 'styled-components';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
