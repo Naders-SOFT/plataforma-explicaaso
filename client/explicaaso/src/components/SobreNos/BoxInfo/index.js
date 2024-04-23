@@ -29,6 +29,9 @@ const IMGDIV = styled.div`
     position: relative;
 `
 
+const TXTDIV = styled.div`
+`
+
 const IMG = styled.img`
     width: 100%;
 `
@@ -56,11 +59,17 @@ const CORPO = styled.p`
 function BoxInfo(props) {
     return(
         <BlocoInfo>
+            {/* Disposição mobile da página */}
+            {props.isMobile && 
             <IMGDIV>
                 <IMG src={`${props.imgSrc}`} alt={props.imgAlt}></IMG>
                 <H2>{props.titulo}</H2>
-            </IMGDIV>
-            <CORPO>{props.texto}</CORPO>
+            </IMGDIV>}
+            {props.isMobile && 
+            <CORPO>{props.texto}</CORPO>}
+
+
+            {/* Disposição desktop da página */}
         </BlocoInfo>
     );
 }

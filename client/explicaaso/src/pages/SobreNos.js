@@ -7,12 +7,12 @@ const ContainerPag = styled.div`
     width: 100%
 `
 
-function SobreNos() {
+function SobreNos(props) {
     return (
         <ContainerPag>
-            <Header />
+            <Header isMobile={props.isMobile}/>
             <BarrinhaTurquesa />
-            <ContainerInfo />
+            <ContainerInfo isMobile={props.isMobile}/>
         </ContainerPag>
     );
 }
