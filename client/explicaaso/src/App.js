@@ -1,6 +1,5 @@
 import BarrinhaTurquesa from './components/Head/BarrinhaTurquesa';
 import Header from './components/Head/Header';
-import Apresentacao from './components/Inicio/Apresentacao';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 
