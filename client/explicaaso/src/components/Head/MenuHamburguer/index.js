@@ -57,7 +57,7 @@ const MenuList = styled.ul`
   width: auto;
   padding: 0 44px 30px 44px;
   position: absolute;
-  top: 100%; 
+  top: 80%; 
   opacity: ${({ active }) => (active ? '1' : '0')};
   transform: translateY(${({ active }) => (active ? '0' : '-10px')});
   transition: opacity 0.9s ease, transform 0.9s ease; 
