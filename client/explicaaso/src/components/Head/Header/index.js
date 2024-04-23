@@ -3,7 +3,6 @@ import MenuHamburguer from '../MenuHamburguer';
 import NavigationHeader from '../NavigationHeader';
 import LoginButton from '../LoginButton';
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
 
 const HeaderContainer = styled.div`
     display: flex;
@@ -15,23 +14,7 @@ const HeaderContainer = styled.div`
 `
 
 
-function Header() {
-    const [isMobile, setIsMobile] = useState(true);
-
-    useEffect(() => {
-        const resizeScreen = () => {
-            setIsMobile(window.innerWidth <= 768);
-        }
-
-        resizeScreen();
-
-        window.addEventListener('resize', resizeScreen); // atualiza o estado isMobile quando a tela é redimensionada
-
-        return () => {
-            window.removeEventListener('resize', resizeScreen); // remove o event listener ao desmontar o componente
-        };
-    }, [])
-
+function Header({ isMobile }) {
     return  (
         <HeaderContainer isMobile={isMobile}>
             <LogosHeader isMobile={isMobile}/>
