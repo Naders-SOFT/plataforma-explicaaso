@@ -3,8 +3,6 @@ import Header from './components/Head/Header';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 
-import SobreNos from './pages/SobreNos'
-
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
 // ESTILIZAÇÃO DO COMPONENTE
@@ -41,10 +39,8 @@ function App() {
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
     <AppContainer>
-      {/* <Header isMobile={isMobile}/> */}
-      {/* <BarrinhaTurquesa/> */}
+      <Header isMobile={isMobile}/>
       {/* <Apresentacao/> */}
-      <SobreNos isMobile={isMobile} />
     </AppContainer>
   );
 }

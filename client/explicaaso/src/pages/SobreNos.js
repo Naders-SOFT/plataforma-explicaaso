@@ -11,7 +11,6 @@ function SobreNos(props) {
     return (
         <ContainerPag>
             <Header isMobile={props.isMobile}/>
-            <BarrinhaTurquesa />
             <ContainerInfo isMobile={props.isMobile}/>
         </ContainerPag>
     );
