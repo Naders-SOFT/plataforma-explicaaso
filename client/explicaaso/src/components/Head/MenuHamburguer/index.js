@@ -73,14 +73,15 @@ const NavigationItem = styled.li`
   white-space: nowrap; 
 `
 
-function Menu() {
+function Menu(props) {
   const [active, setMode] = useState(false);
 
   const toggleActive = () => {
     setMode(!active);
   }
 
-  const itensNavigation = ['Início', 'Sobre nós', 'Contato', 'Notícias', 'Blog']
+  // criar ids
+  const itensNavigation = props.itensNavigation;
 
   return (
     <MenuHambContainer>
@@ -92,7 +93,7 @@ function Menu() {
       <MenuList $active={active}>
         {
           itensNavigation.map( item => (
-            <NavigationItem><p>{item}</p></NavigationItem>
+            <NavigationItem key={item.id}><p>{item.texto}</p></NavigationItem>
           ))
         }
         <NavigationItem><LoginButton/></NavigationItem>

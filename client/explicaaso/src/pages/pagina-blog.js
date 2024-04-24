@@ -1,4 +1,3 @@
-import BarrinhaTurquesa from "../components/Head/BarrinhaTurquesa";
 import Header from "../components/Head/Header";
 import BlocoBlog from "../components/BlocoBlog";
 import styled from 'styled-components';

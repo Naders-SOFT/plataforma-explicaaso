@@ -20,12 +20,18 @@ const HeaderContainer = styled.div`
 
 
 function Header(props) {
+    const itensNavigation = [{id: 0, texto: "Início"}, 
+        {id: 1, texto: "Sobre nós"}, 
+        {id: 2, texto: "Contato"}, 
+        {id: 3, texto: "Notícias"}, 
+        {id: 4, texto: "Blog"}];
+
     return  (
         <ContainerPag>
             <HeaderContainer $isMobile={props.isMobile}>
                 <LogosHeader $isMobile={props.isMobile}/>
-                {props.isMobile && <MenuHamburguer/>}
-                {!props.isMobile && <NavigationHeader/>}
+                {props.isMobile && <MenuHamburguer itensNavigation={itensNavigation}/>}
+                {!props.isMobile && <NavigationHeader itensNavigation={itensNavigation}/>}
                 {!props.isMobile && <LoginButton/>}
             </HeaderContainer>
             <BarrinhaTurquesa/>

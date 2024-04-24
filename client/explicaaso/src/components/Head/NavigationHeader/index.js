@@ -28,14 +28,14 @@ const NavigationItem = styled.li`
   }
 `
 
-function NavigationHeader() {
-  const itensNavigation = ['Início', 'Sobre nós', 'Contato', 'Notícias', 'Blog'];
+function NavigationHeader(props) {
+  const itensNavigation = props.itensNavigation;
 
   return (
     <NavigationHeaderContainer>
       {
         itensNavigation.map( (item) => (
-          <NavigationItem key={item}><p>{item}</p></NavigationItem>
+          <NavigationItem key={item.id}><p>{item.texto}</p></NavigationItem>
         ))
       }
     </NavigationHeaderContainer>
