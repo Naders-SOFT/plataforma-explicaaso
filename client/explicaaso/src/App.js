@@ -1,7 +1,6 @@
 import Header from './components/Head/Header';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import PaginaContato from './pages/pagina-contato'
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -40,7 +39,6 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <Header isMobile={isMobile}/>
-      <PaginaContato/>
       {/* <Apresentacao/> */}
     </AppContainer>
   );

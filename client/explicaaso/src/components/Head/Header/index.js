@@ -18,8 +18,10 @@ const HeaderContainer = styled.div`
     justify-content: space-between;
 `
 
-
 function Header(props) {
+
+    // Header define os itens de navegação com IDs associados para
+    // serem utilizados no meno hamburguer e na barra de navegação.
     const itensNavigation = [{id: 0, texto: "Início"}, 
         {id: 1, texto: "Sobre nós"}, 
         {id: 2, texto: "Contato"}, 
