@@ -8,19 +8,19 @@ const HeaderContainer = styled.div`
     display: flex;
     background-color: #003466;
     width: 100%;
-    height: ${({isMobile}) => (isMobile ? '78px' : '90px')};
+    height: ${({isMobile}) => (isMobile ? "78px" : "90px")};
     align-items: center;
     justify-content: space-between;
 `
 
 
-function Header({ isMobile }) {
+function Header(props) {
     return  (
-        <HeaderContainer isMobile={isMobile}>
-            <LogosHeader isMobile={isMobile}/>
-            {isMobile && <MenuHamburguer/>}
-            {!isMobile && <NavigationHeader/>}
-            {!isMobile && <LoginButton/>}
+        <HeaderContainer isMobile={props.isMobile}>
+            <LogosHeader isMobile={props.isMobile}/>
+            {props.isMobile && <MenuHamburguer/>}
+            {!props.isMobile && <NavigationHeader/>}
+            {!props.isMobile && <LoginButton/>}
         </HeaderContainer>
     );
 }
