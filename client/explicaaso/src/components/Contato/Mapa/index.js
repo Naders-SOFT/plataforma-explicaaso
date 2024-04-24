@@ -20,6 +20,7 @@ function Mapa() {
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
+                title="Localização do Cursinho"
             ></iframe>
         </ContainerMapa>
     );
