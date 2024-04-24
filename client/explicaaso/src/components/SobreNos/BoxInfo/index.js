@@ -11,7 +11,7 @@ const BlocoInfo = styled.div`
     flex-direction: column;
     justify-content: center;
     margin: 50px;
-    width: 70%;
+    width: ${({isMobile}) => (isMobile ? '70%' : '90%')};
 `
 
 /**
@@ -21,8 +21,8 @@ const BlocoInfo = styled.div`
  */
 const IMGDIV = styled.div`
     align-items: center;
-    display: flex;
     justify-content: center;
+    display: flex;
     margin: 3%;
     padding: 0;
     width: 90%;
@@ -30,17 +30,28 @@ const IMGDIV = styled.div`
 `
 
 const TXTDIV = styled.div`
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-column-gap: 1%;
+    grid-template-areas: 
+    'img titulo'
+    'img corpo';
+    margin: 3%;
 `
 
 const IMG = styled.img`
     width: 100%;
+    border-radius: 8px;
+    grid-area: img;
 `
 
 /**
  * Posição absoluta do título para que ele sobreponha
  * a imagem de capa.
  */
-const H2 = styled.h2`
+const MOBLTITLE = styled.h2`
     color: #FF6600;
     font-size: 40px;
     width: 100%;
@@ -50,26 +61,41 @@ const H2 = styled.h2`
     position: absolute;
 `
 
+const DSKTITLE = styled.h2`
+    color: #FF6600;
+    font-size: 40px;
+    text-align: flex-start;
+    margin: 5% 5% 5% 5%;
+    grid-area: titulo;
+`
+
 const CORPO = styled.p`
     color: white;
     font-size: 30px;
     margin: 5% 5% 5% 5%;
+    grid-area: corpo;
 `
 
 function BoxInfo(props) {
     return(
-        <BlocoInfo>
+        <BlocoInfo isMobile={props.isMobile}>
             {/* Disposição mobile da página */}
             {props.isMobile && 
             <IMGDIV>
-                <IMG src={`${props.imgSrc}`} alt={props.imgAlt}></IMG>
-                <H2>{props.titulo}</H2>
+                <IMG src={`${props.imgSrc}`} alt={props.imgAlt}/>
+                <MOBLTITLE>{props.titulo}</MOBLTITLE>
             </IMGDIV>}
             {props.isMobile && 
-            <CORPO>{props.texto}</CORPO>}
+            <CORPO isMobile={props.isMobile}>{props.texto}</CORPO>}
 
 
             {/* Disposição desktop da página */}
+            {!props.isMobile &&
+            <TXTDIV>
+                <IMG src={`${props.imgSrc}`} alt={props.imgAlt}/>
+                <DSKTITLE>{props.titulo}</DSKTITLE>
+                <CORPO isMobile={props.isMobile}>{props.texto}</CORPO>
+            </TXTDIV>}
         </BlocoInfo>
     );
 }
