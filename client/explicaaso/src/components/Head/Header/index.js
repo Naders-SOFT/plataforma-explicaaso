@@ -22,8 +22,8 @@ const HeaderContainer = styled.div`
 function Header(props) {
     return  (
         <ContainerPag>
-            <HeaderContainer isMobile={props.isMobile}>
-                <LogosHeader isMobile={props.isMobile}/>
+            <HeaderContainer $isMobile={props.isMobile}>
+                <LogosHeader $isMobile={props.isMobile}/>
                 {props.isMobile && <MenuHamburguer/>}
                 {!props.isMobile && <NavigationHeader/>}
                 {!props.isMobile && <LoginButton/>}
