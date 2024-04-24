@@ -12,8 +12,7 @@ const ContainerPag = styled.div`
 function PaginaNoticias() {
     return (
         <ContainerPag>
-            <Header />
-            <BarrinhaTurquesa />
+            <Header/>
             <BlocoAzul/>
         </ContainerPag>
     )

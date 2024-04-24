@@ -14,7 +14,6 @@ function PaginaBlog() {
     return(
         <ContainerPag>
             <Header/>
-            <BarrinhaTurquesa/>
             <BlocoBlog/>
         </ContainerPag>
     )

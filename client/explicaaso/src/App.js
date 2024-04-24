@@ -3,7 +3,6 @@ import Header from './components/Head/Header';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 
-
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
 // ESTILIZAÇÃO DO COMPONENTE
@@ -41,7 +40,6 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <Header isMobile={isMobile}/>
-      <BarrinhaTurquesa/>
       {/* <Apresentacao/> */}
     </AppContainer>
   );
