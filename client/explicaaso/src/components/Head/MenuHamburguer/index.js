@@ -84,12 +84,12 @@ function Menu() {
 
   return (
     <MenuHambContainer>
-      <HamburguerButton active={active} onClick={toggleActive}>
+      <HamburguerButton $active={active} onClick={toggleActive}>
         <div/>
         <div/>
         <div/>
       </HamburguerButton>
-      <MenuList active={active}>
+      <MenuList $active={active}>
         {
           itensNavigation.map( item => (
             <NavigationItem><p>{item}</p></NavigationItem>
