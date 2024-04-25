@@ -86,7 +86,7 @@ function BoxInfo(props) {
                 <MOBLTITLE>{props.titulo}</MOBLTITLE>
             </IMGDIV>}
             {props.isMobile && 
-            <CORPO $isMobile={props.isMobile}>{props.texto}</CORPO>}
+            <CORPO>{props.texto}</CORPO>}
 
 
             {/* Disposição desktop da página */}
@@ -94,7 +94,7 @@ function BoxInfo(props) {
             <TXTDIV>
                 <IMG src={`${props.imgSrc}`} alt={props.imgAlt}/>
                 <DSKTITLE>{props.titulo}</DSKTITLE>
-                <CORPO $isMobile={props.isMobile}>{props.texto}</CORPO>
+                <CORPO>{props.texto}</CORPO>
             </TXTDIV>}
         </BlocoInfo>
     );
