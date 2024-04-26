@@ -13,7 +13,7 @@ const HeaderContainer = styled.div`
     display: flex;
     background-color: #003466;
     width: 100%;
-    height: ${({isMobile}) => (isMobile ? "78px" : "90px")};
+    height: ${({$isMobile}) => ($isMobile ? "78px" : "90px")};
     align-items: center;
     justify-content: space-between;
 `
