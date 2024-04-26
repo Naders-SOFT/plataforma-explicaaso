@@ -11,7 +11,7 @@ const BlocoInfo = styled.div`
     flex-direction: column;
     justify-content: center;
     margin: 50px;
-    width: ${({isMobile}) => (isMobile ? '70%' : '90%')};
+    width: ${({$isMobile}) => ($isMobile ? '70%' : '90%')};
 `
 
 /**
