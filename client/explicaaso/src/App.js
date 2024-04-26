@@ -1,6 +1,7 @@
 import Header from './components/Head/Header';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import PaginaNoticias from './pages/pagina-noticias';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -37,10 +38,11 @@ function App() {
     // inteira, nele temos apenas o componente Header, por enquanto. 
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
-    <AppContainer>
-      <Header isMobile={isMobile}/>
-      {/* <Apresentacao/> */}
-    </AppContainer>
+    // <AppContainer>
+    //   <Header isMobile={isMobile}/>
+    //   {/* <Apresentacao/> */}
+    // </AppContainer>
+      <PaginaNoticias isMobile={isMobile}/>
   );
 }
 
