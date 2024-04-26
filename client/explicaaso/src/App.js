@@ -38,11 +38,10 @@ function App() {
     // inteira, nele temos apenas o componente Header, por enquanto. 
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
-    // <AppContainer>
-    //   <Header isMobile={isMobile}/>
-    //   {/* <Apresentacao/> */}
-    // </AppContainer>
-      <PaginaNoticias isMobile={isMobile}/>
+    <AppContainer>
+      <Header isMobile={isMobile}/>
+      {/* <Apresentacao/> */}
+    </AppContainer>
   );
 }
 
