@@ -74,10 +74,10 @@ const NavigationItem = styled.li`
 `
 
 function Menu(props) {
-  const [isActive, setMode] = useState(false);
+  const [active, setMode] = useState(false);
 
   const toggleisActive = () => {
-    setMode(!isActive);
+    setMode(!active);
   }
 
   // criar ids
