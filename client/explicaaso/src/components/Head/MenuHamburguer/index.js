@@ -36,17 +36,17 @@ const HamburguerButton = styled.button`
   }
 
   div:nth-child(1) {
-    transform: ${({ active }) => (active ? "translate(0, 10px)" : "translate(0, 0)")};
+    transform: ${({ isActive }) => (isActive ? "translate(0, 10px)" : "translate(0, 0)")};
     transition: transform 0.9s ease;
   }
 
   div:nth-child(2) {
-    opacity: ${({ active }) => (active ? "0.0" : "1.0")};
+    opacity: ${({ isActive }) => (isActive ? "0.0" : "1.0")};
     transition: opacity 0.9s ease;
   }
 
   div:nth-child(3) {
-    transform: ${({ active }) => (active ? "translate(0, -10px)" : "translate(0, 0)")};
+    transform: ${({ isActive }) => (isActive ? "translate(0, -10px)" : "translate(0, 0)")};
     transition: transform 0.9s ease;
   }
 `
@@ -58,8 +58,8 @@ const MenuList = styled.ul`
   padding: 0 44px 30px 44px;
   position: absolute;
   top: 80%; 
-  opacity: ${({ active }) => (active ? "1" : "0")};
-  transform: translateY(${({ active }) => (active ? "0" : "-10px")});
+  opacity: ${({ isActive }) => (isActive ? "1" : "0")};
+  transform: translateY(${({ isActive }) => (isActive ? "0" : "-10px")});
   transition: opacity 0.9s ease, transform 0.9s ease; 
   z-index: 1;
   flex-direction: column;
@@ -74,10 +74,10 @@ const NavigationItem = styled.li`
 `
 
 function Menu(props) {
-  const [active, setMode] = useState(false);
+  const [isActive, setMode] = useState(false);
 
-  const toggleActive = () => {
-    setMode(!active);
+  const toggleisActive = () => {
+    setMode(!isActive);
   }
 
   // criar ids
@@ -85,12 +85,12 @@ function Menu(props) {
 
   return (
     <MenuHambContainer>
-      <HamburguerButton $active={active} onClick={toggleActive}>
+      <HamburguerButton isActive={isActive} onClick={toggleisActive}>
         <div/>
         <div/>
         <div/>
       </HamburguerButton>
-      <MenuList $active={active}>
+      <MenuList isActive={isActive}>
         {
           itensNavigation.map( item => (
             <NavigationItem key={item.id}><p>{item.texto}</p></NavigationItem>
