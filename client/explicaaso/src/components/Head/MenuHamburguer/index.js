@@ -74,10 +74,10 @@ const NavigationItem = styled.li`
 `
 
 function Menu(props) {
-  const [active, setMode] = useState(false);
+  const [isActive, setMode] = useState(false);
 
-  const toggleActive = () => {
-    setMode(!active);
+  const toggleisActive = () => {
+    setMode(!isActive);
   }
 
   // criar ids
@@ -85,7 +85,7 @@ function Menu(props) {
 
   return (
     <MenuHambContainer>
-      <HamburguerButton $active={active} onClick={toggleActive}>
+      <HamburguerButton $active={active} onClick={toggleisActive}>
         <div/>
         <div/>
         <div/>
