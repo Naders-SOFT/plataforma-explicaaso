@@ -10,8 +10,8 @@ const Card = styled.li`
 `
 
 const ImgCard = styled.img`
-    width: 40vh;
-    height: 27vh;
+    width: 38vh;
+    height: 25vh;
     border-radius: 2vh;
 `
 
@@ -24,8 +24,8 @@ function CardMateria(props) {
         <Card>
             <TituloMateria>{props.materia}</TituloMateria> 
             <ImgCard
-            src={`${props.imgSrc}`} 
-            alt={props.materia}>
+                src={`${props.imgSrc}`} 
+                alt={props.materia}>
             </ImgCard>
         </Card>
     );

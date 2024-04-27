@@ -12,7 +12,7 @@ import imgGramatica from '../../images/materias/literatura.webp'
 import imgRedacao from '../../images/materias/redacao.jpg'
 
 
-const Materias = styled.ul`
+const MOBLMATERIAS = styled.ul`
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
@@ -21,27 +21,53 @@ const Materias = styled.ul`
     align-items: center;
     justify-content: center;
     margin: 0px;
+`
+const DSKMATERIAS = styled.ul`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5vh;
+    list-style-type: none;
+    padding: 0px;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    overflow: auto;
+`
 
-    @media (min-width: 768px) {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 5vh;
-    }
+const Container = styled.div`
+    width: 100%;
 `
 
 function ContainerMateria(props) {
     return (
-        <Materias>
-            <CardMateria imgSrc={imgMatematica} materia='Matemática'></CardMateria>
-            <CardMateria imgSrc={imgQuimica} materia='Química'></CardMateria>
-            <CardMateria imgSrc={imgGramatica} materia='Gramática'></CardMateria>
-            <CardMateria imgSrc={imgFisica} materia='Física'></CardMateria>
-            <CardMateria imgSrc={imgBiologia} materia='Biologia'></CardMateria>
-            <CardMateria imgSrc={imgGeografia} materia='Geografia'></CardMateria>
-            <CardMateria imgSrc={imgRedacao} materia='Redação'></CardMateria>
-            <CardMateria imgSrc={imgHistoria} materia='História'></CardMateria>
-            <CardMateria imgSrc={imgLiteratura} materia='Literatura'></CardMateria>
-        </Materias>
+        <Container>
+            {props.isMobile &&
+                <MOBLMATERIAS>
+                    <CardMateria imgSrc={imgMatematica} materia='Matemática'></CardMateria>
+                    <CardMateria imgSrc={imgQuimica} materia='Química'></CardMateria>
+                    <CardMateria imgSrc={imgGramatica} materia='Gramática'></CardMateria>
+                    <CardMateria imgSrc={imgFisica} materia='Física'></CardMateria>
+                    <CardMateria imgSrc={imgBiologia} materia='Biologia'></CardMateria>
+                    <CardMateria imgSrc={imgGeografia} materia='Geografia'></CardMateria>
+                    <CardMateria imgSrc={imgRedacao} materia='Redação'></CardMateria>
+                    <CardMateria imgSrc={imgHistoria} materia='História'></CardMateria>
+                    <CardMateria imgSrc={imgLiteratura} materia='Literatura'></CardMateria>
+                </MOBLMATERIAS>
+            }
+            {!props.isMobile &&
+                <DSKMATERIAS>
+                    <CardMateria imgSrc={imgMatematica} materia='Matemática'></CardMateria>
+                    <CardMateria imgSrc={imgQuimica} materia='Química'></CardMateria>
+                    <CardMateria imgSrc={imgGramatica} materia='Gramática'></CardMateria>
+                    <CardMateria imgSrc={imgFisica} materia='Física'></CardMateria>
+                    <CardMateria imgSrc={imgBiologia} materia='Biologia'></CardMateria>
+                    <CardMateria imgSrc={imgGeografia} materia='Geografia'></CardMateria>
+                    <CardMateria imgSrc={imgRedacao} materia='Redação'></CardMateria>
+                    <CardMateria imgSrc={imgHistoria} materia='História'></CardMateria>
+                    <CardMateria imgSrc={imgLiteratura} materia='Literatura'></CardMateria>
+                </DSKMATERIAS>
+            }
+        </Container>
     );
 }
 

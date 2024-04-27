@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ContainerSide = styled.div`
+const DSKCONTAINERSIDE = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -9,24 +9,44 @@ const ContainerSide = styled.div`
     justify-content: flex-start;
     float: left;
     color: white;
+    padding: 2vh;
 `
 
-const Botao = styled.button`
+const MOBLCONTAINERSIDE = styled.div`
+    width: 100%;
+`
+
+const DSKBOTAO = styled.button`
+    background-color: #FF6600;
+    color: white;
+    border-radius: 2vh;
+    height: 6vh;
+    font-weight: bold;
+`
+
+const MOBLBOTAO = styled.button`
     background-color: #FF6600;
     color: white;
     border-radius: 2vh;
     height: 5vh;
+    width: 33%;
     font-weight: bold;
 `
 
-const ContainerBotao = styled.div`
+const DSKCONTAINERBOTAO = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: strech;
     justify-content: space-evenly;
-    gap: 12vh;
+    gap: 10vh;
     flex-direction: column;
     width: 100%;
+`
+
+const MOBLCONTAINERBOTAO = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    margin: 3vh;
 `
 
 const ImgPerfil = styled.img`
@@ -40,6 +60,8 @@ const ConatainerPerfil = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    padding: 2vh;
+    
 `
 
 const Nome = styled.h1`
@@ -47,19 +69,38 @@ const Nome = styled.h1`
     font-size: 4vh;
 `
 
+const Container = styled.div`
+    width: 100%;
+`
+
 function SideBar(props) {
     return (
-        <ContainerSide>
-            <ConatainerPerfil>
-                <ImgPerfil src={props.imgPerfil}></ImgPerfil>
-                <Nome>Fulano</Nome>
-            </ConatainerPerfil>
-            <ContainerBotao>
-                <Botao>Provas</Botao>
-                <Botao>Calendário</Botao>
-                <Botao>Simulados</Botao>
-            </ContainerBotao>
-        </ContainerSide>
+        <Container>
+            {
+                props.isMobile &&
+                <MOBLCONTAINERSIDE>
+                    <MOBLCONTAINERBOTAO>
+                        <MOBLBOTAO>Provas</MOBLBOTAO>
+                        <MOBLBOTAO>Calendário</MOBLBOTAO>
+                        <MOBLBOTAO>Simulados</MOBLBOTAO>
+                    </MOBLCONTAINERBOTAO>
+                </MOBLCONTAINERSIDE>
+            }
+            {
+                !props.isMobile &&
+                <DSKCONTAINERSIDE>
+                    <ConatainerPerfil>
+                        <ImgPerfil src={props.imgPerfil}></ImgPerfil>
+                        <Nome>Fulano</Nome>
+                    </ConatainerPerfil>
+                    <DSKCONTAINERBOTAO>
+                        <DSKBOTAO>Provas</DSKBOTAO>
+                        <DSKBOTAO>Calendário</DSKBOTAO>
+                        <DSKBOTAO>Simulados</DSKBOTAO>
+                    </DSKCONTAINERBOTAO>
+                </DSKCONTAINERSIDE>
+            }      
+        </Container>
     );
 }
 

@@ -1,21 +1,18 @@
+import styled from "styled-components";
 import Header from "../components/Head/Header";
-import ContainerInfo from "../components/Blog/ContainerInfo";
-import styled from 'styled-components';
-
+import ContainerInfo from "../components/SobreNos/ContainerInfo";
 
 const ContainerPag = styled.div`
-    width: 100%;
+    width: 100%
 `
 
-function PaginaBlog(props) {
-    return(
+function SobreNos(props) {
+    return (
         <ContainerPag>
             <Header isMobile={props.isMobile}/>
             <ContainerInfo isMobile={props.isMobile}/>
         </ContainerPag>
-    )
-
-
+    );
 }
 
-export default PaginaBlog;
+export default SobreNos;

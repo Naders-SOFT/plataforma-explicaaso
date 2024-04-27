@@ -1,16 +1,14 @@
-
-import PaginaAluno from './pages/PaginaAluno';
+import Header from './components/Head/Header';
+import Apresentacao from './components/Inicio/Apresentacao';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import Header from './components/Head/Header';
-import BarrinhaTurquesa from './components/Head/BarrinhaTurquesa';
-
+import PaginaAluno from './pages/PaginaAluno';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
 // ESTILIZAÇÃO DO COMPONENTE
 const AppContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   height: auto;
   background-color: white;
@@ -41,12 +39,12 @@ function App() {
     // inteira, nele temos apenas o componente Header, por enquanto. 
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
-    // <AppContainer>
-    //   <Header isMobile={isMobile}/>
-    //   <BarrinhaTurquesa/>
-    //   {/* <Apresentacao/> */}
-    // </AppContainer>
-    <PaginaAluno></PaginaAluno>
+    <AppContainer>
+      {/* <Header isMobile={isMobile}/> */}
+      {/* <Apresentacao/> */}
+      <PaginaAluno isMobile={isMobile}></PaginaAluno>
+    </AppContainer>
+    
   );
 }
 
