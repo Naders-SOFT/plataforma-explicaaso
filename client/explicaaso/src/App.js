@@ -2,8 +2,6 @@ import Header from './components/Head/Header';
 import Apresentacao from './components/Inicio/Apresentacao';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import PaginaNoticias from './pages/pagina-noticias';
-
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -44,6 +42,7 @@ function App() {
       <Header isMobile={isMobile}/>
       <Apresentacao/>
     </AppContainer>
+    
   );
 }
 
