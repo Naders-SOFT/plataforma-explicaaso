@@ -10,15 +10,19 @@ const Card = styled.li`
 `
 
 const ImgCard = styled.img`
-    width: 30vh;
-    height: 20vh;
+    width: 40vh;
+    height: 27vh;
     border-radius: 2vh;
+`
+
+const TituloMateria = styled.h1`
+    font-size: 4vh;
 `
 
 function CardMateria(props) {
     return (
         <Card>
-            <h1>{props.materia}</h1> 
+            <TituloMateria>{props.materia}</TituloMateria> 
             <ImgCard
             src={`${props.imgSrc}`} 
             alt={props.materia}>

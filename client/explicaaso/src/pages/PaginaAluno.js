@@ -8,7 +8,7 @@ import imgPerfil from '../images/logos/pefil.jpg'
 
 const ContainerAluno = styled.div`
     width: 100vw;
-    min-height: 100vh;
+    ${'' /* min-height: 100vh; */}
     height: auto;
     background-color: white;
     display: flex;
@@ -17,13 +17,15 @@ const ContainerAluno = styled.div`
 
 const ContainerPag = styled.div`
     width: 100%;
+    height: 100%;
 `
 
 const Miolo = styled.div`
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 7fr;
     flex-wrap: wrap;
     width: 100%;
+    ${'' /* height: 100%; */}
 `
 
 function PaginaAluno(props) {

@@ -25,6 +25,7 @@ const Materias = styled.ul`
     @media (min-width: 768px) {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 5vh;
     }
 `
 
