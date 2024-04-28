@@ -3,7 +3,7 @@ import InputComponent from "../components/Login/InputComponent/InputComponent";
 import styled from 'styled-components';
 
 const ContainerPag = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,11 +45,11 @@ const Submit = styled.button`
 `
 
 
-function PaginaLogin() {
+function PaginaLogin(props) {
   return (
     <ContainerPag>
-      <Header isMobile={isMobile}/>
-      <LoginContainer $isMobile={isMobile}>
+      <Header isMobile={props.isMobile}/>
+      <LoginContainer $isMobile={props.isMobile}>
         <LoginTitulo>Log in</LoginTitulo>
         <InputComponent label='Email' type='email'/>
         <InputComponent label='Senha' type='password'/>
