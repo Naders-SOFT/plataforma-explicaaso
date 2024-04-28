@@ -3,6 +3,7 @@ import Apresentacao from './components/Inicio/Apresentacao';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import PaginaLogin from './pages/pagina-login';
+import PaginaDisciplina from './pages/pagina-disciplina';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -41,8 +42,9 @@ function App() {
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
     <AppContainer>
-      <Header isMobile={isMobile}/>
-      <Apresentacao/>
+      {/* <Header isMobile={isMobile}/>
+      <Apresentacao/> */}
+      <PaginaDisciplina></PaginaDisciplina>
     </AppContainer>    
   );
 }
