@@ -1,6 +1,4 @@
-import Header from '../components/Head/Header';
 import ContainerInfo from "../components/Noticias/ContainerInfo";
-import BlocoNoticia from '../components/Noticias/BlocoNoticia';
 import styled from 'styled-components';
 
 const ContainerPag = styled.div`
@@ -12,7 +10,6 @@ const ContainerPag = styled.div`
 function PaginaNoticias(props) {
     return (
         <ContainerPag>
-            <Header isMobile={props.isMobile}/>
             <ContainerInfo isMobile={props.isMobile}/>
         </ContainerPag>
     )

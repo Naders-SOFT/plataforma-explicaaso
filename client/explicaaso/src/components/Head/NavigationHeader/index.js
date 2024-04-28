@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { NavLink as Link } from "react-router-dom";
+
 
 
 const NavigationHeaderContainer = styled.ul`
@@ -12,7 +14,7 @@ const NavigationHeaderContainer = styled.ul`
   justify-content: center;
 `
 
-const NavigationItem = styled.li`
+const NavigationItem = styled(Link)`
   font-size: 24px;
   margin: 0 5%;
   white-space: nowrap; 
@@ -36,7 +38,7 @@ function NavigationHeader(props) {
     <NavigationHeaderContainer>
       {
         itensNavigation.map( (item) => (
-          <NavigationItem key={item.id}><p>{item.texto}</p></NavigationItem>
+          <NavigationItem to={item.pagina} activeStyle key={item.id}><p>{item.texto}</p></NavigationItem>
         ))
       }
     </NavigationHeaderContainer>
