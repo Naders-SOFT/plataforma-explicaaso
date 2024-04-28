@@ -16,6 +16,7 @@ const NavigationItem = styled.li`
   font-size: 24px;
   margin: 0 5%;
   white-space: nowrap; 
+  cursor: pointer;
 
   @media (min-width: 861px) and (max-width: 1050px) {
     font-size: 22px;

@@ -61,7 +61,7 @@ const MenuList = styled.ul`
   opacity: ${({ $active }) => ($active ? "1" : "0")};
   transform: translateY(${({ $active }) => ($active ? "0" : "-10px")});
   transition: opacity 0.9s ease, transform 0.9s ease; 
-  z-index: 1;
+  z-index: 2;
   flex-direction: column;
   color: white;
   right: 0;
@@ -71,6 +71,7 @@ const NavigationItem = styled.li`
   display: flex;
   font-size: 20px;
   white-space: nowrap; 
+  cursor: pointer;
 `
 
 function Menu(props) {
