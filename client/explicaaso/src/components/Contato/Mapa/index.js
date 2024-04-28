@@ -9,15 +9,15 @@ const DSKMAP = styled.div`
     iframe {
         height: 65vh;
         margin-top: 10vh;
-        width: 75vh;
+        width: 40vw;
     }
 `;
 
 const MOBMAP = styled.div`
     iframe {
-        height: 30vh;
+        height: 50vh;
         margin: 10vh;
-        width: 40vh;
+        width: 60vw;
     }
 `;
 
