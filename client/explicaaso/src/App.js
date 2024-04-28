@@ -2,6 +2,7 @@ import Header from './components/Head/Header';
 import Apresentacao from './components/Inicio/Apresentacao';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import PaginaAdmin from './pages/pagina-administrador';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -34,15 +35,16 @@ function App() {
     }, [])
 
   return (
-    // Aqui temos um container global que inclui a página 
-    // inteira, nele temos apenas o componente Header, por enquanto. 
-    // Note que a estilização desse container é feita através 
-    // de styled-components algumas linhas acima.
-    <AppContainer>
-      <Header isMobile={isMobile}/>
-      <Apresentacao/>
-    </AppContainer>
+    // // Aqui temos um container global que inclui a página 
+    // // inteira, nele temos apenas o componente Header, por enquanto. 
+    // // Note que a estilização desse container é feita através 
+    // // de styled-components algumas linhas acima.
+    // <AppContainer>
+    //   <Header isMobile={isMobile}/>
+    //   <Apresentacao/>
+    // </AppContainer>
     
+    <PaginaAdmin></PaginaAdmin>
   );
 }
 
