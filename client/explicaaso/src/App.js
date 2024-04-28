@@ -16,6 +16,7 @@ const AppContainer = styled.div`
   flex-direction: column;
 `
 
+
 // ESTRUTURA DO COMPONENTE
 function App() {
   const [isMobile, setIsMobile] = useState(true);

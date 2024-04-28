@@ -14,6 +14,7 @@ const LoginButtonContainer = styled.button`
   color: #003466;
   font-size: 20px;
   font-weight: 600;
+  cursor: pointer;
 
   @media (min-width: 861px) and (max-width: 1050px) {
     font-size: 16px;
