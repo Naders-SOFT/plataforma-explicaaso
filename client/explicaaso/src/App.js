@@ -1,8 +1,8 @@
 import Header from './components/Head/Header';
 import Apresentacao from './components/Inicio/Apresentacao';
+import Footer from './components/FooterComponents/Footer';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import PaginaLogin from './pages/pagina-login';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -43,6 +43,7 @@ function App() {
     <AppContainer>
       <Header isMobile={isMobile}/>
       <Apresentacao/>
+      <Footer isMobile={isMobile}/>
     </AppContainer>    
   );
 }
