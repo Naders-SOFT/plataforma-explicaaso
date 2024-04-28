@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import LoginButton from '../LoginButton';
+import { NavLink as Link } from "react-router-dom";
 
 const MenuHambContainer = styled.div`
   display: flex;
@@ -60,6 +61,7 @@ const MenuList = styled.ul`
   top: 80%; 
   opacity: ${({ $active }) => ($active ? "1" : "0")};
   transform: translateY(${({ $active }) => ($active ? "0" : "-10px")});
+  display: ${({ $active }) => ($active ? 'inline' : 'none')};
   transition: opacity 0.9s ease, transform 0.9s ease; 
   z-index: 2;
   flex-direction: column;
@@ -67,7 +69,7 @@ const MenuList = styled.ul`
   right: 0;
 `
 
-const NavigationItem = styled.li`
+const NavigationItem = styled(Link)`
   display: flex;
   font-size: 20px;
   white-space: nowrap; 
@@ -94,7 +96,7 @@ function Menu(props) {
       <MenuList $active={active}>
         {
           itensNavigation.map( item => (
-            <NavigationItem key={item.id}><p>{item.texto}</p></NavigationItem>
+            <NavigationItem to={item.pagina} activeStyle key={item.id}><p>{item.texto}</p></NavigationItem>
           ))
         }
         <NavigationItem><LoginButton/></NavigationItem>

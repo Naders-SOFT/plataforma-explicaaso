@@ -1,19 +1,13 @@
-import Header from './components/Head/Header';
-import Apresentacao from './components/Inicio/Apresentacao';
-import Footer from './components/FooterComponents/Footer';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import Header from './components/Head/Header';
+import Footer from './components/FooterComponents/Footer';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
 // ESTILIZAÇÃO DO COMPONENTE
 const AppContainer = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  height: auto;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
+  
 `
 
 
@@ -42,7 +36,6 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <Header isMobile={isMobile}/>
-      <Apresentacao/>
       <Footer isMobile={isMobile}/>
     </AppContainer>    
   );

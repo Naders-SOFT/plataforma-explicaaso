@@ -1,7 +1,8 @@
+import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
-const LoginButtonContainer = styled.button`
+const LoginButtonContainer = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +33,7 @@ const LoginButtonContainer = styled.button`
 
 function LoginButton() {
   return (
-    <LoginButtonContainer>
+    <LoginButtonContainer to='/login' activeStyle >
       <p>Log in</p>
     </LoginButtonContainer>
   );
