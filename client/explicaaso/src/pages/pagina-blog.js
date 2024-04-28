@@ -1,5 +1,5 @@
 import Header from "../components/Head/Header";
-import BlocoBlog from "../components/BlocoBlog";
+import ContainerInfo from "../components/Blog/ContainerInfo";
 import styled from 'styled-components';
 
 
@@ -7,13 +7,11 @@ const ContainerPag = styled.div`
     width: 100%;
 `
 
-
-
-function PaginaBlog() {
+function PaginaBlog(props) {
     return(
         <ContainerPag>
-            <Header/>
-            <BlocoBlog/>
+            <Header isMobile={props.isMobile}/>
+            <ContainerInfo isMobile={props.isMobile}/>
         </ContainerPag>
     )
 
