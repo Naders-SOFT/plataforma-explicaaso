@@ -72,6 +72,8 @@ const MenuList = styled.ul`
 const NavigationItem = styled(Link)`
   display: flex;
   font-size: 20px;
+  color: white;
+  text-decoration: none;
   white-space: nowrap; 
   cursor: pointer;
 `

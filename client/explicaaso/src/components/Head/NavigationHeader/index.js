@@ -16,6 +16,8 @@ const NavigationHeaderContainer = styled.ul`
 
 const NavigationItem = styled(Link)`
   font-size: 24px;
+  color: white;
+  text-decoration: none;
   margin: 0 5%;
   white-space: nowrap; 
   cursor: pointer;

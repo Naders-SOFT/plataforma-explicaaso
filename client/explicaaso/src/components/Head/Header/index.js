@@ -9,7 +9,7 @@ import PaginaNoticias from '../../../pages/PaginaNoticias';
 import PaginaLogin from '../../../pages/PaginaLogin';
 import PaginaContato from '../../../pages/PaginaContato';
 import PaginaBlog from '../../../pages/PaginaBlog';
-import PaginaAluno from '../../../pages/PaginaAluno';
+// import PaginaAluno from '../../../pages/PaginaAluno';
 import PaginaInicial from '../../../pages/PaginaInicial';
 import {
   BrowserRouter as Router,

@@ -89,8 +89,6 @@ const MOBSTYLCONTACTFORM = styled.div`
 function PaginaContato(props) {
     return (
         <CONTAINERCONTATO>
-            <Header isMobile={props.isMobile}/>
-
             {/* Disposição mobile da página */}
             {props.isMobile &&
             <MOBCONTATO>
