@@ -4,12 +4,12 @@ const DSKCONTAINERSIDE = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 40vh;
+    height: 20vw;
     align-items: center;
     justify-content: flex-start;
     float: left;
     color: white;
-    padding: 2vh;
+    padding: 1vw;
 `
 
 const MOBLCONTAINERSIDE = styled.div`
@@ -19,18 +19,30 @@ const MOBLCONTAINERSIDE = styled.div`
 const DSKBOTAO = styled.button`
     background-color: #FF6600;
     color: white;
-    border-radius: 2vh;
-    height: 6vh;
+    border-radius: 1vw;
+    height: 3vw;
     font-weight: bold;
+    font-size: 100%;
+    border: none;
+    &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
 `
 
 const MOBLBOTAO = styled.button`
     background-color: #FF6600;
     color: white;
-    border-radius: 2vh;
-    height: 5vh;
+    border-radius: 1vw;
+    height: 5vw;
     width: 33%;
+    font-size: 100%;
     font-weight: bold;
+    border: none;
+    &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
 `
 
 const DSKCONTAINERBOTAO = styled.div`
@@ -38,7 +50,7 @@ const DSKCONTAINERBOTAO = styled.div`
     flex-wrap: wrap;
     align-items: strech;
     justify-content: space-evenly;
-    gap: 10vh;
+    gap: 5vw;
     flex-direction: column;
     width: 100%;
 `
@@ -46,12 +58,12 @@ const DSKCONTAINERBOTAO = styled.div`
 const MOBLCONTAINERBOTAO = styled.div`
     display: flex;
     justify-content: space-evenly;
-    margin: 3vh;
+    margin: 2vw;
 `
 
 const ImgPerfil = styled.img`
-    width: 15vh;
-    height: 15vh;
+    width: 7vw;
+    height: 7vw;
     border-radius: 50%;
 `
 
@@ -66,7 +78,7 @@ const ConatainerPerfil = styled.div`
 
 const Nome = styled.h1`
     color: black;
-    font-size: 4vh;
+    font-size: 2vw;
 `
 
 const Container = styled.div`
@@ -80,8 +92,8 @@ function SideBar(props) {
                 props.isMobile &&
                 <MOBLCONTAINERSIDE>
                     <MOBLCONTAINERBOTAO>
+                        <MOBLBOTAO>Matérias</MOBLBOTAO>
                         <MOBLBOTAO>Provas</MOBLBOTAO>
-                        <MOBLBOTAO>Calendário</MOBLBOTAO>
                         <MOBLBOTAO>Simulados</MOBLBOTAO>
                     </MOBLCONTAINERBOTAO>
                 </MOBLCONTAINERSIDE>

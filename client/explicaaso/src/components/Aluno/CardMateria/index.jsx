@@ -10,13 +10,17 @@ const Card = styled.li`
 `
 
 const ImgCard = styled.img`
-    width: 38vh;
-    height: 25vh;
-    border-radius: 2vh;
+    width: 22vw;
+    height: 12vw;
+    border-radius: 2vw;
+    &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
 `
 
 const TituloMateria = styled.h1`
-    font-size: 4vh;
+    font-size: 150%;
 `
 
 function CardMateria(props) {
