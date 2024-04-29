@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import SideBar from '../SideBar';
-import ProfessorList from './Gerenciador';
+import { ProfessorList } from '../Gerenciador';
 
 const MOBLINFO = styled.div`
     display: flex;

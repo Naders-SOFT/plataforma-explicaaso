@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const ContainerAdmin = styled.div`
+export const ContainerAdmin = styled.div`
   display: grid;
   grid-template-columns: 200px auto;
   grid-template-rows: auto;
@@ -47,7 +47,7 @@ const professor_name  = styled.p`
 `
 
 // Define the ProfessorList component
-const ProfessorList = ({ professors }) => {
+export const ProfessorList = ({ professors }) => {
   return (
     <ul className="professor-list">
       {professors.map((professor, index) => (
