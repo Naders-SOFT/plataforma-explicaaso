@@ -39,6 +39,13 @@ const TXTDIV = styled.div`
     'img titulo'
     'img corpo';
     margin: 3%;
+
+    @media(min-width: 768px) and (max-width: 1080px){
+        grid-template-columns: 100%;
+        grid-template-areas:
+        'titulo'
+        'corpo';
+    }
 `
 
 const IMG = styled.img`
