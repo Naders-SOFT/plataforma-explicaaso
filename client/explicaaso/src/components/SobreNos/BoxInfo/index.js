@@ -45,6 +45,10 @@ const IMG = styled.img`
     width: 100%;
     border-radius: 8px;
     grid-area: img;
+
+    @media(min-width: 768px) and (max-width: 1080px){
+        display: none;
+    }
 `
 
 /**

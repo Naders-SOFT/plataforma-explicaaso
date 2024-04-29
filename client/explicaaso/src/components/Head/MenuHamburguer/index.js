@@ -98,10 +98,10 @@ function Menu(props) {
       <MenuList $active={active}>
         {
           itensNavigation.map( item => (
-            <NavigationItem to={item.pagina} activeStyle key={item.id}><p>{item.texto}</p></NavigationItem>
+            <NavigationItem to={item.pagina} $activeStyle key={item.id}><p>{item.texto}</p></NavigationItem>
           ))
         }
-        <NavigationItem><LoginButton/></NavigationItem>
+        <LoginButton/>
       </MenuList>
     </MenuHambContainer>
   );
