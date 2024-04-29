@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import SideBar from '../SideBar';
-import ContainerMateria from '..';
+import ContainerMateria from '../Materias';
 
 const MOBLINFO = styled.div`
     display: flex;
@@ -13,6 +13,7 @@ const DSKINFO = styled.div`
     display: grid;
     grid-template-columns: 1fr 8fr;
     flex-wrap: wrap;
+    gap: 1vw;
 `
 const Container = styled.div`
     width: 100%;
