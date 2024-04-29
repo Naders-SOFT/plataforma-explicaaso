@@ -7,7 +7,7 @@ Nomes das branches
  ------------------------------
  
  Escolha um nome que indique o propósito da branch, como
- `feat`, `bugfix` ou `documentacao`.
+ `feat`, `bugfix` ou `docs`.
 
  Nomes sempre em lowercase.
 
