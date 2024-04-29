@@ -34,14 +34,18 @@ const Titulos = styled.div`
 
 const Cursinho = styled.h1`
   color: #FFCC00; 
-  font-size: 65px;
+  font-size: 52px;
   margin-bottom: 2px;
+  font-family: 'Crete Round', serif;
+  font-weight: 200;
 `
 
 const Explicaaso = styled.h1`
   color: white;
-  font-size: 70px;
+  font-size: 80px;
   margin-top: 2px;
+  font-family: 'Carrois Gothic', sans-serif;
+  font-weight: 300;
 `
 
 
@@ -50,7 +54,7 @@ function Apresentacao() {
     <ApresentacaoContainer>
       <Fundo></Fundo>
       <Titulos>
-        <Cursinho>Cursinho Popular</Cursinho>
+        <Cursinho>CURSINHO POPULAR</Cursinho>
         <Explicaaso>ExpliCaaso</Explicaaso>
       </Titulos>
       <LogoExpliCaaso size='180px'/>
