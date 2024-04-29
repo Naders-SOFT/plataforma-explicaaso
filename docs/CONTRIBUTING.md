@@ -19,8 +19,8 @@ Padrões de Código
 
   A saber:
 
-  * componentes, classes, funções: `lowerPascalCase`
-  * pastas: `PascalCase`
+  * variáveis: `lowerPascalCase`
+  * componentes, classes, funçoes e pastas: `PascalCase`
   * constantes: `CAPITALIZED_SAKE_CASE`
   * linhas de código em `javascript` terminam em `;`
 
