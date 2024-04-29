@@ -1,5 +1,4 @@
 import Formulario from '../components/Contato/Formulario';
-import Header from "../components/Head/Header";
 import Mapa from '../components/Contato/Mapa';
 import styled from 'styled-components';
 

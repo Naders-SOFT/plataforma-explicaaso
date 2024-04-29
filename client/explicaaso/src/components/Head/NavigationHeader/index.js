@@ -40,7 +40,7 @@ function NavigationHeader(props) {
     <NavigationHeaderContainer>
       {
         itensNavigation.map( (item) => (
-          <NavigationItem to={item.pagina} activeStyle key={item.id}><p>{item.texto}</p></NavigationItem>
+          <NavigationItem to={item.pagina} $activeStyle key={item.id}><p>{item.texto}</p></NavigationItem>
         ))
       }
     </NavigationHeaderContainer>

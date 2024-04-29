@@ -15,6 +15,7 @@ const LoginButtonContainer = styled(Link)`
   color: #003466;
   font-size: 20px;
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
 
   @media (min-width: 861px) and (max-width: 1050px) {
@@ -33,7 +34,7 @@ const LoginButtonContainer = styled(Link)`
 
 function LoginButton() {
   return (
-    <LoginButtonContainer to='/login' activeStyle >
+    <LoginButtonContainer to='/login' $activeStyle >
       <p>Log in</p>
     </LoginButtonContainer>
   );
