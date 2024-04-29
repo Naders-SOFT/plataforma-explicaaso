@@ -1,45 +1,65 @@
 import React from 'react';
 import styled from 'styled-components';
-import ListaItem from '../components/Administrador/ListaAdmin';
 
 
 const ContainerAdmin = styled.div`
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+  display: grid;
+  grid-template-columns: 200px auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "sidebar main"
+    "footer footer";
+  height: 100vh;
+`
+
+const DSKMATERIAS = styled.ul`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+    list-style-type: none;
+    padding: 0px;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    overflow: auto;
+`
+
+const Container = styled.div`
+    width: 100%;
 `
   
-const list = styled.div`
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-`
-const list_item = styled.div`
-    width: 300px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    padding: 1rem;
-    margin: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align
+/* Add some basic styling to the list */
+const professor_list = styled.p  `
+  list-style: none;
+  padding: 0;
+  margin: 0;
 `
 
-const items = [
-  { name: 'Albert', subject: 'Matemática', date: 'Dec 5' },
-  { name: 'Bart', subject: 'Física', date: 'Dec 5' },
-  { name: 'Charles', subject: 'Química', date: 'Dec 5' },
-  { name: 'Daniel', subject: 'Biologia', date: 'Dec 5' },
-  { name: 'Edward', subject: 'Redação', date: 'Dec 5' },
-  { name: 'Fabian', subject: 'Geografia', date: 'Dec 5' },
-  { name: 'Guy', subject: 'História', date: 'Dec 5' },
-  { name: 'Isadora', subject: 'Gramática', date: 'Dec 5' },
-  { name: 'Hector', subject: 'Literatura', date: 'Dec 5' },
-];
+const professor_item = styled.div `
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+`
 
+const professor_name  = styled.p`
+  font-weight: bold;
+`
 
+// Define the ProfessorList component
+const ProfessorList = ({ professors }) => {
+  return (
+    <ul className="professor-list">
+      {professors.map((professor, index) => (
+        <li key={index} className="professor-item">
+          <div>
+            <span className="professor-name">{professor.name}</span>
+            <span>{professor.subject}</span>
+          </div>
+          <span>{professor.date}</span>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-export default items;
