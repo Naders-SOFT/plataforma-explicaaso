@@ -52,37 +52,40 @@ const ProfessorListStyled = styled.ul`
   margin: 0;
   display: grid;
   margin
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 5px;
   align-items: center;
 `
 
 const ProfessorItem = styled.li`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto;
-  grid-gap: 5px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(30px, auto);
+  grid-gap: 10px;
   align-items: center;
   padding: 10px;
-  justify-content: space-around;
   border-bottom: 1px solid #ccc;
 `
 
 const ProfessorFormat = styled.span`
-  grid-column: 1 / 2;
+  grid-column: 1;
   margin-right: 10px;
   justify: center 
+
+  @media (max-width: 600px) {
+    font-size: 10px;
+  }
 `
 
 const ProfessorSub = styled.span`
-  grid-column: 2 / 3;
+  grid-column: 2;
   font-weight: bold;
   margin-right: 10px;
-  align-items: center;
 `
 
 const ProfessorDate = styled.span`
-  grid-column: 3 / 4;
+  grid-column: 3;
+  text-align: right;
 `
 
 // Define the ProfessorList component
@@ -93,8 +96,8 @@ export const ProfessorList = ({ professors }) => {
         {professors.map((professor, index) => (
           <ProfessorItem key={index} style={{ marginLeft: '5%' }}>
             <ProfessorFormat>{professor.name}</ProfessorFormat>
-            <ProfessorSub style={{ marginRight: '20px' }}>{professor.subject}</ProfessorSub>
-            <ProfessorDate>{professor.date}</ProfessorDate>
+            <ProfessorSub style={{marginRight: '30px' }}>{professor.subject}</ProfessorSub>
+            <ProfessorDate style={{ marginRight: '30px' }}>{professor.date}</ProfessorDate>
             <DSKBotao style={{ gridColumn: '4 / 4', justifySelf: 'end' }}>Remover</DSKBotao>
           </ProfessorItem>
         ))}
