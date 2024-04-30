@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
-export const ContainerAdmin = styled.div`
+const ContainerAdmin = styled.div`
   display: grid;
   grid-template-columns: 200px auto;
   grid-template-rows: auto;
@@ -10,56 +9,97 @@ export const ContainerAdmin = styled.div`
     "sidebar main"
     "footer footer";
   height: 100vh;
-`
-
-const DSKMATERIAS = styled.ul`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2vw;
-    list-style-type: none;
-    padding: 0px;
-    align-items: center;
-    justify-content: center;
-    margin: 0px;
-    overflow: auto;
+  justify-items: center; /* centraliza horizontalmente o conteúdo de cada célula */
 `
 
 const Container = styled.div`
     width: 100%;
 `
+
+const MOBLBOTAO = styled.button`
+    background-color: #FF6600;
+    color: white;
+    border-radius: 1vw;
+    height: 5vw;
+    width: 33%;
+    font-size: 100%;
+    font-weight: bold;
+    border: none;
+    &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
+`
+
+const DSKBotao = styled.button`
+  background-color: #FFCC00;
+  color: white;
+  border-radius: 1vw;
+  height: 3vw;
+  font-weight: bold;
+  font-size: 70%;
+  border: none;
+  &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+  }
   
-/* Add some basic styling to the list */
-const professor_list = styled.p  `
+`
+
+const ProfessorListStyled = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+  display: grid;
+  margin
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-gap: 5px;
+  align-items: center;
 `
 
-const professor_item = styled.div `
-  border-bottom: 1px solid #ccc;
+const ProfessorItem = styled.li`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  grid-gap: 5px;
+  align-items: center;
   padding: 10px;
-  display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  border-bottom: 1px solid #ccc;
 `
 
-const professor_name  = styled.p`
+const ProfessorFormat = styled.span`
+  grid-column: 1 / 2;
+  margin-right: 10px;
+  justify: center 
+`
+
+const ProfessorSub = styled.span`
+  grid-column: 2 / 3;
   font-weight: bold;
+  margin-right: 10px;
+  align-items: center;
+`
+
+const ProfessorDate = styled.span`
+  grid-column: 3 / 4;
 `
 
 // Define the ProfessorList component
 export const ProfessorList = ({ professors }) => {
   return (
-    <ul className="professor-list">
-      {professors.map((professor, index) => (
-        <li key={index} className="professor-item">
-          <div>
-            <span className="professor-name">{professor.name}</span>
-            <span>{professor.subject}</span>
-          </div>
-          <span>{professor.date}</span>
-        </li>
-      ))}
-    </ul>
+    <Container>
+      <ProfessorListStyled>
+        {professors.map((professor, index) => (
+          <ProfessorItem key={index} style={{ marginLeft: '5%' }}>
+            <ProfessorFormat>{professor.name}</ProfessorFormat>
+            <ProfessorSub style={{ marginRight: '20px' }}>{professor.subject}</ProfessorSub>
+            <ProfessorDate>{professor.date}</ProfessorDate>
+            <DSKBotao style={{ gridColumn: '4 / 4', justifySelf: 'end' }}>Remover</DSKBotao>
+          </ProfessorItem>
+        ))}
+      </ProfessorListStyled>
+      <DSKBotao style={{ marginLeft: '5%' }}>Adicionar</DSKBotao>
+    </Container>
   );
 };
-
