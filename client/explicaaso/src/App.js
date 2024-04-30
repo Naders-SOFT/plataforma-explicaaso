@@ -1,20 +1,33 @@
-import Header from './components/Head/Header';
-import Apresentacao from './components/Inicio/Apresentacao';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import PaginaAdmin from './pages/pagina-administrador';
+import Header from './components/Head/Header';
+import Footer from './components/FooterComponents/Footer';
+import { createGlobalStyle } from 'styled-components';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  li {
+    list-style: none;
+  }
+`
+
 // ESTILIZAÇÃO DO COMPONENTE
 const AppContainer = styled.div`
-  width: 100vw;
-  min-height: 100vh;
-  height: auto;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
 `
+
 
 // ESTRUTURA DO COMPONENTE
 function App() {
@@ -35,16 +48,15 @@ function App() {
     }, [])
 
   return (
-    // // Aqui temos um container global que inclui a página 
-    // // inteira, nele temos apenas o componente Header, por enquanto. 
-    // // Note que a estilização desse container é feita através 
-    // // de styled-components algumas linhas acima.
-    // <AppContainer>
-    //   <Header isMobile={isMobile}/>
-    //   <Apresentacao/>
-    // </AppContainer>
-    
-    <PaginaAdmin></PaginaAdmin>
+    // Aqui temos um container global que inclui a página 
+    // inteira, nele temos apenas o componente Header, por enquanto. 
+    // Note que a estilização desse container é feita através 
+    // de styled-components algumas linhas acima.
+    <AppContainer>
+      <GlobalStyle/>
+      <Header isMobile={isMobile}/>
+      <Footer isMobile={isMobile}/>
+    </AppContainer>    
   );
 }
 

@@ -1,7 +1,8 @@
+import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
-const LoginButtonContainer = styled.button`
+const LoginButtonContainer = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,6 +15,8 @@ const LoginButtonContainer = styled.button`
   color: #003466;
   font-size: 20px;
   font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
 
   @media (min-width: 861px) and (max-width: 1050px) {
     font-size: 16px;
@@ -31,7 +34,7 @@ const LoginButtonContainer = styled.button`
 
 function LoginButton() {
   return (
-    <LoginButtonContainer>
+    <LoginButtonContainer to='/login' $activeStyle >
       <p>Log in</p>
     </LoginButtonContainer>
   );
