@@ -4,7 +4,6 @@ import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
 
-
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
 const GlobalStyle = createGlobalStyle`
