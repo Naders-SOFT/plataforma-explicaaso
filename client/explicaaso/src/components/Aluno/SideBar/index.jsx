@@ -24,6 +24,7 @@ const DSKBOTAO = styled.button`
     font-weight: bold;
     font-size: 100%;
     border: none;
+    font-family: 'Inter';
     &:hover {
         opacity: 0.5;
         cursor: pointer;
@@ -39,6 +40,7 @@ const MOBLBOTAO = styled.button`
     font-size: 100%;
     font-weight: bold;
     border: none;
+    font-family: 'Inter';
     &:hover {
         opacity: 0.5;
         cursor: pointer;
@@ -79,6 +81,7 @@ const ConatainerPerfil = styled.div`
 const Nome = styled.h1`
     color: black;
     font-size: 2vw;
+    font-family: 'Inter';
 `
 
 const Container = styled.div`

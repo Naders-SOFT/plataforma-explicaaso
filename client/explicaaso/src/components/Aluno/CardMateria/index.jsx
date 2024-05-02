@@ -21,6 +21,8 @@ const ImgCard = styled.img`
 
 const TituloMateria = styled.h1`
     font-size: 150%;
+    font-family: 'Inter';
+    font-weight: bold;
 `
 
 function CardMateria(props) {
