@@ -16,6 +16,8 @@ const NavigationHeaderContainer = styled.ul`
 
 const NavigationItem = styled(Link)`
   font-size: 24px;
+  color: white;
+  text-decoration: none;
   margin: 0 5%;
   white-space: nowrap; 
   cursor: pointer;
@@ -38,7 +40,7 @@ function NavigationHeader(props) {
     <NavigationHeaderContainer>
       {
         itensNavigation.map( (item) => (
-          <NavigationItem to={item.pagina} activeStyle key={item.id}><p>{item.texto}</p></NavigationItem>
+          <NavigationItem to={item.pagina} $activeStyle key={item.id}><p>{item.texto}</p></NavigationItem>
         ))
       }
     </NavigationHeaderContainer>

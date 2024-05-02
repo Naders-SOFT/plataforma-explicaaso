@@ -72,6 +72,8 @@ const MenuList = styled.ul`
 const NavigationItem = styled(Link)`
   display: flex;
   font-size: 20px;
+  color: white;
+  text-decoration: none;
   white-space: nowrap; 
   cursor: pointer;
 `
@@ -96,10 +98,10 @@ function Menu(props) {
       <MenuList $active={active}>
         {
           itensNavigation.map( item => (
-            <NavigationItem to={item.pagina} activeStyle key={item.id}><p>{item.texto}</p></NavigationItem>
+            <NavigationItem to={item.pagina} $activeStyle key={item.id}><p>{item.texto}</p></NavigationItem>
           ))
         }
-        <NavigationItem><LoginButton/></NavigationItem>
+        <LoginButton/>
       </MenuList>
     </MenuHambContainer>
   );

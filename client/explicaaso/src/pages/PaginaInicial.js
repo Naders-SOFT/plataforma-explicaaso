@@ -6,7 +6,7 @@ const PaginaContainer= styled.div`
   width: 100%;
   min-height: 100vh;
   height: auto;
-  background-color: white;
+  // background-color: white;
   display: flex;
   flex-direction: column;
 `
