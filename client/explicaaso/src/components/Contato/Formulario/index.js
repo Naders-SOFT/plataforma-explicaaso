@@ -27,6 +27,8 @@ const DSKINPUTFIELD = styled.input`
     margin-bottom: 2.5vh;
     height: 5vh;
     width: 15vw;
+    color: white;
+    padding: 1vh;
 `;
 
 const DSKLABEL = styled.label`
@@ -52,6 +54,8 @@ const DSKTEXTAREA = styled.textarea`
     margin-bottom: 2.5vh;
     height: 20vh;
     width: 32.5vw;
+    color: white;
+    padding: 1vh;
 `;
 
 const MOBCONTACTINFO = styled.div`
@@ -81,6 +85,8 @@ const MOBINPUTFIELD = styled.input`
     margin-bottom: 2.5vh;
     height: 7.5vh;
     width: 60vw;
+    color: white;
+    padding: 1vh;
 `;
 
 const MOBLABEL = styled.label`
@@ -105,6 +111,8 @@ const MOBTEXTAREA = styled.textarea`
     margin-bottom: 2.5vh;
     height: 20vh;
     width: 60vw;
+    color: white;
+    padding: 1vh;
 `;
 
 function Formulario(props) {

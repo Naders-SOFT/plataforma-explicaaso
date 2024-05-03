@@ -7,126 +7,60 @@ const CONTAINERCONTATO = styled.div`
     width: 100%;
 `;
 
-const DSKCONTATO = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 5vw;
-    width: 60vw;
+const CONTATO = styled.div`
+  display: flex;
+  flex-direction: ${({$isMobile}) => ($isMobile ? 'column' : 'row')};
+  gap: ${({$isMobile}) => ($isMobile ? '10%' : '6.25vw')};
+  width: ${({$isMobile}) => ($isMobile ? '60%' : '60vw')};
+  align-items: ${({$isMobile}) => ($isMobile ? 'center' : 'flex-start')};
+  margin-left: ${({$isMobile}) => ($isMobile ? '15%' : '0')};
+  padding: ${({$isMobile}) => ($isMobile ? '5%' : '0')};
 `;
 
-const DSKDIV = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 0vh;
+const DIV = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0vh;
+  text-align: ${({$isMobile}) => ($isMobile ? 'center' : 'left')};
 `;
 
-const DSKH2 = styled.h2`
-    color: #FF6600;
-    font-size: 5vw;
-    width: 45vw;
+const H2 = styled.h2`
+  color: #FF6600;
+  font-size: ${({$isMobile}) => ($isMobile ? '50px' : '5vw')};
+  width: ${({$isMobile}) => ($isMobile ? '100%' : '45vw')};
+  text-align: ${({$isMobile}) => ($isMobile ? 'center' : 'left')};
+  margin-top: 0;
 `;
 
-const DSKH3 = styled.h3`
-    color: #FF6600;
-    font-size: 3vw;
-    width: 40vw;
+const H3 = styled.h3`
+  color: #FF6600;
+  font-size: ${({$isMobile}) => ($isMobile ? '30px' : '3vw')};
+  width: ${({$isMobile}) => ($isMobile ? '100%' : '40vw')};
+  text-align: ${({$isMobile}) => ($isMobile ? 'center' : 'left')};
+  margin-top: 0;
 `;
 
-const DSKP = styled.p`
-    color: #828282;
-    width: 40vw;
+const P = styled.p`
+  color: #828282;
+  width: ${({$isMobile}) => ($isMobile ? '100%' : '40vw')};
+  text-align: ${({$isMobile}) => ($isMobile ? 'center' : 'left')};
 `;
 
-const DSKSTYLCONTACTFORM = styled.div`
-    margin: 5vh;
-`;
-
-const MOBCONTATO = styled.div`
-    display: flex;
-    gap: 10%;
-    padding: 5%;
-    width: 60%;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 15%;
-`;
-
-const MOBDIV = styled.div`
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-`;
-
-const MOBH2 = styled.h2`
-    color: #FF6600;
-    font-size: 50px;
-    margin-top: 0;
-    width: 100%;
-    text-align: center;
-`;
-
-const MOBH3 = styled.h3`
-    color: #FF6600;
-    margin-top: 0;
-    font-size: 30px;
-    width: 100%;
-    text-align: center;
-`;
-
-const MOBP = styled.p`
-    color: #828282;
-    text-align: center;
-`;
-
-const MOBSTYLCONTACTFORM = styled.div`
-    padding: 5%;
-    width: 100%;
-    max-width: 100%;
-    align-items: center;
+const STYLCONTACTFORM = styled.div`
+  margin: ${({$isMobile}) => ($isMobile ? '0' : '5vh')};
+  padding: ${({$isMobile}) => ($isMobile ? '5%' : '0')};
+  width: 100%;
+  max-width: 100%;
+  align-items: center;
 `;
 
 function PaginaContato(props) {
     return (
         <CONTAINERCONTATO>
-            {/* Disposição mobile da página */}
-            {props.isMobile &&
-            <MOBCONTATO>
-                <MOBSTYLCONTACTFORM>
-                    <MOBH2>Entre em contato</MOBH2>
-                        <MOBP>
-                            Ficamos felizes em ouvir de você!
-                            <br />
-                            Se você tem alguma dúvida, sugestão ou  apenas quer dizer "olá",
-                            <br />
-                            não hesite em nos contatar.
-                            <br />
-                            Preencha o formulário abaixo
-                            <br />
-                            e entraremos em contato o mais breve possível.
-                        </MOBP>
-                        <Formulario isMobile={props.isMobile}/>
-                </MOBSTYLCONTACTFORM>
-                    <MOBDIV>
-                        <Mapa isMobile={props.isMobile}/>
-                        <MOBH3>Endereço</MOBH3>
-                        <MOBP>
-                            Av. Trab. São Carlense
-                            <br />
-                            400 - Parque Arnold Schimidt
-                            <br />
-                            13566-590
-                            <br />
-                            </MOBP>
-                    </MOBDIV>
-            </MOBCONTATO>
-            }
-
-            {/* Disposição desktop da página */}
-            {!props.isMobile &&
-            <DSKCONTATO>
-                <DSKSTYLCONTACTFORM>
-                    <DSKH2>Entre em contato</DSKH2>
-                    <DSKP>
+            <CONTATO $isMobile={props.isMobile}>
+                <STYLCONTACTFORM $isMobile={props.isMobile}>
+                    <H2 $isMobile={props.isMobile}>Entre em contato</H2>
+                    <P $isMobile={props.isMobile}>
                         Ficamos felizes em ouvir de você!
                         <br />
                         Se você tem alguma dúvida, sugestão ou  apenas quer dizer "olá",
@@ -136,17 +70,15 @@ function PaginaContato(props) {
                         Preencha o formulário abaixo
                         <br />
                         e entraremos em contato o mais breve possível.
-                    </DSKP>
+                    </P>
                     <Formulario isMobile={props.isMobile}/>
-                </DSKSTYLCONTACTFORM>
-                <DSKDIV>
+                </STYLCONTACTFORM>
+                <DIV $isMobile={props.isMobile}>
                     <Mapa isMobile={props.isMobile}/>
-                    <DSKH3>Endereço</DSKH3>
-                    <DSKP>Av. Trab. São Carlense, 400 - Parque Arnold Schimidt, 13566-590</DSKP>
-                </DSKDIV>
-            </DSKCONTATO>
-            }
-
+                    <H3 $isMobile={props.isMobile}>Endereço</H3>
+                    <P $isMobile={props.isMobile}>Av. Trab. São Carlense, 400 - Parque Arnold Schimidt, 13566-590</P>
+                </DIV>
+            </CONTATO>
         </CONTAINERCONTATO>
     );
 }
