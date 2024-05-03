@@ -13,7 +13,6 @@ const ContainerPag = styled.div`
 function PaginaAluno(props) {
     return (
         <ContainerPag>
-            {/* <Header isMobile={props.isMobile}/> */}
             <Informacao isMobile = {props.isMobile} imgPerfil={imgPerfil}/>
         </ContainerPag>
     );
