@@ -18,7 +18,9 @@ const Container = styled.div`
 function Avisos(props) {
     return (
         <Container>
-            <Aviso>BABUAS</Aviso>
+            {props.isMobile &&
+                <MOBLAVISOS>BABUAS</MOBLAVISOS>
+            }
 
         </Container>
     );
