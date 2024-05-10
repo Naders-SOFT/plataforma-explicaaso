@@ -1,4 +1,3 @@
-import Header from "../components/Head/Header";
 import InputComponent from "../components/Login/InputComponent/InputComponent";
 import styled from 'styled-components';
 
@@ -48,7 +47,6 @@ const Submit = styled.button`
 function PaginaLogin(props) {
   return (
     <ContainerPag>
-      <Header isMobile={props.isMobile}/>
       <LoginContainer $isMobile={props.isMobile}>
         <LoginTitulo>Log in</LoginTitulo>
         <InputComponent label='Email' type='email'/>

@@ -1,13 +1,14 @@
 import styled from 'styled-components'
+import ItemAviso from '../ItemAviso';
 
-const MOBLAVISOS = styled.ul`
+const AvisosPainel = styled.ul`
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
     padding: 0px;
-    flex-direction: column;
+    ${'' /* flex-direction: column; */}
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 0px;
 `
 
@@ -18,8 +19,17 @@ const Container = styled.div`
 function Avisos(props) {
     return (
         <Container>
-            {props.isMobile &&
-                <MOBLAVISOS>BABUAS</MOBLAVISOS>
+            {
+                props.isMobile &&
+                <AvisosPainel>
+                <ItemAviso tituloAviso="sei la porra mobile"/>
+                </AvisosPainel>
+            }
+            {
+                !props.isMobile &&
+                <AvisosPainel>
+                <ItemAviso tituloAviso="sei la porra"/>
+                </AvisosPainel>
             }
 
         </Container>

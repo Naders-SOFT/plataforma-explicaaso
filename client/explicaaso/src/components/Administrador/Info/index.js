@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Avisos from '../Avisos';
-import SideBar from '../../Aluno/SideBar'
+import SideBar from '../SideBar';
+import { ProfessorList } from '../Gerenciador';
 
 const MOBLINFO = styled.div`
     display: flex;
@@ -13,26 +13,35 @@ const DSKINFO = styled.div`
     display: grid;
     grid-template-columns: 1fr 8fr;
     flex-wrap: wrap;
+    gap: 1vw;
 `
 const Container = styled.div`
     width: 100%;
 `
 
-function AvisosContainer(props) {
+
+function Informacao(props) {
+    // Example usage of the ProfessorList component
+    const professors = [
+        { name: 'Albert', subject: 'Mathematics', date: 'Dec 5' },
+        { name: 'Bart', subject: 'Physics', date: 'Dec 5' },
+    ];
+  
     return (
         <Container>
             {
                 props.isMobile &&
                 <MOBLINFO>
                     <SideBar isMobile={props.isMobile}/>
-                    <Avisos isMobile={props.isMobile}></Avisos>
+                    <ProfessorList professors={professors}/>
+
                 </MOBLINFO>
             }
             {
                 !props.isMobile &&
                 <DSKINFO>
                     <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil}/>
-                    <Avisos isMobile={props.isMobile}></Avisos>
+                    <ProfessorList professors={professors}/>
                 </DSKINFO>
             }
 
@@ -40,4 +49,6 @@ function AvisosContainer(props) {
     );
 }
 
-export default AvisosContainer;
+
+
+export default Informacao;

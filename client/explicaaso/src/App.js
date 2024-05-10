@@ -1,20 +1,32 @@
-import Header from './components/Head/Header';
-import Apresentacao from './components/Inicio/Apresentacao';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import PaginaLogin from './pages/pagina-login';
+import Header from './components/Head/Header';
+import Footer from './components/FooterComponents/Footer';
+import { createGlobalStyle } from 'styled-components';
 import PaginaDisciplina from './pages/pagina-disciplina';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  li {
+    list-style: none;
+  }
+`
+
 // ESTILIZAÇÃO DO COMPONENTE
 const AppContainer = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  height: auto;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
 `
 
 
@@ -42,9 +54,10 @@ function App() {
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
     <AppContainer>
-      {/* <Header isMobile={isMobile}/>
-      <Apresentacao/> */}
+      <GlobalStyle/>
+      {/* <Header isMobile={isMobile}/> */}
       <PaginaDisciplina></PaginaDisciplina>
+      {/* <Footer isMobile={isMobile}/> */}
     </AppContainer>    
   );
 }

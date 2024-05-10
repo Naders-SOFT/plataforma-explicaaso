@@ -1,15 +1,15 @@
 import styled from 'styled-components';
-import CardMateria from './CardMateria';
+import CardMateria from '../CardMateria';
 
-import imgMatematica from '../../images/materias/matematica.jpg';
-import imgHistoria from '../../images/materias/historia.jpg'
-import imgGeografia from '../../images/materias/geografia.jpg'
-import imgQuimica from '../../images/materias/quimica.jpg'
-import imgFisica from '../../images/materias/fisica.png'
-import imgBiologia from '../../images/materias/biologia.jpg'
-import imgLiteratura from '../../images/materias/literatura2.jpg'
-import imgGramatica from '../../images/materias/literatura.webp'
-import imgRedacao from '../../images/materias/redacao.jpg'
+import imgMatematica from '../../../images/materias/matematica.jpg';
+import imgHistoria from '../../../images/materias/historia.jpg'
+import imgGeografia from '../../../images/materias/geografia.jpg'
+import imgQuimica from '../../../images/materias/quimica.jpg'
+import imgFisica from '../../../images/materias/fisica.png'
+import imgBiologia from '../../../images/materias/biologia.jpg'
+import imgLiteratura from '../../../images/materias/literatura2.jpg'
+import imgGramatica from '../../../images/materias/literatura.webp'
+import imgRedacao from '../../../images/materias/redacao.jpg'
 
 
 const MOBLMATERIAS = styled.ul`
@@ -25,7 +25,7 @@ const MOBLMATERIAS = styled.ul`
 const DSKMATERIAS = styled.ul`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5vh;
+    gap: 2vw;
     list-style-type: none;
     padding: 0px;
     align-items: center;
