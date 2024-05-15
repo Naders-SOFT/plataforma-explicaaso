@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 import Header from '../components/Head/Header'
 import Informacao from '../components/Aluno/Informacao';
 
