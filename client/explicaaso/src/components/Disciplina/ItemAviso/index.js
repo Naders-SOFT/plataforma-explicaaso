@@ -8,11 +8,19 @@ const ItemContainer = styled.li`
     justify-content: flex-start;
     align-items: center;
     padding: 1vw;
-    background-color: navy;
+    background-color: rgba(0, 52, 102, 0.5);
+    background-opacity: 0.5;
     border-radius: 1rem;
+    margin-top: 2%;
+
+    &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
 `
 
 const TituloAviso = styled.h1`
+    font-family: 'Inter';
     font-size: 150%;
 `
 

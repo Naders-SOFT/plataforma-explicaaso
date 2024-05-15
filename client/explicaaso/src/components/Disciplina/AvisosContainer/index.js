@@ -13,6 +13,7 @@ const DSKINFO = styled.div`
     display: grid;
     grid-template-columns: 1fr 8fr;
     flex-wrap: wrap;
+    gap: 2%;
 `
 const Container = styled.div`
     width: 100%;
@@ -25,14 +26,14 @@ function AvisosContainer(props) {
                 props.isMobile &&
                 <MOBLINFO>
                     <SideBar isMobile={props.isMobile}/>
-                    <Avisos isMobile={props.isMobile}></Avisos>
+                    <Avisos isMobile={props.isMobile} tituloDisciplina={'disciplina de bosta'}></Avisos>
                 </MOBLINFO>
             }
             {
                 !props.isMobile &&
                 <DSKINFO>
                     <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil}/>
-                    <Avisos isMobile={props.isMobile}></Avisos>
+                    <Avisos isMobile={props.isMobile} tituloDisciplina={'disciplina de bosta'}></Avisos>
                 </DSKINFO>
             }
 

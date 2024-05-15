@@ -13,7 +13,7 @@ const DSKINFO = styled.div`
     display: grid;
     grid-template-columns: 1fr 8fr;
     flex-wrap: wrap;
-    gap: 1vw;
+    gap: 2%;
 `
 const Container = styled.div`
     width: 100%;

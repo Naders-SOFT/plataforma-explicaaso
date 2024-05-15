@@ -13,7 +13,7 @@ function PaginaDisciplina(props) {
     return (
         <ContainerPag>
             {/* <Header isMobile={props.isMobile}/> */}
-            <AvisosContainer imgPerfil={imgPerfil}></AvisosContainer>
+            <AvisosContainer imgPerfil={imgPerfil} isMobile={props.isMobile}></AvisosContainer>
         </ContainerPag>
     );
 }

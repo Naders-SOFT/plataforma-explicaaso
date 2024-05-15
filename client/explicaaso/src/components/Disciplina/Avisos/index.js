@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import ItemAviso from '../ItemAviso';
+import TituloDisciplina from '../Titulo';
 
 const AvisosPainel = styled.ul`
     display: flex;
@@ -22,13 +23,19 @@ function Avisos(props) {
             {
                 props.isMobile &&
                 <AvisosPainel>
-                <ItemAviso tituloAviso="sei la porra mobile"/>
+                    <TituloDisciplina tituloDisciplina={props.tituloDisciplina}/>
+                    <ItemAviso tituloAviso="sei la porra mobile"/>
+                    <ItemAviso tituloAviso="sei la porra mobile2"/>
+
                 </AvisosPainel>
             }
             {
                 !props.isMobile &&
                 <AvisosPainel>
-                <ItemAviso tituloAviso="sei la porra"/>
+                    <TituloDisciplina tituloDisciplina={props.tituloDisciplina}/>
+                    <ItemAviso tituloAviso="sei la porra"/>
+                    <ItemAviso tituloAviso="sei la porra2"/>
+
                 </AvisosPainel>
             }
 
