@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
-import PaginaDisciplina from './pages/pagina-disciplina';
+import PaginaInicial from './pages/PaginaInicial';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -55,10 +55,9 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <GlobalStyle/>
-      {/* <Header isMobile={isMobile}/> */}
-      <PaginaDisciplina isMobile={isMobile}></PaginaDisciplina>
-      {/* <Footer isMobile={isMobile}/> */}
-    </AppContainer>    
+      <Header isMobile={isMobile}/>
+      <Footer isMobile={isMobile}/>
+    </AppContainer>
   );
 }
 

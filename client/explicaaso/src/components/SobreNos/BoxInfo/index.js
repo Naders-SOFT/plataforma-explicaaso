@@ -82,7 +82,7 @@ const DSKTITLE = styled.h2`
 
 const CORPO = styled.p`
     color: white;
-    font-size: ${({$isMobile}) => ($isMobile ? '15px' : '30px')};
+    font-size: ${({$isMobile}) => ($isMobile ? '20px' : '30px')};
     margin: 5% 5% 5% 5%;
     grid-area: corpo;
     text-align: ${({$isMobile}) => ($isMobile ? 'flex-start' : 'justify')};
