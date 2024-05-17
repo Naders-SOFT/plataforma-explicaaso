@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
-import PaginaInicial from './pages/PaginaInicial';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
