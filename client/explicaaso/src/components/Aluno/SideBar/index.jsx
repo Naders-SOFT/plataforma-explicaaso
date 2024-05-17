@@ -4,7 +4,7 @@ const DSKCONTAINERSIDE = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 20vw;
+    height: 100%;
     align-items: center;
     justify-content: flex-start;
     float: left;

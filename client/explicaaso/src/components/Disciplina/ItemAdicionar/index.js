@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import addImg from '../../../images/disciplina/add-add-plus-sign.svg'
 
 const ItemContainer = styled.li`
     width: 100%;
     display: flex;
     color: black;
     gap: 2%;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding: 1vw;
     background-color: rgba(0, 52, 102, 0.5);
@@ -19,27 +20,16 @@ const ItemContainer = styled.li`
     }
 `
 
-const TituloAviso = styled.h1`
-    font-family: 'Inter';
-    font-size: 150%;
+const ImgAdd = styled.img`
+    width: 4%;
+    height: 4%;
 `
-
-const TipoAviso = styled.button`
-    border-radius: 50%;
-    background-color: yellow;
-    width: 2vw;
-    height: 2vw;
-    border: none;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-`
-
-function ItemAviso(props) {
+function ItemAdicionar(props) {
     return (
         <ItemContainer>
-            <TipoAviso/>
-            <TituloAviso>{props.tituloAviso}</TituloAviso>
+            <ImgAdd src={addImg}/>
         </ItemContainer>
     );
 }
 
-export default ItemAviso;
+export default ItemAdicionar;
