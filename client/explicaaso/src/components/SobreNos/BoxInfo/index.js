@@ -82,9 +82,10 @@ const DSKTITLE = styled.h2`
 
 const CORPO = styled.p`
     color: white;
-    font-size: 30px;
+    font-size: ${({$isMobile}) => ($isMobile ? '20px' : '30px')};
     margin: 5% 5% 5% 5%;
     grid-area: corpo;
+    text-align: ${({$isMobile}) => ($isMobile ? 'flex-start' : 'justify')};
 `
 
 function BoxInfo(props) {
@@ -97,7 +98,7 @@ function BoxInfo(props) {
                 <MOBLTITLE>{props.titulo}</MOBLTITLE>
             </IMGDIV>}
             {props.isMobile && 
-            <CORPO>{props.texto}</CORPO>}
+            <CORPO $isMobile={props.isMobile}>{props.texto}</CORPO>}
 
 
             {/* Disposição desktop da página */}
@@ -105,7 +106,7 @@ function BoxInfo(props) {
             <TXTDIV>
                 <IMG src={`${props.imgSrc}`} alt={props.imgAlt}/>
                 <DSKTITLE>{props.titulo}</DSKTITLE>
-                <CORPO>{props.texto}</CORPO>
+                <CORPO $isMobile={props.isMobile}>{props.texto}</CORPO>
             </TXTDIV>}
         </BlocoInfo>
     );
