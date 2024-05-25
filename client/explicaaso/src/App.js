@@ -4,6 +4,7 @@ import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
 import PaginaInicial from './pages/PaginaInicial';
+import PaginaDisciplina from './pages/pagina-disciplina';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -55,8 +56,9 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <GlobalStyle/>
-      <Header isMobile={isMobile}/>
-      <Footer isMobile={isMobile}/>
+      {/* <Header isMobile={isMobile}/> */}
+      <PaginaDisciplina isMobile={isMobile}/>
+      {/* <Footer isMobile={isMobile}/> */}
     </AppContainer>
   );
 }
