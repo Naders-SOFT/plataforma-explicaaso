@@ -1,17 +1,32 @@
-import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import express from 'express'
-import multerS3 from 'multer-s3'
-import routes from './routes/api.routes.js'
+// import routes from './routes/api.routes.js'
 import path from 'path'
+import cors from 'cors'
+import pdfController from './controllers/pdf.controller.js'
 
 const app = express()
 
 app.use(express.static('public'))
 app.use(express.json())
-app.use(express.urlencoded({
-    extended: true
-}))
-app.use('/api', routes)
+// app.use('/api', routes)
+app.use(cors({
+    origin: 'http://localhost:3000'  // Replace with your frontend's origin
+}));
+
+app.post('/pdf', pdfController.upload.single('file'), function(request, response, err) {
+    if (err) {
+        return response
+            .status(500)
+            .send({
+                error: 'erro no upload'
+            })
+    }
+    response
+        .send({
+            message: 'upload concluido com sucesso',
+            urlArquivo: request.file.location
+        })
+})
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));

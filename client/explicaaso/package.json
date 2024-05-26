@@ -44,6 +44,5 @@
     "postcss": "^8.4.38",
     "postcss-preset-mantine": "^1.14.4",
     "postcss-simple-vars": "^7.0.1"
-  },
-  "type": "module"
+  }
 }

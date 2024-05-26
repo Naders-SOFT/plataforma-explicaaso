@@ -15,7 +15,7 @@ function Naosei() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('/api/upload', {
+      const response = await fetch('http://localhost:3003/pdf', {
         method: 'POST',
         body: formData,
       });

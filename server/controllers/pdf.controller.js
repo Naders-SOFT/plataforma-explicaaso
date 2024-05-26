@@ -1,9 +1,10 @@
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import multer from 'multer'
 import multerS3 from 'multer-s3'
+import { request, response } from 'express'
 
 const s3 = new S3Client({
-    endpoint: 'http://127.0.0.1:9000',
+    endpoint: 'http://127.0.0.1:9001',
     credentials: {
         accessKeyId: 'gRk1NVbg8v9bcW5IHMny',
         secretAccessKey: '78rRnHaczSvpwCgQYRum0gBTE1bIdKSNLzFemmqk'
@@ -22,9 +23,9 @@ const upload = multer({
             cb(null, Date.now(), + '-' + arquivo.originalname)
         }
     })
-}).single('file')
+})
 
-const uploadArquivo = (request, response) => {
+const callbackUpload = (request, response) => {
     upload(request, response, (err) => {
         if (err) {
             return response
@@ -41,4 +42,4 @@ const uploadArquivo = (request, response) => {
     })
 }
 
-export default uploadArquivo
+export default {upload, callbackUpload}
