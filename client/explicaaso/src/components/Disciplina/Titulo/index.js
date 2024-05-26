@@ -13,7 +13,7 @@ const TituloContainer = styled.div`
 `
 
 const TituloNomeDisciplina = styled.h1`
-    font-size: 150%;
+    font-size: 200%;
     color: white;
 `
 
