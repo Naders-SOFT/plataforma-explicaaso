@@ -24,7 +24,7 @@ const upload = multer({
     })
 }).single('file')
 
-exports.uploadArquivo = (request, response) => {
+const uploadArquivo = (request, response) => {
     upload(request, response, (err) => {
         if (err) {
             return response
@@ -40,3 +40,5 @@ exports.uploadArquivo = (request, response) => {
             })
     })
 }
+
+export default uploadArquivo

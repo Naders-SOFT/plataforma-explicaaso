@@ -6,4 +6,4 @@ const routes = express.Router()
 
 routes.post('/pdf', pdfModels.uploadArquivo);
 
-export default routes
+export default routes0
