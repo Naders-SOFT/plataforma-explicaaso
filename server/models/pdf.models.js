@@ -1,5 +1,6 @@
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import multer from 'multer'
+import multerS3 from 'multer-s3'
 
 const s3 = new S3Client({
     endpoint: 'http://127.0.0.1:9000',
@@ -22,6 +23,5 @@ const uploadArquivo = multer({
         }
     })
 })
-
 
 export default {s3, uploadArquivo};
