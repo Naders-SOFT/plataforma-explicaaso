@@ -10,7 +10,7 @@ app.use(express.static('public'))
 app.use(express.json())
 // app.use('/api', routes)
 app.use(cors({
-    origin: 'http://localhost:3000'  // Replace with your frontend's origin
+    origin: 'http://localhost:3000'  
 }));
 
 app.post('/pdf', pdfController.upload.single('file'), function(request, response, err) {
