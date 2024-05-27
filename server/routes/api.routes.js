@@ -3,7 +3,7 @@ import pdfController from '../controllers/pdf.controller.js'
 
 const routes = express.Router()
 
-routes.post('/pdf', pdfController.upload.single('file'), function(request, response, err) {
+routes.post('/api/posts', pdfController.upload.single('file'), function(request, response, err) {
     if (err) {
         return response
             .status(500)
