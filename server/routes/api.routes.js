@@ -1,18 +1,21 @@
 import express from 'express'
-import multer from 'multer'
-import pdfModels from '../models/pdf.models.js'
+import pdfController from '../controllers/pdf.controller.js'
 
 const routes = express.Router()
 
-routes.post('/pdf', pdfModels.upload.single('pdf'), async (request, response) => {
-    try {
-      const fileUrl = `http://127.0.0.1:9000/teste/${request.file.key}`;
-      response.json({ message: 'Arquivo enviado com sucesso!', url: fileUrl });
-    } catch (error) {
-      console.error(error);
-      response.status(500).json({ message: 'Erro ao enviar o arquivo' });
+routes.post('/pdf', pdfController.upload.single('file'), function(request, response, err) {
+    if (err) {
+        return response
+            .status(500)
+            .send({
+                error: 'erro no upload'
+            })
     }
-  }
-);
+    response
+        .send({
+            message: 'upload concluido com sucesso',
+            urlArquivo: request.file.location
+        })
+})
 
 export default routes

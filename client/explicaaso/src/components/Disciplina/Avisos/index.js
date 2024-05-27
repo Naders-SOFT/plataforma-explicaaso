@@ -2,8 +2,7 @@ import styled from 'styled-components'
 import ItemAviso from '../ItemAviso';
 import TituloDisciplina from '../Titulo';
 import ItemAdicionar from '../ItemAdicionar';
-
-<script source='script.js'></script>
+import Naosei from './naosei';
 
 const AvisosPainel = styled.ul`
     display: flex;
@@ -39,13 +38,7 @@ function Avisos(props) {
                     <ItemAdicionar/>
                     <ItemAviso tituloAviso="sei la porra"/>
                     <ItemAviso tituloAviso="sei la porra2"/>
-                    
-                    <h1>Upload de Arquivos</h1>
-                    <input type="file" id="pdfInput" accept=".pdf"/>
-                    <button onclick="uploadFile()">Enviar Arquivo</button>
-
-                    <h2>Arquivos Enviados:</h2>
-                    <ul id="fileList"></ul>
+                    <Naosei></Naosei>
                 </AvisosPainel>
             }
 
