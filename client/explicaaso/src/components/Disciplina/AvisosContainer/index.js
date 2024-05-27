@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import SideBar from '../SideBar';
-import ContainerMateria from '../Materias';
+import Avisos from '../Avisos';
+import SideBar from '../../Aluno/SideBar'
 
 const MOBLINFO = styled.div`
     display: flex;
@@ -19,21 +19,21 @@ const Container = styled.div`
     width: 100%;
 `
 
-function Informacao(props) {
+function AvisosContainer(props) {
     return (
         <Container>
             {
                 props.isMobile &&
                 <MOBLINFO>
                     <SideBar isMobile={props.isMobile}/>
-                    <ContainerMateria isMobile={props.isMobile}/>
+                    <Avisos isMobile={props.isMobile} tituloDisciplina={'disciplina de bosta'}></Avisos>
                 </MOBLINFO>
             }
             {
                 !props.isMobile &&
                 <DSKINFO>
                     <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil}/>
-                    <ContainerMateria isMobile={props.isMobile}/>
+                    <Avisos isMobile={props.isMobile} tituloDisciplina={'disciplina de bosta'}></Avisos>
                 </DSKINFO>
             }
 
@@ -41,4 +41,4 @@ function Informacao(props) {
     );
 }
 
-export default Informacao;
+export default AvisosContainer;
