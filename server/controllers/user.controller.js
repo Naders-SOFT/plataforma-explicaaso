@@ -1,6 +1,6 @@
 import User from '../models/user.models.js';
 
-async function signupUser (req, res) {
+export async function signupUser (req, res) {
   try {
     const userNovo = new User({
       email: req.body.email,
@@ -20,4 +20,50 @@ async function signupUser (req, res) {
   }
 }
 
-export default signupUser;
+export async function listUsers(req, res) {
+  try {
+    const users = await User.find({});
+
+    res.status(200);
+    res.send(users);
+  } catch(error) {
+    res.status(500);
+    res.send(error.message);
+  }
+}
+
+export async function listUser(req, res) {
+  try {
+    const users = await User.findById(req.params.idUser);
+
+    res.status(200);
+    res.send(users);
+  } catch(error) {
+    res.status(500);
+    res.send(error.message);
+  }
+}
+
+export async function updateUser(req, res) {
+  try {
+    await User.findByIdAndUpdate(req.params.idUser, req.body);
+
+    res.status(200);
+    res.send("Usuário modificado com sucesso");
+  } catch(error) {
+    res.status(500);
+    res.send(error.message);
+  }
+}
+
+export async function deleteUser(req, res) {
+  try {
+    await User.findByIdAndDelete(req.params.idUser);
+
+    res.status(200);
+    res.send("Usuário deletado com sucesso");
+  } catch(error) {
+    res.status(500);
+    res.send(error.message);
+  }
+}
