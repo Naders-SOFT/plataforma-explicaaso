@@ -42,7 +42,6 @@ function Avisos(props) {
                     <NewPost></NewPost>
                 </AvisosPainel>
             }
-
         </Container>
     );
 

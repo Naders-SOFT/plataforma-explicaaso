@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 export default function NewPost() {  
-    const [file, setFile] = useState()
+    const [file, setFile] = useState(null)
     const [caption, setCaption] = useState("")
   
     const submit = async event => {
@@ -11,9 +11,19 @@ export default function NewPost() {
       const formData = new FormData();
       formData.append("arq-pdf", file)
       formData.append("caption", caption)
-      await axios.post("http://localhost:3003/posts", formData, { headers: {'Content-Type': 'multipart/form-data'}})
 
-      
+      try {
+        await axios.post("http://localhost:3003/api/posts", 
+          formData, 
+          { 
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+      }
+      catch(error) {
+        console.error(error.response.data);
+      }
     }
   
     return (
