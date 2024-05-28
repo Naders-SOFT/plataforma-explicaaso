@@ -14,16 +14,29 @@ function Naosei() {
     const formData = new FormData();
     formData.append('file', file);
 
-    try {
-      const response = await fetch('http://localhost:3003/pdf', {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await response.json();
-      setFileUrl(data.fileUrl);
-    } catch (error) {
-      console.error('Error uploading file:', error);
-    }
+    // try {
+    //   const response = await fetch('http://localhost:3003/pdf', {
+    //     method: 'POST',
+    //     body: formData,
+    //   });
+    //   const data = await response.json();
+    //   setFileUrl(data.fileUrl);
+    // } catch (error) {
+    //   console.error('Error uploading file:', error);
+    // }
+    fetch('http://localhost:3003/pdf', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      setFileUrl(data.fileUrl)
+    })
+    .catch(error => {
+      console.error('Error uploading file:', error)
+    })
   };
 
   return (

@@ -3,6 +3,7 @@ import ItemAviso from '../ItemAviso';
 import TituloDisciplina from '../Titulo';
 import ItemAdicionar from '../ItemAdicionar';
 import Naosei from './naosei';
+import NewPost from './naosei2';
 
 const AvisosPainel = styled.ul`
     display: flex;
@@ -38,10 +39,9 @@ function Avisos(props) {
                     <ItemAdicionar/>
                     <ItemAviso tituloAviso="sei la porra"/>
                     <ItemAviso tituloAviso="sei la porra2"/>
-                    <Naosei></Naosei>
+                    <NewPost></NewPost>
                 </AvisosPainel>
             }
-
         </Container>
     );
 
