@@ -2,6 +2,7 @@ import Header from './components/Head/Header';
 import Apresentacao from './components/Inicio/Apresentacao';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import PaginaBlogPost from './pages/pagina-blog-postagem';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -40,7 +41,8 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <Header isMobile={isMobile}/>
-      <Apresentacao/>
+      {/* <Apresentacao/> */}
+      <PaginaBlogPost/>
     </AppContainer>
     
   );
