@@ -1,8 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import cors from 'cors';
-// import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3'
-import postRoutes from './routes/api.routes.js';
+import pdfRoutes from './routes/pdf.routes.js';
 import userRoutes from './routes/user.routes.js';
 import db from './config/dbConnect.js';
 import dotenv from 'dotenv/config';
@@ -35,7 +34,7 @@ app.use(express.json());
 app.use(cors());
 
 // Rotas:
-app.use('/api/posts', postRoutes); 
+app.use('/pdf', pdfRoutes); 
 app.use('/user', userRoutes);
 
 app.listen(3003,  () => {
