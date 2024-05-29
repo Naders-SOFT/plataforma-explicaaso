@@ -1,21 +1,21 @@
 import { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
+import dotenv from 'dotenv/config';
+
 
 const s3 = new S3Client({
-    endpoint: 'http://127.0.0.1:9000',
+    endpoint: process.env.S3_ENDPOINT,
     credentials: {
-        accessKeyId: 'gRk1NVbg8v9bcW5IHMny',
-        secretAccessKey: '78rRnHaczSvpwCgQYRum0gBTE1bIdKSNLzFemmqk'
+        accessKeyId: process.env.S3_ACCESS_KEY,
+        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY
     },
     sslEnabled: false, 
     s3ForcePathStyle: true, 
     region: 'us-east-1'
 })
 
-const bucketName = 'teste'
+const bucketName = process.env.S3_BUCKET_NAME
 
 export const uploadFile = async (fileBuffer, fileName, mimetype) => {
-    console.log('cheguei aqui 3')
-
     const uploadParams = {
       Bucket: bucketName,
       Key: fileName, 
