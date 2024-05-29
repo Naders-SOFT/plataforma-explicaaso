@@ -11,7 +11,7 @@ const ContainerPag = styled.div`
 function PaginaBlogPost(props) {
     return(
         <ContainerPag>
-            {/* <Header isMobile={props.isMobile}/> */}
+            <Header isMobile={props.isMobile}/>
             <ContainerPost isMobile={props.isMobile}/>
         </ContainerPag>
     )

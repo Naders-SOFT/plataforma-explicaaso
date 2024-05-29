@@ -56,9 +56,7 @@ function App() {
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
     <AppContainer>
-      {/* <Header isMobile={isMobile}/> */}
-      {/* <Apresentacao/> */}
-      <PaginaBlogPost isMobile= {isMobile}/>
+      <Header isMobile={isMobile}/>
     </AppContainer>
   );
 }
