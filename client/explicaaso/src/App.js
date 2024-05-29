@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-<<<<<<< HEAD
 import PaginaBlogPost from './pages/pagina-blog-postagem';
-=======
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
 import PaginaInicial from './pages/PaginaInicial';
 import PaginaDisciplina from './pages/pagina-disciplina';
->>>>>>> main
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -59,16 +56,9 @@ function App() {
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
     <AppContainer>
-<<<<<<< HEAD
       <Header isMobile={isMobile}/>
       {/* <Apresentacao/> */}
       <PaginaBlogPost/>
-=======
-      <GlobalStyle/>
-      {/* <Header isMobile={isMobile}/> */}
-      <PaginaDisciplina isMobile={isMobile}/>
-      {/* <Footer isMobile={isMobile}/> */}
->>>>>>> main
     </AppContainer>
   );
 }
