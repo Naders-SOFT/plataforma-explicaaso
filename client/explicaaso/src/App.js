@@ -7,6 +7,8 @@ import { createGlobalStyle } from 'styled-components';
 import PaginaInicial from './pages/PaginaInicial';
 import PaginaDisciplina from './pages/pagina-disciplina';
 
+import RichText from './components/EditorTexto/RichText';
+
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
 const GlobalStyle = createGlobalStyle`
