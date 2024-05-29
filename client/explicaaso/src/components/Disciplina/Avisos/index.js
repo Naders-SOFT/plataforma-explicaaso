@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import ItemAviso from '../ItemAviso';
 import TituloDisciplina from '../Titulo';
 import ItemAdicionar from '../ItemAdicionar';
-import Naosei from './naosei';
 import NewPost from './naosei2';
 
 const AvisosPainel = styled.ul`
@@ -39,7 +38,7 @@ function Avisos(props) {
                     <ItemAdicionar/>
                     <ItemAviso tituloAviso="sei la porra"/>
                     <ItemAviso tituloAviso="sei la porra2"/>
-                    <NewPost></NewPost>
+                    <NewPost tituloDisciplina={props.tituloDisciplina} tituloFrente = 'ainda nao tem'></NewPost>
                 </AvisosPainel>
             }
         </Container>

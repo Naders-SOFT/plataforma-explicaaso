@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
-export default function NewPost() {  
+export default function NewPost(props) {  
     const [file, setFile] = useState(null)
     const [caption, setCaption] = useState("")
   
@@ -10,7 +10,8 @@ export default function NewPost() {
   
       const formData = new FormData();
       formData.append("arq-pdf", file)
-      formData.append("caption", caption)
+      formData.append("disciplina", props.tituloDisciplina)
+      formData.append("frente", props.tituloFrente)
 
       try {
         await axios.post("http://localhost:3003/pdf/posts", 

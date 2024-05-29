@@ -1,16 +1,28 @@
 import { uploadFile } from '../s3.js'
+import Pdf from '../models/pdf.models.js'
 
 export const createPost = async (req, res) => {
 
     try {
 
-        // const file = req.file;
-        // const caption = req.body.caption;
-        console.log(req.file)
+        const pdfNovo = new Pdf({
+            titulo: req.file.originalname,
+            disciplina: req.body.disciplina,
+            frente: req.body.frente,
+            data: new Date().toLocaleDateString()
+        })
 
-        await uploadFile(req.file.buffer, req.file.originalname, req.file.mimetype);
+        await pdfNovo.save()
+        const msmPdfCriado = await Pdf.findOne({
+            titulo: req.file.originalname,
+            disciplina: req.body.disciplina,
+            frente: req.body.frente
+        })
+        
+        await uploadFile(req.file.buffer, 
+                        msmPdfCriado._id.toString(), 
+                        req.file.mimetype);
 
-        // const post = await Post.create(imageName, caption);
         res.status(201).send();
     }
     catch (error) {

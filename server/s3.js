@@ -25,7 +25,6 @@ export const uploadFile = async (fileBuffer, fileName, mimetype) => {
   
     const command = new PutObjectCommand(uploadParams)
     try {
-      // const data = await s3.send(new PutObjectCommand(uploadParams));
       const data = await s3.send(command)
       console.log('File uploaded successfully!', data);
     } catch (err) {
