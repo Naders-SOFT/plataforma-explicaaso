@@ -13,7 +13,7 @@ export default function NewPost() {
       formData.append("caption", caption)
 
       try {
-        await axios.post("http://localhost:3003/api/posts", 
+        await axios.post("http://localhost:3003/pdf/posts", 
           formData, 
           { 
             headers: {
