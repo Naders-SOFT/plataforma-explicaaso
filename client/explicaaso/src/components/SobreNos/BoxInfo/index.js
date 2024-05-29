@@ -39,12 +39,23 @@ const TXTDIV = styled.div`
     'img titulo'
     'img corpo';
     margin: 3%;
+
+    @media(min-width: 768px) and (max-width: 1080px){
+        grid-template-columns: 100%;
+        grid-template-areas:
+        'titulo'
+        'corpo';
+    }
 `
 
 const IMG = styled.img`
     width: 100%;
     border-radius: 8px;
     grid-area: img;
+
+    @media(min-width: 768px) and (max-width: 1080px){
+        display: none;
+    }
 `
 
 /**
@@ -71,9 +82,10 @@ const DSKTITLE = styled.h2`
 
 const CORPO = styled.p`
     color: white;
-    font-size: 30px;
+    font-size: ${({$isMobile}) => ($isMobile ? '20px' : '30px')};
     margin: 5% 5% 5% 5%;
     grid-area: corpo;
+    text-align: ${({$isMobile}) => ($isMobile ? 'flex-start' : 'justify')};
 `
 
 function BoxInfo(props) {
@@ -86,7 +98,7 @@ function BoxInfo(props) {
                 <MOBLTITLE>{props.titulo}</MOBLTITLE>
             </IMGDIV>}
             {props.isMobile && 
-            <CORPO>{props.texto}</CORPO>}
+            <CORPO $isMobile={props.isMobile}>{props.texto}</CORPO>}
 
 
             {/* Disposição desktop da página */}
@@ -94,7 +106,7 @@ function BoxInfo(props) {
             <TXTDIV>
                 <IMG src={`${props.imgSrc}`} alt={props.imgAlt}/>
                 <DSKTITLE>{props.titulo}</DSKTITLE>
-                <CORPO>{props.texto}</CORPO>
+                <CORPO $isMobile={props.isMobile}>{props.texto}</CORPO>
             </TXTDIV>}
         </BlocoInfo>
     );
