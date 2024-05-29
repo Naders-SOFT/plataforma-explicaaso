@@ -59,8 +59,6 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <Header isMobile={isMobile}/>
-      {/* <Apresentacao/> */}
-      <PaginaBlogPost/>
     </AppContainer>
   );
 }

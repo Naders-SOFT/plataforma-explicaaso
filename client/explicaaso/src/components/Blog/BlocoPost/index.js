@@ -9,40 +9,37 @@ const BlocoInfo = styled.div`
     flex-direction: column;
     justify-content: center;
     margin: 50px;
-    width: ${({isMobile}) => (isMobile ? '100%' : '100%')};
+    width: 100%;
 `
 
 const MOBLTITLE = styled.h2`
     color: #FF6600;
     font-size: 40px;
-    width: 100%;
-    
+    width: 100%;   
     text-align: center;
-    margin: 5% 5% 5% 5%;
-    bottom: 3%;
+    margin: 5% 5% 2% 5%;
 `
 
 const DSKTITLE = styled.h2`
     color: #FF6600;
-    font-size: 40px;
+    font-size: 60px;
+    width: 100%;
     text-align: center;
-    margin: 3% 5% 0% 5%;
+    margin: 5% 5% 2% 5%;
     
 `
 
 const MOBTITLEPOST = styled.h3`
     color: white;
     font-size: 25px;
-
 `
 const DSKTITLEPOST = styled.h3`
     color: white;
     font-size: 40px;
-    margin-bottom: 0;
-
 `
 const MOBITEXT = styled.p`
-    font-size: 20px;
+    color: white;
+    font-size: 25px;
     margin: 5% 5% 5% 5%;
 
 `
@@ -58,7 +55,6 @@ const DSKDIVIMG = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
 
 `
 
@@ -70,10 +66,17 @@ const MOBIDIVIMG = styled.div`
 
 `
 
-const IMG = styled.img`
+const MOBIIMG = styled.img`
     border-radius: 8px;
     margin: 5% 5% 5% 5%;
     width: 90%;
+`
+
+const DSKIMG = styled.img`
+    border-radius: 8px;
+    margin: 0% 5% 5% 5%;
+    width: 40%;
+
 `
 
 
@@ -88,74 +91,22 @@ function BlocoPost(props) {
             <MOBLTITLE>{props.titulopost}</MOBLTITLE>}
 
             {props.isMobile &&
-            <DSKDIVIMG>
-                <IMG src={props.imgSrc} alt={props.imgAlt}/>
-            </DSKDIVIMG>
+                <MOBIIMG src={props.imgSrc} alt={props.imgAlt}/>
             }
 
             {props.isMobile &&    
-            <MOBITEXT>{props.textopost}</MOBITEXT>}
-
-            {/* {props.isMobile &&
-            <MOBTITLEPOST>{props.titulosposts[0]}</MOBTITLEPOST>}
-
-            {props.isMobile &&
-            <MOBIDIVIMG>
-                <MOBITEXTOPOST>{props.textosposts[0]}</MOBITEXTOPOST>
-                <IMG src={props.imgSrc} alt={props.imgAlt}/>
-            </MOBIDIVIMG>
+                <MOBITEXT>{props.textopost}</MOBITEXT>
             }
-
-            {props.isMobile &&
-            <MOBTITLEPOST>{props.titulosposts[1]}</MOBTITLEPOST>}
-
-            {props.isMobile &&
-            <MOBIDIVIMG>
-                <MOBITEXTOPOST>{props.textosposts[1]}</MOBITEXTOPOST>
-                <IMG src={props.imgSrc} alt={props.imgAlt}/>
-            </MOBIDIVIMG>
-            } */}
-
             
             {!props.isMobile &&    
             <DSKTITLE>{props.titulopost}</DSKTITLE>}
 
             {!props.isMobile &&
-            <DSKDIVIMG>
-                <IMG src={props.imgSrc} alt={props.imgAlt}/>
-            </DSKDIVIMG>
+                <DSKIMG src={props.imgSrc} alt={props.imgAlt}/>
             }
 
             {!props.isMobile &&    
             <DSKTEXT>{props.textopost}</DSKTEXT>}
-
-            {/* Disposição desktop da página
-            {/* {!props.isMobile &&    
-            <DSKTITLE>{props.titulo}</DSKTITLE>}
-
-            {!props.isMobile &&
-            <DSKTITLEPOST>{props.titulosposts[0]}</DSKTITLEPOST>}
-
-            {!props.isMobile &&
-            <DSKDIVIMG>
-                <DSKTEXTOPOST>{props.textosposts[0]}</DSKTEXTOPOST>
-                <IMG src={props.imgSrc} alt={props.imgAlt}/>
-            </DSKDIVIMG>
-            }
-
-            {!props.isMobile &&
-            <DSKTITLEPOST>{props.titulosposts[1]}</DSKTITLEPOST>}
-
-            {!props.isMobile &&
-            <DSKDIVIMG>
-                <DSKTEXTOPOST>{props.textosposts[1]}</DSKTEXTOPOST>
-                <IMG src={props.imgSrc} alt={props.imgAlt}/>
-            </DSKDIVIMG>
-            }
-
-           
-             */}
-             
         </BlocoInfo>
     );
 }
