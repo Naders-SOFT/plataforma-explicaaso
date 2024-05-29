@@ -13,7 +13,7 @@ export async function signupUser (req, res) {
     await userNovo.save();
 
     res.status(201);
-    res.send("Usuário cadastrado com sucesso");
+    res.send({id: userNovo.id, message: "Usuário cadastrado com sucesso"});
   } catch(error) {
     res.status(409);
     res.send(error.message);
@@ -32,12 +32,24 @@ export async function listUsers(req, res) {
   }
 }
 
-export async function listUser(req, res) {
+export async function listUserById(req, res) {
   try {
-    const users = await User.findById(req.params.idUser);
+    const user = await User.findById(req.params.idUser);
 
     res.status(200);
-    res.send(users);
+    res.send(user);
+  } catch(error) {
+    res.status(500);
+    res.send(error.message);
+  }
+}
+
+export async function listUserByEmail(req, res) {
+  try {
+    const user = await User.find({ email: req.query.email });
+
+    res.status(200);
+    res.send(user);
   } catch(error) {
     res.status(500);
     res.send(error.message);
