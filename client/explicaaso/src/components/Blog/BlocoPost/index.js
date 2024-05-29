@@ -39,7 +39,7 @@ const DSKTITLEPOST = styled.h3`
 `
 const MOBITEXT = styled.p`
     color: white;
-    font-size: 20px;
+    font-size: 25px;
     margin: 5% 5% 5% 5%;
 
 `
