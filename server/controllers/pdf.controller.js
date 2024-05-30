@@ -13,14 +13,16 @@ export const createPost = async (req, res) => {
         })
 
         await pdfNovo.save()
-        const msmPdfCriado = await Pdf.findOne({
-            titulo: req.file.originalname,
-            disciplina: req.body.disciplina,
-            frente: req.body.frente
-        })
+        // const msmPdfCriado = await Pdf.findOne({
+        //     titulo: req.file.originalname,
+        //     disciplina: req.body.disciplina,
+        //     frente: req.body.frente
+        // })
+
+        // console.log(pdfNovo._id.toString())
         
         await uploadFile(req.file.buffer, 
-                        msmPdfCriado._id.toString(), 
+                        pdfNovo._id.toString(), 
                         req.file.mimetype);
 
         res.status(201).send();
