@@ -7,35 +7,32 @@ import { FaBold, FaItalic, FaStrikethrough, FaUnderline,
 import styled from 'styled-components';
 import React from 'react';
 
-const Bold = styled.button`
-
+const MenuContainer = styled.div`
+    padding: 0.3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `
 
-const Italic = styled.button`
-
-`
-const Strike = styled.button`
-
-`
-
-const BList = styled.button`
-
-`
-
-const OList = styled.button`
-
+const MenuButton = styled.button`
+    font-size: 18px;
+    margin: 5px;
+    padding: 4px 4px 2px 4px;
+    outline: none;
+    border: none;
+    background: none;
+    color: rgb(70, 70, 70);
+    cursor: pointer;
 `
 
-const BlockQuote = styled.button`
-
+const Temp = styled.div`
+    width: 90%;
 `
 
-const Undo = styled.button`
-
-`
-
-const Redo = styled.button`
-
+const Temp2 = styled.div`
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
 `
 
 function MenuBar() {
@@ -46,8 +43,9 @@ function MenuBar() {
     }
   
     return (
-      <>
-        <button
+      <MenuContainer>
+        <Temp>
+        <MenuButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={
             !editor.can()
@@ -59,8 +57,8 @@ function MenuBar() {
           className={editor.isActive('bold') ? 'is-active' : ''}
         >
           <FaBold/>
-        </button>
-        <button
+        </MenuButton>
+        <MenuButton
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={
             !editor.can()
@@ -72,8 +70,8 @@ function MenuBar() {
           className={editor.isActive('italic') ? 'is-active' : ''}
         >
           <FaItalic/>
-        </button>
-        <button
+        </MenuButton>
+        <MenuButton
           onClick={() => editor.chain().focus().toggleStrike().run()}
           disabled={
             !editor.can()
@@ -85,38 +83,40 @@ function MenuBar() {
           className={editor.isActive('strike') ? 'is-active' : ''}
         >
           <FaStrikethrough/>
-        </button>
-        <button
+        </MenuButton>
+        <MenuButton
             onClick={() => editor.chain().focus().toggleUnderline().run()}
             className={editor.isActive('underline') ? 'is-active' : ''}
         >
             <FaUnderline/>
-        </button>
-        <button
+        </MenuButton>
+        <MenuButton
             onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
             className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
         >
             <FaHeading/>
-        </button>
-        <button
+        </MenuButton>
+        <MenuButton
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={editor.isActive('bulletList') ? 'is-active' : ''}
         >
           <FaListUl/>
-        </button>
-        <button
+        </MenuButton>
+        <MenuButton
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           className={editor.isActive('orderedList') ? 'is-active' : ''}
         >
           <FaListOl/>
-        </button>
-        <button
+        </MenuButton>
+        <MenuButton
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
           className={editor.isActive('blockquote') ? 'is-active' : ''}
         >
           <FaQuoteLeft/>
-        </button>
-        <button
+        </MenuButton>
+        </Temp>
+        <Temp2>
+        <MenuButton
           onClick={() => editor.chain().focus().undo().run()}
           disabled={
             !editor.can()
@@ -127,8 +127,8 @@ function MenuBar() {
           }
         >
           <FaUndo/>
-        </button>
-        <button
+        </MenuButton>
+        <MenuButton
           onClick={() => editor.chain().focus().redo().run()}
           disabled={
             !editor.can()
@@ -139,8 +139,9 @@ function MenuBar() {
           }
         >
           <FaRedo/>
-        </button>
-      </>
+        </MenuButton>
+        </Temp2>
+      </MenuContainer>
     )
 }
 

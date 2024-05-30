@@ -1,4 +1,8 @@
 .tiptap {
+    padding: 0.5% 3%;
+    border-top: 1px solid gray;
+    border-radius: 0 0 0.5% 0.5%;
+    background: whitesmoke;
     font-family: 'Segoe UI';
     font-size: 15px;
 }
@@ -63,6 +67,11 @@
     padding-left: 1rem;
     border-left: 2px solid #9C9C9C;
     opacity: 0.9;
+}
+
+button.is-active{
+    background: rgb(197, 197, 197);
+    border-radius: 2px;
 }
 
 @media(min-width: 768px){

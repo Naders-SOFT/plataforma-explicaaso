@@ -3,8 +3,16 @@ import './styles.css'
 import { EditorProvider } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline';
+import styled from 'styled-components';
 import React from 'react'
 import MenuBar from './MenuBar'
+
+const RichTextContainer = styled.div`
+    align-items: center;
+    margin: 1% 10%;
+    border: 1px solid gray;
+    border-radius: 0.5%;
+`
 
 const extensions = [
   StarterKit.configure({
@@ -53,7 +61,9 @@ display: none;
 
 function RichText() {
   return (
-    <EditorProvider slotBefore={<MenuBar />} extensions={extensions} content={content}></EditorProvider>
+    <RichTextContainer>
+        <EditorProvider slotBefore={<MenuBar />} extensions={extensions} content={content}></EditorProvider>
+    </RichTextContainer>
   )
 }
 
