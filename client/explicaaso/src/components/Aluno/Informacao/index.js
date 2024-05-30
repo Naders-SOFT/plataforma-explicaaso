@@ -25,15 +25,15 @@ function Informacao(props) {
             {
                 props.isMobile &&
                 <MOBLINFO>
-                    <SideBar isMobile={props.isMobile}/>
-                    <ContainerMateria isMobile={props.isMobile}/>
+                    <SideBar isMobile={props.isMobile} botoes={props.botoes}/>
+                    <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
                 </MOBLINFO>
             }
             {
                 !props.isMobile &&
                 <DSKINFO>
-                    <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil}/>
-                    <ContainerMateria isMobile={props.isMobile}/>
+                    <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil} botoes={props.botoes}/>
+                    <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
                 </DSKINFO>
             }
 

@@ -4,7 +4,7 @@ const DSKCONTAINERSIDE = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 100%;
+    height: auto;
     align-items: center;
     justify-content: flex-start;
     float: left;
@@ -85,16 +85,24 @@ const Container = styled.div`
     width: 100%;
 `
 
+
+
 function SideBar(props) {
+    const listaBotoesMobile = props.botoes?.map((botao) => (
+        <MOBLBOTAO>{botao.titulo}</MOBLBOTAO>
+    ))
+
+    const listaBotoesDesk = props.botoes?.map((botao) => (
+        <DSKBOTAO>{botao.titulo}</DSKBOTAO>
+    ))
+
     return (
         <Container>
             {
                 props.isMobile &&
                 <MOBLCONTAINERSIDE>
                     <MOBLCONTAINERBOTAO>
-                        <MOBLBOTAO>Matérias</MOBLBOTAO>
-                        <MOBLBOTAO>Provas</MOBLBOTAO>
-                        <MOBLBOTAO>Simulados</MOBLBOTAO>
+                    {listaBotoesMobile}
                     </MOBLCONTAINERBOTAO>
                 </MOBLCONTAINERSIDE>
             }
@@ -106,9 +114,7 @@ function SideBar(props) {
                         <Nome>Fulano</Nome>
                     </ConatainerPerfil>
                     <DSKCONTAINERBOTAO>
-                        <DSKBOTAO>Provas</DSKBOTAO>
-                        <DSKBOTAO>Calendário</DSKBOTAO>
-                        <DSKBOTAO>Simulados</DSKBOTAO>
+                        {listaBotoesDesk}
                     </DSKCONTAINERBOTAO>
                 </DSKCONTAINERSIDE>
             }      
