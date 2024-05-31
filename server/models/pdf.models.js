@@ -15,6 +15,9 @@ const pdfSchema = new mongoose.Schema({
     },
     data: {
         type: String, required: true
+    },
+    link: {
+        type: String
     }
 }, { versionKey: false});
 
