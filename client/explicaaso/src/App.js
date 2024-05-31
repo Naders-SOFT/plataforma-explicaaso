@@ -60,7 +60,7 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       {/* <Header isMobile={isMobile}/> */}
-      <PaginaEditarPost/>
+      <PaginaEditarPost isMobile={isMobile}/>
     </AppContainer>
   );
 }

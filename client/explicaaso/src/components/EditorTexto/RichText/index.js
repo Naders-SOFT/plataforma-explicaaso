@@ -60,10 +60,10 @@ display: none;
 </blockquote>
 `
 
-function RichText() {
+function RichText(props) {
   return (
     <RichTextContainer>
-        <EditorProvider slotBefore={<MenuBar />} extensions={extensions} content={content}></EditorProvider>
+        <EditorProvider slotBefore={<MenuBar isMobile={props.isMobile}/>} extensions={extensions} content={content}></EditorProvider>
     </RichTextContainer>
   )
 }
