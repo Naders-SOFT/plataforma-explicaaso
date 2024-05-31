@@ -8,8 +8,9 @@ import React from 'react'
 import MenuBar from './MenuBar'
 
 const RichTextContainer = styled.div`
+    width: 100%;
     align-items: center;
-    margin: 1% 10%;
+    margin: 1% 0;
     border: 1px solid gray;
     border-radius: 0.5%;
 `

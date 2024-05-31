@@ -12,6 +12,7 @@ const MenuContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #003466;
 `
 
 const MenuButton = styled.button`
@@ -21,7 +22,7 @@ const MenuButton = styled.button`
     outline: none;
     border: none;
     background: none;
-    color: rgb(70, 70, 70);
+    color: white;
     cursor: pointer;
 `
 

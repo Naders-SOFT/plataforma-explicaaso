@@ -8,6 +8,7 @@ import PaginaInicial from './pages/PaginaInicial';
 import PaginaDisciplina from './pages/pagina-disciplina';
 
 import RichText from './components/EditorTexto/RichText';
+import PaginaEditarPost from './pages/PaginaEditarPost'
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -59,7 +60,7 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       {/* <Header isMobile={isMobile}/> */}
-      <RichText/>
+      <PaginaEditarPost/>
     </AppContainer>
   );
 }

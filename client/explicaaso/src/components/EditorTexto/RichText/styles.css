@@ -70,8 +70,9 @@
 }
 
 button.is-active{
-    background: rgb(197, 197, 197);
+    background-color: rgb(197, 197, 197);
     border-radius: 2px;
+    color: #003466;
 }
 
 @media(min-width: 768px){
