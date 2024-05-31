@@ -1,11 +1,11 @@
 import "../styles.css";
 
-import { useCurrentEditor } from '@tiptap/react';
 import { FaBold, FaItalic, FaStrikethrough, FaUnderline, 
     FaHeading, FaListUl, FaListOl, FaUndo, FaRedo, 
     FaQuoteLeft } from 'react-icons/fa';
 import styled from 'styled-components';
-import React from 'react';
+import React, { useContext } from 'react';
+import { RTContext } from "../../../../pages/PaginaEditarPost";
 
 const MenuContainer = styled.div`
     padding: 0.3%;
@@ -37,10 +37,10 @@ ${({$isMobile}) => ($isMobile ? '30%' : '10%')};
 `
 
 function MenuBar(props) {
-    const { editor } = useCurrentEditor()
-  
+    const editor = useContext(RTContext);
+
     if (!editor) {
-      return null
+        return null;
     }
   
     return (
