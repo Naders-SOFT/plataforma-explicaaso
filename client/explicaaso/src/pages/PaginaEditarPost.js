@@ -1,5 +1,8 @@
+import { useState } from "react";
 import RichText from "../components/EditorTexto/RichText";
 import styled from "styled-components";
+import { useCurrentEditor } from "@tiptap/react";
+//import { useNavigate } from "react-router-dom";
 
 const ContainerPag = styled.div`
     width: 1 vw;
@@ -50,13 +53,31 @@ const Botao = styled.button`
 `
 
 function EditarPost(props) {
+    const [titulo, setTitulo] = useState('');
+    const { editor } = useCurrentEditor();
+
+    //let navigate = useNavigate();
+
+    const criarPost = async () => {
+        /* Comunicação com o BD */
+
+      //  navigate("/pagina-blog");
+    }
+
+    /**ARRUMAR ESSA CACETA */
+    /**Aparentemente useContext é o que resolve essa merda, mas naõ sei usar ainda */
+    console.log(editor ? true : false);
+
     return(
         <ContainerPag $isMobile={props.isMobile}>
-            <Titulo placeholder="Título do Post"/>
+            <Titulo placeholder="Título do Post" onChange={(e) => {setTitulo(e.target.value);}}/>
             <RichText isMobile={props.isMobile}/>
             <ContainerBotao>
-                <Botao $isMobile={props.isMobile}>Postar</Botao>
+                <Botao $isMobile={props.isMobile} onClick={criarPost}>Postar</Botao>
             </ContainerBotao>
+            {/* <pre>
+            { editor ? editor.getJSON() : null }
+            </pre> */}
         </ContainerPag>
     );
 }
