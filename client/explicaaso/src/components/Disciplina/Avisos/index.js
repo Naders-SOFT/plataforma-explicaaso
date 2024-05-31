@@ -3,6 +3,7 @@ import ItemAviso from '../ItemAviso';
 import TituloDisciplina from '../Titulo';
 import ItemAdicionar from '../ItemAdicionar';
 import NewPost from './naosei2';
+import NewGet from './reqGet';
 
 const AvisosPainel = styled.ul`
     display: flex;
@@ -35,10 +36,11 @@ function Avisos(props) {
                 !props.isMobile &&
                 <AvisosPainel>
                     <TituloDisciplina tituloDisciplina={props.tituloDisciplina}/>
-                    <ItemAdicionar/>
+                    {/* <ItemAdicionar/> */}
                     <ItemAviso tituloAviso="sei la porra"/>
                     <ItemAviso tituloAviso="sei la porra2"/>
                     <NewPost tituloDisciplina={props.tituloDisciplina} tituloFrente = 'ainda nao tem'></NewPost>
+                    <NewGet></NewGet>
                 </AvisosPainel>
             }
         </Container>

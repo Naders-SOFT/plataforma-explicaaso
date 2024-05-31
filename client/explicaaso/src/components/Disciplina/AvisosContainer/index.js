@@ -25,14 +25,14 @@ function AvisosContainer(props) {
             {
                 props.isMobile &&
                 <MOBLINFO>
-                    <SideBar isMobile={props.isMobile}/>
+                    <SideBar isMobile={props.isMobile} botoes={props.botoes}/>
                     <Avisos isMobile={props.isMobile} tituloDisciplina={'disciplina de bosta'}></Avisos>
                 </MOBLINFO>
             }
             {
                 !props.isMobile &&
                 <DSKINFO>
-                    <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil}/>
+                    <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil} botoes={props.botoes}/>
                     <Avisos isMobile={props.isMobile} tituloDisciplina={'disciplina de bosta'}></Avisos>
                 </DSKINFO>
             }

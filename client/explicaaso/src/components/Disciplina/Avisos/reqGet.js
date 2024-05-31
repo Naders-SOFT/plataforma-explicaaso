@@ -3,6 +3,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import addImg from '../../../images/disciplina/add-add-plus-sign.svg'
 
+
 const Formulario = styled.form`
     width: 100%;
     display: flex;
@@ -33,25 +34,14 @@ const ImgAdd = styled.img`
     height: 4%;
 `
 
-export default function NewPost(props) {  
+export default function NewGet(props) {  
     const [file, setFile] = useState(null)
   
     const submit = async event => {
       event.preventDefault()
   
-      const formData = new FormData();
-      formData.append("arq-pdf", file)
-      formData.append("disciplina", props.tituloDisciplina)
-      formData.append("frente", props.tituloFrente)
-
       try {
-        await axios.post("http://localhost:3003/pdf/posts", 
-          formData, 
-          { 
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          })
+        await axios.get("http://localhost:3003/pdf/list")
       }
       catch(error) {
         console.error(error.response.data);

@@ -13,11 +13,6 @@ const ItemContainer = styled.li`
     background-opacity: 0.5;
     border-radius: 1rem;
     margin: 1%;
-
-    &:hover {
-        opacity: 0.5;
-        cursor: pointer;
-    }
 `
 
 const ImgAdd = styled.img`
