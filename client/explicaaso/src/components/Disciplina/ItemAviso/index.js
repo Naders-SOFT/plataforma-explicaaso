@@ -19,7 +19,7 @@ const ItemContainer = styled.li`
     }
 `
 
-const TituloAviso = styled.h1`
+const TituloAviso = styled.a`
     font-family: 'Inter';
     font-size: 150%;
 `
@@ -37,7 +37,7 @@ function ItemAviso(props) {
     return (
         <ItemContainer>
             <TipoAviso/>
-            <TituloAviso>{props.tituloAviso}</TituloAviso>
+            <TituloAviso href={props.link} target="_blank">{props.tituloAviso}</TituloAviso>
         </ItemContainer>
     );
 }
