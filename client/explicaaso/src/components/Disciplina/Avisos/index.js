@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import ItemAviso from '../ItemAviso';
 import TituloDisciplina from '../Titulo';
 import ItemAdicionar from '../ItemAdicionar';
-import Naosei from './naosei';
-import NewPost from './naosei2';
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 
 const AvisosPainel = styled.ul`
     display: flex;
@@ -21,15 +21,30 @@ const Container = styled.div`
 `
 
 function Avisos(props) {
+
+    const [pdfs, setPdfs] = useState([])
+    useEffect(() => {
+      axios.get("http://localhost:3003/pdf/list")
+      .then(response => {
+        setPdfs(response.data)
+      })
+      .catch(err => {
+        console.error(err.message)
+      })
+    }, [])
+
+    const listaPdfs = pdfs.map(pdf => (
+        <ItemAviso tituloAviso={pdf.titulo} link={pdf.link}></ItemAviso>
+    ))
+
     return (
         <Container>
             {
                 props.isMobile &&
                 <AvisosPainel>
+                    <ItemAdicionar/>
                     <TituloDisciplina tituloDisciplina={props.tituloDisciplina}/>
-                    <ItemAviso tituloAviso="sei la porra mobile"/>
-                    <ItemAviso tituloAviso="sei la porra mobile2"/>
-
+                    {listaPdfs}
                 </AvisosPainel>
             }
             {
@@ -37,9 +52,7 @@ function Avisos(props) {
                 <AvisosPainel>
                     <TituloDisciplina tituloDisciplina={props.tituloDisciplina}/>
                     <ItemAdicionar/>
-                    <ItemAviso tituloAviso="sei la porra"/>
-                    <ItemAviso tituloAviso="sei la porra2"/>
-                    <NewPost></NewPost>
+                    {listaPdfs}
                 </AvisosPainel>
             }
         </Container>

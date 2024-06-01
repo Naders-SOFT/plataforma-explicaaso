@@ -8,10 +8,16 @@ const ContainerPag = styled.div`
     height: 100%;
 `
 
+const tituloBotoes = [
+    { titulo: 'Matérias'},
+    { titulo: 'Provas'},
+    { titulo: 'Simulados'}
+]
+
 function PaginaDisciplina(props) {
     return (
         <ContainerPag>
-            <AvisosContainer imgPerfil={imgPerfil} isMobile={props.isMobile}></AvisosContainer>
+            <AvisosContainer imgPerfil={imgPerfil} isMobile={props.isMobile} botoes={tituloBotoes}></AvisosContainer>
         </ContainerPag>
     );
 }
