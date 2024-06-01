@@ -49,7 +49,7 @@ export async function deletePdf(req, res) {
         await Pdf.findByIdAndDelete(req.params.idPdf)
 
         // Nome do arquivo a ser deletado do minio é o id do bd
-        await deleteFile(req.params.idPdf)
+        deleteFile(req.params.idPdf)
 
         res.status(200).send()
     }
