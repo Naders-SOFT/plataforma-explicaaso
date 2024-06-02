@@ -32,7 +32,7 @@ const EscolherArqLabel = styled.label`
     cursor: pointer;
     color: darkcyan;
     transition: color 0.3s ease, cursor 0.3s ease;
-    width: 20%;
+    width: 15%;
     
     &:hover {
         color: #002549;
