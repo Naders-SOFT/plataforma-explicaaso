@@ -50,34 +50,38 @@ const EscolherArq = styled.input`
 function ItemAdicionar(props) {
     const [file, setFile] = useState(null)
   
+    // Funcao de enviar arquivo do front end para servidor
     const submit = async event => {
-      event.preventDefault()
-  
-      const formData = new FormData();
-      formData.append("arq-pdf", file)
-      formData.append("disciplina", props.tituloDisciplina)
-      formData.append("frente", props.tituloFrente)
+        event.preventDefault()
+    
+        // Inserindo arquivo no form data e dados do front para
+        // armazenar no bd
+        const formData = new FormData();
+        formData.append("arq-pdf", file)
+        formData.append("disciplina", props.tituloDisciplina)
+        formData.append("frente", props.tituloFrente)
 
-      try {
-        await axios.post("http://localhost:3003/pdf/posts", 
-          formData, 
-          { 
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          })
-          window.location.reload()
-      }
-      catch(error) {
-        console.error(error.response.data);
-      }
+        // Requisicao POST de front end
+        try {
+            await axios.post("http://localhost:3003/pdf/posts", 
+                formData, 
+                { 
+                  headers: {
+                    'Content-Type': 'multipart/form-data'
+                  }
+                })
+            // Dando reload na pagina para atualizar lista de pdfs
+            window.location.reload()
+        }
+        catch(error) {
+            console.error(error.response.data);
+        }
     }
   
     return (
        <Formulario onSubmit={submit}>
-        {/* <ImgAdd src={addImg}/> */}
-         <EscolherArq onChange={e => setFile(e.target.files[0])} type="file"></EscolherArq>
-         <button type="submit">Submit</button>
+            <EscolherArq onChange={e => setFile(e.target.files[0])} type="file"></EscolherArq>
+            <button type="submit">Submit</button>
        </Formulario>
     )
 }

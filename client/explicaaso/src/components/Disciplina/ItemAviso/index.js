@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import styled from "styled-components"
+import ItemExcluir from "../ItemExcluir"
+import axios from "axios"
 
 const ItemContainer = styled.li`
     width: 100%;
@@ -34,10 +36,12 @@ const TipoAviso = styled.button`
 `
 
 function ItemAviso(props) {
+   
     return (
         <ItemContainer>
             <TipoAviso/>
             <TituloAviso href={props.link} target="_blank">{props.tituloAviso}</TituloAviso>
+            <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf}></ItemExcluir>
         </ItemContainer>
     );
 }
