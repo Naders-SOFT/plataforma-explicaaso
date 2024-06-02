@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import addImg from '../../../images/disciplina/add-add-plus-sign.svg'
-import axios from 'axios'
-import { useState } from 'react'
+import axios from 'axios';
+import { useState } from 'react';
 
 const ItemContainer = styled.li`
     width: 100%;
@@ -10,80 +9,171 @@ const ItemContainer = styled.li`
     gap: 2%;
     justify-content: center;
     align-items: center;
-    padding: 1vw;
-    background-color: rgba(0, 52, 102, 0.5);
-    background-opacity: 0.5;
+    padding: 1rem;
+    background-color: #f0f0f0;
     border-radius: 1rem;
-    margin: 1%;
-`
-
-const ImgAdd = styled.img`
-    width: 4%;
-    height: 4%;
-`
+    margin: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+`;
 
 const Formulario = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 1rem;
+    margin: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const EscolherArqLabel = styled.label`
+    cursor: pointer;
+    color: darkcyan;
+    transition: color 0.3s ease, cursor 0.3s ease;
+    width: 20%;
+    
+    &:hover {
+        color: #002549;
+        cursor: pointer;
+    }
+`;
+
+const EscolherArq = styled.input`
+    display: none;
+`;
+
+const Botao = styled.button`
+    padding: 0.5rem 1rem;
+    background-color: darkcyan;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+        background-color: #002549;
+    }
+`;
+
+function ItemAdicionar(props) {
+    const [file, setFile] = useState(null);
+  
+    const submit = async event => {
+        event.preventDefault();
+    
+        const formData = new FormData();
+        formData.append("arq-pdf", file);
+        formData.append("disciplina", props.tituloDisciplina);
+        formData.append("frente", props.tituloFrente);
+
+        try {
+            await axios.post("http://localhost:3003/pdf/posts", formData);
+            window.location.reload();
+        }
+        catch(error) {
+            console.error(error.response.data);
+        }
+    };
+  
+    return (
+       <Formulario onSubmit={submit}>
+            <EscolherArqLabel htmlFor="fileInput">Escolher Arquivo</EscolherArqLabel>
+            <EscolherArq id="fileInput" onChange={e => setFile(e.target.files[0])} type="file" />
+            <Botao type="submit">Enviar</Botao>
+       </Formulario>
+    );
+}
+
+export default ItemAdicionar;import styled from "styled-components";
+import axios from 'axios';
+import { useState } from 'react';
+
+const ItemContainer = styled.li`
     width: 100%;
     display: flex;
     color: black;
     gap: 2%;
     justify-content: center;
     align-items: center;
-    padding: 1vw;
-    background-color: rgba(0, 52, 102, 0.5);
-    background-opacity: 0.5;
+    padding: 1rem;
+    background-color: #f0f0f0;
     border-radius: 1rem;
-    margin: 1%;
+    margin: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+`;
 
-    ${'' /* &:hover {
-        opacity: 0.5;
+const Formulario = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 1rem;
+    margin: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const EscolherArqLabel = styled.label`
+    cursor: pointer;
+    color: darkcyan;
+    transition: color 0.3s ease, cursor 0.3s ease;
+    width: 20%;
+    
+    &:hover {
+        color: #002549;
         cursor: pointer;
-    } */}
-`
+    }
+`;
 
 const EscolherArq = styled.input`
-  ${'' /* display: none; */}
-  ${'' /* opacity: 0; */}
-  ${'' /* background-color: black; */}
-`
+    display: none;
+`;
+
+const Botao = styled.button`
+    padding: 0.5rem 1rem;
+    background-color: darkcyan;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+        background-color: #002549;
+    }
+`;
 
 function ItemAdicionar(props) {
-    const [file, setFile] = useState(null)
+    const [file, setFile] = useState(null);
   
-    // Funcao de enviar arquivo do front end para servidor
     const submit = async event => {
-        event.preventDefault()
+        event.preventDefault();
     
-        // Inserindo arquivo no form data e dados do front para
-        // armazenar no bd
         const formData = new FormData();
-        formData.append("arq-pdf", file)
-        formData.append("disciplina", props.tituloDisciplina)
-        formData.append("frente", props.tituloFrente)
+        formData.append("arq-pdf", file);
+        formData.append("disciplina", props.tituloDisciplina);
+        formData.append("frente", props.tituloFrente);
 
-        // Requisicao POST de front end
         try {
-            await axios.post("http://localhost:3003/pdf/posts", 
-                formData, 
-                { 
-                  headers: {
-                    'Content-Type': 'multipart/form-data'
-                  }
-                })
-            // Dando reload na pagina para atualizar lista de pdfs
-            window.location.reload()
+            await axios.post("http://localhost:3003/pdf/posts", formData);
+            window.location.reload();
         }
         catch(error) {
             console.error(error.response.data);
         }
-    }
+    };
   
     return (
        <Formulario onSubmit={submit}>
-            <EscolherArq onChange={e => setFile(e.target.files[0])} type="file"></EscolherArq>
-            <button type="submit">Submit</button>
+            <EscolherArqLabel htmlFor="fileInput">Escolher Arquivo</EscolherArqLabel>
+            <EscolherArq id="fileInput" onChange={e => setFile(e.target.files[0])} type="file" />
+            <Botao type="submit">Enviar</Botao>
        </Formulario>
-    )
+    );
 }
 
 export default ItemAdicionar;
