@@ -17,7 +17,7 @@ const Container = styled.div`
 `
 
 const MOBLBOTAO = styled.button`
-    background-color: #FF6600;
+    background-color: #FFCC00;
     color: white;
     border-radius: 1vw;
     height: 5vw;
@@ -102,7 +102,7 @@ export const ProfessorList = ({ professors }) => {
           </ProfessorItem>
         ))}
       </ProfessorListStyled>
-      <DSKBotao style={{ marginLeft: '5%' }}>Adicionar</DSKBotao>
+      <DSKBotao style={{ marginTop: '10px' ,marginLeft: '5%' }}>Adicionar</DSKBotao>
     </Container>
   );
 };
