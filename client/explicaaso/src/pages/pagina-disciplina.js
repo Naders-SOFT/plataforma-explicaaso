@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import AvisosContainer from '../components/Disciplina/AvisosContainer';
+import AvisosContainer from '../components/Disciplina/PdfContainer';
 
 import imgPerfil from '../images/logos/pefil.jpg'
 
