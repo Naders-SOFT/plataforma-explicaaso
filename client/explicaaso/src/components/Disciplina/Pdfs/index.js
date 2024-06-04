@@ -21,7 +21,7 @@ const Container = styled.div`
 `
 
 function Avisos(props) {
-    // Utilizando useState para alterar o valor da lista de pdfs apos req GET
+
     const [pdfs, setPdfs] = useState([])
     useEffect(() => {
       axios.get("http://localhost:3003/pdf/list")
@@ -33,24 +33,8 @@ function Avisos(props) {
       })
     }, [])
 
-    // Funcao de deletar, passado por props
-    const handleDelete = (id) => {
-        // Requisicao de DELETE
-        axios.delete('http://localhost:3003/pdf/delete/'+id)
-        .then(response => {
-            console.log('User deleted successfully');
-
-            // Removendo o pdf que foi deletado
-            setPdfs(pdfs.filter(pdf => pdf._id.toString() !== id));
-        })
-        .catch(error => {
-            console.error('Error deleting user aaaa:', error);
-        })
-    }
-
-    // Renderizando a lista de pdfs 
     const listaPdfs = pdfs.map(pdf => (
-        <ItemAviso tituloAviso={pdf.titulo} link={pdf.link} idPdf={pdf._id.toString()} onDelete={handleDelete}></ItemAviso>
+        <ItemAviso tituloAviso={pdf.titulo} link={pdf.link}></ItemAviso>
     ))
 
     return (
@@ -58,7 +42,7 @@ function Avisos(props) {
             {
                 props.isMobile &&
                 <AvisosPainel>
-                    <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente='nao sei'/>
+                    <ItemAdicionar/>
                     <TituloDisciplina tituloDisciplina={props.tituloDisciplina}/>
                     {listaPdfs}
                 </AvisosPainel>
@@ -67,7 +51,7 @@ function Avisos(props) {
                 !props.isMobile &&
                 <AvisosPainel>
                     <TituloDisciplina tituloDisciplina={props.tituloDisciplina}/>
-                    <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente='nao sei'/>
+                    <ItemAdicionar/>
                     {listaPdfs}
                 </AvisosPainel>
             }
