@@ -88,8 +88,9 @@ function PaginaCadastro(props) {
     const [sobrenome, setSobrenome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [tipo, setTipo] = useState('');
-    const [message, setMessage] = useState(null); // For success/error messages
+    const [tipoUsuario, setTipoUsuario] = useState('aluno');
+    const [confirmarSenha, setConfirmarSenha] = useState('');
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -99,7 +100,7 @@ function PaginaCadastro(props) {
             {
                 nome: nome,
                 sobrenome: sobrenome,
-                tipo: tipo,
+                tipo: tipoUsuario,
                 senha: senha,
                 email: email
             },
@@ -110,76 +111,95 @@ function PaginaCadastro(props) {
             });
 
             if (response.ok) {
-                setMessage(response.message); // Display success message
                 setNome('');
                 setSobrenome('');
                 setEmail(''); 
                 setSenha('')
-                setTipo('')
-            } else {
-                setMessage(response.error); // Display error message
+                setTipoUsuario('')
+                setConfirmarSenha('')
             }
         } catch (error) {
             console.error('Error submitting form:', error);
-            setMessage('An error occurred. Please try again later.');
         }
     };
 
     return (
-        <FormContainer>
- 
-            <Formulario onSubmit={handleSubmit}>
-                <h2>Enter Your InFormularioation</h2>
-                {message && <div>{message}</div>} 
-                <div>
-                    <Label htmlFor="name">Name:</Label>
-                    <Select
-                        type="text"
-                        id="name"
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <Label htmlFor="surname">Surname:</Label>
-                    <Select
-                        type="text"
-                        id="surname"
-                        value={sobrenome}
-                        onChange={(e) => setSobrenome(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <Label htmlFor="email">Email:</Label>
-                    <Select
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <Label htmlFor="tipo">Tipo:</Label>
-                    <Select
-                        type="text"
-                        id="tipo"
-                        value={tipo}
-                        onChange={(e) => setTipo(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <Label htmlFor="senha">Senha:</Label>
-                    <Select
-                        type="text"
-                        id="senha"
-                        value={senha}
-                        onChange={(e) => setSenha(e.target.value)}
-                    />
-                </div>
-                <button type="submit">Submit</button>
-            </Formulario>
-        </FormContainer>
-    );
+    <FormContainer>
+      <Formulario onSubmit={handleSubmit}>
+        <h2>Cadastro de Usuário</h2>
+
+        <div>
+          <Label htmlFor="tipo">Tipo de Usuário:</Label>
+          <Select
+            id="tipo"
+            value={tipoUsuario}
+            onChange={(e) => setTipoUsuario(e.target.value)}
+          >
+            <option value="aluno">Aluno</option>
+            <option value="professor">Professor</option>
+            <option value="administrador">Administrador</option>
+          </Select>
+        </div>
+
+        <div>
+          <Label htmlFor="nome">Nome:</Label>
+          <Input
+            type="text"
+            id="nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <Label htmlFor="sobrenome">Sobrenome:</Label>
+          <Input
+            type="text"
+            id="sobrenome"
+            value={sobrenome}
+            onChange={(e) => setSobrenome(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <Label htmlFor="email">Email:</Label>
+          <Input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <Label htmlFor="senha">Senha:</Label>
+          <Input
+            type="password"
+            id="senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <Label htmlFor="confirmar-senha">Confirmar Senha:</Label>
+          <Input
+            type="password"
+            id="confirmar-senha"
+            value={confirmarSenha}
+            onChange={(e) => setConfirmarSenha(e.target.value)}
+            required
+          />
+        </div>
+
+        <Botao type="submit">Cadastrar</Botao>
+      </Formulario>
+    </FormContainer>
+  );
 }
 
 export default PaginaCadastro
