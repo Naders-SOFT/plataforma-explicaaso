@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import ItemExcluir from "../ItemExcluir"
-import axios from "axios"
 
 const ItemContainer = styled.li`
     width: 100%;

@@ -1,6 +1,7 @@
 import User from '../models/user.models.js';
 
 export async function signupUser (req, res) {
+  console.log(req.body)
   try {
     const userNovo = new User({
       email: req.body.email,
