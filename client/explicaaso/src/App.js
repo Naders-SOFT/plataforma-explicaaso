@@ -6,6 +6,7 @@ import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
 import PaginaInicial from './pages/PaginaInicial';
 import PaginaDisciplina from './pages/pagina-disciplina';
+import PaginaAluno from './pages/PaginaAluno';
 
 import RichText from './components/EditorTexto/RichText';
 import PaginaEditarPost from './pages/PaginaEditarPost'

@@ -22,7 +22,7 @@ const DSKBOTAO = styled.button`
     border-radius: 1vw;
     height: 3vw;
     font-weight: bold;
-    font-size: 100%;
+    font-size: 1.5vw;
     border: none;
     &:hover {
         opacity: 0.5;
@@ -36,7 +36,7 @@ const MOBLBOTAO = styled.button`
     border-radius: 1vw;
     height: 5vw;
     width: 33%;
-    font-size: 100%;
+    font-size: 3vw;
     font-weight: bold;
     border: none;
     &:hover {
