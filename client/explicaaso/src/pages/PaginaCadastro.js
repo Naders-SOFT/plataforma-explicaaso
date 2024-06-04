@@ -12,7 +12,6 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  width: 100%;
   padding: 10%;
 `;
 
