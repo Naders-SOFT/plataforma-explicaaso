@@ -63,7 +63,7 @@ const Select = styled.select`
 `;
 
 const Botao = styled.button`
-  background-color: #007bff;
+  background-color: darkcyan;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -73,7 +73,7 @@ const Botao = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #0069d9;
+    background-color: #003466;
   }
 
   &:disabled {
