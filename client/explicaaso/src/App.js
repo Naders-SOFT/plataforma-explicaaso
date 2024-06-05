@@ -51,7 +51,7 @@ function App() {
 
   return (
     // Aqui temos um container global que inclui a página 
-    // inteira, nele temos apenas o componente Header, por enquanto. 
+    // inteira.
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
     <AppContainer>

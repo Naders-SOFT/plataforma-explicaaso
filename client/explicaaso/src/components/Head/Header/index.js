@@ -33,7 +33,7 @@ const HeaderContainer = styled.div`
 function Header(props) {
 
     // Header define os itens de navegação com IDs associados para
-    // serem utilizados no meno hamburguer e na barra de navegação.
+    // serem utilizados no menu hamburguer e na barra de navegação.
     const itensNavigation = [{id: 0, texto: "Início", pagina: '/'}, 
         {id: 1, texto: "Sobre nós", pagina: '/pagina-sobre-nos'}, 
         {id: 2, texto: "Contato", pagina: '/pagina-contato'}, 

@@ -2,6 +2,17 @@ import User from '../models/user.models.js';
 
 export async function signupUser (req, res) {
   try {
+    // Validação de confirmação de senha:
+    if(req.body.senha != req.body.senhaConfirmada) {
+      return res.status(422).json({message: "As senhas não conferem"});
+    }
+
+    // Checagem se usuário já existe:
+    const userExists = await User.findOne({ email: req.body.email });
+    if(userExists) {
+      return res.status(422).send({ message: "Email já utilizado" });
+    }
+
     const userNovo = new User({
       email: req.body.email,
       senha: req.body.senha,
@@ -15,8 +26,14 @@ export async function signupUser (req, res) {
     res.status(201);
     res.send({id: userNovo.id, message: "Usuário cadastrado com sucesso"});
   } catch(error) {
-    res.status(409);
-    res.send(error.message);
+    if(error.name === 'ValidationError') {
+      // Construimos uma mensagem de erro específica para cada campo inválido:
+      const messages = Object.values(error.errors).map(err => err.message);
+      res.status(400).send({ message: "Erro de validação", errors: messages });
+    } else {
+      res.status(409);
+      res.send(error.message);
+    }
   }
 }
 
@@ -63,8 +80,14 @@ export async function updateUser(req, res) {
     res.status(200);
     res.send("Usuário modificado com sucesso");
   } catch(error) {
-    res.status(500);
-    res.send(error.message);
+    if(error.name === 'ValidationError') {
+      // Construimos uma mensagem de erro específica para cada campo inválido:
+      const messages = Object.values(error.errors).map(err => err.message);
+      res.status(400).send({ message: "Erro de validação", errors: messages });
+    } else {
+      res.status(409);
+      res.send(error.message);
+    }
   }
 }
 
