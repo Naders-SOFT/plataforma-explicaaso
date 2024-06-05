@@ -59,12 +59,12 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <GlobalStyle/>
-      {/* <Header isMobile={isMobile}/> */}
+      <Header isMobile={isMobile}/>
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <PaginaCadastro></PaginaCadastro> */}
       {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
       {/* <Frentes></Frentes> */}
-      {/* <Footer isMobile={isMobile}/> */}
+      <Footer isMobile={isMobile}/>
     </AppContainer>
   );
 }
