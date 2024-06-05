@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import axios from 'axios';
-import { useState } from 'react';
+import axios from 'axios'
+import { useState } from 'react'
 
 const ItemContainer = styled.li`
     width: 100%;

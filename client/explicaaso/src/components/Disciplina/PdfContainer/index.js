@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Avisos from '../Avisos';
+import Avisos from '../Pdfs';
 import SideBar from '../../Aluno/SideBar'
 
 const MOBLINFO = styled.div`

@@ -7,6 +7,7 @@ import { createGlobalStyle } from 'styled-components';
 import PaginaInicial from './pages/PaginaInicial';
 import PaginaDisciplina from './pages/pagina-disciplina';
 import PaginaAluno from './pages/PaginaAluno';
+import PaginaCadastro from './pages/PaginaCadastro';
 
 import RichText from './components/EditorTexto/RichText';
 import PaginaEditarPost from './pages/PaginaEditarPost'
@@ -62,9 +63,11 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <GlobalStyle/>
-      <Header isMobile={isMobile}/>
-      {/* <PaginaEditarPost isMobile={isMobile}/> */}
-      <Footer isMobile={isMobile}/>
+      {/* <Header isMobile={isMobile}/> */}
+      <PaginaDisciplina isMobile={isMobile}/>
+      {/* <PaginaCadastro></PaginaCadastro> */}
+      {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
+      {/* <Footer isMobile={isMobile}/> */}
     </AppContainer>
   );
 }

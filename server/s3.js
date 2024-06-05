@@ -18,48 +18,48 @@ const bucketName = process.env.S3_BUCKET_NAME
 
 export async function uploadFile(fileBuffer, fileName, mimetype) {
     const uploadParams = {
-      Bucket: bucketName,
-      Key: fileName, 
-      Body: fileBuffer,
-      ContentType: mimetype,
+        Bucket: bucketName,
+        Key: fileName, 
+        Body: fileBuffer,
+        ContentType: mimetype,
     }
   
     const command = new PutObjectCommand(uploadParams)
     try {
-      const data = await s3.send(command)
-      console.log('File uploaded successfully!', data);
+        const data = await s3.send(command)
+        console.log('File uploaded successfully!', data);
     } catch (err) {
-      console.error('Error uploading file:', err);
-      throw err
+        console.error('Error uploading file:', err);
+        throw err
     }
 }
 
 export async function getObjectSignedUrl(key) {
-  const params = {
-    Bucket: bucketName,
-    Key: key
-  }
+    const params = {
+        Bucket: bucketName,
+        Key: key
+    }
 
-  const command = new GetObjectCommand(params);
-  const seconds = 3600
-  const url = await getSignedUrl(s3, command, { expiresIn: seconds });
+    const command = new GetObjectCommand(params);
+    const seconds = 3600
+    const url = await getSignedUrl(s3, command, { expiresIn: seconds });
 
-  return url
+    return url
 }
 
 export function deleteFile(fileId) {
-  const deleteParams = {
-    Bucket: bucketName,
-    Key: fileId,
-  }
+    const deleteParams = {
+        Bucket: bucketName,
+        Key: fileId,
+    }
 
-  const command = new DeleteObjectCommand(deleteParams)
+    const command = new DeleteObjectCommand(deleteParams)
 
-  try {
-      s3.send(command)
-  }
-  catch(err) {
-    console.log(err.message)
-    throw err
-  }
+    try {
+        s3.send(command)
+    }
+    catch(err) {
+        console.log(err.message)
+        throw err
+    }
 }
