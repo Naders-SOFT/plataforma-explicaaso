@@ -11,7 +11,7 @@ const BlocoInfo = styled.div`
     flex-direction: column;
     justify-content: center;
     margin: 50px;
-    width: ${({isMobile}) => (isMobile ? '70%' : '90%')};
+    width: ${({$isMobile}) => ($isMobile ? '70%' : '90%')};
 `
 
 const MOBLTITLE = styled.h2`
@@ -46,13 +46,14 @@ const DSKTITLEPOST = styled.h3`
 const MOBITEXTOPOST = styled.p`
     font-size: 20px;
     margin: 5% 5% 5% 5%;
+    text-align: flex-start;
 
 `
 
 const DSKTEXTOPOST = styled.p`
-    font-size: 40px;
+    font-size: 30px;
     margin: 5% 5% 5% 5%;
-
+    text-align: justify;
 `
 
 const DSKDIVIMG = styled.div`
@@ -72,15 +73,30 @@ const MOBIDIVIMG = styled.div`
 `
 
 const IMG = styled.img`
-    width: 50%;
+    width: 40%;
     border-radius: 8px;
     margin: 5% 5% 5% 5%;
     display: flex;
     justify-content: center;
 
-
+    @media(min-width: 768px) and (max-width: 1080px){
+        display: none;
+    }
 `
 
+const EDITBUTTON = styled.button`
+    width: 20%;
+    margin: ${({$isMobile}) => $isMobile ? "3% 0" : "3% 0"};
+    padding: ${({$isMobile}) => $isMobile ? "1% 0" : "1% 0"};
+    background-color: #FFCC00;
+    border: none;
+    border-radius: 10px;
+    color: #003466;
+    font-size: ${({$isMobile}) => $isMobile ? "20px" : "30px"};
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+`
 
 
 function BlocoBlog(props) {
@@ -89,20 +105,20 @@ function BlocoBlog(props) {
             {/* Disposição mobile da página */}
     
 
-            {props.isMobile &&
-            <MOBLTITLE>{props.titulo}</MOBLTITLE>}
+            {/* {props.isMobile &&
+            <MOBLTITLE>{props.titulo}</MOBLTITLE>} */}
 
             {props.isMobile &&
-            <MOBTITLEPOST>{props.titulosposts[0]}</MOBTITLEPOST>}
+            <MOBTITLEPOST>{props.titulopost}</MOBTITLEPOST>}
 
             {props.isMobile &&
             <MOBIDIVIMG>
-                <MOBITEXTOPOST>{props.textosposts[0]}</MOBITEXTOPOST>
+                <MOBITEXTOPOST>{props.textopost}</MOBITEXTOPOST>
                 <IMG src={props.imgSrc} alt={props.imgAlt}/>
             </MOBIDIVIMG>
             }
 
-            {props.isMobile &&
+            {/* {props.isMobile &&
             <MOBTITLEPOST>{props.titulosposts[1]}</MOBTITLEPOST>}
 
             {props.isMobile &&
@@ -110,27 +126,27 @@ function BlocoBlog(props) {
                 <MOBITEXTOPOST>{props.textosposts[1]}</MOBITEXTOPOST>
                 <IMG src={props.imgSrc} alt={props.imgAlt}/>
             </MOBIDIVIMG>
-            }
+            } */}
 
             
             
 
 
             {/* Disposição desktop da página */}
-            {!props.isMobile &&    
-            <DSKTITLE>{props.titulo}</DSKTITLE>}
+            {/* {!props.isMobile &&    
+            <DSKTITLE>{props.titulo}</DSKTITLE>} */}
 
             {!props.isMobile &&
-            <DSKTITLEPOST>{props.titulosposts[0]}</DSKTITLEPOST>}
+            <DSKTITLEPOST>{props.titulopost}</DSKTITLEPOST>}
 
             {!props.isMobile &&
             <DSKDIVIMG>
-                <DSKTEXTOPOST>{props.textosposts[0]}</DSKTEXTOPOST>
+                <DSKTEXTOPOST>{props.textopost}</DSKTEXTOPOST>
                 <IMG src={props.imgSrc} alt={props.imgAlt}/>
             </DSKDIVIMG>
             }
 
-            {!props.isMobile &&
+            {/* {!props.isMobile &&
             <DSKTITLEPOST>{props.titulosposts[1]}</DSKTITLEPOST>}
 
             {!props.isMobile &&
@@ -138,8 +154,9 @@ function BlocoBlog(props) {
                 <DSKTEXTOPOST>{props.textosposts[1]}</DSKTEXTOPOST>
                 <IMG src={props.imgSrc} alt={props.imgAlt}/>
             </DSKDIVIMG>
-            }
+            } */}
 
+            <EDITBUTTON $isMobile={props.isMobile}>Editar</EDITBUTTON>
            
             
             
