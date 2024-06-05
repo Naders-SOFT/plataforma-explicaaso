@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import PaginaBlogPost from './pages/pagina-blog-postagem';
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
@@ -7,6 +8,9 @@ import PaginaInicial from './pages/PaginaInicial';
 import PaginaDisciplina from './pages/pagina-disciplina';
 import PaginaAluno from './pages/PaginaAluno';
 import PaginaCadastro from './pages/PaginaCadastro';
+
+import RichText from './components/EditorTexto/RichText';
+import PaginaEditarPost from './pages/PaginaEditarPost'
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -30,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
 
 // ESTILIZAÇÃO DO COMPONENTE
 const AppContainer = styled.div`
+  margin: 0;
 `
 
 
