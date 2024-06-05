@@ -7,6 +7,7 @@ import PaginaInicial from './pages/PaginaInicial';
 import PaginaDisciplina from './pages/pagina-disciplina';
 import PaginaAluno from './pages/PaginaAluno';
 import PaginaCadastro from './pages/PaginaCadastro';
+import Frentes from './components/Disciplina/Frentes';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -58,11 +59,12 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <GlobalStyle/>
-      <Header isMobile={isMobile}/>
+      {/* <Header isMobile={isMobile}/> */}
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <PaginaCadastro></PaginaCadastro> */}
       {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
-      <Footer isMobile={isMobile}/>
+      {/* <Frentes></Frentes> */}
+      {/* <Footer isMobile={isMobile}/> */}
     </AppContainer>
   );
 }
