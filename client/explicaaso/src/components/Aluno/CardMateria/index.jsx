@@ -10,8 +10,8 @@ const Card = styled.li`
 `
 
 const ImgCard = styled.img`
-    width: 22vw;
-    height: 12vw;
+    width: 25vw;
+    height: 18vw;
     border-radius: 2vw;
     &:hover {
         opacity: 0.5;

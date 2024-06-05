@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from "styled-components"
+import ItemExcluir from "../ItemExcluir"
 
 const ItemContainer = styled.li`
     width: 100%;
@@ -19,7 +20,7 @@ const ItemContainer = styled.li`
     }
 `
 
-const TituloAviso = styled.h1`
+const TituloAviso = styled.a`
     font-family: 'Inter';
     font-size: 150%;
 `
@@ -34,10 +35,12 @@ const TipoAviso = styled.button`
 `
 
 function ItemAviso(props) {
+   
     return (
         <ItemContainer>
             <TipoAviso/>
-            <TituloAviso>{props.tituloAviso}</TituloAviso>
+            <TituloAviso href={props.link} target="_blank">{props.tituloAviso}</TituloAviso>
+            <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf}></ItemExcluir>
         </ItemContainer>
     );
 }

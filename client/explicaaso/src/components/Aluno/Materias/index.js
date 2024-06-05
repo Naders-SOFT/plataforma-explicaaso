@@ -1,17 +1,6 @@
 import styled from 'styled-components';
 import CardMateria from '../CardMateria';
 
-import imgMatematica from '../../../images/materias/matematica.jpg';
-import imgHistoria from '../../../images/materias/historia.jpg'
-import imgGeografia from '../../../images/materias/geografia.jpg'
-import imgQuimica from '../../../images/materias/quimica.jpg'
-import imgFisica from '../../../images/materias/fisica.png'
-import imgBiologia from '../../../images/materias/biologia.jpg'
-import imgLiteratura from '../../../images/materias/literatura2.jpg'
-import imgGramatica from '../../../images/materias/literatura.webp'
-import imgRedacao from '../../../images/materias/redacao.jpg'
-
-
 const MOBLMATERIAS = styled.ul`
     display: flex;
     flex-wrap: wrap;
@@ -39,32 +28,20 @@ const Container = styled.div`
 `
 
 function ContainerMateria(props) {
+    const materias = props.materias?.map((mat) => (
+        <CardMateria imgSrc={mat.img} materia={mat.materia}/>
+    ))
+
     return (
         <Container>
             {props.isMobile &&
                 <MOBLMATERIAS>
-                    <CardMateria imgSrc={imgMatematica} materia='Matemática'></CardMateria>
-                    <CardMateria imgSrc={imgQuimica} materia='Química'></CardMateria>
-                    <CardMateria imgSrc={imgGramatica} materia='Gramática'></CardMateria>
-                    <CardMateria imgSrc={imgFisica} materia='Física'></CardMateria>
-                    <CardMateria imgSrc={imgBiologia} materia='Biologia'></CardMateria>
-                    <CardMateria imgSrc={imgGeografia} materia='Geografia'></CardMateria>
-                    <CardMateria imgSrc={imgRedacao} materia='Redação'></CardMateria>
-                    <CardMateria imgSrc={imgHistoria} materia='História'></CardMateria>
-                    <CardMateria imgSrc={imgLiteratura} materia='Literatura'></CardMateria>
+                    {materias}
                 </MOBLMATERIAS>
             }
             {!props.isMobile &&
                 <DSKMATERIAS>
-                    <CardMateria imgSrc={imgMatematica} materia='Matemática'></CardMateria>
-                    <CardMateria imgSrc={imgQuimica} materia='Química'></CardMateria>
-                    <CardMateria imgSrc={imgGramatica} materia='Gramática'></CardMateria>
-                    <CardMateria imgSrc={imgFisica} materia='Física'></CardMateria>
-                    <CardMateria imgSrc={imgBiologia} materia='Biologia'></CardMateria>
-                    <CardMateria imgSrc={imgGeografia} materia='Geografia'></CardMateria>
-                    <CardMateria imgSrc={imgRedacao} materia='Redação'></CardMateria>
-                    <CardMateria imgSrc={imgHistoria} materia='História'></CardMateria>
-                    <CardMateria imgSrc={imgLiteratura} materia='Literatura'></CardMateria>
+                    {materias}
                 </DSKMATERIAS>
             }
         </Container>

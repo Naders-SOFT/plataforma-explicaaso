@@ -1,27 +1,26 @@
-import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
-import multer from 'multer'
-import multerS3 from 'multer-s3'
+import mongoose from "mongoose";
 
-const s3 = new S3Client({
-    endpoint: 'http://127.0.0.1:9000',
-    credentials: {
-        accessKeyId: 'gRk1NVbg8v9bcW5IHMny',
-        secretAccessKey: '78rRnHaczSvpwCgQYRum0gBTE1bIdKSNLzFemmqk'
+const pdfSchema = new mongoose.Schema({
+    id: { 
+        type: mongoose.Schema.Types.ObjectId
     },
-    sslEnabled: false, 
-    s3ForcePathStyle: true, 
-    region: 'us-east-1'
-})
+    titulo: {
+        type: String, required: true
+    },
+    disciplina: {
+        type: String, required: true
+    },
+    frente: {
+        type: String, required: true
+    },
+    data: {
+        type: String, required: true
+    },
+    link: {
+        type: String
+    }
+}, { versionKey: false});
 
-const uploadArquivo = multer({
-    storage: multerS3({
-        s3: s3,
-        bucket: 'teste',
-        acl: 'public-read',
-        key: (request, arquivo, cb) => {
-            cb(null, Date.now(), + '-' + arquivo.originalname)
-        }
-    })
-})
+const pdf = mongoose.model('pdf', pdfSchema)
 
-export default {s3, uploadArquivo};
+export default pdf

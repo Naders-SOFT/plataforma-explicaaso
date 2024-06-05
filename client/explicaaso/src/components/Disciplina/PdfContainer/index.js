@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Avisos from '../Avisos';
+import Avisos from '../Pdfs';
 import SideBar from '../../Aluno/SideBar'
 
 const MOBLINFO = styled.div`
@@ -25,14 +25,14 @@ function AvisosContainer(props) {
             {
                 props.isMobile &&
                 <MOBLINFO>
-                    <SideBar isMobile={props.isMobile}/>
+                    <SideBar isMobile={props.isMobile} botoes={props.botoes}/>
                     <Avisos isMobile={props.isMobile} tituloDisciplina={'disciplina de bosta'}></Avisos>
                 </MOBLINFO>
             }
             {
                 !props.isMobile &&
                 <DSKINFO>
-                    <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil}/>
+                    <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil} botoes={props.botoes}/>
                     <Avisos isMobile={props.isMobile} tituloDisciplina={'disciplina de bosta'}></Avisos>
                 </DSKINFO>
             }
