@@ -1,4 +1,4 @@
-import { uploadFile, getObjectSignedUrl, deleteFile } from '../s3.js'
+import { uploadFile, deleteFile } from '../s3.js'
 import blogPost from '../models/blogPost.models.js'
 
 export const createBlogPost = async (req, res) => {
@@ -15,11 +15,11 @@ export const createBlogPost = async (req, res) => {
         await blogPost.save()
         
         // Upload da imagem no minio
-        // await uploadFile(req.file.buffer, 
-        //                 pdfNovo._id.toString(), 
-        //                 req.file.mimetype);
+        await uploadFile(req.file.buffer, 
+                        postNovo._id.toString(), 
+                        req.file.mimetype);
 
-        // res.status(201).send();
+        res.status(201).send();
     }
     catch (error) {
         console.error('Error creating post:', error);
@@ -28,7 +28,6 @@ export const createBlogPost = async (req, res) => {
         });
     }
 }
-
 
 export async function listblogPosts(req, res) {
     try {
@@ -56,7 +55,11 @@ export async function updateblogPost(req, res) {
 
 export async function deleteblogPost(req, res) {
     try {
+      //deleta o post do bd
       await blogPost.findByIdAndDelete(req.params.idblogPost);
+      
+      //deleta a imagem do post do minio
+      deleteFile(req.params.idblogPost);
   
       res.status(200);
       res.send("Postagem do blog deletada com sucesso");
