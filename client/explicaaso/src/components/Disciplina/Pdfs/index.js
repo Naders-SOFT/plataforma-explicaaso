@@ -44,24 +44,7 @@ const Container = styled.div`
     width: 100%;
 `
 
-function Avisos(props) {
-
-    const [pdfs, setPdfs] = useState([])
-    useEffect(() => {
-      axios.get("http://localhost:3003/pdf/list")
-      .then(response => {
-        setPdfs(response.data)
-      })
-      .catch(err => {
-        console.error(err.message)
-      })
-    }, [])
-
-    const listaPdfs = pdfs.map(pdf => (
-        <ItemAviso tituloAviso={pdf.titulo} link={pdf.link}></ItemAviso>
-    ))
-
-    const frentes = [
+const frentes = [
         { name: 'gramatica', image: gramatica },
         { name: 'literatura', image: literatura },
         { name: 'interpretacao', image: interpretacao },
@@ -87,13 +70,45 @@ function Avisos(props) {
         { name: 'mat3', image: mat3 },
     ];
 
+function Avisos(props) {
+
+    const [pdfs, setPdfs] = useState([])
+    useEffect(() => {
+      axios.get("http://localhost:3003/pdf/list")
+      .then(response => {
+        setPdfs(response.data)
+      })
+      .catch(err => {
+        console.error(err.message)
+      })
+    }, [])
+
+    const handleDelete = (id) => {
+        // Requisicao de DELETE
+        axios.delete('http://localhost:3003/pdf/delete/'+id)
+        .then(response => {
+            console.log('User deleted successfully');
+
+            // Removendo o pdf que foi deletado
+            setPdfs(pdfs.filter(pdf => pdf._id.toString() !== id));
+        })
+        .catch(error => {
+            console.error('Error deleting user aaaa:', error);
+        })
+    }
+
+    const listaPdfs = pdfs.map(pdf => (
+            <ItemAviso tituloAviso={pdf.titulo} link={pdf.link} idPdf={pdf._id.toString()} onDelete={handleDelete}></ItemAviso>
+
+    ))
+
     return (
         <Container>
             {
                 props.isMobile &&
                 <AvisosPainel>
-                    <ItemAdicionar/>
                     <TituloDisciplina tituloDisciplina={props.tituloDisciplina}/>
+                    <ItemAdicionar/>
                     {listaPdfs}
                     <Frentes frentes={frentes} />
                 </AvisosPainel>

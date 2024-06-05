@@ -59,8 +59,8 @@ function App() {
     <AppContainer>
       <GlobalStyle/>
       {/* <Header isMobile={isMobile}/> */}
-      {/* <PaginaDisciplina isMobile={isMobile}/> */}
-      <PaginaCadastro></PaginaCadastro>
+      <PaginaDisciplina isMobile={isMobile}/>
+      {/* <PaginaCadastro></PaginaCadastro> */}
       {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
       {/* <Footer isMobile={isMobile}/> */}
     </AppContainer>
