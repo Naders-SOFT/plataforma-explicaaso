@@ -51,9 +51,11 @@ function ContainerInfo(props) {
     return (
         <ContainerPag>
             <TITLEPAG $isMobile={props.isMobile}>Postagens</TITLEPAG>
+            {editor &&
             <BTDIV $isMobile={props.isMobile}>
                 <BTADICIONAR $isMobile={props.isMobile}>Criar Post</BTADICIONAR>
             </BTDIV>
+            }
             <BlocoBlog
                 isMobile={props.isMobile}
                 imgSrc={placeholder}

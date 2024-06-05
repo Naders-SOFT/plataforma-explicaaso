@@ -15,6 +15,7 @@ const BlocoInfo = styled.div`
 `
 
 const TITLEPOST = styled.h3`
+    margin: 3% 5%;
     color: white;
     font-size: ${({$isMobile}) => $isMobile ? "25px" : "40px"};
     margin-bottom: ${({$isMobile}) => $isMobile ? "auto" : "0"};
@@ -40,7 +41,7 @@ const IMG = styled.img`
     display: flex;
     justify-content: center;
 
-    @media(min-width: 768px) and (max-width: 1080px){
+    @media(min-width: 768px) and (max-width: 916px){
         display: none;
     }
 `
@@ -68,7 +69,9 @@ function BlocoBlog(props) {
                 <TEXTOPOST $isMobile={props.isMobile}>{props.textopost}</TEXTOPOST>
                 <IMG src={props.imgSrc} alt={props.imgAlt}/>
             </DIVIMG>
+            {props.editor && 
             <EDITBUTTON $isMobile={props.isMobile}>Editar</EDITBUTTON>
+            }
         </BlocoInfo>
     );
 }
