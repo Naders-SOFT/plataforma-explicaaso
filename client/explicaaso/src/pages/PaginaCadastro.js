@@ -101,7 +101,8 @@ function PaginaCadastro(props) {
                 sobrenome: sobrenome,
                 tipo: tipoUsuario,
                 senha: senha,
-                email: email
+                email: email,
+                senhaConfirmada: confirmarSenha
             },
             {
                 headers: {
