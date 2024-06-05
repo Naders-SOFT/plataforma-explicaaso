@@ -32,7 +32,8 @@ const Container = styled.div`
 function ContainerMateria(props) {
     const materias = props.materias?.map((mat) => (
         <div key={mat.materia}> 
-            <Link to='/pagina-aluno/Materias/frentes'>
+            {/* <Link to='/pagina-aluno/Materias/frentes'> */}
+            <Link to={`/pagina-aluno/${mat.materia}/frentes`}>
                 <CardMateria imgSrc={mat.img} materia={mat.materia} />
             </Link>
         </div>

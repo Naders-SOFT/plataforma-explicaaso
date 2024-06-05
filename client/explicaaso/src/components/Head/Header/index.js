@@ -113,7 +113,7 @@ function Header(props) {
                     <Route path='/pagina-blog' element={<PaginaBlog isMobile={props.isMobile}/>} />
                     <Route path='/login' element={<PaginaLogin isMobile={props.isMobile}/>} /> 
                     <Route path='/pagina-aluno' element={<PaginaAluno isMobile={props.isMobile}/>}/>
-                    <Route path="/pagina-aluno/Materias/frentes" element={<Frentes frentes={frentes} isMobile={props.isMobile} />} />
+                    <Route path="/pagina-aluno/:materias/frentes" element={<Frentes frentes={frentes} isMobile={props.isMobile} />} />
                 </Routes>
             </Router>
         </ContainerPag>
