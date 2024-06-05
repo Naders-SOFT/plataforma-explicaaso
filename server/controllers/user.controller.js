@@ -1,4 +1,5 @@
 import User from '../models/user.models.js';
+import bcrypt from 'bcrypt';
 
 export async function signupUser (req, res) {
   console.log(req.body)
@@ -14,9 +15,13 @@ export async function signupUser (req, res) {
       return res.status(422).send({ message: "Email já utilizado" });
     }
 
+    // Criação de senha:
+    const salt = await bcrypt.genSalt(12);
+    const senhaHash = await bcrypt.hash(req.body.senha, salt);
+
     const userNovo = new User({
       email: req.body.email,
-      senha: req.body.senha,
+      senha: senhaHash,
       nome: req.body.nome,
       sobrenome: req.body.sobrenome,
       tipo: req.body.tipo
