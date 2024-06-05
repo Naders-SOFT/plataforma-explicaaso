@@ -28,7 +28,7 @@ const BTDIV = styled.div`
 `
 
 const BTADICIONAR = styled.button`
-    width: 20%;
+    width: 25%;
     margin: 0 1%;
     padding: ${({$isMobile}) => $isMobile ? "1% 0" : "1% 0"};
     background-color: #FFCC00;
@@ -50,8 +50,8 @@ function ContainerInfo(props) {
 
     return (
         <ContainerPag>
-            <TITLEPAG $isMobile={props.isMobile}>Blog</TITLEPAG>
-            <BTDIV>
+            <TITLEPAG $isMobile={props.isMobile}>Postagens</TITLEPAG>
+            <BTDIV $isMobile={props.isMobile}>
                 <BTADICIONAR $isMobile={props.isMobile}>Criar Post</BTADICIONAR>
             </BTDIV>
             <BlocoBlog
@@ -71,10 +71,6 @@ function ContainerInfo(props) {
                 textopost = {TextosPosts[1]}
                 editor={editor}
              />
-
-
-            
-
         </ContainerPag>
     )
 }
