@@ -15,11 +15,11 @@ export const createBlogPost = async (req, res) => {
         await blogPost.save()
         
         // Upload da imagem no minio
-        await uploadFile(req.file.buffer, 
-                        pdfNovo._id.toString(), 
-                        req.file.mimetype);
+        // await uploadFile(req.file.buffer, 
+        //                 pdfNovo._id.toString(), 
+        //                 req.file.mimetype);
 
-        res.status(201).send();
+        // res.status(201).send();
     }
     catch (error) {
         console.error('Error creating post:', error);
