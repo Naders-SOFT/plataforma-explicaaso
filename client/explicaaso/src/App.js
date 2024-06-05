@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
 
 // ESTILIZAÇÃO DO COMPONENTE
 const AppContainer = styled.div`
+  margin: 0;
 `
 
 
@@ -60,8 +61,10 @@ function App() {
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
     <AppContainer>
-      {/* <Header isMobile={isMobile}/> */}
-      <PaginaEditarPost isMobile={isMobile}/>
+      <GlobalStyle/>
+      <Header isMobile={isMobile}/>
+      {/* <PaginaEditarPost isMobile={isMobile}/> */}
+      <Footer isMobile={isMobile}/>
     </AppContainer>
   );
 }

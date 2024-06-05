@@ -19,6 +19,7 @@ import {
 
 const ContainerPag = styled.div`
     width: 100%;
+    margin: 0;
 `
 
 const HeaderContainer = styled.div`
@@ -28,6 +29,7 @@ const HeaderContainer = styled.div`
     height: ${({$isMobile}) => ($isMobile ? "78px" : "90px")};
     align-items: center;
     justify-content: space-between;
+    margin: 0;
 `
 
 function Header(props) {
