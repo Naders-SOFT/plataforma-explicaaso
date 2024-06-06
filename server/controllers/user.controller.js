@@ -1,8 +1,29 @@
 import User from '../models/user.models.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
-export async function signupUser (req, res) {
-  console.log(req.body)
+
+export function checkToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if(!token) {
+    return res.status(401).json({ message: "Acesso negado" });
+  }
+
+  try {
+    const secret = process.env.SECRET;
+
+    jwt.verify(token, secret);
+
+    next();
+  } catch(error) {
+    res.status(400).json({ message: "Token inválido" });
+  }
+}
+
+
+export async function signupUser(req, res) {
   try {
     // Validação de confirmação de senha:
     if(req.body.senha != req.body.senhaConfirmada) {
@@ -30,7 +51,42 @@ export async function signupUser (req, res) {
     await userNovo.save();
 
     res.status(201);
-    res.send({id: userNovo.id, message: "Usuário cadastrado com sucesso"});
+    res.send({message: "Usuário cadastrado com sucesso"});
+  } catch(error) {
+    if(error.name === 'ValidationError') {
+      // Construimos uma mensagem de erro específica para cada campo inválido:
+      const messages = Object.values(error.errors).map(err => err.message);
+      res.status(400).send({ message: "Erro de validação", errors: messages });
+    } else {
+      res.status(409);
+      res.send(error.message);
+    }
+  }
+}
+
+export async function signinUser(req, res) {
+  try {
+    // Checagem se usuário existe:
+    const user = await User.findOne({ email: req.body.email });
+    if(!user) {
+      return res.status(404).send({ message: "Usuário não encontrado" });
+    }
+
+    // Checagem de senha:
+    const checkSenha = await bcrypt.compare(req.body.senha, user.senha);
+    if(!checkSenha) {
+      return res.status(422).send({ message: "Senha incorreta" });
+    }
+
+    const secret = process.env.SECRET;
+
+    const token = jwt.sign({
+      id: user._id
+    }, secret )
+
+    res.status(200);
+    res.json({message: "Autenticação realizada com sucesso", token });
+
   } catch(error) {
     if(error.name === 'ValidationError') {
       // Construimos uma mensagem de erro específica para cada campo inválido:
@@ -57,7 +113,11 @@ export async function listUsers(req, res) {
 
 export async function listUserById(req, res) {
   try {
-    const user = await User.findById(req.params.idUser);
+    const user = await User.findById(req.params.idUser, '-senha');
+
+    if(!user) {
+      return res.status(404).send({ message: "Usuário não encontrado"} )
+    }
 
     res.status(200);
     res.send(user);
@@ -103,6 +163,18 @@ export async function deleteUser(req, res) {
 
     res.status(200);
     res.send("Usuário deletado com sucesso");
+  } catch(error) {
+    res.status(500);
+    res.send(error.message);
+  }
+}
+
+export async function deleteAllUsers(req, res) {
+  try {
+    await User.deleteMany({});
+
+    res.status(200);
+    res.send("Todos os usuários deletados com sucesso");
   } catch(error) {
     res.status(500);
     res.send(error.message);
