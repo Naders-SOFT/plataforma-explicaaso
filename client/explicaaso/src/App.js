@@ -4,7 +4,7 @@ import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
 import PaginaInicial from './pages/PaginaInicial';
-import PaginaDisciplina from './pages/pagina-disciplina';
+import PaginaDisciplina from './pages/PaginaDisciplina';
 import PaginaAluno from './pages/PaginaAluno';
 import PaginaCadastro from './pages/PaginaCadastro';
 

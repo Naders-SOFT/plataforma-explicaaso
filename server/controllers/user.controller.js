@@ -85,8 +85,14 @@ export async function signinUser(req, res) {
     }, secret )
 
     res.status(200);
-    res.json({message: "Autenticação realizada com sucesso", token });
-
+    res.json(
+      {
+        message: "Autenticação realizada com sucesso", 
+        token: token,
+        tipoUsuario: user.tipo
+      });
+    console.log("Login realizado");
+    
   } catch(error) {
     if(error.name === 'ValidationError') {
       // Construimos uma mensagem de erro específica para cada campo inválido:
