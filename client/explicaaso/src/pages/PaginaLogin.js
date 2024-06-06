@@ -2,6 +2,7 @@ import InputComponent from "../components/Login/InputComponent/InputComponent";
 import styled from 'styled-components';
 import axios from "axios"
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const ContainerPag = styled.div`
   width: 100%;
@@ -67,9 +68,32 @@ function PaginaLogin(props) {
         }
       );
 
-      if(response.ok) {
+      if(response.status === 200) {
         setEmail('');
         setSenha('');
+
+        const token = response.data.token;
+        const tipoUsuario = response.data.tipoUsuario;
+        
+        // Armazena o token no localStorage:
+        localStorage.setItem('token', token);
+        localStorage.setItem('tipoUsuario', tipoUsuario);
+
+        // Redireciona o usuário com base no tipo de usuário
+        switch (tipoUsuario) {
+          case 'aluno':
+            props.navigate('/pagina-aluno');
+            break;
+          case 'administrador':
+            props.navigate('/pagina-administrador');
+            break;
+          case 'professor':
+            props.navigate('/pagina-professor');
+            break;
+          default:
+            console.error('Tipo de usuário inválido');
+            break;
+        }
       }
     } catch(error) {
       console.error('Error submitting form:', error);
