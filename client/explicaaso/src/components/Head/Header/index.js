@@ -11,6 +11,10 @@ import PaginaContato from '../../../pages/PaginaContato';
 import PaginaBlog from '../../../pages/PaginaBlog';
 // import PaginaAluno from '../../../pages/PaginaAluno';
 import PaginaInicial from '../../../pages/PaginaInicial';
+
+// mudança
+import PaginaCadastro from '../../../pages/PaginaCadastro';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -58,7 +62,7 @@ function Header(props) {
                     <Route path='/pagina-contato' element={<PaginaContato isMobile={props.isMobile}/>} />
                     <Route path='/pagina-noticias' element={<PaginaNoticias isMobile={props.isMobile}/>} />
                     <Route path='/pagina-blog' element={<PaginaBlog isMobile={props.isMobile}/>} />
-                    <Route path='/login' element={<PaginaLogin isMobile={props.isMobile}/>} />
+                    <Route path='/login' element={<PaginaLogin isMobile={props.isMobile}/>} />   
                 </Routes>
             </Router>
         </ContainerPag>
