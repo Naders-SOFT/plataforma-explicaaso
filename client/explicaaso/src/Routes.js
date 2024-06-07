@@ -11,6 +11,7 @@ import PaginaAdministrador from './pages/PaginaAdministrador';
 import PaginaDisciplina from './pages/PaginaDisciplina';
 import PaginaCadastro from './pages/PaginaCadastro';
 import PaginaAdmin from './pages/PaginaAdministrador';
+import PaginaBlogPost from "./pages/PaginaBlogPostagem";
 
 function Roteador(props){
     return(
@@ -20,10 +21,15 @@ function Roteador(props){
             <Route path='/pagina-contato' element={<PaginaContato isMobile={props.isMobile}/>} />
             <Route path='/pagina-noticias' element={<PaginaNoticias isMobile={props.isMobile}/>} />
             <Route path='/pagina-blog' element={<PaginaBlog isMobile={props.isMobile}/>} />
+            <Route path='/pagina-blog/post' element={<PaginaBlogPost isMobile={props.isMobile}/>} />
+            <Route path='/pagina-blog/criar-post' element={<PaginaEditarPost isMobile={props.isMobile} navigate={useNavigate}/>} />
+            <Route path='/pagina-blog/editar-post' element={<PaginaEditarPost isMobile={props.isMobile} navigate={useNavigate}/>} />
             <Route path='/login' element={<PaginaLogin isMobile={props.isMobile} navigate={useNavigate}/>} />
             <Route path='/pagina-administrador' element={<PaginaAdministrador isMobile={props.isMobile}/>} />
             <Route path='/pagina-professor' element={<PaginaDisciplina isMobile={props.isMobile}/>} />
             <Route path='/pagina-aluno' element={<PaginaAluno isMobile={props.isMobile}/>} />
+            <Route path='/pagina-admin' element={<PaginaAdmin isMobile={props.isMobile}/>} />
+            <Route path='/pagina-admin/cadastro' element={<PaginaCadastro isMobile={props.isMobile} navigate={useNavigate}/>} />
         </Routes>
     );
 }
