@@ -12,6 +12,7 @@ import PaginaDisciplina from './pages/PaginaDisciplina';
 import PaginaCadastro from './pages/PaginaCadastro';
 import PaginaAdmin from './pages/PaginaAdministrador';
 import PaginaBlogPost from "./pages/PaginaBlogPostagem";
+import PaginaEditarPost from './pages/PaginaEditarPost'
 
 function Roteador(props){
     return(
