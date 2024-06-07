@@ -18,7 +18,7 @@ const ButtonContainer = styled.div`
 `;
 
 const ButtonLink = styled.a`
-    background-color: ${props => props.instagram ? "#F8BBC8" : "darkcyan"};
+    background-color: ${({$instagram}) => $instagram ? "#F8BBC8" : "darkcyan"};
     border: none;
     border-radius: 8px;
     color: #FFFFFF;
@@ -48,7 +48,7 @@ function Formulario(props) {
                 <ButtonLink href="mailto:seuemail@example.com">
                     <ButtonIcon><CiMail /></ButtonIcon>
                 </ButtonLink>
-                <ButtonLink href="https://www.instagram.com/seuinstagram/" instagram>
+                <ButtonLink href="https://www.instagram.com/seuinstagram/" $instagram={true}>
                     <ButtonIcon><CiInstagram /></ButtonIcon>
                 </ButtonLink>
             </ButtonContainer>
