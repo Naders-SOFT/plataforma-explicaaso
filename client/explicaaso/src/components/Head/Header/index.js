@@ -12,6 +12,7 @@ import PaginaBlog from '../../../pages/PaginaBlog';
 import PaginaAluno from '../../../pages/PaginaAluno';
 import PaginaInicial from '../../../pages/PaginaInicial';
 import Frentes from '../../Disciplina/Frentes';
+
 import gramatica from '../../../images/frentes/gra.jpeg';
 import literatura from '../../../images/frentes/lit.jpeg';
 import interpretacao from '../../../images/frentes/int.jpeg';
@@ -35,15 +36,19 @@ import qui3 from '../../../images/frentes/qui3.jpeg';
 import mat1 from '../../../images/frentes/mat1.jpeg';
 import mat2 from '../../../images/frentes/mat2.jpeg';
 import mat3 from '../../../images/frentes/mat3.jpeg';
-
+import PaginaAdministrador from '../../../pages/PaginaAdministrador';
+import PaginaDisciplina from '../../../pages/PaginaDisciplina';
+import PaginaCadastro from '../../../pages/PaginaCadastro';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
+  useNavigate
 } from "react-router-dom";
 
 const ContainerPag = styled.div`
     width: 100%;
+    margin: 0;
 `
 
 const HeaderContainer = styled.div`
@@ -54,13 +59,14 @@ const HeaderContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     font-size: 20px;
+    margin: 0;
 `
 
 function Header(props) {
-
     // Header define os itens de navegação com IDs associados para
-    // serem utilizados no meno hamburguer e na barra de navegação.
-    const itensNavigation = [{id: 0, texto: "Início", pagina: '/'}, 
+    // serem utilizados no menu hamburguer e na barra de navegação.
+    const itensNavigation = [
+        {id: 0, texto: "Início", pagina: '/'}, 
         {id: 1, texto: "Sobre nós", pagina: '/pagina-sobre-nos'}, 
         {id: 2, texto: "Contato", pagina: '/pagina-contato'}, 
         {id: 3, texto: "Notícias", pagina: '/pagina-noticias'}, 
@@ -114,6 +120,9 @@ function Header(props) {
                     <Route path='/login' element={<PaginaLogin isMobile={props.isMobile}/>} /> 
                     <Route path='/pagina-aluno' element={<PaginaAluno isMobile={props.isMobile}/>}/>
                     <Route path="/pagina-aluno/:materias/frentes" element={<Frentes frentes={frentes} isMobile={props.isMobile} />} />
+                    <Route path='/login' element={<PaginaLogin isMobile={props.isMobile} navigate={useNavigate}/>} />
+                    <Route path='/pagina-administrador' element={<PaginaAdministrador isMobile={props.isMobile}/>} />
+                    <Route path='/pagina-professor' element={<PaginaDisciplina isMobile={props.isMobile}/>} />
                 </Routes>
             </Router>
         </ContainerPag>

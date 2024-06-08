@@ -4,8 +4,9 @@ import cors from 'cors';
 import pdfRoutes from './routes/pdf.routes.js';
 import userRoutes from './routes/user.routes.js';
 import db from './config/dbConnect.js';
-import dotenv from 'dotenv/config';
+import dotenv from 'dotenv';
 
+dotenv.config();
 
 // BANCO DE DADOS:
 async function conectaDB() {

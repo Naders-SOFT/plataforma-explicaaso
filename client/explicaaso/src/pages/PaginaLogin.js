@@ -1,5 +1,8 @@
 import InputComponent from "../components/Login/InputComponent/InputComponent";
 import styled from 'styled-components';
+import axios from "axios"
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const ContainerPag = styled.div`
   width: 100%;
@@ -45,13 +48,65 @@ const Submit = styled.button`
 
 
 function PaginaLogin(props) {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+
+  const handleSubmit = async (event) => {
+    // Aqui prevenimos o comportamento padrão do navegador ao acontecimento do evento:
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:3003/user/login',
+        {
+          email: email,
+          senha: senha
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      if(response.status === 200) {
+        setEmail('');
+        setSenha('');
+
+        const token = response.data.token;
+        const tipoUsuario = response.data.tipoUsuario;
+        
+        // Armazena o token no localStorage:
+        localStorage.setItem('token', token);
+        localStorage.setItem('tipoUsuario', tipoUsuario);
+
+        // Redireciona o usuário com base no tipo de usuário
+        switch (tipoUsuario) {
+          case 'aluno':
+            props.navigate('/pagina-aluno');
+            break;
+          case 'administrador':
+            props.navigate('/pagina-administrador');
+            break;
+          case 'professor':
+            props.navigate('/pagina-professor');
+            break;
+          default:
+            console.error('Tipo de usuário inválido');
+            break;
+        }
+      }
+    } catch(error) {
+      console.error('Error submitting form:', error);
+    }
+  }
+
   return (
     <ContainerPag>
-      <LoginContainer $isMobile={props.isMobile}>
+      <LoginContainer $isMobile={props.isMobile} onSubmit={handleSubmit}>
         <LoginTitulo>Log in</LoginTitulo>
-        <InputComponent label='Email' type='email'/>
-        <InputComponent label='Senha' type='password'/>
-        <Submit>
+        <InputComponent label='Email' type='email' id='email' value={email} onChange={(event) => setEmail(event.target.value)} required />
+        <InputComponent label='Senha' type='password' id='senha' value={senha} onChange={(event) => setSenha(event.target.value)} required />
+        <Submit type='submit'>
           Confirmar
         </Submit>
       </LoginContainer>

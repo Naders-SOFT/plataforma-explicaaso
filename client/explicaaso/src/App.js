@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import PaginaBlogPost from './pages/pagina-blog-postagem';
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
 import PaginaInicial from './pages/PaginaInicial';
-import PaginaDisciplina from './pages/pagina-disciplina';
+import PaginaDisciplina from './pages/PaginaDisciplina';
 import PaginaAluno from './pages/PaginaAluno';
 import PaginaCadastro from './pages/PaginaCadastro';
+
+import RichText from './components/EditorTexto/RichText';
+import PaginaEditarPost from './pages/PaginaEditarPost'
 import Frentes from './components/Disciplina/Frentes';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
@@ -31,6 +35,7 @@ const GlobalStyle = createGlobalStyle`
 
 // ESTILIZAÇÃO DO COMPONENTE
 const AppContainer = styled.div`
+  margin: 0;
 `
 
 
@@ -54,17 +59,18 @@ function App() {
 
   return (
     // Aqui temos um container global que inclui a página 
-    // inteira, nele temos apenas o componente Header, por enquanto. 
+    // inteira.
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
     <AppContainer>
       <GlobalStyle/>
       <Header isMobile={isMobile}/>
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
+      {/* <Header isMobile={isMobile}/> */}
+      {/* <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <PaginaCadastro></PaginaCadastro> */}
       {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
-      {/* <Frentes></Frentes> */}
-      <Footer isMobile={isMobile}/>
+      {/* <Footer isMobile={isMobile}/> */}
     </AppContainer>
   );
 }

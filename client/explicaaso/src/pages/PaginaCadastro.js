@@ -15,15 +15,19 @@ const FormContainer = styled.div`
   padding: 10%;
 `;
 
+const CadastroTitulo = styled.h1`
+  color: #FF6600;
+  font-size: 36px;
+`
+
 
 const Formulario = styled.form`
-  background-color: #fff;
+  background-color: #003466;
   border-radius: 8px;
   padding: 40px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 400px;
   max-width: 90%;
-  background-color: #f5f5f5;
 
   h2 {
     text-align: center;
@@ -33,25 +37,44 @@ const Formulario = styled.form`
 `;
 
 const inputStyles = css`
-  width: 100%;
+  width: 93.5%;
   padding: 12px;
   border: 1px solid #ddd;
+  border: none;
   border-radius: 4px;
+  color: white; 
   margin-bottom: 20px;
   font-size: 16px;
+  background-color: #265a9b;
 
   &:focus {
     outline: none;
-    border-color: #007bff;
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
   }
 `;
 
+const selectStyles = css`
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border: none;
+  border-radius: 4px;
+  color: white; 
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: #265a9b;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  }
+`;
+
+
 const Label = styled.label`
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #333;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
 `;
 
 const Input = styled.input`
@@ -59,28 +82,28 @@ const Input = styled.input`
 `;
 
 const Select = styled.select`
-  ${inputStyles}
+  ${selectStyles}
 `;
 
 const Botao = styled.button`
-  background-color: darkcyan;
-  color: #fff;
+  width: 30%;
   border: none;
-  border-radius: 4px;
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 8px;
+  background-color: #FF6600;
+  font-size: 20px;
+  font-weight: 600;
+  color: #994107;
+  height: 40px;
+  margin: 0 0 40px 0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease; 
 
   &:hover {
-    background-color: #003466;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    color: #FFEFD5;
+    cursor: pointer;
   }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
+`
 
 function PaginaCadastro(props) {
     const [nome, setNome] = useState('');
@@ -101,7 +124,8 @@ function PaginaCadastro(props) {
                 sobrenome: sobrenome,
                 tipo: tipoUsuario,
                 senha: senha,
-                email: email
+                email: email,
+                senhaConfirmada: confirmarSenha
             },
             {
                 headers: {
@@ -125,7 +149,7 @@ function PaginaCadastro(props) {
     return (
     <FormContainer>
       <Formulario onSubmit={handleSubmit}>
-        <h2>Cadastro de Usuário</h2>
+        <CadastroTitulo>Cadastro de Usuário</CadastroTitulo>
 
         <div>
           <Label htmlFor="tipo">Tipo de Usuário:</Label>
