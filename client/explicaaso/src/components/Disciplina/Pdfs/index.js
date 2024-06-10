@@ -25,14 +25,14 @@ function Avisos(props) {
 
     const [pdfs, setPdfs] = useState([])
     useEffect(() => {
-      axios.get("http://localhost:3003/pdf/list")
+      axios.get(`http://localhost:3003/pdf/list/${props.tituloFrente}`)
       .then(response => {
         setPdfs(response.data)
       })
       .catch(err => {
         console.error(err.message)
       })
-    }, [])
+    }, [props.tituloFrente])
 
     const handleDelete = (id) => {
         // Requisicao de DELETE
