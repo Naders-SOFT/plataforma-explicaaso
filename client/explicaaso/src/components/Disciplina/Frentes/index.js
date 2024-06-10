@@ -44,7 +44,6 @@ const StyledButton = styled.button`
   cursor: pointer;
   font-size: 18px;
   transition: background-color 0.3s ease;
-  width: 35%;
 
   &:hover {
     background-color: #002549;
