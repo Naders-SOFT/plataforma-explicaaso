@@ -52,6 +52,7 @@ const DSKLI = styled.li`
 `
 
 
+
 function BlocoNoticia(props) {
     return(
         <BlocoInfo $isMobile={props.isMobile}>

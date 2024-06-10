@@ -32,8 +32,6 @@ const BTADICIONAR = styled.button`
     cursor: pointer;
 `
 
-
-
 function ContainerPost(props) {
     let editor = true;
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import PaginaBlogPost from './pages/pagina-blog-postagem';
+import PaginaNoticias from './pages/PaginaNoticias';
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
@@ -66,6 +67,7 @@ function App() {
       {/* <Header isMobile={isMobile}/> */}
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
       <PaginaBlogPost isMobile={isMobile}/>
+      {/* <PaginaNoticias isMobile={isMobile}/> */}
       {/* <PaginaCadastro></PaginaCadastro> */}
       {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
       {/* <Footer isMobile={isMobile}/> */}
