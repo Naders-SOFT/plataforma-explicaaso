@@ -73,7 +73,7 @@ const LERMAIS = styled.a`
    
 `
 
-const EDITBUTTON = styled.button`
+const BUTTON = styled.button`
     width: 20%;
     margin: ${({$isMobile}) => $isMobile ? "3% 0" : "3% 0"};
     padding: ${({$isMobile}) => $isMobile ? "1% 0" : "1% 0"};
@@ -96,9 +96,9 @@ function BlocoBlog(props) {
                 <TEXTOPOST $isMobile={props.isMobile}>{props.textopost}</TEXTOPOST>
                 <IMG src={props.imgSrc} alt={props.imgAlt}/>
             </DIVIMG>
-            <LERMAIS $isMobile={props.isMobile}><a href="#">Leia o texto completo</a></LERMAIS>
+            <BUTTON $isMobile={props.isMobile}>Ler mais</BUTTON>
             {props.editor && 
-            <EDITBUTTON $isMobile={props.isMobile}>Editar</EDITBUTTON>
+            <BUTTON $isMobile={props.isMobile}>Editar</BUTTON>
             }
         </BlocoInfo>
     );
