@@ -78,6 +78,20 @@ const DSKIMG = styled.img`
     width: 40%;
 
 `
+const EDITBUTTON = styled.button`
+    width: 20%;
+    margin: ${({$isMobile}) => $isMobile ? "3% 0" : "3% 0"};
+    padding: ${({$isMobile}) => $isMobile ? "1% 0" : "1% 0"};
+    background-color: #FFCC00;
+    border: none;
+    border-radius: 10px;
+    color: #003466;
+    font-size: ${({$isMobile}) => $isMobile ? "20px" : "30px"};
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+`
+
 
 
 
@@ -107,6 +121,10 @@ function BlocoPost(props) {
 
             {!props.isMobile &&    
             <DSKTEXT>{props.textopost}</DSKTEXT>}
+
+            {props.editor && 
+            <EDITBUTTON $isMobile={props.isMobile}>Editar</EDITBUTTON>
+            }
         </BlocoInfo>
     );
 }
