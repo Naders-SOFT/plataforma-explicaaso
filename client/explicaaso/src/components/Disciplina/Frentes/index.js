@@ -1,7 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import SideBar from '../../Aluno/SideBar';
 
 import gramatica from '../../../images/frentes/gra.jpeg';
 import literatura from '../../../images/frentes/lit.jpeg';
@@ -53,6 +53,8 @@ const StyledButton = styled.button`
 
 const StyledH1 = styled.h1`
   color: #FF6600;
+  background-color: black;
+  font-family: Inter;
 `;
 
 const StyledItemContainer = styled.div`
@@ -82,8 +84,8 @@ const StyledLink = styled(Link)`
   transition: color 0.3s ease;
 
   img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -116,34 +118,84 @@ const frentes = [
     { name: 'Matemática3', image: mat3, materia: 'Matemática' },
 ];
 
+const Card = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const NomeFrente = styled.h1`
+    font-size: 140%;
+    font-family: Inter;
+`
+
+const MOBLINFO = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+`
+
+const DSKINFO = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    flex-wrap: wrap;
+    gap: 2%;
+`
+
+const botoes = [
+    { titulo: 'Matérias'},
+    { titulo: 'Provas'},
+    { titulo: 'Simulados'}
+]
+
 const FrenteButton = ({ frente }) => {
   return (
     <StyledButton>
-      <StyledContentContainer>
-        <StyledLink to={`/pagina-aluno/${frente.materia}/${frente.name}`}>
-            <img src={frente.image} alt={frente.name} />
-            {frente.name}
-        </StyledLink>
-      </StyledContentContainer>
+        <StyledContentContainer>
+            <StyledLink to={`/pagina-aluno/${frente.materia}/${frente.name}`}>
+                <Card>
+                    <NomeFrente>{frente.name}</NomeFrente>
+                    <img src={frente.image} alt={frente.name} />
+                </Card>
+            </StyledLink>
+        </StyledContentContainer>
     </StyledButton>
   );
 };
 
-const Frentes = () => {
+const Frentes = (props) => {
   const mat = useParams()
   const frentesBotoes = frentes
-    .filter(frente => frente.materia === mat.materias)
-    .map((frente, index) => (
-          <FrenteButton key={index} frente={frente} />
-    ))
+        .filter(frente => frente.materia === mat.materias)
+        .map((frente, index) => (
+            <FrenteButton key={index} frente={frente} />
+        ))
     console.log(frentesBotoes)
   return (
-    <StyledContainer>
-      <StyledH1>Frentes</StyledH1>
-      <StyledItemContainer>
-        {frentesBotoes}
-      </StyledItemContainer>
-    </StyledContainer>
+    <div>
+        {props.isMobile &&
+        <MOBLINFO>
+                <SideBar isMobile={props.isMobile} botoes={botoes}/>
+                <StyledContainer>
+                    <StyledH1>Frentes</StyledH1>
+                    <StyledItemContainer>
+                        {frentesBotoes}
+                    </StyledItemContainer>
+                </StyledContainer>
+        </MOBLINFO>
+        }
+        {!props.isMobile && 
+        <DSKINFO>
+            <SideBar isMobile={props.isMobile} botoes={botoes}/>
+            <StyledContainer>
+                    <StyledH1>Frentes</StyledH1>
+                    <StyledItemContainer>
+                        {frentesBotoes}
+                    </StyledItemContainer>
+            </StyledContainer>
+        </DSKINFO>
+        }
+    </div>
   );
 };
 
