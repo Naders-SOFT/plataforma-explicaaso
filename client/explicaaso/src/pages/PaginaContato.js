@@ -38,12 +38,13 @@ const H3 = styled.h3`
   width: ${({$isMobile}) => ($isMobile ? '100%' : '40vw')};
   text-align: ${({$isMobile}) => ($isMobile ? 'center' : 'left')};
   margin-top: 0;
+  margin-bottom: 0;
 `;
 
 const P = styled.p`
   color: #828282;
   width: ${({$isMobile}) => ($isMobile ? '100%' : '40vw')};
-  text-align: ${({$isMobile}) => ($isMobile ? 'center' : 'left')};
+  text-align: center;
 `;
 
 const STYLCONTACTFORM = styled.div`

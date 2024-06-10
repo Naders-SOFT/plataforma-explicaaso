@@ -34,6 +34,8 @@ function InputComponent(props) {
       <Label>{props.label}</Label>
       <Input
         type={props.type}
+        value={props.value}
+        onChange={props.onChange}
       ></Input>
     </InputContainer>
   );

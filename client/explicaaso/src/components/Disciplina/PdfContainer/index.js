@@ -20,20 +20,21 @@ const Container = styled.div`
 `
 
 function AvisosContainer(props) {
+    // console.log(props.tituloDisciplina, props.tituloFrente)
     return (
         <Container>
             {
                 props.isMobile &&
                 <MOBLINFO>
                     <SideBar isMobile={props.isMobile} botoes={props.botoes}/>
-                    <Avisos isMobile={props.isMobile} tituloDisciplina={'disciplina de bosta'}></Avisos>
+                    <Avisos isMobile={props.isMobile} tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}></Avisos>
                 </MOBLINFO>
             }
             {
                 !props.isMobile &&
                 <DSKINFO>
                     <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil} botoes={props.botoes}/>
-                    <Avisos isMobile={props.isMobile} tituloDisciplina={'disciplina de bosta'}></Avisos>
+                    <Avisos isMobile={props.isMobile} tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}></Avisos>
                 </DSKINFO>
             }
 

@@ -101,7 +101,7 @@ const extensions = [
 
 export const RTContext = createContext();
 
-function EditarPost(props) {
+function PaginaEditarPost(props) {
     const [titulo, setTitulo] = useState('');
     const editor = useEditor({
         extensions,
@@ -137,4 +137,4 @@ function EditarPost(props) {
     );
 }
 
-export default EditarPost;
+export default PaginaEditarPost;

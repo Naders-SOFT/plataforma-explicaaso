@@ -1,17 +1,24 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+<<<<<<< HEAD
 import PaginaBlogPost from './pages/pagina-blog-postagem';
 import PaginaNoticias from './pages/PaginaNoticias';
+=======
+import { BrowserRouter as Router } from 'react-router-dom';
+import Roteador from './Routes'
+import PaginaBlogPost from './pages/PaginaBlogPostagem';
+>>>>>>> main
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
 import PaginaInicial from './pages/PaginaInicial';
-import PaginaDisciplina from './pages/pagina-disciplina';
+import PaginaDisciplina from './pages/PaginaDisciplina';
 import PaginaAluno from './pages/PaginaAluno';
 import PaginaCadastro from './pages/PaginaCadastro';
 
 import RichText from './components/EditorTexto/RichText';
 import PaginaEditarPost from './pages/PaginaEditarPost'
+import Frentes from './components/Disciplina/Frentes';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -59,15 +66,20 @@ function App() {
 
   return (
     // Aqui temos um container global que inclui a página 
-    // inteira, nele temos apenas o componente Header, por enquanto. 
+    // inteira.
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
     <AppContainer>
       <GlobalStyle/>
+      <Router>
+        <Header isMobile={isMobile}/>
+        <Roteador isMobile={isMobile}/> 
+        <PaginaBlogPost isMobile={isMobile}/>
+        {/* <PaginaNoticias isMobile={isMobile}/> */}
+      </Router>
+      {/* <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <Header isMobile={isMobile}/> */}
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
-      <PaginaBlogPost isMobile={isMobile}/>
-      {/* <PaginaNoticias isMobile={isMobile}/> */}
       {/* <PaginaCadastro></PaginaCadastro> */}
       {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
       {/* <Footer isMobile={isMobile}/> */}
