@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import gramatica from '../../../images/frentes/gra.jpeg';
 import literatura from '../../../images/frentes/lit.jpeg';
@@ -107,8 +108,10 @@ const FrenteButton = ({ frente }) => {
   return (
     <StyledButton>
       <StyledContentContainer>
-        <img src={frente.image} alt={frente.name} />
-        {frente.name}
+        <Link to={`/pagina-aluno/${frente.materia}/${frente.name}`}>
+            <img src={frente.image} alt={frente.name} />
+            {frente.name}
+        </Link>
       </StyledContentContainer>
     </StyledButton>
   );

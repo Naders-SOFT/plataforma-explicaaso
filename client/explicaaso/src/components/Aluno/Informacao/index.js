@@ -23,23 +23,20 @@ const Container = styled.div`
 function Informacao(props) {
     return (
         <Container>
-            {/* <RoteadorFrentes> */}
-            
-                {
-                    props.isMobile &&
-                    <MOBLINFO>
-                        <SideBar isMobile={props.isMobile} botoes={props.botoes}/>
-                        <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
-                    </MOBLINFO>
-                }
-                {
-                    !props.isMobile &&
-                    <DSKINFO>
-                        <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil} botoes={props.botoes}/>
-                        <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
-                    </DSKINFO>
-                }
-            {/* </RoteadorFrentes> */}
+            {
+                props.isMobile &&
+                <MOBLINFO>
+                    <SideBar isMobile={props.isMobile} botoes={props.botoes}/>
+                    <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
+                </MOBLINFO>
+            }
+            {
+                !props.isMobile &&
+                <DSKINFO>
+                    <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil} botoes={props.botoes}/>
+                    <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
+                </DSKINFO>
+            }
         </Container>
     );
 }
