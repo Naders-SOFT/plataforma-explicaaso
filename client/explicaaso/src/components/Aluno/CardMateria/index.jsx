@@ -10,8 +10,8 @@ const Card = styled.li`
 `
 
 const ImgCard = styled.img`
-    width: 25vw;
-    height: 18vw;
+    width: ${({ isMobile }) => (isMobile ? '50%' : '80%')};
+    height: ${({ isMobile }) => (isMobile ? '50%' : '80%')};
     border-radius: 2vw;
     &:hover {
         opacity: 0.5;

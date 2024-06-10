@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { NavLink as Link } from "react-router-dom";
 
-
-
 const NavigationHeaderContainer = styled.ul`
   display: flex;
   flex-direction: row;

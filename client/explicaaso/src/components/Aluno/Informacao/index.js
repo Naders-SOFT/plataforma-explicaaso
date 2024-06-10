@@ -36,7 +36,6 @@ function Informacao(props) {
                     <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
                 </DSKINFO>
             }
-
         </Container>
     );
 }

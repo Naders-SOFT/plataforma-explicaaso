@@ -13,6 +13,7 @@ import PaginaCadastro from './pages/PaginaCadastro';
 
 import RichText from './components/EditorTexto/RichText';
 import PaginaEditarPost from './pages/PaginaEditarPost'
+import Frentes from './components/Disciplina/Frentes';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -70,9 +71,11 @@ function App() {
         <Roteador isMobile={isMobile}/>
       </Router>
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
+      {/* <Header isMobile={isMobile}/> */}
+      {/* <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <PaginaCadastro></PaginaCadastro> */}
       {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
-      <Footer isMobile={isMobile}/>
+      {/* <Footer isMobile={isMobile}/> */}
     </AppContainer>
   );
 }

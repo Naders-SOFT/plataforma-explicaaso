@@ -13,6 +13,7 @@ import PaginaCadastro from './pages/PaginaCadastro';
 import PaginaAdmin from './pages/PaginaAdministrador';
 import PaginaBlogPost from "./pages/PaginaBlogPostagem";
 import PaginaEditarPost from './pages/PaginaEditarPost'
+import Frentes from "./components/Disciplina/Frentes";
 
 function Roteador(props){
     return(
@@ -28,7 +29,9 @@ function Roteador(props){
             <Route path='/login' element={<PaginaLogin isMobile={props.isMobile} navigate={useNavigate}/>} />
             <Route path='/pagina-administrador' element={<PaginaAdministrador isMobile={props.isMobile}/>} />
             <Route path='/pagina-professor' element={<PaginaDisciplina isMobile={props.isMobile}/>} />
-            <Route path='/pagina-aluno' element={<PaginaAluno isMobile={props.isMobile}/>} />
+            <Route path='/pagina-aluno' element={<PaginaAluno isMobile={props.isMobile} navigate={useNavigate}/>} />
+            <Route path='/pagina-aluno/:materias' element={<Frentes isMobile={props.isMobile} navigate={useNavigate}/>} />
+            <Route path='/pagina-aluno/:materias/:frente' element={<PaginaDisciplina isMobile={props.isMobile} navigate={useNavigate}/>} />
             <Route path='/pagina-admin' element={<PaginaAdmin isMobile={props.isMobile}/>} />
             <Route path='/pagina-admin/cadastro' element={<PaginaCadastro isMobile={props.isMobile} navigate={useNavigate}/>} />
         </Routes>
