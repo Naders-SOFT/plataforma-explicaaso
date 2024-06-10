@@ -42,8 +42,11 @@ const BTADICIONAR = styled.button`
     cursor: pointer;
 `
 
-const noticias = ["Divulgadas as datas FUVEST 2024", "Divulgadas as datas UNICAMP 2024",
-                  "Inscrições para o Explicaaso começaram!"]
+const noticias = [<li><a href="#">Divulgadas as datas FUVEST 2024</a></li>,
+                    <li><a href="#">Divulgadas as datas UNICAMP 2024</a></li>,
+                    <li><a href="#">Inscrições para o Explicaaso começaram</a></li>,
+                    <li><a href="#">Conheça a nova plataforma do Explicaaso</a></li>
+]
 
 function ContainerInfo(props) {
     let editor = true;

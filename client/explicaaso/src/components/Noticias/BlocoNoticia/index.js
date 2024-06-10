@@ -39,17 +39,19 @@ const LISTA = styled.ul`
 
 const MOBLI = styled.li`
     color: white;
-    list-style: square;
+    list-style: none;
     font-size: 25px;
 
 `
 
 const DSKLI = styled.li`
     color: white;
-    list-style: square;
+    list-style: none;
     font-size: 35px;
 
 `
+
+
 
 
 
@@ -58,7 +60,6 @@ function BlocoNoticia(props) {
         <BlocoInfo $isMobile={props.isMobile}>
             {/* Disposição mobile da página */}
     
-
             {props.isMobile &&
             <MOBLTITLE>{props.titulo}</MOBLTITLE>}
             {props.isMobile && 
