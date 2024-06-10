@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import SideBar from '../SideBar';
 import ContainerMateria from '../Materias';
-import RoteadorFrentes from '../../../RoutesFrentes';
 
 const MOBLINFO = styled.div`
     display: flex;

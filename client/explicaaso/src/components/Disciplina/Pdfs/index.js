@@ -50,7 +50,6 @@ function Avisos(props) {
 
     const listaPdfs = pdfs.map(pdf => (
             <ItemAviso tituloAviso={pdf.titulo} link={pdf.link} idPdf={pdf._id.toString()} onDelete={handleDelete}></ItemAviso>
-
     ))
 
     return (
@@ -58,16 +57,16 @@ function Avisos(props) {
             {
                 props.isMobile &&
                 <AvisosPainel>
-                    <TituloDisciplina tituloDisciplina={props.tituloDisciplina}/>
-                    <ItemAdicionar/>
+                    <TituloDisciplina tituloDisciplina={props.tituloFrente}/>
+                    <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>
                     {listaPdfs}
                 </AvisosPainel>
             }
             {
                 !props.isMobile &&
                 <AvisosPainel>
-                    <TituloDisciplina tituloDisciplina={props.tituloDisciplina}/>
-                    <ItemAdicionar/>
+                    <TituloDisciplina tituloDisciplina={props.tituloFrente}/>
+                    <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>
                     {listaPdfs}
                 </AvisosPainel>
             }
