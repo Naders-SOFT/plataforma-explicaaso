@@ -25,7 +25,13 @@ const TEXTOPOST = styled.p`
     font-size: ${({$isMobile}) => $isMobile ? "20px" : "30px"};
     margin: 5%;
     text-align: ${({$isMobile}) => $isMobile ? "flex-start" : "justify"};
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+
 `
+
 
 const DIVIMG = styled.div`
     display: flex;
@@ -44,6 +50,27 @@ const IMG = styled.img`
     @media(min-width: 768px) and (max-width: 916px){
         display: none;
     }
+`
+
+const LERMAIS = styled.a`
+    color: white;
+    font-size: ${({$isMobile}) => $isMobile ? "30px" : "40px"};
+    margin: 2%;
+    text-align: ${({$isMobile}) => $isMobile ? "flex-start" : "justify"};
+
+    &:link {
+        color: white;
+    }
+
+    &:visited {
+        color: white;
+    }
+
+    &:hover {
+      background-color: #FFCC00;
+    }
+
+   
 `
 
 const EDITBUTTON = styled.button`
@@ -69,6 +96,7 @@ function BlocoBlog(props) {
                 <TEXTOPOST $isMobile={props.isMobile}>{props.textopost}</TEXTOPOST>
                 <IMG src={props.imgSrc} alt={props.imgAlt}/>
             </DIVIMG>
+            <LERMAIS $isMobile={props.isMobile}><a href="#">Leia o texto completo</a></LERMAIS>
             {props.editor && 
             <EDITBUTTON $isMobile={props.isMobile}>Editar</EDITBUTTON>
             }

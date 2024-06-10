@@ -48,7 +48,7 @@ const DSKTEXT = styled.p`
     color: white;
     font-size: 35px;
     margin: 1% 3% 3% 3%;
-
+    
 `
 
 const DSKDIVIMG = styled.div`
