@@ -91,7 +91,7 @@ function PaginaAluno(props) {
     return (
         <ContainerPag>
             {/* <Header isMobile={props.isMobile}/> */}
-            <Informacao isMobile = {props.isMobile} imgPerfil={imgPerfil} botoes={tituloBotoes} materias={imgMaterias} frentes={frentes}/>
+            <Informacao isMobile = {props.isMobile} imgPerfil={imgPerfil} botoes={tituloBotoes} materias={imgMaterias}/>
         </ContainerPag>
     );
 }

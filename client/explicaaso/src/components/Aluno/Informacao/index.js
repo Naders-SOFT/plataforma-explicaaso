@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import SideBar from '../SideBar';
 import ContainerMateria from '../Materias';
+import RoteadorFrentes from '../../../RoutesFrentes';
 
 const MOBLINFO = styled.div`
     display: flex;
@@ -22,21 +23,23 @@ const Container = styled.div`
 function Informacao(props) {
     return (
         <Container>
-            {
-                props.isMobile &&
-                <MOBLINFO>
-                    <SideBar isMobile={props.isMobile} botoes={props.botoes}/>
-                    <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
-                </MOBLINFO>
-            }
-            {
-                !props.isMobile &&
-                <DSKINFO>
-                    <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil} botoes={props.botoes}/>
-                    <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
-                </DSKINFO>
-            }
-
+            {/* <RoteadorFrentes> */}
+            
+                {
+                    props.isMobile &&
+                    <MOBLINFO>
+                        <SideBar isMobile={props.isMobile} botoes={props.botoes}/>
+                        <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
+                    </MOBLINFO>
+                }
+                {
+                    !props.isMobile &&
+                    <DSKINFO>
+                        <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil} botoes={props.botoes}/>
+                        <ContainerMateria isMobile={props.isMobile} materias={props.materias}/>
+                    </DSKINFO>
+                }
+            {/* </RoteadorFrentes> */}
         </Container>
     );
 }
