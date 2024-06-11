@@ -99,6 +99,7 @@ const extensions = [
     — Mom
   </blockquote>
   `
+const content2 = `<p>Auihfuiehiucnie</p>`
 
 function PaginaEditarPost(props) {
     const [titulo, setTitulo] = useState('');
@@ -113,7 +114,7 @@ function PaginaEditarPost(props) {
     }
 
     /**Esse console log demonstra a orde de renderização dos componentes */
-    console.log(texto);
+    // console.log(texto);
   
     return(
         <ContainerPag $isMobile={props.isMobile}>
@@ -121,7 +122,7 @@ function PaginaEditarPost(props) {
             <EditorProvider extensions={extensions} content={content} slotBefore={<MenuBar isMobile={props.isMobile}/>}>
             
             
-                <RichText isMobile={props.isMobile}/>
+                <RichText isMobile={props.isMobile} setValu/>
             
             
             {/* <pre>
