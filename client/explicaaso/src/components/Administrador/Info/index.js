@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import SideBar from '../SideBar';
+import { AlunoList } from '../Gerenciador';
 import { ProfessorList } from '../Gerenciador';
+import React, { useState } from 'react';
 
 const MOBLINFO = styled.div`
     display: flex;
@@ -26,6 +28,21 @@ function Informacao(props) {
         { name: 'Albert', subject: 'Mathematics', date: 'Dec 5' },
         { name: 'Bart', subject: 'Physics', date: 'Dec 5' },
     ];
+
+    const alunos = [
+        { name: 'Isaac', EmailAuthCredential: 'harim@gmail.com', date: 'Dec 5' },
+        { name: 'Bart', email: 'Physics@gmail.com', date: 'Dec 5' },
+    ];
+
+    const [selectedData, setSelectedData] = useState([]);
+    
+    const handleSlection = (type) => {
+        if (type === 'Professor') {
+            setSelectedData(professors);
+        }else if( type == 'Aluno'){
+            setSelectedData(alunos);
+        }
+    }
   
     return (
         <Container>

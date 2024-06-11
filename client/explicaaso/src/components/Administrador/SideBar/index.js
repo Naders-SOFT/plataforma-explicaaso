@@ -4,7 +4,7 @@ const DSKCONTAINERSIDE = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 20vw;
+    height: auto;
     align-items: center;
     justify-content: flex-start;
     float: left;
@@ -92,8 +92,8 @@ function SideBar(props) {
                 props.isMobile &&
                 <MOBLCONTAINERSIDE>
                     <MOBLCONTAINERBOTAO>
-                        <MOBLBOTAO>Alunos</MOBLBOTAO>
-                        <MOBLBOTAO>Professores</MOBLBOTAO>
+                        <MOBLBOTAO onClick={() => props.onSelect("Alunos")}>Alunos</MOBLBOTAO>
+                        <MOBLBOTAO onClick={() => props.onSelect("Professores")}>Professores</MOBLBOTAO>
                         <MOBLBOTAO>Repositório</MOBLBOTAO>
                     </MOBLCONTAINERBOTAO>
                 </MOBLCONTAINERSIDE>
@@ -106,8 +106,8 @@ function SideBar(props) {
                         <Nome>Nome</Nome>
                     </ConatainerPerfil>
                     <DSKCONTAINERBOTAO>
-                        <DSKBOTAO>Alunos</DSKBOTAO>
-                        <DSKBOTAO>Professores</DSKBOTAO>
+                        <DSKBOTAO onClick={() => props.onSelect("Alunos")}>Alunos</DSKBOTAO>
+                        <DSKBOTAO onClick={() => props.onSelect("Professores")}>Professores</DSKBOTAO>
                         <DSKBOTAO>Repositório</DSKBOTAO>
                     </DSKCONTAINERBOTAO>
                 </DSKCONTAINERSIDE>
