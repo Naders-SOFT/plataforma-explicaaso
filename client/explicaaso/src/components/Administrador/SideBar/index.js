@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+
+
 const DSKCONTAINERSIDE = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -86,18 +88,20 @@ const Container = styled.div`
 `
 
 function SideBar(props) {
+
+
     return (
         <Container>
             {
                 props.isMobile &&
                 <MOBLCONTAINERSIDE>
                     <MOBLCONTAINERBOTAO>
-                        <MOBLBOTAO onClick={() => props.onSelect("Alunos")}>Alunos</MOBLBOTAO>
-                        <MOBLBOTAO onClick={() => props.onSelect("Professores")}>Professores</MOBLBOTAO>
+                        <MOBLBOTAO>Alunos</MOBLBOTAO>
+                        <MOBLBOTAO>Professores</MOBLBOTAO>
                         <MOBLBOTAO>Repositório</MOBLBOTAO>
                     </MOBLCONTAINERBOTAO>
                 </MOBLCONTAINERSIDE>
-            }
+            } 
             {
                 !props.isMobile &&
                 <DSKCONTAINERSIDE>
@@ -106,12 +110,12 @@ function SideBar(props) {
                         <Nome>Nome</Nome>
                     </ConatainerPerfil>
                     <DSKCONTAINERBOTAO>
-                        <DSKBOTAO onClick={() => props.onSelect("Alunos")}>Alunos</DSKBOTAO>
-                        <DSKBOTAO onClick={() => props.onSelect("Professores")}>Professores</DSKBOTAO>
+                        <DSKBOTAO>Alunos</DSKBOTAO>
+                        <DSKBOTAO>Professores</DSKBOTAO>
                         <DSKBOTAO>Repositório</DSKBOTAO>
-                    </DSKCONTAINERBOTAO>
+                   </DSKCONTAINERBOTAO>
                 </DSKCONTAINERSIDE>
-            }      
+            }   
         </Container>
     );
 }

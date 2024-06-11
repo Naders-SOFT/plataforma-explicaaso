@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import PaginaCadastro from '../../../pages/PaginaCadastro';
 
 const ContainerAdmin = styled.div`
   display: grid;
@@ -89,39 +91,24 @@ const CadastroDate = styled.span`
 `
 
 // Define the ProfessorList component
-export const ProfessorList = ({ professors }) => {
+const PessoaList = ({ items, itemType }) => {
   return (
     <Container>
       <CadastroListStyled>
-        {professors.map((professor, index) => (
+        {items.map((item, index) => (
           <CadastroItem key={index} style={{ marginLeft: '5%' }}>
-            <CadastroFormat>{professor.name}</CadastroFormat>
-            <CadastroSub style={{marginRight: '30px' }}>{professor.subject}</CadastroSub>
-            <CadastroDate style={{ marginRight: '30px' }}>{professor.date}</CadastroDate>
+            <CadastroFormat>{item.name}</CadastroFormat>
+            <CadastroSub style={{ marginRight: '30px' }}>{itemType === 'alunos' ? item.email : item.subject}</CadastroSub>
+            <CadastroDate style={{ marginRight: '30px' }}>{item.date}</CadastroDate>
             <DSKBotao style={{ gridColumn: '4 / 4', justifySelf: 'end' }}>Remover</DSKBotao>
           </CadastroItem>
         ))}
       </CadastroListStyled>
-      <DSKBotao style={{ marginTop: '10px' ,marginLeft: '5%' }}>Cadastrar</DSKBotao>
+      <Link to="/pagina-admin/cadastro" style={{ textDecoration: 'none' }}>
+        <DSKBotao style={{ marginTop: '10px', marginLeft: '5%' }}>Cadastrar</DSKBotao>
+      </Link>
     </Container>
   );
 };
 
-// Define the ProfessorList component
-export const AlunoList = ({ alunos }) => {
-  return (
-    <Container>
-      <CadastroListStyled>
-        {alunos.map((alunos, index) => (
-          <CadastroItem key={index} style={{ marginLeft: '5%' }}>
-            <CadastroFormat>{alunos.name}</CadastroFormat>
-            <CadastroSub style={{marginRight: '30px' }}>{alunos.email}</CadastroSub>
-            <CadastroDate style={{ marginRight: '30px' }}>{alunos.date}</CadastroDate>
-            <DSKBotao style={{ gridColumn: '4 / 4', justifySelf: 'end' }}>Remover</DSKBotao>
-          </CadastroItem>
-        ))}
-      </CadastroListStyled>
-      <DSKBotao style={{ marginTop: '10px' ,marginLeft: '5%' }}>Cadastrar</DSKBotao>
-    </Container>
-  );
-};
+export default PessoaList;
