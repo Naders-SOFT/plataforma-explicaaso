@@ -1,45 +1,22 @@
 import './styles.css'
 
-import { EditorContent, generateHTML, useCurrentEditor } from '@tiptap/react';
-import Document from '@tiptap/extension-document';
-import Heading from '@tiptap/extension-heading';
-import Paragraph from '@tiptap/extension-paragraph';
-import Text from '@tiptap/extension-text';
-import Bold from '@tiptap/extension-bold';
-import Italic from '@tiptap/extension-italic';
-import Strike from '@tiptap/extension-strike';
-import Underline from '@tiptap/extension-underline';
+import { EditorContent } from '@tiptap/react';
 import styled from 'styled-components';
 import React from 'react';
+import MenuBar from './MenuBar';
 
 const RichTextContainer = styled.div`
-   
+    width: 100%;
+    align-items: center;
+    margin: 1% 0;
+    border: 1px solid gray;
+    border-radius: 4px;
 `
 
-function RichText({ setTexto }) {  
-    const {editor} = useCurrentEditor();
-    
-    if (!editor) {
-        return null;
-    }
-
-    const json = editor.getHTML();
-    console.log(json);
-
-    // setTexto(generateHTML(json, [
-    //     Document,
-    //     Heading,
-    //     Paragraph,
-    //     Text,
-    //     Bold,
-    //     Italic,
-    //     Strike,
-    //     Underline,
-
-    // ]));
-  
+function RichText({ isMobile, editor }) {  
     return (
         <RichTextContainer>
+            <MenuBar isMobile={isMobile} editor={editor} />
             <EditorContent editor={editor}/>
         </RichTextContainer>
     )

@@ -5,14 +5,8 @@ import { FaBold, FaItalic, FaStrikethrough, FaUnderline,
     FaQuoteLeft } from 'react-icons/fa';
 import styled from 'styled-components';
 import React from 'react';
-import { useCurrentEditor } from "@tiptap/react";
 
 const MenuContainer = styled.div`
-    width: 100%;
-    align-items: center;
-    margin: 1% 0;
-    border: 1px solid gray;
-    border-radius: 4px;
     padding: 0.3%;
     display: flex;
     align-items: center;
@@ -42,7 +36,7 @@ ${({$isMobile}) => ($isMobile ? '30%' : '10%')};
 `
 
 function MenuBar(props) {
-    const {editor} = useCurrentEditor();
+    const editor = props.editor;
 
     if (!editor) {
         return null;
