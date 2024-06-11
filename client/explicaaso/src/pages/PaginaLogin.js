@@ -50,6 +50,7 @@ const Submit = styled.button`
 function PaginaLogin(props) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     // Aqui prevenimos o comportamento padrão do navegador ao acontecimento do evento:
@@ -82,13 +83,13 @@ function PaginaLogin(props) {
         // Redireciona o usuário com base no tipo de usuário
         switch (tipoUsuario) {
           case 'aluno':
-            props.navigate('/pagina-aluno');
+            navigate('/pagina-aluno');
             break;
           case 'administrador':
-            props.navigate('/pagina-administrador');
+            navigate('/pagina-administrador');
             break;
           case 'professor':
-            props.navigate('/pagina-professor');
+            navigate('/pagina-professor');
             break;
           default:
             console.error('Tipo de usuário inválido');
