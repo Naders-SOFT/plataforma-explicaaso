@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import CardMateria from '../CardMateria';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Frentes from '../../Disciplina/Frentes';
 
 const MOBLMATERIAS = styled.ul`
     display: flex;
@@ -29,7 +31,12 @@ const Container = styled.div`
 
 function ContainerMateria(props) {
     const materias = props.materias?.map((mat) => (
-        <CardMateria imgSrc={mat.img} materia={mat.materia}/>
+        <div key={mat.materia}> 
+            {/* <Link to='/pagina-aluno/Materias/frentes'> */}
+            <Link to={`/pagina-aluno/${mat.materia}`}>
+                <CardMateria imgSrc={mat.img} materia={mat.materia} />
+            </Link>
+        </div>
     ))
 
     return (

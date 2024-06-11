@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import PaginaBlogPost from './pages/pagina-blog-postagem';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Roteador from './Routes'
+import PaginaBlogPost from './pages/PaginaBlogPostagem';
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
@@ -11,6 +13,7 @@ import PaginaCadastro from './pages/PaginaCadastro';
 
 import RichText from './components/EditorTexto/RichText';
 import PaginaEditarPost from './pages/PaginaEditarPost'
+import Frentes from './components/Disciplina/Frentes';
 
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
@@ -63,11 +66,16 @@ function App() {
     // de styled-components algumas linhas acima.
     <AppContainer>
       <GlobalStyle/>
-      <Header isMobile={isMobile}/>
+      <Router>
+        <Header isMobile={isMobile}/>
+        <Roteador isMobile={isMobile}/>
+      </Router>
+      {/* <PaginaDisciplina isMobile={isMobile}/> */}
+      {/* <Header isMobile={isMobile}/> */}
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <PaginaCadastro></PaginaCadastro> */}
       {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
-      <Footer isMobile={isMobile}/>
+      {/* <Footer isMobile={isMobile}/> */}
     </AppContainer>
   );
 }
