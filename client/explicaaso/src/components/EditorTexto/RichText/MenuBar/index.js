@@ -4,10 +4,15 @@ import { FaBold, FaItalic, FaStrikethrough, FaUnderline,
     FaHeading, FaListUl, FaListOl, FaUndo, FaRedo, 
     FaQuoteLeft } from 'react-icons/fa';
 import styled from 'styled-components';
-import React, { useContext } from 'react';
-import { RTContext } from "../../../../pages/PaginaEditarPost";
+import React from 'react';
+import { useCurrentEditor } from "@tiptap/react";
 
 const MenuContainer = styled.div`
+    width: 100%;
+    align-items: center;
+    margin: 1% 0;
+    border: 1px solid gray;
+    border-radius: 4px;
     padding: 0.3%;
     display: flex;
     align-items: center;
@@ -37,7 +42,7 @@ ${({$isMobile}) => ($isMobile ? '30%' : '10%')};
 `
 
 function MenuBar(props) {
-    const editor = useContext(RTContext);
+    const {editor} = useCurrentEditor();
 
     if (!editor) {
         return null;

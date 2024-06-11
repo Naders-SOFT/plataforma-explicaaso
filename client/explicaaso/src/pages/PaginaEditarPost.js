@@ -1,10 +1,11 @@
-import { createContext, useState } from "react";
+import { useState } from "react";
 import RichText from "../components/EditorTexto/RichText";
 import styled from "styled-components";
-import { useCurrentEditor, useEditor } from "@tiptap/react";
+import { EditorProvider } from "@tiptap/react";
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import MenuBar from "../components/EditorTexto/RichText/MenuBar";
 
 const ContainerPag = styled.div`
     width: 1 vw;
@@ -19,7 +20,7 @@ const Titulo = styled.input`
     width: 100%;
     margin: 1% 0;
     border: 1px solid gray;
-    border-radius: 3px;
+    border-radius: 4px;
     background: whitesmoke;
     font-size: 28px;
     display: flex;
@@ -99,40 +100,37 @@ const extensions = [
   </blockquote>
   `
 
-export const RTContext = createContext();
-
 function PaginaEditarPost(props) {
     const [titulo, setTitulo] = useState('');
-    const editor = useEditor({
-        extensions,
-        content,
-    });
-
-    //let navigate = useNavigate();
-
+    const [texto, setTexto] = useState('');
+    const navigate = useNavigate();
+  
     const criarPost = async () => {
-        /* Comunicação com o BD */
 
-      //  navigate("/pagina-blog");
+
+      /* Comunicação com o BD */
+      navigate("/pagina-blog");
     }
 
     /**Esse console log demonstra a orde de renderização dos componentes */
-    console.log(editor ? true : false);
-
+    console.log(texto);
+  
     return(
         <ContainerPag $isMobile={props.isMobile}>
-            <Titulo placeholder="Título do Post" onChange={(e) => {setTitulo(e.target.value);}}/>
+          <Titulo placeholder="Título do Post" onChange={(e) => {setTitulo(e.target.value);}}/>
+            <EditorProvider extensions={extensions} content={content} slotBefore={<MenuBar isMobile={props.isMobile}/>}>
             
-            <RTContext.Provider value={editor}>
-                <RichText isMobile={props.isMobile} />
-            </RTContext.Provider>
             
+                <RichText isMobile={props.isMobile}/>
+            
+            
+            {/* <pre>
+            { texto != null && texto }
+            </pre> */}
+            </EditorProvider>
             <ContainerBotao>
                 <Botao $isMobile={props.isMobile} onClick={criarPost}>Postar</Botao>
             </ContainerBotao>
-            {/* <pre>
-            { editor != null && editor.getHTML() }
-            </pre> */}
         </ContainerPag>
     );
 }

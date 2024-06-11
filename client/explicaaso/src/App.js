@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-<<<<<<< HEAD
-import PaginaBlogPost from './pages/pagina-blog-postagem';
+import PaginaBlogPost from './pages/PaginaBlogPostagem';
 import PaginaNoticias from './pages/PaginaNoticias';
-=======
 import { BrowserRouter as Router } from 'react-router-dom';
 import Roteador from './Routes'
-import PaginaBlogPost from './pages/PaginaBlogPostagem';
->>>>>>> main
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
@@ -73,16 +69,17 @@ function App() {
       <GlobalStyle/>
       <Router>
         <Header isMobile={isMobile}/>
-        <Roteador isMobile={isMobile}/> 
-        <PaginaBlogPost isMobile={isMobile}/>
-        {/* <PaginaNoticias isMobile={isMobile}/> */}
+        <Roteador isMobile={isMobile}/>
+        <PaginaEditarPost isMobile={isMobile}/> 
+        <Footer isMobile={isMobile}/>
       </Router>
-      {/* <PaginaDisciplina isMobile={isMobile}/> */}
+      {/* <PaginaBlogPost isMobile={isMobile}/> */}
+      {/* <PaginaNoticias isMobile={isMobile}/>
+      <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <Header isMobile={isMobile}/> */}
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <PaginaCadastro></PaginaCadastro> */}
       {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
-      {/* <Footer isMobile={isMobile}/> */}
     </AppContainer>
   );
 }
