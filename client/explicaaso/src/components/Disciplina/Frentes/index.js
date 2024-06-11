@@ -53,7 +53,6 @@ const StyledButton = styled.button`
 
 const StyledH1 = styled.h1`
   color: #FF6600;
-  background-color: black;
   font-family: Inter;
 `;
 
