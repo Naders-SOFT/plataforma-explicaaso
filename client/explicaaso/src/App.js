@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import AuthProvider from './components/Auth/AuthContext';
 import Roteador from './Routes'
 import PaginaBlogPost from './pages/PaginaBlogPostagem';
 import Header from './components/Head/Header';
@@ -64,19 +65,21 @@ function App() {
     // inteira.
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
-    <AppContainer>
-      <GlobalStyle/>
-      <Router>
-        <Header isMobile={isMobile}/>
-        <Roteador isMobile={isMobile}/>
-      </Router>
-      {/* <PaginaDisciplina isMobile={isMobile}/> */}
-      {/* <Header isMobile={isMobile}/> */}
-      {/* <PaginaDisciplina isMobile={isMobile}/> */}
-      {/* <PaginaCadastro></PaginaCadastro> */}
-      {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
-      {/* <Footer isMobile={isMobile}/> */}
-    </AppContainer>
+    <AuthProvider>
+      <AppContainer>
+        <GlobalStyle/>
+        <Router>
+          <Header isMobile={isMobile}/>
+          <Roteador isMobile={isMobile}/>
+        </Router>
+        {/* <PaginaDisciplina isMobile={isMobile}/> */}
+        {/* <Header isMobile={isMobile}/> */}
+        {/* <PaginaDisciplina isMobile={isMobile}/> */}
+        {/* <PaginaCadastro></PaginaCadastro> */}
+        {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
+        {/* <Footer isMobile={isMobile}/> */}
+      </AppContainer>
+    </AuthProvider>
   );
 }
 

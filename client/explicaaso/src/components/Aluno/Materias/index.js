@@ -29,13 +29,20 @@ const Container = styled.div`
     width: 100%;
 `
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-family: Inter;
+  font-size: 120%;
+`
+
 function ContainerMateria(props) {
     const materias = props.materias?.map((mat) => (
         <div key={mat.materia}> 
             {/* <Link to='/pagina-aluno/Materias/frentes'> */}
-            <Link to={`/pagina-aluno/${mat.materia}`}>
+            <StyledLink to={`/pagina-aluno/${mat.materia}`}>
                 <CardMateria imgSrc={mat.img} materia={mat.materia} />
-            </Link>
+            </StyledLink>
         </div>
     ))
 

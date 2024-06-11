@@ -1,7 +1,8 @@
 import InputComponent from "../components/Login/InputComponent/InputComponent";
 import styled from 'styled-components';
 import axios from "axios"
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from '../components/Auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const ContainerPag = styled.div`
@@ -50,6 +51,8 @@ const Submit = styled.button`
 function PaginaLogin(props) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     // Aqui prevenimos o comportamento padrão do navegador ao acontecimento do evento:
@@ -76,19 +79,18 @@ function PaginaLogin(props) {
         const tipoUsuario = response.data.tipoUsuario;
         
         // Armazena o token no localStorage:
-        localStorage.setItem('token', token);
-        localStorage.setItem('tipoUsuario', tipoUsuario);
+        login(token, tipoUsuario);
 
         // Redireciona o usuário com base no tipo de usuário
         switch (tipoUsuario) {
           case 'aluno':
-            props.navigate('/pagina-aluno');
+            navigate('/pagina-aluno');
             break;
           case 'administrador':
-            props.navigate('/pagina-administrador');
+            navigate('/pagina-administrador');
             break;
           case 'professor':
-            props.navigate('/pagina-professor');
+            navigate('/pagina-professor');
             break;
           default:
             console.error('Tipo de usuário inválido');
