@@ -11,8 +11,10 @@ import PaginaContato from '../../../pages/PaginaContato';
 import PaginaBlog from '../../../pages/PaginaBlog';
 import PaginaAluno from '../../../pages/PaginaAluno';
 import PaginaInicial from '../../../pages/PaginaInicial';
-import PaginaAdministrador from '../../../pages/PaginaAdministrador';
-import PaginaDisciplina from '../../../pages/PaginaDisciplina';
+
+// mudança
+import PaginaCadastro from '../../../pages/PaginaCadastro';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -23,6 +25,7 @@ import PaginaAdmin from '../../../pages/PaginaAdministrador';
 
 const ContainerPag = styled.div`
     width: 100%;
+    margin: 0;
 `
 
 const HeaderContainer = styled.div`
@@ -32,6 +35,7 @@ const HeaderContainer = styled.div`
     height: ${({$isMobile}) => ($isMobile ? "78px" : "90px")};
     align-items: center;
     justify-content: space-between;
+    margin: 0;
 `
 
 function Header(props) {
@@ -59,10 +63,7 @@ function Header(props) {
                     <Route path='/pagina-contato' element={<PaginaContato isMobile={props.isMobile}/>} />
                     <Route path='/pagina-noticias' element={<PaginaNoticias isMobile={props.isMobile}/>} />
                     <Route path='/pagina-blog' element={<PaginaBlog isMobile={props.isMobile}/>} />
-                    <Route path='/login' element={<PaginaLogin isMobile={props.isMobile} navigate={useNavigate}/>} />
-                    <Route path='/pagina-administrador' element={<PaginaAdministrador isMobile={props.isMobile}/>} />
-                    <Route path='/pagina-professor' element={<PaginaDisciplina isMobile={props.isMobile}/>} />
-                    <Route path='/pagina-aluno' element={<PaginaAluno isMobile={props.isMobile}/>} />
+                    <Route path='/login' element={<PaginaLogin isMobile={props.isMobile}/>} />   
                 </Routes>
             </Router>
         </ContainerPag>
