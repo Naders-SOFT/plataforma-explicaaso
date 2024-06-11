@@ -2,7 +2,7 @@ import { uploadFile, deleteFile } from '../s3.js'
 import blogPost from '../models/blogPost.models.js'
 
 export const createBlogPost = async (req, res) => {
-
+    console.log(req.body);
     try {
         const postNovo = new blogPost({
             titulo: req.body.titulo,
@@ -12,12 +12,12 @@ export const createBlogPost = async (req, res) => {
             imagem: req.body.imagem
         })
 
-        await blogPost.save()
+        await postNovo.save();
         
         // Upload da imagem no minio
-        await uploadFile(req.file.buffer, 
-                        postNovo._id.toString(), 
-                        req.file.mimetype);
+        // await uploadFile(req.file.buffer, 
+        //                 postNovo._id.toString(), 
+        //                 req.file.mimetype);
 
         res.status(201).send();
     }
@@ -30,6 +30,7 @@ export const createBlogPost = async (req, res) => {
 }
 
 export async function listblogPosts(req, res) {
+    console.log(req);
     try {
       const posts = await blogPost.find({});
   

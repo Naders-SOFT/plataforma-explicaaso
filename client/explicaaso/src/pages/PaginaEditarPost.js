@@ -8,6 +8,7 @@ import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import Placeholder from '@tiptap/extension-placeholder';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const ContainerPag = styled.div`
     width: 1 vw;
@@ -79,11 +80,28 @@ function PaginaEditarPost(props) {
       }
     );
   
-    const criarPost = async () => {
-      console.log(texto);
+    const criarPost = async (e) => {
+      e.preventDefault();
 
-      /* Comunicação com o BD */
-      // navigate("/pagina-blog");
+      await axios.post('http://localhost:3003/blog/post',
+        {
+          titulo: titulo,
+          texto: texto,
+          autor: 'aiueh',
+          imagem: ''
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+        .then(() => {
+          console.log('Feito o envio');
+          navigate('/pagina-blog');
+        })
+        .catch((error) => {
+          console.error('Error submitting post', error);
+        });
     }
   
     return(
