@@ -3,6 +3,7 @@ import multer from 'multer';
 import cors from 'cors';
 import pdfRoutes from './routes/pdf.routes.js';
 import userRoutes from './routes/user.routes.js';
+import blogRoutes from './routes/blog.routes.js';
 import db from './config/dbConnect.js';
 import dotenv from 'dotenv';
 
@@ -37,6 +38,7 @@ app.use(cors());
 // Rotas:
 app.use('/pdf', pdfRoutes); 
 app.use('/user', userRoutes);
+app.use('/blog', blogRoutes);
 
 app.listen(3003,  () => {
     console.log('Servidor ouvindo na porta 3003.');

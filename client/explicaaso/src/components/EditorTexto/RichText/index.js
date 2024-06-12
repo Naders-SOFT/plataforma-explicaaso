@@ -1,25 +1,22 @@
 import './styles.css'
 
-import { EditorContent, EditorProvider } from '@tiptap/react';
+import { EditorContent } from '@tiptap/react';
 import styled from 'styled-components';
-import React, { useContext } from 'react';
+import React from 'react';
 import MenuBar from './MenuBar';
-import { RTContext } from '../../../pages/PaginaEditarPost';
 
 const RichTextContainer = styled.div`
     width: 100%;
     align-items: center;
     margin: 1% 0;
     border: 1px solid gray;
-    border-radius: 0.5%;
+    border-radius: 4px;
 `
 
-function RichText(props) {  
-    const editor = useContext(RTContext);
-
+function RichText({ isMobile, editor }) {  
     return (
         <RichTextContainer>
-            <MenuBar isMobile={props.isMobile} editor={editor}/>
+            <MenuBar isMobile={isMobile} editor={editor} />
             <EditorContent editor={editor}/>
         </RichTextContainer>
     )

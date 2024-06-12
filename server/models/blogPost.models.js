@@ -17,7 +17,7 @@ const blogPostSchema = new mongoose.Schema({
         type: Date, required: true
     },
     imagem: {
-        type: Image
+        type: String
     }
 }, {versionKey: false});
 

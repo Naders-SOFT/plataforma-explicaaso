@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import PaginaBlogPost from './pages/PaginaBlogPostagem';
+import PaginaNoticias from './pages/PaginaNoticias';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AuthProvider from './components/Auth/AuthContext';
 import Roteador from './Routes'
-import PaginaBlogPost from './pages/PaginaBlogPostagem';
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
