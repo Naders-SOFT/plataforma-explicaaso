@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import BlocoNoticia from "../BlocoNoticia";
-import BlocoGaleria from "../BlocoGaleria";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
 
 const ContainerPag = styled.div`
@@ -12,26 +11,57 @@ const ContainerPag = styled.div`
 
 `
 
-const noticias = ["Divulgadas as datas FUVEST 2024", "Divulgadas as datas UNICAMP 2024",
-                  "Inscrições para o Explicaaso começaram!"]
+const TITLEPAG = styled.h2`
+    color: #FF6600;
+    font-size: 40px;
+    width: 100%;
+    
+    text-align: center;
+    margin: ${($isMobile) => $isMobile ? "5%" : "3% 5% 0% 5%"};
+    bottom: ${($isMobile) => $isMobile ? "3%" : "auto"};
+`
+
+const BTDIV = styled.div`
+    width: ${({$isMobile}) => ($isMobile ? '70%' : '90%')};
+    display: flex;
+    alig-items: center;
+    justify-content: flex-end;
+`
+
+const BTADICIONAR = styled.button`
+    width: 25%;
+    margin: 0 1%;
+    padding: ${({$isMobile}) => $isMobile ? "1% 0" : "1% 0"};
+    background-color: #FFCC00;
+    border: none;
+    border-radius: 10px;
+    color: #003466;
+    font-size: ${({$isMobile}) => $isMobile ? "20px" : "30px"};
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+`
+
+const noticias = [<li><a href="#">Divulgadas as datas FUVEST 2024</a></li>,
+                    <li><a href="#">Divulgadas as datas UNICAMP 2024</a></li>,
+                    <li><a href="#">Inscrições para o Explicaaso começaram</a></li>,
+                    <li><a href="#">Conheça a nova plataforma do Explicaaso</a></li>
+]
 
 function ContainerInfo(props) {
+    let editor = true;
+    
     return (
         <ContainerPag>
+            <TITLEPAG $isMobile={props.isMobile}>Notícias</TITLEPAG>
+            <BTDIV $isMobile={props.isMobile}>
+                <BTADICIONAR $isMobile={props.isMobile}>Criar Notícia</BTADICIONAR>
+            </BTDIV>
             <BlocoNoticia
             isMobile={props.isMobile}
-            // imgSrc={placeholder}
-            // imgAlt="placeholder"
-            titulo="Notícias"
             noticias = {noticias}
+            editor = {editor}
              />
-
-            <BlocoGaleria
-            isMobile={props.isMobile}
-            imgSrc={placeholder}
-            imgAlt="placeholder"
-            titulo="Galeria de Aprovados"
-            />
 
         </ContainerPag>
     )
