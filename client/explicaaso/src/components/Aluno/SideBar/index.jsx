@@ -85,15 +85,13 @@ const Container = styled.div`
     width: 100%;
 `
 
-
-
 function SideBar(props) {
-    const listaBotoesMobile = props.botoes?.map((botao) => (
-        <MOBLBOTAO>{botao.titulo}</MOBLBOTAO>
+    const listaBotoesMobile = props.botoes?.map((botao, index) => (
+        <MOBLBOTAO key={index}>{botao.titulo}</MOBLBOTAO>
     ))
 
-    const listaBotoesDesk = props.botoes?.map((botao) => (
-        <DSKBOTAO>{botao.titulo}</DSKBOTAO>
+    const listaBotoesDesk = props.botoes?.map((botao, index) => (
+        <DSKBOTAO key={index}>{botao.titulo}</DSKBOTAO>
     ))
 
     return (
