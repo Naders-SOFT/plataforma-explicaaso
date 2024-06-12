@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Roteador from './Routes'
 import PaginaBlogPost from './pages/PaginaBlogPostagem';
+import PaginaNoticias from './pages/PaginaNoticias';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AuthProvider from './components/Auth/AuthContext';
+import Roteador from './Routes'
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
 import { createGlobalStyle } from 'styled-components';
@@ -64,19 +66,21 @@ function App() {
     // inteira.
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
-    <AppContainer>
-      <GlobalStyle/>
-      <Router>
-        <Header isMobile={isMobile}/>
-        <Roteador isMobile={isMobile}/>
-      </Router>
-      {/* <PaginaDisciplina isMobile={isMobile}/> */}
-      {/* <Header isMobile={isMobile}/> */}
-      {/* <PaginaDisciplina isMobile={isMobile}/> */}
-      {/* <PaginaCadastro></PaginaCadastro> */}
-      {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
-      {/* <Footer isMobile={isMobile}/> */}
-    </AppContainer>
+    <AuthProvider>
+      <AppContainer>
+        <GlobalStyle/>
+        <Router>
+          <Header isMobile={isMobile}/>
+          <Roteador isMobile={isMobile}/>
+        </Router>
+        {/* <PaginaDisciplina isMobile={isMobile}/> */}
+        {/* <Header isMobile={isMobile}/> */}
+        {/* <PaginaDisciplina isMobile={isMobile}/> */}
+        {/* <PaginaCadastro></PaginaCadastro> */}
+        {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
+        {/* <Footer isMobile={isMobile}/> */}
+      </AppContainer>
+    </AuthProvider>
   );
 }
 
