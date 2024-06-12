@@ -2,6 +2,7 @@ import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 import '../../EditorTexto/RichText/styles.css'
 
+
 const BlocoInfo = styled.div`
   align-items: center;
   background-color: #f8f8f8;
