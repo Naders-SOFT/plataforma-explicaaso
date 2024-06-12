@@ -14,7 +14,6 @@ const ContainerPag = styled.div`
 function PaginaAdmin(props) {
     return (
         <ContainerPag>
-            <Header isMobile={props.isMobile}/>
             <Informacao isMobile = {props.isMobile} imgPerfil={imgPerfil}/>      
         </ContainerPag>
 

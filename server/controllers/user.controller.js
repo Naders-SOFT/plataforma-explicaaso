@@ -89,7 +89,9 @@ export async function signinUser(req, res) {
       {
         message: "Autenticação realizada com sucesso", 
         token: token,
-        tipoUsuario: user.tipo
+        tipoUsuario: user.tipo,
+        nome: user.nome,
+        sobrenome: user.sobrenome
       });
     console.log("Login realizado");
     
