@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-/**
- * Container das informações do cursinho.
- */
+
 const BlocoInfo = styled.div`
   align-items: center;
   background-color: #f8f8f8;
