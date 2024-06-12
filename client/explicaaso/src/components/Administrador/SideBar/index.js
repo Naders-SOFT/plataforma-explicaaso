@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import React from "react";
+
 
 
 
@@ -88,7 +90,9 @@ const Container = styled.div`
 `
 
 function SideBar(props) {
-
+    const handleButtonClick = (type) => {
+        props.handleSelectedType(type);
+    };
 
     return (
         <Container>
@@ -96,10 +100,10 @@ function SideBar(props) {
                 props.isMobile &&
                 <MOBLCONTAINERSIDE>
                     <MOBLCONTAINERBOTAO>
-                        <MOBLBOTAO>Alunos</MOBLBOTAO>
-                        <MOBLBOTAO>Professores</MOBLBOTAO>
-                        <MOBLBOTAO>Repositório</MOBLBOTAO>
-                    </MOBLCONTAINERBOTAO>
+                        <MOBLBOTAO onClick={() => handleButtonClick('Alunos')}>Alunos</MOBLBOTAO>
+                        <MOBLBOTAO onClick={() => handleButtonClick('Professores')}>Professores</MOBLBOTAO>
+                        <MOBLBOTAO onClick={() => handleButtonClick('Repositório')}>Repositório</MOBLBOTAO>
+                     </MOBLCONTAINERBOTAO>
                 </MOBLCONTAINERSIDE>
             } 
             {
@@ -110,10 +114,10 @@ function SideBar(props) {
                         <Nome>Nome</Nome>
                     </ConatainerPerfil>
                     <DSKCONTAINERBOTAO>
-                        <DSKBOTAO>Alunos</DSKBOTAO>
-                        <DSKBOTAO>Professores</DSKBOTAO>
-                        <DSKBOTAO>Repositório</DSKBOTAO>
-                   </DSKCONTAINERBOTAO>
+                        <DSKBOTAO onClick={() => handleButtonClick('Alunos')}>Alunos</DSKBOTAO>
+                        <DSKBOTAO onClick={() => handleButtonClick('Professores')}>Professores</DSKBOTAO>
+                        <DSKBOTAO onClick={() => handleButtonClick('Repositório')}>Repositório</DSKBOTAO>
+                    </DSKCONTAINERBOTAO>
                 </DSKCONTAINERSIDE>
             }   
         </Container>
