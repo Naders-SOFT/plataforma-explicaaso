@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import SideBar from '../SideBar';
 import PessoaList from '../Gerenciador';
-import React, { useState } from 'react';
+import React, { useState } from 'react' ;
+
 
 const MOBLINFO = styled.div`
     display: flex;
@@ -22,6 +23,8 @@ const Container = styled.div`
 
 
 function Informacao(props) {
+    const [selectedType, setSelectedType] = useState("Alunos"); // Estado inicial para o tipo selecionado
+
 
     const lista_professors = [
         { name: 'Albert', subject: 'Mathematics', date: 'Dec 5' },
@@ -33,7 +36,12 @@ function Informacao(props) {
         { name: 'Bart', email: 'Physics@gmail.com', date: 'Dec 5' },
     ];
 
-    const selectedData = props.type === 'Professores' ? lista_professors : lista_alunos;
+    const handleSelectedType = (type) => {
+        setSelectedType(type);
+    };
+    
+    const selectedData = selectedType === 'Professores' ? lista_professors : lista_alunos;
+
 
     // definindo retorno como side bar e ao lado a lista de pessoas (professores ou alunos)
     return (
@@ -42,14 +50,14 @@ function Informacao(props) {
                 props.isMobile ?
                 (
                     <MOBLINFO>
-                        <SideBar isMobile={props.isMobile} />
-                        <PessoaList items={selectedData} itemType={props.type === 'Professores' ? 'professors' : 'alunos'} />
+                        <SideBar isMobile={props.isMobile} handleSelectedType={handleSelectedType} />
+                        <PessoaList items={selectedData} itemType={selectedType === 'Professores' ? 'professors' : 'alunos'} />
                         </MOBLINFO>
                 ) :
                 (
                     <DSKINFO>
-                        <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil} />
-                        <PessoaList items={selectedData} itemType={props.type === 'Professores' ? 'professors' : 'alunos'} />
+                        <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil}  handleSelectedType={handleSelectedType} />
+                        <PessoaList items={selectedData} itemType={selectedType === 'Professores' ? 'professors' : 'alunos'} />
                         </DSKINFO>
                 )
             }
