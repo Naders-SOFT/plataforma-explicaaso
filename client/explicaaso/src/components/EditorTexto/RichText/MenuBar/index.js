@@ -4,8 +4,7 @@ import { FaBold, FaItalic, FaStrikethrough, FaUnderline,
     FaHeading, FaListUl, FaListOl, FaUndo, FaRedo, 
     FaQuoteLeft } from 'react-icons/fa';
 import styled from 'styled-components';
-import React, { useContext } from 'react';
-import { RTContext } from "../../../../pages/PaginaEditarPost";
+import React from 'react';
 
 const MenuContainer = styled.div`
     padding: 0.3%;
@@ -37,7 +36,7 @@ ${({$isMobile}) => ($isMobile ? '30%' : '10%')};
 `
 
 function MenuBar(props) {
-    const editor = useContext(RTContext);
+    const editor = props.editor;
 
     if (!editor) {
         return null;

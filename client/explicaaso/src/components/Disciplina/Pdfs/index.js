@@ -48,8 +48,8 @@ function Avisos(props) {
         })
     }
 
-    const listaPdfs = pdfs.map(pdf => (
-            <ItemAviso tituloAviso={pdf.titulo} link={pdf.link} idPdf={pdf._id.toString()} onDelete={handleDelete}></ItemAviso>
+    const listaPdfs = pdfs.map((pdf, index) => (
+            <ItemAviso key={index} tituloAviso={pdf.titulo} link={pdf.link} idPdf={pdf._id.toString()} onDelete={handleDelete}></ItemAviso>
     ))
 
     return (

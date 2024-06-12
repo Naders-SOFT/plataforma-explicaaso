@@ -25,7 +25,13 @@ const TEXTOPOST = styled.p`
     font-size: ${({$isMobile}) => $isMobile ? "20px" : "30px"};
     margin: 5%;
     text-align: ${({$isMobile}) => $isMobile ? "flex-start" : "justify"};
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+
 `
+
 
 const DIVIMG = styled.div`
     display: flex;
@@ -46,7 +52,28 @@ const IMG = styled.img`
     }
 `
 
-const EDITBUTTON = styled.button`
+const LERMAIS = styled.a`
+    color: white;
+    font-size: ${({$isMobile}) => $isMobile ? "30px" : "40px"};
+    margin: 2%;
+    text-align: ${({$isMobile}) => $isMobile ? "flex-start" : "justify"};
+
+    &:link {
+        color: white;
+    }
+
+    &:visited {
+        color: white;
+    }
+
+    &:hover {
+      background-color: #FFCC00;
+    }
+
+   
+`
+
+const BUTTON = styled.button`
     width: 20%;
     margin: ${({$isMobile}) => $isMobile ? "3% 0" : "3% 0"};
     padding: ${({$isMobile}) => $isMobile ? "1% 0" : "1% 0"};
@@ -69,8 +96,9 @@ function BlocoBlog(props) {
                 <TEXTOPOST $isMobile={props.isMobile}>{props.textopost}</TEXTOPOST>
                 <IMG src={props.imgSrc} alt={props.imgAlt}/>
             </DIVIMG>
+            <BUTTON $isMobile={props.isMobile}>Ler mais</BUTTON>
             {props.editor && 
-            <EDITBUTTON $isMobile={props.isMobile}>Editar</EDITBUTTON>
+            <BUTTON $isMobile={props.isMobile}>Editar</BUTTON>
             }
         </BlocoInfo>
     );
