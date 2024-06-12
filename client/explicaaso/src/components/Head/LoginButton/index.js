@@ -1,8 +1,9 @@
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useContext } from 'react';
+import { AuthContext } from '../../Auth/AuthContext';
 
-
-const LoginButtonContainer = styled(Link)`
+const LoginButtonContainer = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,9 +34,21 @@ const LoginButtonContainer = styled(Link)`
 
 
 function LoginButton() {
+  const { isAuthenticated, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (isAuthenticated) {
+      logout();
+      navigate('/');
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
-    <LoginButtonContainer to='/login' $activeStyle >
-      <p>Log in</p>
+    <LoginButtonContainer onClick={handleClick}>
+      <p>{isAuthenticated ? 'Log out' : 'Log in'}</p>
     </LoginButtonContainer>
   );
 }

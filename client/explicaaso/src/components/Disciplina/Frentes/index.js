@@ -1,7 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import SideBar from '../../Aluno/SideBar';
 
 import gramatica from '../../../images/frentes/gra.jpeg';
 import literatura from '../../../images/frentes/lit.jpeg';
@@ -49,14 +49,11 @@ const StyledButton = styled.button`
   &:hover {
     background-color: #002549;
   }
-
-  @media (max-width: 768px) {
-    width: 80%;
-  }
 `;
 
 const StyledH1 = styled.h1`
   color: #FF6600;
+  font-family: Inter;
 `;
 
 const StyledItemContainer = styled.div`
@@ -71,67 +68,133 @@ const StyledContentContainer = styled.div`
 
   /* Add styles for image */
   & > img {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     margin-right: 10px;
     border-radius: 50%;
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+`;
+
 const frentes = [
-    { name: 'gramatica', image: gramatica, materia: 'Gramática'},
-    { name: 'literatura', image: literatura , materia: 'Literatura'},
-    { name: 'interpretacao', image: interpretacao, materia: 'Gramática' },
-    { name: 'ingles', image: ingles , materia: 'Gramática'},
-    { name: 'redacao', image: redacao, materia: 'Gramática' },
-    { name: 'his1', image: his1, materia: 'História' },
-    { name: 'his2', image: his2 , materia: 'História'},
-    { name: 'geo1', image: geo1 , materia: 'Geografia'},
-    { name: 'geo2', image: geo2, materia: 'Geografia' },
-    { name: 'fil', image: fil, materia: 'Filosofia'  },
-    { name: 'soc', image: soc, materia: 'Sociologia' },
-    { name: 'bio1', image: bio1, materia: 'Biologia' },
-    { name: 'bio2', image: bio2, materia: 'Biologia' },
-    { name: 'bio3', image: bio3, materia: 'Biologia' },
-    { name: 'fis1', image: fis1, materia: 'Física' },
-    { name: 'fis2', image: fis2, materia: 'Física' },
-    { name: 'fis3', image: fis3, materia: 'Física' },
-    { name: 'qui1', image: qui1, materia: 'Química' },
-    { name: 'qui2', image: qui2, materia: 'Química' },
-    { name: 'qui3', image: qui3, materia: 'Química' },
-    { name: 'mat1', image: mat1, materia: 'Matemática' },
-    { name: 'mat2', image: mat2, materia: 'Matemática' },
-    { name: 'mat3', image: mat3, materia: 'Matemática' },
+    { name: 'Gramática', image: gramatica, materia: 'Gramática'},
+    { name: 'Literatura', image: literatura , materia: 'Literatura'},
+    { name: 'Interpretação', image: interpretacao, materia: 'Gramática' },
+    { name: 'Inglês', image: ingles , materia: 'Gramática'},
+    { name: 'Redação', image: redacao, materia: 'Gramática' },
+    { name: 'História do Brasil', image: his1, materia: 'História' },
+    { name: 'História Geral', image: his2 , materia: 'História'},
+    { name: 'Geografia do Brasil', image: geo1 , materia: 'Geografia'},
+    { name: 'Geografia Geral', image: geo2, materia: 'Geografia' },
+    { name: 'Filosofia', image: fil, materia: 'Filosofia'  },
+    { name: 'Sociologia', image: soc, materia: 'Sociologia' },
+    { name: 'Biologia1', image: bio1, materia: 'Biologia' },
+    { name: 'Biologia2', image: bio2, materia: 'Biologia' },
+    { name: 'Biologia3', image: bio3, materia: 'Biologia' },
+    { name: 'Física1', image: fis1, materia: 'Física' },
+    { name: 'Física2', image: fis2, materia: 'Física' },
+    { name: 'Física3', image: fis3, materia: 'Física' },
+    { name: 'Química1', image: qui1, materia: 'Química' },
+    { name: 'Química2', image: qui2, materia: 'Química' },
+    { name: 'Química3', image: qui3, materia: 'Química' },
+    { name: 'Matemática1', image: mat1, materia: 'Matemática' },
+    { name: 'Matemática2', image: mat2, materia: 'Matemática' },
+    { name: 'Matemática3', image: mat3, materia: 'Matemática' },
 ];
+
+const Card = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const NomeFrente = styled.h1`
+    font-size: 140%;
+    font-family: Inter;
+`
+
+const MOBLINFO = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+`
+
+const DSKINFO = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    flex-wrap: wrap;
+    gap: 2%;
+`
+
+const botoes = [
+    { titulo: 'Matérias'},
+    { titulo: 'Provas'},
+    { titulo: 'Simulados'}
+]
 
 const FrenteButton = ({ frente }) => {
   return (
     <StyledButton>
-      <StyledContentContainer>
-        <Link to={`/pagina-aluno/${frente.materia}/${frente.name}`}>
-            <img src={frente.image} alt={frente.name} />
-            {frente.name}
-        </Link>
-      </StyledContentContainer>
+        <StyledContentContainer>
+            <StyledLink to={`/pagina-aluno/${frente.materia}/${frente.name}`}>
+                <Card>
+                    <NomeFrente>{frente.name}</NomeFrente>
+                    <img src={frente.image} alt={frente.name} />
+                </Card>
+            </StyledLink>
+        </StyledContentContainer>
     </StyledButton>
   );
 };
 
-const Frentes = () => {
+const Frentes = (props) => {
   const mat = useParams()
   const frentesBotoes = frentes
-    .filter(frente => frente.materia === mat.materias)
-    .map((frente, index) => (
-          <FrenteButton key={index} frente={frente} />
-    ))
+        .filter(frente => frente.materia === mat.materias)
+        .map((frente, index) => (
+            <FrenteButton key={index} frente={frente} />
+        ))
     console.log(frentesBotoes)
   return (
-    <StyledContainer>
-      <StyledH1>Frentes</StyledH1>
-      <StyledItemContainer>
-        {frentesBotoes}
-      </StyledItemContainer>
-    </StyledContainer>
+    <div>
+        {props.isMobile &&
+        <MOBLINFO>
+                <SideBar isMobile={props.isMobile} botoes={botoes}/>
+                <StyledContainer>
+                    <StyledH1>Frentes</StyledH1>
+                    <StyledItemContainer>
+                        {frentesBotoes}
+                    </StyledItemContainer>
+                </StyledContainer>
+        </MOBLINFO>
+        }
+        {!props.isMobile && 
+        <DSKINFO>
+            <SideBar isMobile={props.isMobile} botoes={botoes}/>
+            <StyledContainer>
+                    <StyledH1>Frentes</StyledH1>
+                    <StyledItemContainer>
+                        {frentesBotoes}
+                    </StyledItemContainer>
+            </StyledContainer>
+        </DSKINFO>
+        }
+    </div>
   );
 };
 
