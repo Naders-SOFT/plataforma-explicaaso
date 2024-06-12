@@ -16,6 +16,7 @@ import PaginaEditarPost from './pages/PaginaEditarPost'
 import Frentes from "./components/Disciplina/Frentes";
 
 function Roteador(props){
+
     return(
         <Routes>
             <Route path='/' element={<PaginaInicial isMobile={props.isMobile}/>} />

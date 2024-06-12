@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import PaginaCadastro from '../../../pages/PaginaCadastro';
 
 const ContainerAdmin = styled.div`
   display: grid;
@@ -46,7 +48,7 @@ const DSKBotao = styled.button`
   
 `
 
-const ProfessorListStyled = styled.ul`
+const CadastroListStyled = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
@@ -57,7 +59,7 @@ const ProfessorListStyled = styled.ul`
   align-items: center;
 `
 
-const ProfessorItem = styled.li`
+const CadastroItem = styled.li`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: minmax(30px, auto);
@@ -67,7 +69,7 @@ const ProfessorItem = styled.li`
   border-bottom: 1px solid #ccc;
 `
 
-const ProfessorFormat = styled.span`
+const CadastroFormat = styled.span`
   grid-column: 1;
   margin-right: 10px;
   justify: center 
@@ -77,32 +79,36 @@ const ProfessorFormat = styled.span`
   }
 `
 
-const ProfessorSub = styled.span`
+const CadastroSub = styled.span`
   grid-column: 2;
   font-weight: bold;
   margin-right: 10px;
 `
 
-const ProfessorDate = styled.span`
+const CadastroDate = styled.span`
   grid-column: 3;
   text-align: right;
 `
 
 // Define the ProfessorList component
-export const ProfessorList = ({ professors }) => {
+const PessoaList = ({ items, itemType }) => {
   return (
     <Container>
-      <ProfessorListStyled>
-        {professors.map((professor, index) => (
-          <ProfessorItem key={index} style={{ marginLeft: '5%' }}>
-            <ProfessorFormat>{professor.name}</ProfessorFormat>
-            <ProfessorSub style={{marginRight: '30px' }}>{professor.subject}</ProfessorSub>
-            <ProfessorDate style={{ marginRight: '30px' }}>{professor.date}</ProfessorDate>
+      <CadastroListStyled>
+        {items.map((item, index) => (
+          <CadastroItem key={index} style={{ marginLeft: '5%' }}>
+            <CadastroFormat>{item.name}</CadastroFormat>
+            <CadastroSub style={{ marginRight: '30px' }}>{itemType === 'alunos' ? item.email : item.subject}</CadastroSub>
+            <CadastroDate style={{ marginRight: '30px' }}>{item.date}</CadastroDate>
             <DSKBotao style={{ gridColumn: '4 / 4', justifySelf: 'end' }}>Remover</DSKBotao>
-          </ProfessorItem>
+          </CadastroItem>
         ))}
-      </ProfessorListStyled>
-      <DSKBotao style={{ marginTop: '10px' ,marginLeft: '5%' }}>Adicionar</DSKBotao>
+      </CadastroListStyled>
+      <Link to="/pagina-admin/cadastro" style={{ textDecoration: 'none' }}>
+        <DSKBotao style={{ marginTop: '10px', marginLeft: '5%' }}>Cadastrar</DSKBotao>
+      </Link>
     </Container>
   );
 };
+
+export default PessoaList;
