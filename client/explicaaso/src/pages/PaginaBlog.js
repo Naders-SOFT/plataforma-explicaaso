@@ -13,14 +13,14 @@ function PaginaBlog(props) {
         axios.get('http://localhost:3003/blog/list')
         .then( response => {
             setBlogPosts(response.data);
-            // console.log(response.data);
         })
         .catch( error => {
             console.error('Error fetching data', error);
         })
     }, []);
 
-    console.log(blogPosts);
+    /** Exibir os blogposts e passar para o ContainerInfo */
+    console.log(blogPosts); 
 
     return(
         <ContainerPag>

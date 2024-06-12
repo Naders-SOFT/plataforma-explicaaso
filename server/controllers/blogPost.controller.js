@@ -2,7 +2,6 @@ import { uploadFile, deleteFile } from '../s3.js'
 import blogPost from '../models/blogPost.models.js'
 
 export const createBlogPost = async (req, res) => {
-    console.log(req.body);
     try {
         const postNovo = new blogPost({
             titulo: req.body.titulo,
@@ -30,7 +29,6 @@ export const createBlogPost = async (req, res) => {
 }
 
 export async function listblogPosts(req, res) {
-    console.log(req);
     try {
       const posts = await blogPost.find({});
   
