@@ -63,7 +63,7 @@ const IMG = styled.img`
  * a imagem de capa.
  */
 const MOBLTITLE = styled.h2`
-    color: #FF6600;
+    color: #FFCC00;
     font-size: 40px;
     width: 100%;
     text-align: flex-start;
@@ -73,7 +73,7 @@ const MOBLTITLE = styled.h2`
 `
 
 const DSKTITLE = styled.h2`
-    color: #FF6600;
+    color: #FFCC00;
     font-size: 40px;
     text-align: flex-start;
     margin: 5% 5% 5% 5%;
