@@ -92,11 +92,11 @@ const StyledLink = styled(Link)`
 `;
 
 const frentes = [
-    { name: 'Gramática', image: gramatica, materia: 'Gramática'},
-    { name: 'Literatura', image: literatura , materia: 'Literatura'},
-    { name: 'Interpretação', image: interpretacao, materia: 'Gramática' },
-    { name: 'Inglês', image: ingles , materia: 'Gramática'},
-    { name: 'Redação', image: redacao, materia: 'Gramática' },
+    { name: 'Gramática', image: gramatica, materia: 'Linguagens'},
+    { name: 'Literatura', image: literatura , materia: 'Linguagens'},
+    { name: 'Interpretação', image: interpretacao, materia: 'Linguagens' },
+    { name: 'Inglês', image: ingles , materia: 'Linguagens'},
+    { name: 'Redação', image: redacao, materia: 'Linguagens' },
     { name: 'História do Brasil', image: his1, materia: 'História' },
     { name: 'História Geral', image: his2 , materia: 'História'},
     { name: 'Geografia do Brasil', image: geo1 , materia: 'Geografia'},
