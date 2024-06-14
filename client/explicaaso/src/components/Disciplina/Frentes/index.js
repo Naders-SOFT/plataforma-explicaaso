@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import SideBar from '../../Aluno/SideBar';
+import TituloDisciplina from '../Titulo';
 
 import gramatica from '../../../images/frentes/gra.jpeg';
 import literatura from '../../../images/frentes/lit.jpeg';
@@ -92,11 +93,11 @@ const StyledLink = styled(Link)`
 `;
 
 const frentes = [
-    { name: 'Gramática', image: gramatica, materia: 'Linguagens'},
-    { name: 'Literatura', image: literatura , materia: 'Linguagens'},
-    { name: 'Interpretação', image: interpretacao, materia: 'Linguagens' },
-    { name: 'Inglês', image: ingles , materia: 'Linguagens'},
-    { name: 'Redação', image: redacao, materia: 'Linguagens' },
+    { name: 'Gramática', image: gramatica, materia: 'Gramática'},
+    { name: 'Literatura', image: literatura , materia: 'Literatura'},
+    { name: 'Interpretação', image: interpretacao, materia: 'Gramática' },
+    { name: 'Inglês', image: ingles , materia: 'Gramática'},
+    { name: 'Redação', image: redacao, materia: 'Gramática' },
     { name: 'História do Brasil', image: his1, materia: 'História' },
     { name: 'História Geral', image: his2 , materia: 'História'},
     { name: 'Geografia do Brasil', image: geo1 , materia: 'Geografia'},
@@ -176,6 +177,7 @@ const Frentes = (props) => {
         <MOBLINFO>
                 <SideBar isMobile={props.isMobile} botoes={botoes}/>
                 <StyledContainer>
+                    <TituloDisciplina tituloDisciplina={mat.materias}/> 
                     <StyledH1>Frentes</StyledH1>
                     <StyledItemContainer>
                         {frentesBotoes}
@@ -187,6 +189,7 @@ const Frentes = (props) => {
         <DSKINFO>
             <SideBar isMobile={props.isMobile} botoes={botoes}/>
             <StyledContainer>
+                    <TituloDisciplina tituloDisciplina={mat.materias}/> 
                     <StyledH1>Frentes</StyledH1>
                     <StyledItemContainer>
                         {frentesBotoes}
