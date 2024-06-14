@@ -10,9 +10,9 @@ import imgGeografia from '../images/materias/geografia.jpg'
 import imgQuimica from '../images/materias/quimica.jpg'
 import imgFisica from '../images/materias/fisica.png'
 import imgBiologia from '../images/materias/biologia.jpg'
-import imgLiteratura from '../images/materias/literatura2.jpg'
-import imgGramatica from '../images/materias/literatura.webp'
-import imgRedacao from '../images/materias/redacao.jpg'
+import imgFilosofia from '../images/materias/literatura2.jpg'
+import imgSociologia from '../images/materias/literatura.webp'
+import imgPortugues from '../images/materias/redacao.jpg'
 
 import gramatica from '../images/frentes/gra.jpeg';
 import literatura from '../images/frentes/lit.jpeg';
@@ -45,8 +45,6 @@ const ContainerPag = styled.div`
 
 const tituloBotoes = [
     { titulo: 'Matérias'},
-    { titulo: 'Provas'},
-    { titulo: 'Simulados'}
 ]
 
 const imgMaterias = [
@@ -56,9 +54,9 @@ const imgMaterias = [
     { img: imgQuimica, materia: 'Química'},
     { img: imgFisica, materia: 'Física'},
     { img: imgBiologia, materia: 'Biologia'},
-    { img: imgLiteratura, materia: 'Literatura'},
-    { img: imgGramatica, materia: 'Gramática'},
-    { img: imgRedacao, materia: 'Redação'}
+    { img: imgFilosofia, materia: 'Filosofia'},
+    { img: imgSociologia, materia: 'Sociologia'},
+    { img: imgPortugues, materia: 'Linguagens'}
 ]
 
 const frentes = [
