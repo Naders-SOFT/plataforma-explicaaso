@@ -16,7 +16,7 @@ const BlocoInfo = styled.div`
 
 const TITLEPOST = styled.h3`
     margin: 3% 5%;
-    color: white;
+    color: #FFCC00;
     font-size: ${({$isMobile}) => $isMobile ? "25px" : "40px"};
     margin-bottom: ${({$isMobile}) => $isMobile ? "auto" : "0"};
 `
