@@ -176,13 +176,15 @@ const Frentes = (props) => {
         {props.isMobile &&
         <MOBLINFO>
                 <SideBar isMobile={props.isMobile} botoes={botoes}/>
-                <StyledContainer>
-                    <TituloDisciplina tituloDisciplina={mat.materias}/> 
+                <div>
+                  <TituloDisciplina tituloDisciplina={mat.materias}/>
+                  <StyledContainer>
                     <StyledH1>Frentes</StyledH1>
                     <StyledItemContainer>
                         {frentesBotoes}
                     </StyledItemContainer>
-                </StyledContainer>
+                  </StyledContainer>
+                </div>
         </MOBLINFO>
         }
         {!props.isMobile && 
