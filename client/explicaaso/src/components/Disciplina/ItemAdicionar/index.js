@@ -1,6 +1,7 @@
+import { IoIosSend } from "react-icons/io";
 import styled from "styled-components";
-import axios from 'axios'
-import { useState } from 'react'
+import axios from 'axios';
+import { useState } from 'react';
 
 const ItemContainer = styled.li`
     width: 100%;
@@ -32,11 +33,16 @@ const EscolherArqLabel = styled.label`
     cursor: pointer;
     color: darkcyan;
     transition: color 0.3s ease, cursor 0.3s ease;
-    width: 15%;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    border: 1px solid darkcyan;
+    border-radius: 0.5rem;
+    text-align: center;
     
     &:hover {
         color: #002549;
-        cursor: pointer;
+        border-color: #002549;
     }
 `;
 
@@ -44,7 +50,10 @@ const EscolherArq = styled.input`
     display: none;
 `;
 
-const Botao = styled.button`
+const BotaoEnviar = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.5rem 1rem;
     background-color: darkcyan;
     color: white;
@@ -79,11 +88,13 @@ function ItemAdicionar(props) {
     };
   
     return (
-       <Formulario onSubmit={submit}>
-            <EscolherArqLabel htmlFor="fileInput">Escolher Arquivo</EscolherArqLabel>
-            <EscolherArq id="fileInput" onChange={e => setFile(e.target.files[0])} type="file" />
-            <Botao type="submit">Enviar</Botao>
-       </Formulario>
+       <ItemContainer>
+           <Formulario onSubmit={submit}>
+                <EscolherArqLabel htmlFor="fileInput">Escolher Arquivo</EscolherArqLabel>
+                <EscolherArq id="fileInput" onChange={e => setFile(e.target.files[0])} type="file" />
+                <BotaoEnviar type="submit"><IoIosSend size={20} /> Enviar</BotaoEnviar>
+           </Formulario>
+       </ItemContainer>
     );
 }
 
