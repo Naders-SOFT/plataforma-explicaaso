@@ -23,7 +23,7 @@ const LoginContainer = styled.form`
 `
 
 const LoginTitulo = styled.h1`
-  color: #FF6600;
+  color: #FFCC00;
   font-size: 36px;
 `
 
@@ -31,10 +31,10 @@ const Submit = styled.button`
   width: 40%;
   border: none;
   border-radius: 8px;
-  background-color: #FF6600;
+  background-color: #FFCC00;
   font-size: 28px;
   font-weight: 600;
-  color: #994107;
+  color: #003466;
   height: 50px;
   margin: 0 0 40px 0;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
