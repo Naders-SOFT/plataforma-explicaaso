@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import instaIcon from '../../../images/redes_sociais/instagram-icon.png';
 
 const FooterContainer = styled.div`
-  height: 180px;
+  height: 80px;
   width: auto;
   background-color: white;
   display: grid;
@@ -50,7 +50,7 @@ function Footer(props) {
   return (
     <FooterContainer>
       <TituloFooter>ExpliCaaso</TituloFooter>
-      <Instagram src={instaIcon} $isMobile={props.isMobile}/>
+      {/* <Instagram src={instaIcon} $isMobile={props.isMobile}/> */}
       <ContatoEmail $isMobile={props.isMobile}>
         <LabelContato>Email</LabelContato>
         <DadoContato>explicaaso@gmail.com</DadoContato>
