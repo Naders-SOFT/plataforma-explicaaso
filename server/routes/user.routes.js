@@ -4,7 +4,7 @@ import { checkToken, signupUser, signinUser, listUsers, listUserById, listUserBy
 // Instancia o roteador:
 const router = Router();
 
-router.post('/signup', checkToken, signupUser);
+router.post('/signup', signupUser);
 
 router.post('/login', signinUser);
 
