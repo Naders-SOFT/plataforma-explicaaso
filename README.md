@@ -105,7 +105,7 @@
   </a>
 </p> -->
 
-[![My Skills](https://skillicons.dev/icons?i=js,react,nodejs,express)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=js,react,nodejs,express,mongodb)](https://skillicons.dev)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
