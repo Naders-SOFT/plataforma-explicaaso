@@ -1,8 +1,7 @@
 import InputComponent from "../components/Login/InputComponent/InputComponent";
 import styled from 'styled-components';
 import axios from "axios"
-import { useContext, useState } from "react";
-import { AuthContext } from '../components/Auth/AuthContext';
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const ContainerPag = styled.div`
@@ -51,7 +50,6 @@ const Submit = styled.button`
 function PaginaLogin(props) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -78,8 +76,9 @@ function PaginaLogin(props) {
         const token = response.data.token;
         const tipoUsuario = response.data.tipoUsuario;
         
-        // Armazena o token no localStorage:
-        login(token, tipoUsuario);
+        // Armazena o token e o tipo no localStorage:
+        localStorage.setItem('token', token);
+        localStorage.setItem('tipoUsuario', tipoUsuario);
 
         // Redireciona o usuário com base no tipo de usuário
         switch (tipoUsuario) {
