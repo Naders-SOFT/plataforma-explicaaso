@@ -70,13 +70,13 @@ export async function signinUser(req, res) {
     // Checagem se usuário existe:
     const user = await User.findOne({ email: req.body.email });
     if(!user) {
-      return res.status(404).send({ message: "Usuário não encontrado" });
+      return res.status(404).send({ message: "Email incorreto" });
     }
 
     // Checagem de senha:
     const checkSenha = await bcrypt.compare(req.body.senha, user.senha);
     if(!checkSenha) {
-      return res.status(422).send({ message: "Senha incorreta" });
+      return res.status(422).json({ message: "Senha incorreta" });
     }
 
     const secret = process.env.SECRET;
@@ -102,7 +102,7 @@ export async function signinUser(req, res) {
     if(error.name === 'ValidationError') {
       // Construimos uma mensagem de erro específica para cada campo inválido:
       const messages = Object.values(error.errors).map(err => err.message);
-      res.status(400).send({ message: "Erro de validação", errors: messages });
+      res.status(400).json({ message: "Erro de validação", errors: messages });
     } else {
       res.status(409);
       res.send(error.message);

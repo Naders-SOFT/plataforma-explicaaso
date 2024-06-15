@@ -26,6 +26,18 @@ const LoginTitulo = styled.h1`
   font-size: 36px;
 `
 
+const MensagemErro = styled.p`
+  color: #ffcc00;
+  font-size: 14px;
+  margin-top: -10px;
+`;
+
+const MensagemSucesso = styled.p`
+  color: #ffcc00;
+  font-size: 14px;
+  margin-top: -10px;
+`;
+
 const Submit = styled.button`
   width: 40%;
   border: none;
@@ -50,11 +62,13 @@ const Submit = styled.button`
 function PaginaLogin(props) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [feedbackErro, setFeedbackErro] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     // Aqui prevenimos o comportamento padrão do navegador ao acontecimento do evento:
     event.preventDefault();
+    setFeedbackErro('')
 
     try {
       const response = await axios.post('http://localhost:3003/user/login',
@@ -109,7 +123,8 @@ function PaginaLogin(props) {
         }
       }
     } catch(error) {
-      console.error('Error submitting form:', error);
+      console.log('Error submitting form:', error);
+      setFeedbackErro(error.response.data.message);
     }
   }
 
@@ -119,6 +134,7 @@ function PaginaLogin(props) {
         <LoginTitulo>Log in</LoginTitulo>
         <InputComponent label='Email' type='email' id='email' value={email} onChange={(event) => setEmail(event.target.value)} required />
         <InputComponent label='Senha' type='password' id='senha' value={senha} onChange={(event) => setSenha(event.target.value)} required />
+        {feedbackErro && <MensagemErro>{feedbackErro}</MensagemErro>}
         <Submit type='submit'>
           Confirmar
         </Submit>
