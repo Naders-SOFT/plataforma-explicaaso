@@ -5,12 +5,13 @@ import Frentes from '../../Disciplina/Frentes';
 
 const MOBLMATERIAS = styled.ul`
     display: flex;
-    flex-wrap: wrap;
-    list-style-type: none;
-    padding: 0px;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    list-style-type: none;
+    padding: 0px;
+    ${'' /* background-color: blue; */}
     margin: 0px;
 `
 const DSKMATERIAS = styled.ul`
@@ -30,10 +31,15 @@ const Container = styled.div`
 `
 
 const StyledLink = styled(Link)`
-  text-decoration: none;
-  transition: color 0.3s ease;
-  font-family: Inter;
-  font-size: 120%;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-family: Inter;
+    font-size: 120%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 `
 
 function ContainerMateria(props) {
@@ -41,7 +47,7 @@ function ContainerMateria(props) {
         <div key={mat.materia}> 
             {/* <Link to='/pagina-aluno/Materias/frentes'> */}
             <StyledLink to={`/pagina-aluno/${mat.materia}`}>
-                <CardMateria imgSrc={mat.img} materia={mat.materia} />
+                <CardMateria imgSrc={mat.img} materia={mat.materia} isMobile={props.isMobile}/>
             </StyledLink>
         </div>
     ))

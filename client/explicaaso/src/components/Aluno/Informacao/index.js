@@ -6,7 +6,10 @@ const MOBLINFO = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-items: right;
+    justify-content: right;
     width: 100%;
+    height: 100%;
 `
 
 const DSKINFO = styled.div`
