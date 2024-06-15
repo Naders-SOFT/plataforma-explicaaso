@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
+
+
 const DSKCONTAINERSIDE = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 20vw;
+    height: auto;
     align-items: center;
     justify-content: flex-start;
     float: left;
@@ -86,6 +88,8 @@ const Container = styled.div`
 `
 
 function SideBar(props) {
+
+
     return (
         <Container>
             {
@@ -97,7 +101,7 @@ function SideBar(props) {
                         <MOBLBOTAO>Repositório</MOBLBOTAO>
                     </MOBLCONTAINERBOTAO>
                 </MOBLCONTAINERSIDE>
-            }
+            } 
             {
                 !props.isMobile &&
                 <DSKCONTAINERSIDE>
@@ -109,9 +113,9 @@ function SideBar(props) {
                         <DSKBOTAO>Alunos</DSKBOTAO>
                         <DSKBOTAO>Professores</DSKBOTAO>
                         <DSKBOTAO>Repositório</DSKBOTAO>
-                    </DSKCONTAINERBOTAO>
+                   </DSKCONTAINERBOTAO>
                 </DSKCONTAINERSIDE>
-            }      
+            }   
         </Container>
     );
 }

@@ -30,7 +30,8 @@ function Header(props) {
         {id: 2, texto: "Contato", pagina: '/pagina-contato'}, 
         {id: 3, texto: "Notícias", pagina: '/pagina-noticias'}, 
         {id: 4, texto: "Blog", pagina: '/pagina-blog'},
-        {id: 5, texto: "Área Aluno", pagina: '/pagina-aluno'}
+        {id: 5, texto: "Área Aluno", pagina: '/pagina-aluno'},
+        {id: 6, texto: "Admin", pagina: '/pagina-administrador'}
         
     ];
 

@@ -1,119 +1,102 @@
-import InputComponent from "../components/Login/InputComponent/InputComponent";
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import axios from "axios"
-import { useContext, useState } from "react";
+import axios from 'axios';
 import { AuthContext } from '../components/Auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import InputComponent from '../components/Login/InputComponent/InputComponent';
 
-const ContainerPag = styled.div`
+const Container = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-`
+  height: 100vh;
+`;
 
 const LoginContainer = styled.form`
-  display: flex;
   background-color: #003466;
-  width: ${({$isMobile}) => ($isMobile ? '90%' : '690px')};
+  width: 90%;
+  max-width: 400px; /* Reduzindo a largura máxima do formulário */
   border-radius: 8px;
+  padding: 20px;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 100px 0 50px 0;
-`
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+`;
 
-const LoginTitulo = styled.h1`
-  color: #FF6600;
-  font-size: 36px;
-`
+const Title = styled.h1`
+  color: #ffcc00;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+`;
 
-const Submit = styled.button`
-  width: 40%;
+const SubmitButton = styled.button`
+  width: 100%;
   border: none;
   border-radius: 8px;
-  background-color: #FF6600;
-  font-size: 28px;
+  background-color: #ffcc00;
+  font-size: 18px;
   font-weight: 600;
-  color: #994107;
+  color: #003466;
   height: 50px;
-  margin: 0 0 40px 0;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease; 
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    color: #FFEFD5;
-    cursor: pointer;
+    background-color: #ffe6b3;
   }
-`
+`;
 
+const ErrorMessage = styled.p`
+  color: #ffcc00;
+  margin-top: 10px;
+  text-align: center;
+`;
 
-function PaginaLogin(props) {
+const LoginPage = ({ isMobile }) => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-    // Aqui prevenimos o comportamento padrão do navegador ao acontecimento do evento:
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3003/user/login',
-        {
-          email: email,
-          senha: senha
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          }
+      const response = await axios.post('http://localhost:3003/user/login', { email, senha }, {
+        headers: {
+          'Content-Type': 'application/json'
         }
-      );
+      });
 
-      if(response.status === 200) {
+      if (response.status === 200) {
+        const { token, tipoUsuario } = response.data;
         setEmail('');
         setSenha('');
-
-        const token = response.data.token;
-        const tipoUsuario = response.data.tipoUsuario;
-        
-        // Armazena o token no localStorage:
         login(token, tipoUsuario);
-
-        // Redireciona o usuário com base no tipo de usuário
-        switch (tipoUsuario) {
-          case 'aluno':
-            navigate('/pagina-aluno');
-            break;
-          case 'administrador':
-            navigate('/pagina-administrador');
-            break;
-          case 'professor':
-            navigate('/pagina-professor');
-            break;
-          default:
-            console.error('Tipo de usuário inválido');
-            break;
-        }
+        navigate(`/${tipoUsuario === 'aluno' ? 'pagina-aluno' : tipoUsuario === 'administrador' ? 'pagina-administrador' : 'pagina-professor'}`);
       }
-    } catch(error) {
-      console.error('Error submitting form:', error);
+    } catch (error) {
+      setError('Credenciais inválidas. Por favor, tente novamente.');
+      console.error('Erro ao enviar formulário:', error);
     }
-  }
+  };
 
   return (
-    <ContainerPag>
-      <LoginContainer $isMobile={props.isMobile} onSubmit={handleSubmit}>
-        <LoginTitulo>Log in</LoginTitulo>
-        <InputComponent label='Email' type='email' id='email' value={email} onChange={(event) => setEmail(event.target.value)} required />
-        <InputComponent label='Senha' type='password' id='senha' value={senha} onChange={(event) => setSenha(event.target.value)} required />
-        <Submit type='submit'>
-          Confirmar
-        </Submit>
+    <Container>
+      <LoginContainer onSubmit={handleSubmit}>
+        <Title>Log in</Title>
+        <InputComponent label="Email" type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <InputComponent label="Senha" type="password" id="senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+        <SubmitButton type="submit">Confirmar</SubmitButton>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
       </LoginContainer>
-    </ContainerPag>
+    </Container>
   );
-}
+};
 
-export default PaginaLogin;
+export default LoginPage;

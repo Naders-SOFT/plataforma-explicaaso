@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import SideBar from '../../Aluno/SideBar';
+import TituloDisciplina from '../Titulo';
 
 import gramatica from '../../../images/frentes/gra.jpeg';
 import literatura from '../../../images/frentes/lit.jpeg';
@@ -175,23 +176,29 @@ const Frentes = (props) => {
         {props.isMobile &&
         <MOBLINFO>
                 <SideBar isMobile={props.isMobile} botoes={botoes}/>
-                <StyledContainer>
+                <div>
+                  <TituloDisciplina tituloDisciplina={mat.materias}/>
+                  <StyledContainer>
                     <StyledH1>Frentes</StyledH1>
                     <StyledItemContainer>
                         {frentesBotoes}
                     </StyledItemContainer>
-                </StyledContainer>
+                  </StyledContainer>
+                </div>
         </MOBLINFO>
         }
         {!props.isMobile && 
         <DSKINFO>
             <SideBar isMobile={props.isMobile} botoes={botoes}/>
-            <StyledContainer>
-                    <StyledH1>Frentes</StyledH1>
-                    <StyledItemContainer>
-                        {frentesBotoes}
-                    </StyledItemContainer>
-            </StyledContainer>
+            <div>
+              <TituloDisciplina tituloDisciplina={mat.materias}/> 
+              <StyledContainer>
+                      <StyledH1>Frentes</StyledH1>
+                      <StyledItemContainer>
+                          {frentesBotoes}
+                      </StyledItemContainer>
+              </StyledContainer>
+            </div>
         </DSKINFO>
         }
     </div>
