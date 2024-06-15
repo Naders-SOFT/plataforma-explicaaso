@@ -39,6 +39,8 @@ function LoginButton() {
     if (token) {
       localStorage.removeItem('token');
       localStorage.removeItem('tipoUsuario');
+      localStorage.removeItem('nome');
+      localStorage.removeItem('sobrenome');
       navigate('/');
     } else {
       navigate('/login');
