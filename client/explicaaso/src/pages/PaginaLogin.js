@@ -89,6 +89,8 @@ function PaginaLogin(props) {
         // Armazena o token e o tipo no localStorage:
         localStorage.setItem('token', token);
         localStorage.setItem('tipoUsuario', tipoUsuario);
+        localStorage.setItem('nome', nome);
+        localStorage.setItem('sobrenome', sobrenome);
 
         // Redireciona o usuário com base no tipo de usuário
         switch (tipoUsuario) {

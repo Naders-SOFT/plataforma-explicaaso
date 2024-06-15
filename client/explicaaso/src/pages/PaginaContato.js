@@ -167,12 +167,4 @@ function PaginaContato(props) {
     );
 }
 
-export default PaginaContato;ile}>Endereço</H3>
-                    <P $isMobile={props.isMobile}>Av. Trab. São Carlense, 400 - Parque Arnold Schimidt, 13566-590</P>
-                </DIV>
-            </CONTATO>
-        </CONTAINERCONTATO>
-    );
-}
-
 export default PaginaContato;
