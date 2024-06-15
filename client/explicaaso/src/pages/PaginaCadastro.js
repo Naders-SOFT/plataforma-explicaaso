@@ -125,9 +125,11 @@ function PaginaCadastro(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFeedbackErro('');
+    setFeedbackSucesso('');
 
     if (senha !== confirmarSenha) {
-      setFeedbackErro('A senha e a confirmação de senha não coincidem.');
+      setFeedbackErro('A senha e a confirmação de senha não coincidem');
       return;
     }
 
@@ -149,8 +151,8 @@ function PaginaCadastro(props) {
         }
       );
 
-      if (response.status === 200) {
-        setFeedbackSucesso('Cadastro realizado com sucesso!');
+      if (response.status === 201) {
+        setFeedbackSucesso('Cadastro realizado com sucesso');
         setNome('');
         setSobrenome('');
         setEmail('');
@@ -160,7 +162,7 @@ function PaginaCadastro(props) {
       }
     } catch (error) {
       console.error('Erro ao enviar o formulário:', error);
-      setFeedbackErro('Erro ao enviar o formulário. Tente novamente mais tarde.');
+      setFeedbackErro(error.response.data.message);
     }
   };
 
