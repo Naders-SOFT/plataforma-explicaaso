@@ -69,6 +69,7 @@ const BotaoEnviar = styled.button`
 
 function ItemAdicionar(props) {
     const [file, setFile] = useState(null);
+    const [novoNome, setNovoNome] = useState("")
   
     const submit = async event => {
         event.preventDefault();
@@ -77,9 +78,11 @@ function ItemAdicionar(props) {
         formData.append("arq-pdf", file);
         formData.append("disciplina", props.tituloDisciplina);
         formData.append("frente", props.tituloFrente);
+        formData.append('novoNome', novoNome)
 
         try {
-            await axios.post("http://localhost:3003/pdf/posts", formData);
+            await axios.post("http://localhost:3003/pdf/posts", formData,
+            { headers: {'Content-Type': 'multipart/form-data'}});
             window.location.reload();
         }
         catch(error) {
@@ -92,6 +95,7 @@ function ItemAdicionar(props) {
            <Formulario onSubmit={submit}>
                 <EscolherArqLabel htmlFor="fileInput">Escolher Arquivo</EscolherArqLabel>
                 <EscolherArq id="fileInput" onChange={e => setFile(e.target.files[0])} type="file" />
+                 <input value={novoNome} onChange={e => setNovoNome(e.target.value)} type="text" placeholder='Deseja renomear o arquivo ?'></input>
                 <BotaoEnviar type="submit"><IoIosSend size={20} /> Enviar</BotaoEnviar>
            </Formulario>
        </ItemContainer>

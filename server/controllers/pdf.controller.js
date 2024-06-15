@@ -10,7 +10,8 @@ export const createPdf = async (req, res) => {
             titulo: req.file.originalname,
             disciplina: req.body.disciplina,
             frente: req.body.frente,
-            data: new Date().toLocaleDateString()
+            data: new Date().toLocaleDateString(),
+            novoNome: req.body.novoNome
         })
 
         await pdfNovo.save()
@@ -39,6 +40,7 @@ export async function listPdfs(req, res) {
         // Inserindo link assinado em cada objeto do banco de dados
         for (let pdf of pdfs) {
             pdf.link = await getObjectSignedUrl(pdf._id.toString())
+            pdf.titulo = pdf.novoNome === "" ? pdf.titulo : pdf.novoNome
             // console.log(pdf.link)
         }
 
@@ -71,6 +73,7 @@ export async function listPdfsFrente(req, res) {
         // Inserindo link assinado em cada objeto do banco de dados
         for (let pdf of pdfs) {
             pdf.link = await getObjectSignedUrl(pdf._id.toString())
+            pdf.titulo = pdf.novoNome === "" ? pdf.titulo : pdf.novoNome
             // console.log(pdf.link)
         }
 
