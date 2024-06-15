@@ -22,7 +22,7 @@ export function checkToken(req, res, next) {
   }
 }
 
-
+// REGISTRO:
 export async function signupUser(req, res) {
   try {
     // Validação de confirmação de senha:
@@ -64,6 +64,7 @@ export async function signupUser(req, res) {
   }
 }
 
+// LOGIN:
 export async function signinUser(req, res) {
   try {
     // Checagem se usuário existe:
@@ -80,10 +81,12 @@ export async function signinUser(req, res) {
 
     const secret = process.env.SECRET;
 
+    // Criação de Token:
     const token = jwt.sign({
       id: user._id
     }, secret )
 
+    // Resposta:
     res.status(200);
     res.json(
       {
