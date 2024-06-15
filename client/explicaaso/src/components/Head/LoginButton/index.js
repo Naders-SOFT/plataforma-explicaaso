@@ -1,7 +1,5 @@
-import { NavLink as Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { useContext } from 'react';
-import { AuthContext } from '../../Auth/AuthContext';
 
 const LoginButtonContainer = styled.button`
   display: flex;
@@ -34,12 +32,13 @@ const LoginButtonContainer = styled.button`
 
 
 function LoginButton() {
-  const { isAuthenticated, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
   const handleClick = () => {
-    if (isAuthenticated) {
-      logout();
+    if (token) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('tipoUsuario');
       navigate('/');
     } else {
       navigate('/login');
@@ -48,7 +47,7 @@ function LoginButton() {
 
   return (
     <LoginButtonContainer onClick={handleClick}>
-      <p>{isAuthenticated ? 'Log out' : 'Log in'}</p>
+      <p>{token ? 'Log out' : 'Log in'}</p>
     </LoginButtonContainer>
   );
 }
