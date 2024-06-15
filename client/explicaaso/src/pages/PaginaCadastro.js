@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import axios from 'axios';
 
-const ContainerPag = styled.div`
-  width: 100%;
-`;
 
 const FormContainer = styled.div`
   display: flex;
@@ -12,7 +9,7 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 10%;
+  padding: 0;
 `;
 
 const CadastroTitulo = styled.h1`
