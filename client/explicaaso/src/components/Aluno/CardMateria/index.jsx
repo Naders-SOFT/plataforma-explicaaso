@@ -22,8 +22,8 @@ const CardFrentes = styled.p`
 
 function CardMateria(props) {
     const Card = styled.li`
-        width: ${props => props.isMobile ? '60%' : '90%'};
-        height: ${props => props.isMobile ? '50%' : '90%'};
+        width: ${props => props.isMobile ? '60%' : '100%'};
+        height: ${props => props.isMobile ? '50%' : '100%'};
         display: flex;
         flex-direction: column;
         color: black;
@@ -37,6 +37,7 @@ function CardMateria(props) {
         -webkit-transition: transform 0.5s;
         font-family: 'Raleway',Sans-serif;
         overflow: auto;
+        font-size: 20px;
 
         &:hover {
         cursor: pointer;
