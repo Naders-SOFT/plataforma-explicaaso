@@ -143,9 +143,7 @@ const DSKINFO = styled.div`
 `
 
 const botoes = [
-    { titulo: 'Matérias'},
-    { titulo: 'Provas'},
-    { titulo: 'Simulados'}
+    { titulo: 'Matérias'}
 ]
 
 
