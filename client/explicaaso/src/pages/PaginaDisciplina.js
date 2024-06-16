@@ -7,12 +7,11 @@ import { useParams } from 'react-router-dom'
 const ContainerPag = styled.div`
     width: 100%;
     height: 100%;
+    background-color: #f8f8f8;
 `
 
 const tituloBotoes = [
     { titulo: 'Matérias'},
-    { titulo: 'Provas'},
-    { titulo: 'Simulados'}
 ]
 
 function PaginaDisciplina(props) {

@@ -45,9 +45,8 @@ const StyledLink = styled(Link)`
 function ContainerMateria(props) {
     const materias = props.materias?.map((mat) => (
         <div key={mat.materia}> 
-            {/* <Link to='/pagina-aluno/Materias/frentes'> */}
             <StyledLink to={`/pagina-aluno/${mat.materia}`}>
-                <CardMateria imgSrc={mat.img} materia={mat.materia} isMobile={props.isMobile}/>
+                <CardMateria imgSrc={mat.img} materia={mat.materia} isMobile={props.isMobile} frentes={mat.frentes}/>
             </StyledLink>
         </div>
     ))

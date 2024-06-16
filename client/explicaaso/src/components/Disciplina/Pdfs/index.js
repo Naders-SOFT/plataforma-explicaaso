@@ -36,6 +36,7 @@ const MyDocument = () => (
 
 const AvisosPainel = styled.ul`
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
     list-style-type: none;
     padding: 0px;

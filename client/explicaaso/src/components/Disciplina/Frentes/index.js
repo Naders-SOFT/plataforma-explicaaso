@@ -93,29 +93,29 @@ const StyledLink = styled(Link)`
 `;
 
 const frentes = [
-    { name: 'Gramática', image: gramatica, materia: 'Gramática'},
+    { name: 'Gramática', image: gramatica, materia: 'Linguagens'},
     { name: 'Literatura', image: literatura , materia: 'Literatura'},
-    { name: 'Interpretação', image: interpretacao, materia: 'Gramática' },
-    { name: 'Inglês', image: ingles , materia: 'Gramática'},
-    { name: 'Redação', image: redacao, materia: 'Gramática' },
+    { name: 'Interpretação', image: interpretacao, materia: 'Linguagens' },
+    { name: 'Inglês', image: ingles , materia: 'Linguagens'},
+    { name: 'Redação', image: redacao, materia: 'Linguagens' },
     { name: 'História do Brasil', image: his1, materia: 'História' },
     { name: 'História Geral', image: his2 , materia: 'História'},
     { name: 'Geografia do Brasil', image: geo1 , materia: 'Geografia'},
     { name: 'Geografia Geral', image: geo2, materia: 'Geografia' },
     { name: 'Filosofia', image: fil, materia: 'Filosofia'  },
     { name: 'Sociologia', image: soc, materia: 'Sociologia' },
-    { name: 'Biologia1', image: bio1, materia: 'Biologia' },
-    { name: 'Biologia2', image: bio2, materia: 'Biologia' },
-    { name: 'Biologia3', image: bio3, materia: 'Biologia' },
-    { name: 'Física1', image: fis1, materia: 'Física' },
-    { name: 'Física2', image: fis2, materia: 'Física' },
-    { name: 'Física3', image: fis3, materia: 'Física' },
-    { name: 'Química1', image: qui1, materia: 'Química' },
-    { name: 'Química2', image: qui2, materia: 'Química' },
-    { name: 'Química3', image: qui3, materia: 'Química' },
-    { name: 'Matemática1', image: mat1, materia: 'Matemática' },
-    { name: 'Matemática2', image: mat2, materia: 'Matemática' },
-    { name: 'Matemática3', image: mat3, materia: 'Matemática' },
+    { name: 'Biologia 1', image: bio1, materia: 'Biologia' },
+    { name: 'Biologia 2', image: bio2, materia: 'Biologia' },
+    { name: 'Biologia 3', image: bio3, materia: 'Biologia' },
+    { name: 'Física 1', image: fis1, materia: 'Física' },
+    { name: 'Física 2', image: fis2, materia: 'Física' },
+    { name: 'Física 3', image: fis3, materia: 'Física' },
+    { name: 'Química 1', image: qui1, materia: 'Química' },
+    { name: 'Química 2', image: qui2, materia: 'Química' },
+    { name: 'Química 3', image: qui3, materia: 'Química' },
+    { name: 'Matemática 1', image: mat1, materia: 'Matemática' },
+    { name: 'Matemática 2', image: mat2, materia: 'Matemática' },
+    { name: 'Matemática 3', image: mat3, materia: 'Matemática' },
 ];
 
 const Card = styled.div`
@@ -147,6 +147,7 @@ const botoes = [
     { titulo: 'Provas'},
     { titulo: 'Simulados'}
 ]
+
 
 const FrenteButton = ({ frente }) => {
   return (

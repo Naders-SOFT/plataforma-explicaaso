@@ -17,6 +17,7 @@ import imgPortugues from '../images/materias/redacao.jpg'
 const ContainerPag = styled.div`
     width: 100%;
     height: 100%;
+    background-color: #f8f8f8;
 `
 
 const tituloBotoes = [
@@ -24,15 +25,15 @@ const tituloBotoes = [
 ]
 
 const imgMaterias = [
-    { img: imgMatematica, materia: 'Matemática'},
-    { img: imgHistoria, materia: 'História'},
-    { img: imgGeografia, materia: 'Geografia'},
-    { img: imgQuimica, materia: 'Química'},
-    { img: imgFisica, materia: 'Física'},
-    { img: imgBiologia, materia: 'Biologia'},
-    { img: imgFilosofia, materia: 'Filosofia'},
-    { img: imgSociologia, materia: 'Sociologia'},
-    { img: imgPortugues, materia: 'Linguagens'}
+    { img: imgMatematica, materia: 'Matemática', frentes:['Matemática 1', 'Matemática 2', 'Matemática 3']},
+    { img: imgHistoria, materia: 'História', frentes:['História do Brasil', 'História Geral']},
+    { img: imgGeografia, materia: 'Geografia', frentes:['Geografia do Brasil', 'Geografia Geral']},
+    { img: imgQuimica, materia: 'Química', frentes:['Química 1', 'Química 2', 'Química 3']},
+    { img: imgFisica, materia: 'Física', frentes:['Física 1', 'Física 2', 'Física 3']},
+    { img: imgBiologia, materia: 'Biologia', frentes:['Biologia 1', 'Biologia 2', 'Biologia 3']},
+    { img: imgFilosofia, materia: 'Filosofia', frentes:['Filosofia']},
+    { img: imgSociologia, materia: 'Sociologia', frentes:['Sociologia']},
+    { img: imgPortugues, materia: 'Linguagens', frentes:['Linguagens', 'Inglês', 'Redação']}
 ]
 
 function PaginaAluno(props) {

@@ -19,11 +19,14 @@ import Frentes from './components/Disciplina/Frentes';
 // ------- PÁGINA PRINCIPAL (LANDING PAGE) --------
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  html, body {
     margin: 0;
+    height: 100%;
+    ${'' /* width: 100%; */}
     font-family: 'Segoe UI';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #f8f8f8;
   }
 
   code {
@@ -70,13 +73,13 @@ function App() {
       <Router>
         <Header isMobile={isMobile}/>
         <Roteador isMobile={isMobile}/>
+        {/* <Footer isMobile={isMobile}/> */}
       </Router>
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <Header isMobile={isMobile}/> */}
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <PaginaCadastro></PaginaCadastro> */}
       {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
-      {/* <Footer isMobile={isMobile}/> */}
     </AppContainer>
   );
 }
