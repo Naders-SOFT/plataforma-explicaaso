@@ -1,123 +1,91 @@
 import styled from "styled-components";
 
-const DSKCONTAINERSIDE = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: auto;
-    align-items: center;
-    justify-content: flex-start;
-    float: left;
-    color: white;
-    padding: 1vw;
-`
+// Estilos comuns
+const ContainerSide = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: ${({$isMobile}) => ($isMobile ? '20%' : '100%')};;
+  min-width: 150px;
+  padding: 2rem;
+  background-color: #f0f0f0;
+  color: #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+`;
 
-const MOBLCONTAINERSIDE = styled.div`
-    width: 100%;
-`
+const Botao = styled.button`
+  cursor: pointer;
+  color: darkcyan;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+  background-color: #e6f7ff;
+  border: 2px solid darkcyan;
+  border-radius: 0.75rem;
+  text-align: center;
 
-const DSKBOTAO = styled.button`
-    background-color: #FF6600;
-    color: white;
-    border-radius: 1vw;
-    height: 3vw;
-    font-weight: bold;
-    font-size: 100%;
-    border: none;
-    &:hover {
-        opacity: 0.5;
-        cursor: pointer;
-    }
-`
+  &:hover {
+    color: #002549;
+    background-color: #cceeff;
+  }
+`;
 
-const MOBLBOTAO = styled.button`
-    background-color: #FF6600;
-    color: white;
-    border-radius: 1vw;
-    height: 5vw;
-    width: 33%;
-    font-size: 100%;
-    font-weight: bold;
-    border: none;
-    &:hover {
-        opacity: 0.5;
-        cursor: pointer;
-    }
-`
+const ContainerBotao = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
 
-const DSKCONTAINERBOTAO = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    align-items: strech;
-    justify-content: space-evenly;
-    gap: 5vw;
-    flex-direction: column;
-    width: 100%;
-`
-
-const MOBLCONTAINERBOTAO = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    margin: 2vw;
-`
-
+// Estilos para elementos comuns
 const ImgPerfil = styled.img`
-    width: 7vw;
-    height: 7vw;
-    border-radius: 50%;
-`
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+`;
 
-const ConatainerPerfil = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    padding: 2vh;
-    
-`
+const ContainerPerfil = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+`;
 
 const Nome = styled.h1`
-    color: black;
-    font-size: 2vw;
-`
+  color: #333;
+  font-size: 1.5rem;
+  margin: 0;
+`;
 
 const Container = styled.div`
-    width: 100%;
-`
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+`;
 
 function SideBar(props) {
-    const listaBotoesMobile = props.botoes?.map((botao, index) => (
-        <MOBLBOTAO key={index}>{botao.titulo}</MOBLBOTAO>
-    ))
+  const listaBotoes = props.botoes?.map((botao, index) => (
+    <Botao key={index}>{botao.titulo}</Botao>
+  ));
 
-    const listaBotoesDesk = props.botoes?.map((botao, index) => (
-        <DSKBOTAO key={index}>{botao.titulo}</DSKBOTAO>
-    ))
-
-    return (
-        <Container>
-            {
-                props.isMobile &&
-                <MOBLCONTAINERSIDE>
-                    <MOBLCONTAINERBOTAO>
-                    {listaBotoesMobile}
-                    </MOBLCONTAINERBOTAO>
-                </MOBLCONTAINERSIDE>
-            }
-            {
-                !props.isMobile &&
-                <DSKCONTAINERSIDE>
-                    <ConatainerPerfil>
-                        <ImgPerfil src={props.imgPerfil}></ImgPerfil>
-                        <Nome>Fulano</Nome>
-                    </ConatainerPerfil>
-                    <DSKCONTAINERBOTAO>
-                        {listaBotoesDesk}
-                    </DSKCONTAINERBOTAO>
-                </DSKCONTAINERSIDE>
-            }      
-        </Container>
-    );
+  return (
+    <Container>
+      <ContainerSide>
+        {!props.isMobile && (
+          <ContainerPerfil>
+            <ImgPerfil src={props.imgPerfil} alt="Perfil" />
+            <Nome>{props.nome}</Nome>
+          </ContainerPerfil>
+        )}
+        <ContainerBotao>{listaBotoes}</ContainerBotao>
+      </ContainerSide>
+    </Container>
+  );
 }
 
 export default SideBar;
