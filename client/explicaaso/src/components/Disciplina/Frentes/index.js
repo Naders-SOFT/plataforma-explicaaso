@@ -33,62 +33,69 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;
+  background-color: #f0f0f5;
 `;
 
 const StyledButton = styled.button`
-  background-color: darkcyan;
-  color: #fff;
+  width: ${props => props.isMobile ? '80%' : '100%'};
+  height: ${props => props.isMobile ? 'auto' : '100%'};
+  display: flex;
+  flex-direction: column;
+  color: #333;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: 'Raleway', Sans-serif;
+  overflow: hidden;
 
   &:hover {
-    background-color: #002549;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
   }
 `;
 
 const StyledH1 = styled.h1`
-  color: #FF6600;
-  font-family: Inter;
+  color: #3a3a3a;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 20px;
 `;
 
 const StyledItemContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
 `;
 
 const StyledContentContainer = styled.div`
   display: flex;
   align-items: center;
+  padding: 10px;
 
-  /* Add styles for image */
   & > img {
-    width: 180px;
-    height: 180px;
-    margin-right: 10px;
-    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin-right: 15px;
+    border-radius: 12px;
   }
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: inherit;
   display: inline-block;
-  margin: 0 10px;
-  transition: color 0.3s ease;
+  width: 100%;
 
   img {
     width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
   }
 `;
 
@@ -143,9 +150,10 @@ const DSKINFO = styled.div`
 `
 
 const botoes = [
-    { titulo: 'Matérias'}
+    { titulo: 'Matérias'},
+    { titulo: 'Provas'},
+    { titulo: 'Simulados'}
 ]
-
 
 const FrenteButton = ({ frente }) => {
   return (
@@ -153,8 +161,8 @@ const FrenteButton = ({ frente }) => {
         <StyledContentContainer>
             <StyledLink to={`/pagina-aluno/${frente.materia}/${frente.name}`}>
                 <Card>
-                    <NomeFrente>{frente.name}</NomeFrente>
                     <img src={frente.image} alt={frente.name} />
+                    <NomeFrente>{frente.name}</NomeFrente>
                 </Card>
             </StyledLink>
         </StyledContentContainer>
@@ -169,10 +177,10 @@ const Frentes = (props) => {
         .map((frente, index) => (
             <FrenteButton key={index} frente={frente} />
         ))
-    console.log(frentesBotoes)
+
   return (
     <div>
-        {props.isMobile &&
+        {props.isMobile ?
         <MOBLINFO>
                 <SideBar isMobile={props.isMobile} botoes={botoes}/>
                 <div>
@@ -185,8 +193,7 @@ const Frentes = (props) => {
                   </StyledContainer>
                 </div>
         </MOBLINFO>
-        }
-        {!props.isMobile && 
+        :
         <DSKINFO>
             <SideBar isMobile={props.isMobile} botoes={botoes}/>
             <div>
