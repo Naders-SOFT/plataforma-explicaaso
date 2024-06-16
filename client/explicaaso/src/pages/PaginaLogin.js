@@ -1,7 +1,12 @@
 import InputComponent from "../components/Login/InputComponent/InputComponent";
 import styled from 'styled-components';
 import axios from "axios"
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+import { useContext, useState } from "react";
+import { AuthContext } from '../components/Auth/AuthContext';
+>>>>>>> 6cd3077 (Recuperação da página login.)
 import { useNavigate } from 'react-router-dom';
 
 const ContainerPag = styled.div`
@@ -50,6 +55,10 @@ const Submit = styled.button`
 function PaginaLogin(props) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+<<<<<<< HEAD
+=======
+  const { login } = useContext(AuthContext);
+>>>>>>> 6cd3077 (Recuperação da página login.)
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -75,6 +84,7 @@ function PaginaLogin(props) {
 
         const token = response.data.token;
         const tipoUsuario = response.data.tipoUsuario;
+<<<<<<< HEAD
         const nome = response.data.nome;
         const sobrenome = response.data.sobrenome;
         
@@ -83,6 +93,11 @@ function PaginaLogin(props) {
         localStorage.setItem('tipoUsuario', tipoUsuario);
         localStorage.setItem('nome', nome);
         localStorage.setItem('sobrenome', sobrenome);
+=======
+        
+        // Armazena o token no localStorage:
+        login(token, tipoUsuario);
+>>>>>>> 6cd3077 (Recuperação da página login.)
 
         // Redireciona o usuário com base no tipo de usuário
         switch (tipoUsuario) {
