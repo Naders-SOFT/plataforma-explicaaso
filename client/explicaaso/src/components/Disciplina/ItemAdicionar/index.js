@@ -15,7 +15,7 @@ const ItemContainer = styled.li`
 `;
 
 const Formulario = styled.form`
-    width: 100%;
+    width: 80%;
     max-width: 450px;
     display: flex;
     flex-direction: column;
@@ -79,6 +79,13 @@ const BotaoEnviar = styled.button`
     }
 `;
 
+const NomeArquivo = styled.p`
+    margin-top: -1rem;
+    color: #555;
+    font-size: 0.9rem;
+    text-align: center;
+`;
+
 function ItemAdicionar(props) {
     const [file, setFile] = useState(null);
     const [novoNome, setNovoNome] = useState("");
@@ -101,12 +108,17 @@ function ItemAdicionar(props) {
             console.error(error.response.data);
         }
     };
-  
+
     return (
         <ItemContainer>
             <Formulario onSubmit={submit}>
                 <EscolherArqLabel htmlFor="fileInput">Escolher Arquivo</EscolherArqLabel>
-                <EscolherArq id="fileInput" onChange={e => setFile(e.target.files[0])} type="file" />
+                <EscolherArq 
+                    id="fileInput" 
+                    onChange={e => setFile(e.target.files[0])} 
+                    type="file" 
+                />
+                {file && <NomeArquivo>Arquivo selecionado: {file.name}</NomeArquivo>}
                 <InputText 
                     value={novoNome} 
                     onChange={e => setNovoNome(e.target.value)} 
