@@ -18,7 +18,7 @@ export function checkToken(req, res, next) {
 
     next();
   } catch(error) {
-    res.status(400).json({ message: "Token inválido" });
+    res.status(400).json({ message: "Seu acesso não é permitido para essa função" });
   }
 }
 
@@ -83,7 +83,10 @@ export async function signinUser(req, res) {
 
     // Criação de Token:
     const token = jwt.sign({
-      id: user._id
+      id: user._id,
+      tipoUsuario: user.tipo,
+      nome: user.nome,
+      sobrenome: user.sobrenome
     }, secret )
 
     // Resposta:
@@ -92,9 +95,6 @@ export async function signinUser(req, res) {
       {
         message: "Autenticação realizada com sucesso", 
         token: token,
-        tipoUsuario: user.tipo,
-        nome: user.nome,
-        sobrenome: user.sobrenome
       });
     console.log("Login realizado");
     

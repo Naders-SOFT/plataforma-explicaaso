@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import PaginaBlogPost from './pages/PaginaBlogPostagem';
 import PaginaNoticias from './pages/PaginaNoticias';
@@ -41,6 +42,12 @@ const AppContainer = styled.div`
   margin: 0;
 `
 
+const accessToken = localStorage.getItem('token');
+export const authAxios = axios.create({
+  headers: {
+    Authorization: `Bearer ${accessToken}`
+  }
+});
 
 // ESTRUTURA DO COMPONENTE
 function App() {

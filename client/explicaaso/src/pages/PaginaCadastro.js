@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import axios from 'axios';
+import { authAxios } from '../App';
 
 
 const FormContainer = styled.div`
@@ -134,7 +134,7 @@ function PaginaCadastro(props) {
     }
 
     try {
-      const response = await axios.post(
+      const response = await authAxios.post(
         'http://localhost:3003/user/signup',
         {
           nome: nome,
