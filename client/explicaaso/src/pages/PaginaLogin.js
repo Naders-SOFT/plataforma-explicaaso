@@ -89,7 +89,6 @@ function PaginaLogin(props) {
 
         const token = response.data.token;
         const tipoUsuario = response.data.tipoUsuario;
-<<<<<<< HEAD
         const nome = response.data.nome;
         const sobrenome = response.data.sobrenome;
         
@@ -98,7 +97,7 @@ function PaginaLogin(props) {
         localStorage.setItem('tipoUsuario', tipoUsuario);
         localStorage.setItem('nome', nome);
         localStorage.setItem('sobrenome', sobrenome);
-=======
+
         
         // Armazena o token e o tipo no localStorage:
         localStorage.setItem('token', token);

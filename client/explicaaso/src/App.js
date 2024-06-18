@@ -73,19 +73,6 @@ function App() {
       <Router>
         <Header isMobile={isMobile}/>
         <Roteador isMobile={isMobile}/>
-        {/* <Footer isMobile={isMobile}/> */}
-      </Router>
-      {/* <PaginaDisciplina isMobile={isMobile}/> */}
-      {/* <Header isMobile={isMobile}/> */}
-      {/* <PaginaDisciplina isMobile={isMobile}/> */}
-      {/* <PaginaCadastro></PaginaCadastro> */}
-      {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
-    </AppContainer>
-    <AppContainer>
-      <GlobalStyle/>
-      <Router>
-        <Header isMobile={isMobile}/>
-        <Roteador isMobile={isMobile}/>
       </Router>
       {/* <PaginaDisciplina isMobile={isMobile}/> */}
       {/* <Header isMobile={isMobile}/> */}
