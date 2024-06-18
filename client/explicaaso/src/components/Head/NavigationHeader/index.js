@@ -13,23 +13,29 @@ const NavigationHeaderContainer = styled.ul`
 `
 
 const NavigationItem = styled(Link)`
-  font-size: 24px;
+  font-size: 18px;
   color: white;
   text-decoration: none;
-  margin: 0 5%;
-  white-space: nowrap; 
+  margin: 0 10px;
+  padding: 2px 20px;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 8px;
+  border: 2px solid transparent;
   cursor: pointer;
 
-  @media (min-width: 861px) and (max-width: 1050px) {
-    font-size: 22px;
-    margin: 0 4%;
+  &:hover {
+    background-color: #FFCC00;
+    color: #003466;
+    border-color: #FFCC00;
   }
 
-  @media (max-width: 860px) {
-    font-size: 18px;
-    margin: 0 3%;
+  &.active {
+    background-color: #FFCC00;
+    color: #003466;
+    border-color: #FFCC00;
   }
-`
+`;
 
 function NavigationHeader(props) {
   const itensNavigation = props.itensNavigation;
