@@ -86,27 +86,35 @@ const BUTTON = styled.button`
   }
 `;
 
+const LERMAIS = styled.a`
+  color: #003466;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.2rem')};
+  margin: 2%;
+  text-align: ${({ $isMobile }) => ($isMobile ? 'center' : 'justify')};
+  cursor: pointer;
+  text-decoration: none;
 
-function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost, datapost, idPost }) {
-  
-  const renderPost = (textopost) => {
-    if(textopost){
-      return <div dangerouslySetInnerHTML={{__html: textopost}}></div>;
-    }
-    return <div></div>
+  &:link, &:visited {
+    color: #003466;
   }
 
+  &:hover {
+    color: #FFCC00;
+  }
+`;
+
+function BlocoBlog({ isMobile, editor, titulopost, textopost, imgSrc, imgAlt }) {
   return (
     <BlocoInfo $isMobile={isMobile}>
       <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
       <DIVIMG $isMobile={isMobile}>
-        <TEXTOPOST $isMobile={isMobile} className="tiptap">{renderPost(textopost)}</TEXTOPOST>
+        <TEXTOPOST $isMobile={isMobile}>{textopost}</TEXTOPOST>
         <IMG src={imgSrc} alt={imgAlt} />
       </DIVIMG>
-      <Link to ={`/pagina-blog/post/${idPost}`} style={{ textDecoration: 'none' }}>
-        <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
-      </Link>
-      
+      <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
+      {(editor == 'administrador' || editor == 'professor') && 
+        <BUTTON $isMobile={isMobile}>Editar</BUTTON>
+      }
     </BlocoInfo>
   );
 }

@@ -26,7 +26,7 @@ function PaginaBlog(props) {
 
     return(
         <ContainerPag>
-            <ContainerInfo isMobile={props.isMobile} blogPosts={blogPosts}/>
+            <ContainerInfo isMobile={props.isMobile} TitulosPosts={['','']} TextosPosts={['','']}/>
         </ContainerPag>
     )
 
