@@ -4,35 +4,7 @@ import TituloDisciplina from '../Titulo';
 import ItemAdicionar from '../ItemAdicionar';
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-
-
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4'
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1
-  }
-});
-
-const MyDocument = () => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text>Section #1</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Section #2</Text>
-      </View>
-    </Page>
-  </Document>
-);
-
-
+import { jwtDecode } from 'jwt-decode';
 
 const AvisosPainel = styled.ul`
     display: flex;
@@ -81,7 +53,8 @@ function Avisos(props) {
             <ItemAviso key={index} tituloAviso={pdf.titulo} link={pdf.link} idPdf={pdf._id.toString()} onDelete={handleDelete}></ItemAviso>
     ))
 
-    const tipoUsr = localStorage.getItem("tipoUsuario")
+    const token = localStorage.getItem('token')
+    const tipoUsr = token ? jwtDecode(token).tipoUsuario : false
 
     return (
         <Container>
@@ -103,7 +76,6 @@ function Avisos(props) {
             }
         </Container>
     );
-
 }
 
 export default Avisos;

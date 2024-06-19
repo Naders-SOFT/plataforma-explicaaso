@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ItemExcluir from "../ItemExcluir";
+import {jwtDecode} from 'jwt-decode'
 
 const ItemContainer = styled.li`
   width: 100%;
@@ -58,22 +59,15 @@ const PDFPreview = styled.embed`
 `;
 
 function ItemAviso(props) {
-  const tipoUsr = localStorage.getItem("tipoUsuario");
-
-  return (
-    <ItemContainer>
-      <TipoAviso>!</TipoAviso>
-      <div style={{ flex: 1 }}>
-        <TituloAviso href={props.link} target="_blank">
-            {props.tituloAviso}
-        </TituloAviso>
-        <PDFContainer>
-          <PDFPreview src={props.link} type="application/pdf" />
-        </PDFContainer>
-      </div>
-      {tipoUsr !== "aluno" && <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />}
-    </ItemContainer>
-  );
+    const token = localStorage.getItem('token')
+    const tipoUsr = token ? jwtDecode(token).tipoUsuario : false
+    return (
+        <ItemContainer>
+            <TipoAviso>!</TipoAviso>
+            <TituloAviso href={props.link} target="_blank">{props.tituloAviso}</TituloAviso>
+            {tipoUsr !== "aluno" && <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />}
+        </ItemContainer>
+    );
 }
 
 export default ItemAviso;

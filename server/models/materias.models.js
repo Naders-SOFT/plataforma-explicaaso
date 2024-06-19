@@ -7,16 +7,15 @@ const materiaSchema = new mongoose.Schema({
     nome : {
         type: String
     },
+    imagem: {
+        type: String
+    },
     frentes: {
         type: [{
             nomeFrente: String,
             imgFrente: String
         }]
     },
-    linkImg: {
-        type: String
-    }
-    
 }, { versionKey: false});
 
 const materia = mongoose.model('materia', materiaSchema)

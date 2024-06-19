@@ -4,7 +4,8 @@ export async function createMateria(req, res) {
     try {
         const materiaNova = new Materia({
             nome: req.body.nome,
-            frentes: req.body.frentes
+            frentes: req.body.frentes,
+            imagem: req.body.imagem
         })
 
         await materiaNova.save()

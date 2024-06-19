@@ -56,6 +56,13 @@ function CardMateria(props) {
         border-radius: 6px 6px 0px 0px;
         opacity: 0.91;
     `
+    // const frentesNome = props.frentes.map(frt => {
+    //     frt.frentesNome.join(' | ')
+    // })
+    // console.log(props.frentes)
+    const f = props.frentes.map(frt =>
+        frt.nomeFrente
+    ).join(' | ')
 
     return (
         <Card isMobile={props.isMobile}>
@@ -65,7 +72,7 @@ function CardMateria(props) {
                 isMobile={props.isMobile}/>
             <TituloMateria>{props.materia}</TituloMateria> 
             <CardInfo>
-                <CardFrentes>{props.frentes.join(' | ')}</CardFrentes>
+                <CardFrentes>{f}</CardFrentes>
             </CardInfo>
         </Card>
     );
