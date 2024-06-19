@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import SideBar from '../../Aluno/SideBar';
 import TituloDisciplina from '../Titulo';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import gramatica from '../../../images/frentes/gra.jpeg';
 import literatura from '../../../images/frentes/lit.jpeg';
@@ -100,31 +102,31 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const frentes = [
-    { name: 'Gramática', image: gramatica, materia: 'Linguagens'},
-    { name: 'Literatura', image: literatura , materia: 'Literatura'},
-    { name: 'Interpretação', image: interpretacao, materia: 'Linguagens' },
-    { name: 'Inglês', image: ingles , materia: 'Linguagens'},
-    { name: 'Redação', image: redacao, materia: 'Linguagens' },
-    { name: 'História do Brasil', image: his1, materia: 'História' },
-    { name: 'História Geral', image: his2 , materia: 'História'},
-    { name: 'Geografia do Brasil', image: geo1 , materia: 'Geografia'},
-    { name: 'Geografia Geral', image: geo2, materia: 'Geografia' },
-    { name: 'Filosofia', image: fil, materia: 'Filosofia'  },
-    { name: 'Sociologia', image: soc, materia: 'Sociologia' },
-    { name: 'Biologia 1', image: bio1, materia: 'Biologia' },
-    { name: 'Biologia 2', image: bio2, materia: 'Biologia' },
-    { name: 'Biologia 3', image: bio3, materia: 'Biologia' },
-    { name: 'Física 1', image: fis1, materia: 'Física' },
-    { name: 'Física 2', image: fis2, materia: 'Física' },
-    { name: 'Física 3', image: fis3, materia: 'Física' },
-    { name: 'Química 1', image: qui1, materia: 'Química' },
-    { name: 'Química 2', image: qui2, materia: 'Química' },
-    { name: 'Química 3', image: qui3, materia: 'Química' },
-    { name: 'Matemática 1', image: mat1, materia: 'Matemática' },
-    { name: 'Matemática 2', image: mat2, materia: 'Matemática' },
-    { name: 'Matemática 3', image: mat3, materia: 'Matemática' },
-];
+// const frentes = [
+//     { name: 'Gramática', image: gramatica, materia: 'Linguagens'},
+//     { name: 'Literatura', image: literatura , materia: 'Literatura'},
+//     { name: 'Interpretação', image: interpretacao, materia: 'Linguagens' },
+//     { name: 'Inglês', image: ingles , materia: 'Linguagens'},
+//     { name: 'Redação', image: redacao, materia: 'Linguagens' },
+//     { name: 'História do Brasil', image: his1, materia: 'História' },
+//     { name: 'História Geral', image: his2 , materia: 'História'},
+//     { name: 'Geografia do Brasil', image: geo1 , materia: 'Geografia'},
+//     { name: 'Geografia Geral', image: geo2, materia: 'Geografia' },
+//     { name: 'Filosofia', image: fil, materia: 'Filosofia'  },
+//     { name: 'Sociologia', image: soc, materia: 'Sociologia' },
+//     { name: 'Biologia 1', image: bio1, materia: 'Biologia' },
+//     { name: 'Biologia 2', image: bio2, materia: 'Biologia' },
+//     { name: 'Biologia 3', image: bio3, materia: 'Biologia' },
+//     { name: 'Física 1', image: fis1, materia: 'Física' },
+//     { name: 'Física 2', image: fis2, materia: 'Física' },
+//     { name: 'Física 3', image: fis3, materia: 'Física' },
+//     { name: 'Química 1', image: qui1, materia: 'Química' },
+//     { name: 'Química 2', image: qui2, materia: 'Química' },
+//     { name: 'Química 3', image: qui3, materia: 'Química' },
+//     { name: 'Matemática 1', image: mat1, materia: 'Matemática' },
+//     { name: 'Matemática 2', image: mat2, materia: 'Matemática' },
+//     { name: 'Matemática 3', image: mat3, materia: 'Matemática' },
+// ];
 
 const Card = styled.div`
     display: flex;
@@ -155,14 +157,14 @@ const botoes = [
     { titulo: 'Provas'}
 ]
 
-const FrenteButton = ({ frente }) => {
+const FrenteButton = ({ materia }) => {
   return (
     <StyledButton>
         <StyledContentContainer>
-            <StyledLink to={`/pagina-aluno/${frente.materia}/${frente.name}`}>
+            <StyledLink to={`/pagina-aluno/${frente.materia}/${frente.NomeFrente}`}>
                 <Card>
                     <img src={frente.image} alt={frente.name} />
-                    <NomeFrente>{frente.name}</NomeFrente>
+                    <NomeFrente>{frente.NomeFrente}</NomeFrente>
                 </Card>
             </StyledLink>
         </StyledContentContainer>
@@ -172,8 +174,22 @@ const FrenteButton = ({ frente }) => {
 
 const Frentes = (props) => {
   const mat = useParams()
+  const [materia, setMateria] = useState([])
+    useEffect(() => {
+        axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
+        .then(response => {
+            setMateria(response.data)
+        })
+        .catch(err => {
+            console.error(err.message)
+        })
+    }, [])
+
+    console.log('vamos funciona')
+    console.log(mat.materias)
+    console.log(materia)
+
   const frentesBotoes = frentes
-        .filter(frente => frente.materia === mat.materias)
         .map((frente, index) => (
             <FrenteButton key={index} frente={frente} />
         ))

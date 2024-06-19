@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/listMat', listMaterias)
 
-router.get('/listMat/:nome', listMateriasByName)
+router.get('/listMat/:materia', listMateriasByName)
 
 router.get('/listFrentes', listFrentes)
 

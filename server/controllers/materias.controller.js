@@ -32,7 +32,7 @@ export async function listMaterias(req, res) {
 
 export async function listMateriasByName(req, res) {
     try {
-        const materias = await Materia.find({materia: req.params.materia})
+        const materias = await Materia.find({nome: req.params.materia})
         res.status(200).send(materias)
     }
     catch(err) {
@@ -43,7 +43,7 @@ export async function listMateriasByName(req, res) {
 export async function listFrentes(req, res) {
     try {
         const materias = await Materia.find({})
-        res.status(200).send(materias.frentes)
+        res.status(200).send(materias.map(materia => materia.frentes))
     }
     catch(err) {
         res.status(500).send(err.message)
@@ -52,8 +52,8 @@ export async function listFrentes(req, res) {
 
 export async function listFrentesByMateria(req, res) {
     try {
-        const materias = await Materia.find({materia: req.params.materia})
-        res.status(200).send(materias.frentes)
+        const materias = await Materia.find({nome: req.params.materia})
+        res.status(200).send(materias.map(materia => materia.frentes))
     }
     catch(err) {
         res.status(500).send(err.message)
