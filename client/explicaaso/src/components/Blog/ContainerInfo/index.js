@@ -51,11 +51,42 @@ const BTADICIONAR = styled.button`
 //                      "Oi! Este é um teste de texto do blog. Para ser mais exato, é um teste de como fica a prévia da postagem! Por enquanto, tudo ocorrendo bem. Quero continuar escrevendo até chegar no limite. Lero lero lero, como vai você? Lero lero lero blablabla pipipipopopo ainda nao mas muito legal que foda. Mas e agora, para onde vamos? Ainda temos algumas linhas porque coloquei como limite de 10. Quase em 10, vamos lá time uhuuu não aguento mais isso que saco quando acaba estou quase e agora ja acabou"]
 
 function ContainerInfo({ isMobile, TitulosPosts, TextosPosts }) {
-    const [token, setToken] = useState('');
+    const editor = false;
+    const [renderContent, setRenderContent] = useState(<p>Carregando...</p>)
+    
     useEffect(() => {
-        setToken(localStorage.getItem('token'));
+        const token = localStorage.getItem('token');
+        editor = token ? jwtDecode(token).tipoUsuario : false;
+        
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            editor = token ? jwtDecode(token).tipoUsuario : false;
+        })
     }, []);
-    const editor = token ? jwtDecode(token).tipoUsuario : false;
+    
+    useEffect(() => {
+        if(blogPosts && blogPosts.length > 0) {
+          const parser = new DOMParser();
+          const texto = parser.parseFromString(blogPosts[0].texto, "text/html");
+
+
+          setRenderContent(<BlocoBlog
+          isMobile={isMobile}
+          imgSrc={placeholder}
+          imgAlt="placeholder"
+          titulopost = {blogPosts[0].titulo}
+          textopost = {texto.body.textContent}
+          editor={editor}
+        />);
+        }
+
+        else{
+          setRenderContent(<p>Carregando...</p>);
+        }
+    }, [blogPosts]);
+
+
     
     return (
         <ContainerPag>
