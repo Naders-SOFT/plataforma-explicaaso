@@ -4,6 +4,7 @@ import cors from 'cors';
 import pdfRoutes from './routes/pdf.routes.js';
 import userRoutes from './routes/user.routes.js';
 import blogRoutes from './routes/blog.routes.js';
+import materiaRoutes from './routes/materia.routes.js'
 import db from './config/dbConnect.js';
 import dotenv from 'dotenv';
 
@@ -39,6 +40,8 @@ app.use(cors());
 app.use('/pdf', pdfRoutes); 
 app.use('/user', userRoutes);
 app.use('/blog', blogRoutes);
+app.use('/materias', materiaRoutes);
+
 
 app.listen(3003,  () => {
     console.log('Servidor ouvindo na porta 3003.');

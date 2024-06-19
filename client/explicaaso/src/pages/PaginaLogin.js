@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from "axios"
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
 
 const ContainerPag = styled.div`
   width: 100%;
@@ -88,22 +89,11 @@ function PaginaLogin(props) {
         setSenha('');
 
         const token = response.data.token;
-        const tipoUsuario = response.data.tipoUsuario;
-        const nome = response.data.nome;
-        const sobrenome = response.data.sobrenome;
-        
-        // Armazena o token e o tipo no localStorage:
-        localStorage.setItem('token', token);
-        localStorage.setItem('tipoUsuario', tipoUsuario);
-        localStorage.setItem('nome', nome);
-        localStorage.setItem('sobrenome', sobrenome);
 
-        
-        // Armazena o token e o tipo no localStorage:
+        // Armazena o token no localStorage:
         localStorage.setItem('token', token);
-        localStorage.setItem('tipoUsuario', tipoUsuario);
-        localStorage.setItem('nome', nome);
-        localStorage.setItem('sobrenome', sobrenome);
+
+        const tipoUsuario = jwtDecode(token).tipoUsuario;
 
         // Redireciona o usuário com base no tipo de usuário
         switch (tipoUsuario) {
