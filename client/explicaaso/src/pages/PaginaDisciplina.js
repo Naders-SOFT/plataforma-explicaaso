@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import AvisosContainer from '../components/Disciplina/PdfContainer'
-import imgPerfil from '../images/logos/pefil.jpg'
+import imgPerfil from '../images/logos/perfil.jpg'
 import { useParams } from 'react-router-dom'
 
 
