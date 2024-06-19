@@ -64,7 +64,7 @@ function ContainerInfo({ isMobile, TitulosPosts, TextosPosts }) {
             const token = localStorage.getItem('token');
             editor = token ? jwtDecode(token).tipoUsuario : false;
         })
-    }, []);
+    }, [editor]);
     
     useEffect(() => {
         if(blogPosts && blogPosts.length > 0) {
