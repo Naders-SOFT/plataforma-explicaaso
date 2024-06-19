@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Header from '../components/Head/Header'
 import Informacao from '../components/Aluno/Informacao';
 
-import imgPerfil from '../images/logos/pefil.jpg'
+import imgPerfil from '../images/logos/perfil.jpg'
 
 import imgMatematica from '../images/materias/matematica.jpg';
 import imgHistoria from '../images/materias/historia.jpg'
