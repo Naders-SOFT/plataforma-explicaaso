@@ -38,7 +38,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  width: ${props => props.isMobile ? '80%' : '100%'};
+  width: ${props => props.isMobile ? '70%' : '100%'};
   height: ${props => props.isMobile ? 'auto' : '100%'};
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@ const StyledButton = styled.button`
 
 const StyledH1 = styled.h1`
   color: #3a3a3a;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Raleway',Sans-serif;
   margin-bottom: 20px;
 `;
 
