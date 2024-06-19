@@ -20,7 +20,7 @@ function PaginaBlog(props) {
     }, []);
 
     /** Exibir os blogposts e passar para o ContainerInfo */
-    console.log(blogPosts); 
+    // console.log(blogPosts); 
 
     return(
         <ContainerPag>
