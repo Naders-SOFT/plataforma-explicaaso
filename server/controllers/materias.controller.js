@@ -1,4 +1,4 @@
-import Materia from "../models/materias.models";
+import Materia from "../models/materias.models.js";
 
 export async function createMateria(req, res) {
     try {

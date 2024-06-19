@@ -8,7 +8,13 @@ const materiaSchema = new mongoose.Schema({
         type: String
     },
     frentes: {
-        type: [String]
+        type: [{
+            nomeFrente: String,
+            imgFrente: String
+        }]
+    },
+    linkImg: {
+        type: String
     }
     
 }, { versionKey: false});

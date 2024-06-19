@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { createMateria, listMaterias, listMateriasByName, listFrentesByMateria, listFrentes } from "../controllers/materias.controller"
+import { createMateria, listMaterias, listMateriasByName, listFrentesByMateria, listFrentes } from "../controllers/materias.controller.js"
 
 const router = Router();
 
