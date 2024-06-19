@@ -22,11 +22,11 @@ function PaginaBlog(props) {
     }, []);
 
     /** Exibir os blogposts e passar para o ContainerInfo */
-    // console.log(blogPosts); 
+
 
     return(
         <ContainerPag>
-            <ContainerInfo isMobile={props.isMobile} TitulosPosts={['','']} TextosPosts={['','']}/>
+            <ContainerInfo isMobile={props.isMobile} blogPosts={blogPosts}/>
         </ContainerPag>
     )
 

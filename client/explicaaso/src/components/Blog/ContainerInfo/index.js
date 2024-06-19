@@ -46,17 +46,14 @@ const BTADICIONAR = styled.button`
   }
 `
 
-const TitulosPosts = ["A educação no Brasil", "Como estudar para os Vestibulares"]
-const TextosPosts = ["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt rem odit quis quaerat. In dolorem praesentium velit ea esse consequuntur cum fugit sequi voluptas ut possimus voluptatibus deserunt nisi eveniet!Lorem ipsum dolor sit amet, consecteturadipisicing elit. Dolorem voluptates vel dolorum autem ex repudiandae iste quasi. Minima explicabo qui necessitatibus porro nihil aliquid deleniti ullam repudiandae dolores corrupti eaque.",
-                     "Oi! Este é um teste de texto do blog. Para ser mais exato, é um teste de como fica a prévia da postagem! Por enquanto, tudo ocorrendo bem. Quero continuar escrevendo até chegar no limite. Lero lero lero, como vai você? Lero lero lero blablabla pipipipopopo ainda nao mas muito legal que foda. Mas e agora, para onde vamos? Ainda temos algumas linhas porque coloquei como limite de 10. Quase em 10, vamos lá time uhuuu não aguento mais isso que saco quando acaba estou quase e agora ja acabou"]
+// const TitulosPosts = ["A educação no Brasil", "Como estudar para os Vestibulares"]
+// const TextosPosts = ["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt rem odit quis quaerat. In dolorem praesentium velit ea esse consequuntur cum fugit sequi voluptas ut possimus voluptatibus deserunt nisi eveniet!Lorem ipsum dolor sit amet, consecteturadipisicing elit. Dolorem voluptates vel dolorum autem ex repudiandae iste quasi. Minima explicabo qui necessitatibus porro nihil aliquid deleniti ullam repudiandae dolores corrupti eaque.",
+//                      "Oi! Este é um teste de texto do blog. Para ser mais exato, é um teste de como fica a prévia da postagem! Por enquanto, tudo ocorrendo bem. Quero continuar escrevendo até chegar no limite. Lero lero lero, como vai você? Lero lero lero blablabla pipipipopopo ainda nao mas muito legal que foda. Mas e agora, para onde vamos? Ainda temos algumas linhas porque coloquei como limite de 10. Quase em 10, vamos lá time uhuuu não aguento mais isso que saco quando acaba estou quase e agora ja acabou"]
 
-function ContainerInfo({ isMobile, TitulosPosts, TextosPosts }) {
-    const [token, setToken] = useState('');
-    useEffect(() => {
-        setToken(localStorage.getItem('token'));
-    }, []);
-    const editor = token ? jwtDecode(token).tipoUsuario : false;
-    
+function ContainerInfo({ isMobile, blogPosts }) {
+    let editor = true;
+    console.log(blogPosts[0]);
+
     return (
         <ContainerPag>
             <TITLEPAG $isMobile={isMobile}>Postagens</TITLEPAG>
@@ -70,11 +67,12 @@ function ContainerInfo({ isMobile, TitulosPosts, TextosPosts }) {
                 isMobile={isMobile}
                 imgSrc={placeholder}
                 imgAlt="placeholder"
-                titulopost = {TitulosPosts[0]}
-                textopost = {TextosPosts[0]}
+                titulopost = {/*blogPosts[0].titulo*/"porra"}
+                textopost = {/*blogPosts[0].texto*/"caralho"}
                 editor={editor}
              />
 
+            {/* <BlocoBlog
             {/* <BlocoBlog
                 isMobile={isMobile}
                 imgSrc={placeholder}
@@ -82,6 +80,7 @@ function ContainerInfo({ isMobile, TitulosPosts, TextosPosts }) {
                 titulopost = {TitulosPosts[1]}
                 textopost = {TextosPosts[1]}
                 editor={editor}
+             /> */}
              /> */}
         </ContainerPag>
     )
