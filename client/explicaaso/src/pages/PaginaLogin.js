@@ -1,9 +1,9 @@
 import InputComponent from "../components/Login/InputComponent/InputComponent";
 import styled from 'styled-components';
 import axios from "axios"
-import { useContext, useState } from "react";
-import { AuthContext } from '../components/Auth/AuthContext';
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
 
 const ContainerPag = styled.div`
   width: 100%;
@@ -23,18 +23,30 @@ const LoginContainer = styled.form`
 `
 
 const LoginTitulo = styled.h1`
-  color: #FF6600;
+  color: #FFCC00;
   font-size: 36px;
 `
+
+const MensagemErro = styled.p`
+  color: #ffcc00;
+  font-size: 14px;
+  margin-top: -10px;
+`;
+
+const MensagemSucesso = styled.p`
+  color: #ffcc00;
+  font-size: 14px;
+  margin-top: -10px;
+`;
 
 const Submit = styled.button`
   width: 40%;
   border: none;
   border-radius: 8px;
-  background-color: #FF6600;
+  background-color: #FFCC00;
   font-size: 28px;
   font-weight: 600;
-  color: #994107;
+  color: #003466;
   height: 50px;
   margin: 0 0 40px 0;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -51,12 +63,13 @@ const Submit = styled.button`
 function PaginaLogin(props) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const { login } = useContext(AuthContext);
+  const [feedbackErro, setFeedbackErro] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     // Aqui prevenimos o comportamento padrão do navegador ao acontecimento do evento:
     event.preventDefault();
+    setFeedbackErro('')
 
     try {
       const response = await axios.post('http://localhost:3003/user/login',
@@ -76,10 +89,11 @@ function PaginaLogin(props) {
         setSenha('');
 
         const token = response.data.token;
-        const tipoUsuario = response.data.tipoUsuario;
-        
+
         // Armazena o token no localStorage:
-        login(token, tipoUsuario);
+        localStorage.setItem('token', token);
+
+        const tipoUsuario = jwtDecode(token).tipoUsuario;
 
         // Redireciona o usuário com base no tipo de usuário
         switch (tipoUsuario) {
@@ -98,7 +112,8 @@ function PaginaLogin(props) {
         }
       }
     } catch(error) {
-      console.error('Error submitting form:', error);
+      console.log('Error submitting form:', error);
+      setFeedbackErro(error.response.data.message);
     }
   }
 
@@ -108,6 +123,7 @@ function PaginaLogin(props) {
         <LoginTitulo>Log in</LoginTitulo>
         <InputComponent label='Email' type='email' id='email' value={email} onChange={(event) => setEmail(event.target.value)} required />
         <InputComponent label='Senha' type='password' id='senha' value={senha} onChange={(event) => setSenha(event.target.value)} required />
+        {feedbackErro && <MensagemErro>{feedbackErro}</MensagemErro>}
         <Submit type='submit'>
           Confirmar
         </Submit>

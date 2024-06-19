@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import PaginaBlogPost from './pages/PaginaBlogPostagem';
 import PaginaNoticias from './pages/PaginaNoticias';
 import { BrowserRouter as Router } from 'react-router-dom';
-import AuthProvider from './components/Auth/AuthContext';
 import Roteador from './Routes'
 import Header from './components/Head/Header';
 import Footer from './components/FooterComponents/Footer';
@@ -42,6 +42,12 @@ const AppContainer = styled.div`
   margin: 0;
 `
 
+const accessToken = localStorage.getItem('token');
+export const authAxios = axios.create({
+  headers: {
+    Authorization: `Bearer ${accessToken}`
+  }
+});
 
 // ESTRUTURA DO COMPONENTE
 function App() {
@@ -66,21 +72,19 @@ function App() {
     // inteira.
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
-    <AuthProvider>
-      <AppContainer>
-        <GlobalStyle/>
-        <Router>
-          <Header isMobile={isMobile}/>
-          <Roteador isMobile={isMobile}/>
-        </Router>
-        {/* <PaginaDisciplina isMobile={isMobile}/> */}
-        {/* <Header isMobile={isMobile}/> */}
-        {/* <PaginaDisciplina isMobile={isMobile}/> */}
-        {/* <PaginaCadastro></PaginaCadastro> */}
-        {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
-        {/* <Footer isMobile={isMobile}/> */}
-      </AppContainer>
-    </AuthProvider>
+    <AppContainer>
+      <GlobalStyle/>
+      <Router>
+        <Header isMobile={isMobile}/>
+        <Roteador isMobile={isMobile}/>
+      </Router>
+      {/* <PaginaDisciplina isMobile={isMobile}/> */}
+      {/* <Header isMobile={isMobile}/> */}
+      {/* <PaginaDisciplina isMobile={isMobile}/> */}
+      {/* <PaginaCadastro></PaginaCadastro> */}
+      {/* <PaginaAluno isMobile={isMobile}></PaginaAluno> */}
+      {/* <Footer isMobile={isMobile}/> */}
+    </AppContainer>
   );
 }
 

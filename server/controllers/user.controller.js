@@ -18,11 +18,11 @@ export function checkToken(req, res, next) {
 
     next();
   } catch(error) {
-    res.status(400).json({ message: "Token inválido" });
+    res.status(400).json({ message: "Seu acesso não é permitido para essa função" });
   }
 }
 
-
+// REGISTRO:
 export async function signupUser(req, res) {
   try {
     // Validação de confirmação de senha:
@@ -64,34 +64,37 @@ export async function signupUser(req, res) {
   }
 }
 
+// LOGIN:
 export async function signinUser(req, res) {
   try {
     // Checagem se usuário existe:
     const user = await User.findOne({ email: req.body.email });
     if(!user) {
-      return res.status(404).send({ message: "Usuário não encontrado" });
+      return res.status(404).send({ message: "Email incorreto" });
     }
 
     // Checagem de senha:
     const checkSenha = await bcrypt.compare(req.body.senha, user.senha);
     if(!checkSenha) {
-      return res.status(422).send({ message: "Senha incorreta" });
+      return res.status(422).json({ message: "Senha incorreta" });
     }
 
     const secret = process.env.SECRET;
 
+    // Criação de Token:
     const token = jwt.sign({
-      id: user._id
+      id: user._id,
+      tipoUsuario: user.tipo,
+      nome: user.nome,
+      sobrenome: user.sobrenome
     }, secret )
 
+    // Resposta:
     res.status(200);
     res.json(
       {
         message: "Autenticação realizada com sucesso", 
         token: token,
-        tipoUsuario: user.tipo,
-        nome: user.nome,
-        sobrenome: user.sobrenome
       });
     console.log("Login realizado");
     
@@ -99,7 +102,7 @@ export async function signinUser(req, res) {
     if(error.name === 'ValidationError') {
       // Construimos uma mensagem de erro específica para cada campo inválido:
       const messages = Object.values(error.errors).map(err => err.message);
-      res.status(400).send({ message: "Erro de validação", errors: messages });
+      res.status(400).json({ message: "Erro de validação", errors: messages });
     } else {
       res.status(409);
       res.send(error.message);

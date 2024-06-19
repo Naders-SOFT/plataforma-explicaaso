@@ -28,7 +28,7 @@ const H2 = styled.h2`
   color: #FF6600;
   font-size: ${({$isMobile}) => ($isMobile ? '50px' : '5vw')};
   width: ${({$isMobile}) => ($isMobile ? '100%' : '45vw')};
-  text-align: ${({$isMobile}) => ($isMobile ? 'center' : 'left')};
+  text-align: center;
   margin-top: 0;
 `;
 
@@ -43,7 +43,7 @@ const H3 = styled.h3`
 
 const P = styled.p`
   color: #828282;
-  width: ${({$isMobile}) => ($isMobile ? '100%' : '40vw')};
+  width: 100%;
   text-align: center;
 `;
 
