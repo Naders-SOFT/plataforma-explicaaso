@@ -15,9 +15,9 @@ const DSKMAP = styled.div`
 
 const MOBMAP = styled.div`
     iframe {
-        height: 50vh;
-        margin: 10vh;
-        width: 60vw;
+        width: 100%;
+        height: 100%;
+        border: 0;
     }
 `;
 
