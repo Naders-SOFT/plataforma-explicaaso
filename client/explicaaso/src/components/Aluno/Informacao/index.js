@@ -17,14 +17,12 @@ const DSKINFO = styled.div`
     grid-template-columns: 1fr 8fr;
     flex-wrap: wrap;
     gap: 2%;
-    padding: 1% 1% 1% 0px;
     overflow: auto;
 `
 const Container = styled.div`
     width: 100%;
     
 `
-
 function Informacao(props) {
     return (
         <Container>
