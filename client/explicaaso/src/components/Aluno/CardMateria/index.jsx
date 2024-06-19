@@ -56,10 +56,7 @@ function CardMateria(props) {
         border-radius: 6px 6px 0px 0px;
         opacity: 0.91;
     `
-    // const frentesNome = props.frentes.map(frt => {
-    //     frt.frentesNome.join(' | ')
-    // })
-    // console.log(props.frentes)
+    
     const f = props.frentes.map(frt =>
         frt.nomeFrente
     ).join(' | ')
