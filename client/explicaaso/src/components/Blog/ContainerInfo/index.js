@@ -50,22 +50,26 @@ const BTADICIONAR = styled.button`
 
 function ContainerInfo({ isMobile, blogPosts }) {
     let editor = true;
-    const [renderContent, setRenderContent] = useState(<p>Carregando esta PORRA...</p>)
+    const [renderContent, setRenderContent] = useState(<p>Carregando...</p>)
 
     useEffect(() => {
         if(blogPosts && blogPosts.length > 0) {
-            setRenderContent(<BlocoBlog
-            isMobile={isMobile}
-            imgSrc={placeholder}
-            imgAlt="placeholder"
-            titulopost = {blogPosts[0].titulo}
-            textopost = {blogPosts[0].texto}
-            editor={editor}
+          const parser = new DOMParser();
+          const texto = parser.parseFromString(blogPosts[0].texto, "text/html");
+
+
+          setRenderContent(<BlocoBlog
+          isMobile={isMobile}
+          imgSrc={placeholder}
+          imgAlt="placeholder"
+          titulopost = {blogPosts[0].titulo}
+          textopost = {texto.body.textContent}
+          editor={editor}
         />);
         }
 
         else{
-          setRenderContent(<p>Carregando esse CARALHO</p>);
+          setRenderContent(<p>Carregando...</p>);
         }
     }, [blogPosts]);
 
