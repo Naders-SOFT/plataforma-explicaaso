@@ -98,17 +98,17 @@ const LERMAIS = styled.a`
   }
 `;
 
-function BlocoBlog(props) {
+function BlocoBlog({ isMobile, editor, titulopost, textopost, imgSrc, imgAlt }) {
   return (
-    <BlocoInfo $isMobile={props.isMobile}>
-      <TITLEPOST $isMobile={props.isMobile}>{props.titulopost}</TITLEPOST>
-      <DIVIMG $isMobile={props.isMobile}>
-        <TEXTOPOST $isMobile={props.isMobile}>{props.textopost}</TEXTOPOST>
-        <IMG src={props.imgSrc} alt={props.imgAlt} />
+    <BlocoInfo $isMobile={isMobile}>
+      <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
+      <DIVIMG $isMobile={isMobile}>
+        <TEXTOPOST $isMobile={isMobile}>{textopost}</TEXTOPOST>
+        <IMG src={imgSrc} alt={imgAlt} />
       </DIVIMG>
-      <BUTTON $isMobile={props.isMobile}>Ler mais</BUTTON>
-      {props.editor && 
-        <BUTTON $isMobile={props.isMobile}>Editar</BUTTON>
+      <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
+      {(editor == 'administrador' || editor == 'professor') && 
+        <BUTTON $isMobile={isMobile}>Editar</BUTTON>
       }
     </BlocoInfo>
   );

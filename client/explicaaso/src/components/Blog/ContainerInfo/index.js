@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import BlocoBlog from "../BlocoBlog";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
 import React, {useState, useEffect} from 'react';
+import { jwtDecode } from 'jwt-decode';
+import { getAttributesFromExtensions } from '@tiptap/react';
 
 const ContainerPag = styled.div`
   display: flex;
@@ -49,7 +51,8 @@ const BTADICIONAR = styled.button`
 //                      "Oi! Este é um teste de texto do blog. Para ser mais exato, é um teste de como fica a prévia da postagem! Por enquanto, tudo ocorrendo bem. Quero continuar escrevendo até chegar no limite. Lero lero lero, como vai você? Lero lero lero blablabla pipipipopopo ainda nao mas muito legal que foda. Mas e agora, para onde vamos? Ainda temos algumas linhas porque coloquei como limite de 10. Quase em 10, vamos lá time uhuuu não aguento mais isso que saco quando acaba estou quase e agora ja acabou"]
 
 function ContainerInfo({ isMobile, blogPosts }) {
-    let editor = true;
+    const token = localStorage.getItem('token');
+    const editor = token ? jwtDecode(token).tipoUsuario : false;
     const [renderContent, setRenderContent] = useState(<p>Carregando...</p>)
 
     useEffect(() => {
@@ -73,10 +76,12 @@ function ContainerInfo({ isMobile, blogPosts }) {
         }
     }, [blogPosts]);
 
+
+    
     return (
         <ContainerPag>
             <TITLEPAG $isMobile={isMobile}>Postagens</TITLEPAG>
-            {editor &&
+            {(editor == 'administrador' || editor == 'professor') &&
             <BTDIV $isMobile={isMobile}>
                 <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
             </BTDIV>
