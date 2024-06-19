@@ -3,7 +3,7 @@ import instaIcon from '../../../images/redes_sociais/instagram-icon.png';
 
 const FooterContainer = styled.div`
   height: 80px;
-  width: auto;
+  width: 100%;
   background-color: white;
   display: grid;
   margin: 22px 40px 30px 40px;

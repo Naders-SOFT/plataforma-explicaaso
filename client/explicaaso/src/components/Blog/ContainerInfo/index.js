@@ -3,22 +3,19 @@ import BlocoBlog from "../BlocoBlog";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
 
 const ContainerPag = styled.div`
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 0;
+`;
 
 const TITLEPAG = styled.h2`
-    color: #FF6600;
-    font-size: 40px;
-    width: 100%;
-    
-    text-align: center;
-    margin: ${($isMobile) => $isMobile ? "5%" : "3% 5% 0% 5%"};
-    bottom: ${($isMobile) => $isMobile ? "3%" : "auto"};
-`
+  color: #FF6600;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+`;
 
 const BTDIV = styled.div`
     width: ${({$isMobile}) => ($isMobile ? '70%' : '90%')};
@@ -28,36 +25,41 @@ const BTDIV = styled.div`
 `
 
 const BTADICIONAR = styled.button`
-    width: 25%;
-    margin: 0 1%;
-    padding: ${({$isMobile}) => $isMobile ? "1% 0" : "1% 0"};
-    background-color: #FFCC00;
-    border: none;
-    border-radius: 10px;
-    color: #003466;
-    font-size: ${({$isMobile}) => $isMobile ? "20px" : "30px"};
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
+    width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
+  margin: 20px 0;
+  padding: 10px 0;
+  background-color: #FFCC00;
+  border: none;
+  border-radius: 10px;
+  color: #003466;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.2rem')};
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #ffbf00;
+  }
 `
 
 const TitulosPosts = ["A educação no Brasil", "Como estudar para os Vestibulares"]
 const TextosPosts = ["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt rem odit quis quaerat. In dolorem praesentium velit ea esse consequuntur cum fugit sequi voluptas ut possimus voluptatibus deserunt nisi eveniet!Lorem ipsum dolor sit amet, consecteturadipisicing elit. Dolorem voluptates vel dolorum autem ex repudiandae iste quasi. Minima explicabo qui necessitatibus porro nihil aliquid deleniti ullam repudiandae dolores corrupti eaque.",
                      "Oi! Este é um teste de texto do blog. Para ser mais exato, é um teste de como fica a prévia da postagem! Por enquanto, tudo ocorrendo bem. Quero continuar escrevendo até chegar no limite. Lero lero lero, como vai você? Lero lero lero blablabla pipipipopopo ainda nao mas muito legal que foda. Mas e agora, para onde vamos? Ainda temos algumas linhas porque coloquei como limite de 10. Quase em 10, vamos lá time uhuuu não aguento mais isso que saco quando acaba estou quase e agora ja acabou"]
 
-function ContainerInfo(props) {
+function ContainerInfo({ isMobile, TitulosPosts, TextosPosts }) {
     let editor = true;
 
     return (
         <ContainerPag>
-            <TITLEPAG $isMobile={props.isMobile}>Postagens</TITLEPAG>
+            <TITLEPAG $isMobile={isMobile}>Postagens</TITLEPAG>
             {editor &&
-            <BTDIV $isMobile={props.isMobile}>
-                <BTADICIONAR $isMobile={props.isMobile}>Criar Post</BTADICIONAR>
+            <BTDIV $isMobile={isMobile}>
+                <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
             </BTDIV>
             }
             <BlocoBlog
-                isMobile={props.isMobile}
+                isMobile={isMobile}
                 imgSrc={placeholder}
                 imgAlt="placeholder"
                 titulopost = {TitulosPosts[0]}
@@ -66,7 +68,7 @@ function ContainerInfo(props) {
              />
 
             <BlocoBlog
-                isMobile={props.isMobile}
+                isMobile={isMobile}
                 imgSrc={placeholder}
                 imgAlt="placeholder"
                 titulopost = {TitulosPosts[1]}

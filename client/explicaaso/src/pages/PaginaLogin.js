@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import axios from "axios"
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import { jwtDecode } from "jwt-decode";
+=======
+>>>>>>> feat/pagina-disciplina
 
 const ContainerPag = styled.div`
   width: 100%;

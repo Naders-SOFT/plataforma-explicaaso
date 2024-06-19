@@ -39,11 +39,13 @@ const TipoAviso = styled.div`
 `;
 
 function ItemAviso(props) {
+    const tipoUsr = localStorage.getItem("tipoUsuario")
+
     return (
         <ItemContainer>
             <TipoAviso>!</TipoAviso>
             <TituloAviso href={props.link} target="_blank">{props.tituloAviso}</TituloAviso>
-            <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />
+            {tipoUsr !== "aluno" && <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />}
         </ItemContainer>
     );
 }

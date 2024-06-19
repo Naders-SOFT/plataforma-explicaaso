@@ -41,10 +41,15 @@ const H3 = styled.h3`
   margin-bottom: 0;
 `;
 
-const P = styled.p`
+const P1 = styled.p`
   color: #828282;
   width: 100%;
   text-align: center;
+`;
+
+const P2 = styled.p`
+  color: #828282;
+  width: 100%;
 `;
 
 const STYLCONTACTFORM = styled.div`
@@ -61,7 +66,7 @@ function PaginaContato(props) {
             <CONTATO $isMobile={props.isMobile}>
                 <STYLCONTACTFORM $isMobile={props.isMobile}>
                     <H2 $isMobile={props.isMobile}>Entre em contato</H2>
-                    <P $isMobile={props.isMobile}>
+                    <P1 $isMobile={props.isMobile}>
                         Ficamos felizes em ouvir de você!
                         <br />
                         Se você tem alguma dúvida, sugestão ou  apenas quer dizer "olá",
@@ -71,13 +76,13 @@ function PaginaContato(props) {
                         Preencha o formulário abaixo
                         <br />
                         e entraremos em contato o mais breve possível.
-                    </P>
+                    </P1>
                     <Formulario isMobile={props.isMobile}/>
                 </STYLCONTACTFORM>
                 <DIV $isMobile={props.isMobile}>
                     <Mapa isMobile={props.isMobile}/>
                     <H3 $isMobile={props.isMobile}>Endereço</H3>
-                    <P $isMobile={props.isMobile}>Av. Trab. São Carlense, 400 - Parque Arnold Schimidt, 13566-590</P>
+                    <P2 $isMobile={props.isMobile}>Av. Trab. São Carlense, 400 - Parque Arnold Schimidt, 13566-590</P2>
                 </DIV>
             </CONTATO>
         </CONTAINERCONTATO>
