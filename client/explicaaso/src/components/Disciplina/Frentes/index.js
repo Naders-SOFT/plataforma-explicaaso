@@ -27,6 +27,7 @@ import qui3 from '../../../images/frentes/qui3.jpeg';
 import mat1 from '../../../images/frentes/mat1.jpeg';
 import mat2 from '../../../images/frentes/mat2.jpeg';
 import mat3 from '../../../images/frentes/mat3.jpeg';
+import imgPerfil from '../../../images/logos/perfil.jpg'
 
 const StyledContainer = styled.div`
   display: flex;
@@ -151,8 +152,7 @@ const DSKINFO = styled.div`
 
 const botoes = [
     { titulo: 'Matérias'},
-    { titulo: 'Provas'},
-    { titulo: 'Simulados'}
+    { titulo: 'Provas'}
 ]
 
 const FrenteButton = ({ frente }) => {
@@ -182,7 +182,7 @@ const Frentes = (props) => {
     <div>
         {props.isMobile ?
         <MOBLINFO>
-                <SideBar isMobile={props.isMobile} botoes={botoes}/>
+                <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil}/>
                 <div>
                   <TituloDisciplina tituloDisciplina={mat.materias}/>
                   <StyledContainer>
@@ -195,7 +195,7 @@ const Frentes = (props) => {
         </MOBLINFO>
         :
         <DSKINFO>
-            <SideBar isMobile={props.isMobile} botoes={botoes}/>
+            <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil}/>
             <div>
               <TituloDisciplina tituloDisciplina={mat.materias}/> 
               <StyledContainer>
