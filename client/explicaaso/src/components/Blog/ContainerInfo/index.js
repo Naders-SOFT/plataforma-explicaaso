@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import BlocoBlog from "../BlocoBlog";
-import placeholder from "../../../images/sobre_nos/placeholder.png";
-import { jwtDecode } from 'jwt-decode';
-import { getAttributesFromExtensions } from '@tiptap/react';
-import { useEffect, useState } from 'react';
+import placeholder from "../../../images/sobre_nos/placeholder.png"
+import React, {useState, useEffect} from 'react';
 
 const ContainerPag = styled.div`
   display: flex;
@@ -52,7 +50,24 @@ const BTADICIONAR = styled.button`
 
 function ContainerInfo({ isMobile, blogPosts }) {
     let editor = true;
-    console.log(blogPosts[0]);
+    const [renderContent, setRenderContent] = useState(<p>Carregando esta PORRA...</p>)
+
+    useEffect(() => {
+        if(blogPosts && blogPosts.length > 0) {
+            setRenderContent(<BlocoBlog
+            isMobile={isMobile}
+            imgSrc={placeholder}
+            imgAlt="placeholder"
+            titulopost = {blogPosts[0].titulo}
+            textopost = {blogPosts[0].texto}
+            editor={editor}
+        />);
+        }
+
+        else{
+          setRenderContent(<p>Carregando esse CARALHO</p>);
+        }
+    }, [blogPosts]);
 
     return (
         <ContainerPag>
@@ -63,16 +78,8 @@ function ContainerInfo({ isMobile, blogPosts }) {
                 <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
             </BTDIV>
             }
-            <BlocoBlog
-                isMobile={isMobile}
-                imgSrc={placeholder}
-                imgAlt="placeholder"
-                titulopost = {/*blogPosts[0].titulo*/"porra"}
-                textopost = {/*blogPosts[0].texto*/"caralho"}
-                editor={editor}
-             />
+            {renderContent}
 
-            {/* <BlocoBlog
             {/* <BlocoBlog
                 isMobile={isMobile}
                 imgSrc={placeholder}
