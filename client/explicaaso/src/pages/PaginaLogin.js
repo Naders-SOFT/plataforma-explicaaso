@@ -92,6 +92,7 @@ function PaginaLogin(props) {
 
         // Armazena o token no localStorage:
         localStorage.setItem('token', token);
+        window.dispatchEvent(new Event("storage"));
 
         const tipoUsuario = jwtDecode(token).tipoUsuario;
 
