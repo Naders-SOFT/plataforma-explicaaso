@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import BlocoBlog from "../BlocoBlog";
-import placeholder from "../../../images/sobre_nos/placeholder.png"
+import placeholder from "../../../images/sobre_nos/placeholder.png";
+import { jwtDecode } from 'jwt-decode';
+import { getAttributesFromExtensions } from '@tiptap/react';
 
 const ContainerPag = styled.div`
   display: flex;
@@ -47,15 +49,16 @@ const TitulosPosts = ["A educação no Brasil", "Como estudar para os Vestibular
 const TextosPosts = ["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt rem odit quis quaerat. In dolorem praesentium velit ea esse consequuntur cum fugit sequi voluptas ut possimus voluptatibus deserunt nisi eveniet!Lorem ipsum dolor sit amet, consecteturadipisicing elit. Dolorem voluptates vel dolorum autem ex repudiandae iste quasi. Minima explicabo qui necessitatibus porro nihil aliquid deleniti ullam repudiandae dolores corrupti eaque.",
                      "Oi! Este é um teste de texto do blog. Para ser mais exato, é um teste de como fica a prévia da postagem! Por enquanto, tudo ocorrendo bem. Quero continuar escrevendo até chegar no limite. Lero lero lero, como vai você? Lero lero lero blablabla pipipipopopo ainda nao mas muito legal que foda. Mas e agora, para onde vamos? Ainda temos algumas linhas porque coloquei como limite de 10. Quase em 10, vamos lá time uhuuu não aguento mais isso que saco quando acaba estou quase e agora ja acabou"]
 
-function ContainerInfo(props) {
-    let editor = true;
-
+function ContainerInfo({ isMobile, TitulosPosts, TextosPosts }) {
+    const token = localStorage.getItem('token');
+    const editor = token ? jwtDecode(token).tipoUsuario : false;
+    
     return (
         <ContainerPag>
-            <TITLEPAG $isMobile={props.isMobile}>Postagens</TITLEPAG>
-            {editor &&
-            <BTDIV $isMobile={props.isMobile}>
-                <BTADICIONAR $isMobile={props.isMobile}>Criar Post</BTADICIONAR>
+            <TITLEPAG $isMobile={isMobile}>Postagens</TITLEPAG>
+            {(editor == 'administrador' || editor == 'professor') &&
+            <BTDIV $isMobile={isMobile}>
+                <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
             </BTDIV>
             }
             <BlocoBlog
@@ -67,14 +70,14 @@ function ContainerInfo(props) {
                 editor={editor}
              />
 
-            <BlocoBlog
-                isMobile={props.isMobile}
+            {/* <BlocoBlog
+                isMobile={isMobile}
                 imgSrc={placeholder}
                 imgAlt="placeholder"
                 titulopost = {TitulosPosts[1]}
                 textopost = {TextosPosts[1]}
                 editor={editor}
-             />
+             /> */}
         </ContainerPag>
     )
 }
