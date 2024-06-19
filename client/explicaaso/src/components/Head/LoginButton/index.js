@@ -38,9 +38,7 @@ function LoginButton() {
   const handleClick = () => {
     if (token) {
       localStorage.removeItem('token');
-      localStorage.removeItem('tipoUsuario');
-      localStorage.removeItem('nome');
-      localStorage.removeItem('sobrenome');
+      window.dispatchEvent(new Event("storage"));
       navigate('/');
     } else {
       navigate('/login');

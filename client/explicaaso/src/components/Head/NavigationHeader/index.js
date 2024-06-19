@@ -16,6 +16,7 @@ const NavigationItem = styled(Link)`
   font-size: 18px;
   color: white;
   text-decoration: none;
+  text-align: center;
   margin: 0 10px;
   padding: 2px 20px;
   display: inline-block;
