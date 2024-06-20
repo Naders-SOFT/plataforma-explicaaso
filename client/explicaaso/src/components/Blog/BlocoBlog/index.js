@@ -47,6 +47,7 @@ const DIVIMG = styled.div`
   display: flex;
   flex-direction: ${({ $isMobile }) => ($isMobile ? 'column' : 'row')};
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   margin-top: 20px;
 `;
