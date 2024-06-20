@@ -157,20 +157,21 @@ const botoes = [
     { titulo: 'Provas'}
 ]
 
-const FrenteButton = ({ materia }) => {
-  return (
-    <StyledButton>
-        <StyledContentContainer>
-            <StyledLink to={`/pagina-aluno/${frente.materia}/${frente.NomeFrente}`}>
-                <Card>
-                    <img src={frente.image} alt={frente.name} />
-                    <NomeFrente>{frente.NomeFrente}</NomeFrente>
-                </Card>
-            </StyledLink>
-        </StyledContentContainer>
-    </StyledButton>
-  );
-};
+// const FrenteButton = ({ frente }) => {
+//   console.log(frente)
+//   return (
+//     <StyledButton>
+//         <StyledContentContainer>
+//             <StyledLink to={`/pagina-aluno/${mat.materia}/${frente.NomeFrente}`}>
+//                 <Card>
+//                     <img src={frente.image} alt={frente.name} />
+//                     <NomeFrente>{frente.NomeFrente}</NomeFrente>
+//                 </Card>
+//             </StyledLink>
+//         </StyledContentContainer>
+//     </StyledButton>
+//   );
+// };
 
 const Frentes = (props) => {
   const mat = useParams()
@@ -185,14 +186,32 @@ const Frentes = (props) => {
         })
     }, [])
 
-    console.log('vamos funciona')
-    console.log(mat.materias)
-    console.log(materia)
+  const FrenteButton = ({ frente }) => {
+    console.log(frente)
+    return (
+      <StyledButton>
+          <StyledContentContainer>
+              <StyledLink to={`/pagina-aluno/${mat.materia}/${frente.NomeFrente}`}>
+                  <Card>
+                      <img src={frente.image} alt={frente.name} />
+                      <NomeFrente>{frente.NomeFrente}</NomeFrente>
+                  </Card>
+              </StyledLink>
+          </StyledContentContainer>
+      </StyledButton>
+    );
+  };
 
-  const frentesBotoes = frentes
-        .map((frente, index) => (
+    console.log('vamos funciona')
+    // console.log(mat.materias)
+    // console.log(materia)
+
+  const frentesBotoes = materia
+    .flatMap((materiaItem) => 
+        materiaItem.frentes.map((frente, index) => (
             <FrenteButton key={index} frente={frente} />
         ))
+    );
 
   return (
     <div>
