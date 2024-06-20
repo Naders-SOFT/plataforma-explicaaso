@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 
@@ -98,7 +99,17 @@ const LERMAIS = styled.a`
   }
 `;
 
-function BlocoBlog({ isMobile, editor, titulopost, textopost, imgSrc, imgAlt }) {
+function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost }) {
+  const [texto, setTexto] = useState('');
+  
+  useEffect(() => {
+    const parser = new DOMParser();
+    const tempText = parser.parseFromString(textopost, 'text/html');
+
+    setTexto(tempText.body.textContent);
+    console.log(texto);
+  }, []);
+
   return (
     <BlocoInfo $isMobile={isMobile}>
       <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
