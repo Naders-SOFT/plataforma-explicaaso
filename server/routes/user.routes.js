@@ -15,9 +15,9 @@ router.post('/signup', checkToken, signupUser);
 router.post('/login', signinUser);
 
 // Listagem de todos os usuários (independente do tipo):
-router.get('/list', listUsers);
+router.get('/list', checkToken, listUsers);
 
-router.get('/listByTipo', listUsersByTipo);
+router.get('/listByTipo', checkToken, listUsersByTipo);
 
 // Listagem de um usuário (por ID):
 router.get('/list/:idUser', checkToken, listUserById);
@@ -33,7 +33,7 @@ router.patch('/update/:idUser', checkToken, updateUser);
 router.patch('/update/:idUser', checkToken, updateUser);
 
 // Deleção de um usuário (por ID):
-router.delete('/delete/:idUser', deleteUser);
+router.delete('/delete/:idUser', checkToken, deleteUser);
 
 // Deleção de todos os usuários (independente do tipo):
 router.delete('/deleteAll', checkToken, deleteAllUsers);
