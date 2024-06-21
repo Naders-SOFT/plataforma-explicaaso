@@ -126,7 +126,6 @@ export async function listUsers(req, res) {
 export async function listUsersByTipo(req, res) {
   try {
     const users = await User.find({ tipo: req.query.tipoUsuario });
-
     res.status(200);
     res.send(users);
   } catch(error) {
@@ -184,7 +183,6 @@ export async function updateUser(req, res) {
 export async function deleteUser(req, res) {
   try {
     await User.findByIdAndDelete(req.params.idUser);
-
     res.status(200);
     res.send("Usuário deletado com sucesso");
   } catch(error) {
@@ -196,7 +194,6 @@ export async function deleteUser(req, res) {
 export async function deleteAllUsers(req, res) {
   try {
     await User.deleteMany({});
-
     res.status(200);
     res.send("Todos os usuários deletados com sucesso");
   } catch(error) {
