@@ -15,7 +15,6 @@ export function checkToken(req, res, next) {
   try {
     const secret = process.env.SECRET;
     
-    // Chega a compatibilidade do token passado:
     jwt.verify(token, secret);
 
     next();
@@ -91,6 +90,8 @@ export async function signinUser(req, res) {
       id: user._id,
       tipoUsuario: user.tipo,
       nome: user.nome,
+      sobrenome: user.sobrenome,
+      materiaProf: user.materiaProf
       sobrenome: user.sobrenome,
       materiaProf: user.materiaProf
     }, secret )
