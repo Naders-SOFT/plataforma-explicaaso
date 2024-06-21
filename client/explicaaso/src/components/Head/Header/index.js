@@ -36,27 +36,29 @@ function Header(props) {
     ]);
 
     useEffect(() => {
-        function logicaToken() {
+        // Ao carregar a pagina:
+        const token = localStorage.getItem("token");
+        if (token) {
+            setItensNavigation(prevItens => {
+                if (!prevItens.some(item => item.id === 5)) {
+                    return [...prevItens, { id: 5, texto: "Área Aluno", pagina: '/pagina-aluno' }];
+                }
+                return prevItens;
+            });
+        } else {
+            setItensNavigation(prevItens => prevItens.filter(item => item.id !== 5));
+        }
+
+        // Ouvindo os eventos do token em tempo real:
+        window.addEventListener("storage", () => {
             const token = localStorage.getItem("token");
             if (token) {
-                if(jwtDecode(token).tipoUsuario === 'administrador') {
-                    setItensNavigation(prevItens => {
-                        if (!prevItens.some(item => item.id === 5)) {
-                            return [...prevItens, { id: 5, texto: "Página do Usuário", pagina: '/pagina-aluno' }];
-                        }
-                        if (!prevItens.some(item => item.id === 6)) {
-                            return [...prevItens, { id: 6, texto: "Página do Administrador", pagina: '/pagina-administrador' }];
-                        }
-                        return prevItens;
-                    });
-                } else {
-                    setItensNavigation(prevItens => {
-                        if (!prevItens.some(item => item.id === 5)) {
-                            return [...prevItens, { id: 5, texto: "Minha Página", pagina: '/pagina-aluno' }];
-                        }
-                        return prevItens;
-                    });
-                }
+                setItensNavigation(prevItens => {
+                    if (!prevItens.some(item => item.id === 5)) {
+                        return [...prevItens, { id: 5, texto: "Área Aluno", pagina: '/pagina-aluno' }];
+                    }
+                    return prevItens;
+                });
             } else {
                 setItensNavigation(prevItens => prevItens.filter(item => item.id !== 6 && item.id !== 5));
             }

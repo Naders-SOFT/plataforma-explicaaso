@@ -129,10 +129,10 @@ export async function listUsers(req, res) {
   }
 }
 
-// GET DE USUÁRIOS POR TIPO:
 export async function listUsersByTipo(req, res) {
   try {
     const users = await User.find({ tipo: req.query.tipoUsuario });
+
     res.status(200);
     res.send(users);
   } catch(error) {
@@ -141,7 +141,6 @@ export async function listUsersByTipo(req, res) {
   }
 }
 
-// GET DE UM USUÁRIO PELO ID:
 export async function listUserById(req, res) {
   try {
     const user = await User.findById(req.params.idUser, '-senha');
@@ -155,6 +154,7 @@ export async function listUserById(req, res) {
     res.send(user);
   } catch(error) {
     res.status(404);
+    res.status(404);
     res.send(error.message);
   }
 }
@@ -167,6 +167,7 @@ export async function listUserByEmail(req, res) {
     res.status(200);
     res.send(user);
   } catch(error) {
+    res.status(404);
     res.status(404);
     res.send(error.message);
   }
