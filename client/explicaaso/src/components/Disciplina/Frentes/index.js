@@ -49,6 +49,7 @@ const StyledItemContainer = styled.div`
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  width: 90%;
 `;
 
 const StyledContentContainer = styled.div`
