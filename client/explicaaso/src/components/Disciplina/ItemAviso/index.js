@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import ItemExcluir from "../ItemExcluir";
-import {jwtDecode} from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode';
 
 const ItemContainer = styled.li`
   width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   padding: 20px;
   background-color: #f8f8f8;
-  border-radius: 12px;
+  border-radius: 1.5rem;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   transition: box-shadow 0.3s ease;
 
   &:hover {
@@ -23,12 +23,18 @@ const TipoAviso = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #ffcc00;
+  background-color: #ffd700;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  color: #333;
+  color: black;
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; 
 `;
 
 const TituloAviso = styled.a`
@@ -37,37 +43,51 @@ const TituloAviso = styled.a`
   font-size: 18px;
   color: #003466;
   text-decoration: none;
-  margin-left: 10%;
+  margin-left: 10px; 
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  justify-content: center;
-  align-items: center;
 `;
 
 const PDFContainer = styled.div`
-  width: 80%;
-  max-height: 400px;
+  width: 100%; 
+  height: 300px;
+  margin-top: 20px; 
+  border: 2px solid darkcyan;
+  border-radius: 12px; 
   overflow: hidden;
-  margin-left: 10%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const PDFPreview = styled.embed`
   width: 100%;
-  height: 300px;
-  border: 1px solid #ddd;
+  height: 100%;
+  border: none; 
 `;
 
 function ItemAviso(props) {
-    const token = localStorage.getItem('token')
-    const tipoUsr = token ? jwtDecode(token).tipoUsuario : false
-    return (
-        <ItemContainer>
-            <TipoAviso>!</TipoAviso>
-            <TituloAviso href={props.link} target="_blank">{props.tituloAviso}</TituloAviso>
-            {tipoUsr !== "aluno" && <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />}
-        </ItemContainer>
-    );
+  const token = localStorage.getItem('token');
+  const tipoUsr = token ? jwtDecode(token).tipoUsuario : false;
+
+  return (
+    <ItemContainer>
+      <Header> 
+        <TipoAviso>!</TipoAviso>
+        <TituloAviso href={props.link} target="_blank">
+          {props.tituloAviso}
+        </TituloAviso>
+        {tipoUsr !== "aluno" && <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />}
+      </Header>
+      <PDFContainer> {/* Contêiner para a prévia do PDF */}
+        <PDFPreview src={props.link} type="application/pdf" />
+      </PDFContainer>
+    </ItemContainer>
+  );
 }
 
 export default ItemAviso;

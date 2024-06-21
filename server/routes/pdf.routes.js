@@ -12,6 +12,6 @@ router.get('/list/:frente', listPdfsFrente);
 
 router.post('/posts', upload.single('arq-pdf'), createPdf)
 
-router.delete('/delete/:idPdf', deletePdf);
+router.delete('/delete/:frente/:idPdf', deletePdf);
 
 export default router
