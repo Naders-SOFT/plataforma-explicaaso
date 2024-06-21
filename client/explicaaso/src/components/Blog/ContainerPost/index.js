@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import BlocoPost from "../BlocoPost";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
+import { useEffect, useState } from "react";
+import { jwtDecode } from 'jwt-decode';
 
 const ContainerPag = styled.div`
     align-items: center;
@@ -33,7 +35,19 @@ const BTADICIONAR = styled.button`
 `
 
 function ContainerPost(props) {
-    let editor = true;
+    const [editor, setEditor] = useState('');
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setEditor(token ? jwtDecode(token).tipoUsuario : '');
+        
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setEditor(token ? jwtDecode(token).tipoUsuario : '');
+        })
+    }, [editor]);
+    
 
     return (
         <ContainerPag>

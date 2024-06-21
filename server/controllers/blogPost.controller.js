@@ -40,6 +40,22 @@ export async function listblogPosts(req, res) {
     }
 }
 
+export async function listblogPostById(req, res) {
+    try {
+        const post = await blogPost.findById(req.params.idblogPost);
+
+        if(!post) {
+        return res.status(404).send({ message: "Postagem não encontrada"} )
+        }
+  
+        res.status(200);
+        res.send(user);
+    } catch(error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 export async function updateblogPost(req, res) {
     try {
         await blogPost.findByIdAndUpdate(req.params.idblogPost, req.body);
