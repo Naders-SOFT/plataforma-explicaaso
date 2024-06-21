@@ -2,7 +2,6 @@ import Header from "../components/Head/Header";
 import ContainerPost from "../components/Blog/ContainerPost";
 import styled from 'styled-components';
 import { useEffect, useState } from "react";
-import { useParams} from "react-router-dom";
 import axios from "axios";
 
 const ContainerPag = styled.div`
@@ -13,12 +12,8 @@ const ContainerPag = styled.div`
 
 function PaginaBlogPost(props) {
     const [blogPost, setBlogPost] = useState([]);
-    const {idPost} = useParams();
-
-    //Faz a requisição da postagem específica por meio do id
-    //obtido. O post será exibido em sua totalidade
     useEffect(() => {
-        axios.get(`http://localhost:3003/blog/list/${idPost}`)
+        axios.get('http://localhost:3003/blog/list/:idBlogPost')
         .then( response => {
             setBlogPost(response.data);
         })
@@ -28,9 +23,11 @@ function PaginaBlogPost(props) {
     }, []);
 
 
+
     return(
         <ContainerPag>
             {/* <Header isMobile={props.isMobile}/> */}
+            <ContainerPost isMobile={props.isMobile} blogPost={blogPost}/>
             <ContainerPost isMobile={props.isMobile} blogPost={blogPost}/>
         </ContainerPag>
     )
