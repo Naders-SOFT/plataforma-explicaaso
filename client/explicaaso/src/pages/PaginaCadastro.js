@@ -201,6 +201,7 @@ function PaginaCadastro(props) {
         {tipoUsuario === 'professor' && <div>
           <Label htmlFor="materia">Matéria lecionada:</Label>
           <Select id="materia" value={materiaProf} onChange={(e) => setMateriaProf(e.target.value)}>
+            <option value="">Nenhuma</option>
             {opcoesMaterias}
           </Select>
         </div>}

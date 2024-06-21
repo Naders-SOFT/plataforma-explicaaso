@@ -13,7 +13,7 @@ export function checkToken(req, res, next) {
 
   try {
     const secret = process.env.SECRET;
-
+    
     jwt.verify(token, secret);
 
     next();
@@ -87,7 +87,8 @@ export async function signinUser(req, res) {
       id: user._id,
       tipoUsuario: user.tipo,
       nome: user.nome,
-      sobrenome: user.sobrenome
+      sobrenome: user.sobrenome,
+      materiaProf: user.materiaProf
     }, secret )
 
     // Resposta:

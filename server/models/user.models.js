@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   nome: { type: String, required: true},
   sobrenome: { type: String, required: true },
   tipo: { type: String, default: 'aluno' },
-  materiaProf: {type: String}
+  materiaProf: { type: String }
 }, { versionKey: false });
 
 const user = mongoose.model("user", userSchema);
