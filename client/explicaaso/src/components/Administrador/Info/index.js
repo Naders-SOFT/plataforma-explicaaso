@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import SideBar from '../SideBar';
 import PessoaList from '../Gerenciador';
 import React, { useState } from 'react' ;
+import Axios from 'axios';
 
 
 const MOBLINFO = styled.div`
