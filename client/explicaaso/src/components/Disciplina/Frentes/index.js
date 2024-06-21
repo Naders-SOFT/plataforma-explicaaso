@@ -104,8 +104,8 @@ const DSKINFO = styled.div`
 `
 
 const botoes = [
-    { titulo: 'Matérias'},
-    { titulo: 'Provas'}
+    { titulo: 'Matérias', link:'/pagina-aluno'},
+    { titulo: 'Provas', link:'/pagina-provas'}
 ]
 
 const Frentes = (props) => {
@@ -126,7 +126,7 @@ const Frentes = (props) => {
     return (
       <StyledButton>
           <StyledContentContainer>
-              <StyledLink to={`/pagina-aluno/${mat.materia}/${frente.NomeFrente}`}>
+              <StyledLink to={'/pagina-aluno/'+mat.materias+'/'+frente.nomeFrente}>
                   <Card>
                       <img src={frente.imgFrente} alt={frente.nomeFrente} />
                       <NomeFrente>{frente.nomeFrente}</NomeFrente>

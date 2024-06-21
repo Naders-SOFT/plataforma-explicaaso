@@ -11,7 +11,8 @@ const ContainerPag = styled.div`
 `
 
 const tituloBotoes = [
-    { titulo: 'Matérias'},
+    { titulo: 'Matérias', link:'/pagina-aluno'},
+    { titulo: 'Provas', link:'/pagina-provas'}
 ]
 
 
