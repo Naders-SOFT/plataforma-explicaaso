@@ -49,7 +49,7 @@ function Header(props) {
             setItensNavigation(prevItens => prevItens.filter(item => item.id !== 5));
         }
 
-        // Ouvindo os eventos do token:
+        // Ouvindo os eventos do token em tempo real:
         window.addEventListener("storage", () => {
             const token = localStorage.getItem("token");
             if (token) {
