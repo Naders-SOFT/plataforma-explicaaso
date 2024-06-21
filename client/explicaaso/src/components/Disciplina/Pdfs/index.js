@@ -37,15 +37,15 @@ function Avisos(props) {
 
     const handleDelete = (id) => {
         // Requisicao de DELETE
-        axios.delete('http://localhost:3003/pdf/delete/'+id)
+        axios.delete('http://localhost:3003/pdf/delete/'+props.tituloFrente+'/'+id)
         .then(response => {
-            console.log('User deleted successfully');
+            console.log('PDF deleted successfully');
 
             // Removendo o pdf que foi deletado
             setPdfs(pdfs.filter(pdf => pdf._id.toString() !== id));
         })
         .catch(error => {
-            console.error('Error deleting user aaaa:', error);
+            console.error('Error deleting PDF aaaa:', error);
         })
     }
 

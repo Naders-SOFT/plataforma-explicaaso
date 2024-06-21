@@ -14,9 +14,9 @@ const s3 = new S3Client({
     region: 'us-east-1'
 })
 
-const bucketName = process.env.S3_BUCKET_NAME
+// const bucketName = process.env.S3_BUCKET_NAME
 
-export async function uploadFile(fileBuffer, fileName, mimetype) {
+export async function uploadFile(fileBuffer, fileName, mimetype, bucketName) {
     const uploadParams = {
         Bucket: bucketName,
         Key: fileName, 
@@ -34,7 +34,7 @@ export async function uploadFile(fileBuffer, fileName, mimetype) {
     }
 }
 
-export async function getObjectSignedUrl(key, novoNome) {
+export async function getObjectSignedUrl(key, bucketName) {
     const params = {
         Bucket: bucketName,
         Key: key
@@ -47,7 +47,7 @@ export async function getObjectSignedUrl(key, novoNome) {
     return url
 }
 
-export function deleteFile(fileId) {
+export function deleteFile(fileId, bucketName) {
     const deleteParams = {
         Bucket: bucketName,
         Key: fileId,
