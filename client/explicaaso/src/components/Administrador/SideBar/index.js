@@ -103,12 +103,11 @@ function SideBar(props) {
                 props.handleSelectedUsuarios(usuarios);
             }
 
-          } catch (error) {
+        } catch (error) {
             console.error(error);
-          }
+        }
 
-        
-
+    
     };
 
     
