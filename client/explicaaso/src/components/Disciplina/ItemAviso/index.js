@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ItemExcluir from "../ItemExcluir";
 import {jwtDecode} from 'jwt-decode'
+import { useState, useEffect } from "react";
 
 const ItemContainer = styled.li`
   width: 100%;
@@ -59,13 +60,24 @@ const PDFPreview = styled.embed`
 `;
 
 function ItemAviso(props) {
-    const token = localStorage.getItem('token')
-    const tipoUsr = token ? jwtDecode(token).tipoUsuario : false
+    const [user, setUser] = useState('');
+
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      setUser(token ? jwtDecode(token).tipoUsuario : '');
+      
+
+      window.addEventListener("storage", () => {
+          const token = localStorage.getItem('token');
+          setUser(token ? jwtDecode(token).tipoUsuario : '');
+      })
+  }, [user]);
+
     return (
         <ItemContainer>
             <TipoAviso>!</TipoAviso>
             <TituloAviso href={props.link} target="_blank">{props.tituloAviso}</TituloAviso>
-            {tipoUsr !== "aluno" && <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />}
+            {user !== "aluno" && <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />}
         </ItemContainer>
     );
 }

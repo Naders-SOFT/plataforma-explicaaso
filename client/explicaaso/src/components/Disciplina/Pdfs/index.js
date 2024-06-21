@@ -53,8 +53,17 @@ function Avisos(props) {
             <ItemAviso key={index} tituloAviso={pdf.titulo} link={pdf.link} idPdf={pdf._id.toString()} onDelete={handleDelete}></ItemAviso>
     ))
 
-    const token = localStorage.getItem('token')
-    const tipoUsr = token ? jwtDecode(token).tipoUsuario : false
+    const [user, setUser] = useState('');
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setUser(token ? jwtDecode(token).tipoUsuario : '');
+        
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setUser(token ? jwtDecode(token).tipoUsuario : '');
+        })
+    }, [user]);
 
     return (
         <Container>
@@ -62,7 +71,7 @@ function Avisos(props) {
                 props.isMobile &&
                 <AvisosPainel>
                     <TituloDisciplina tituloDisciplina={props.tituloFrente}/>
-                    {tipoUsr !== "aluno" && <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>}
+                    {user !== "aluno" && <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>}
                     {listaPdfs}
                 </AvisosPainel>
             }
@@ -70,7 +79,7 @@ function Avisos(props) {
                 !props.isMobile &&
                 <AvisosPainel>
                     <TituloDisciplina tituloDisciplina={props.tituloFrente}/>
-                    {tipoUsr !== "aluno" && <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>}
+                    {user !== "aluno" && <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>}
                     {listaPdfs}
                 </AvisosPainel>
             }
