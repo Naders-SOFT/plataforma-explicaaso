@@ -106,6 +106,12 @@ const EDITBUTTON = styled.button`
 
 
 function BlocoPost({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost}) {
+    const renderTexto = (textopost) => {
+        if(textopost){
+            return <MOBITEXT $isMobile={isMobile} dangerouslySetInnerHTML={{__html:textopost}}></MOBITEXT>;
+        }
+    }
+    
     return(
         <BlocoInfo $isMobile={isMobile}>
             {/* Disposição mobile da página */}
@@ -119,7 +125,7 @@ function BlocoPost({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, au
             }
 
             {isMobile &&    
-                <MOBITEXT>{textopost}</MOBITEXT>
+                renderTexto(textopost)
             }
             
             {!isMobile &&    
