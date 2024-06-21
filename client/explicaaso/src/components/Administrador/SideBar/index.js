@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import React from "react";
+import axios from "axios";
+
 
 
 
@@ -88,7 +91,24 @@ const Container = styled.div`
 `
 
 function SideBar(props) {
+    const handleButtonClick = async (type) => {
 
+        try {
+            const response =  await axios.get(`http://localhost:3003/user/listByTipo?tipoUsuario=${type}`)
+            if(response.status === 200){
+                const usuarios = response.data;
+                props.handleSelectedUsuarios(usuarios);
+            }
+
+          } catch (error) {
+            console.error(error);
+          }
+
+        
+
+    };
+
+    
 
     return (
         <Container>
@@ -96,10 +116,10 @@ function SideBar(props) {
                 props.isMobile &&
                 <MOBLCONTAINERSIDE>
                     <MOBLCONTAINERBOTAO>
-                        <MOBLBOTAO>Alunos</MOBLBOTAO>
-                        <MOBLBOTAO>Professores</MOBLBOTAO>
-                        <MOBLBOTAO>Repositório</MOBLBOTAO>
-                    </MOBLCONTAINERBOTAO>
+                        <MOBLBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</MOBLBOTAO>
+                        <MOBLBOTAO onClick={() => handleButtonClick('professor')}>Professores</MOBLBOTAO>
+                        <MOBLBOTAO onClick={() => handleButtonClick('Repositório')}>Repositório</MOBLBOTAO>
+                     </MOBLCONTAINERBOTAO>
                 </MOBLCONTAINERSIDE>
             } 
             {
@@ -110,10 +130,10 @@ function SideBar(props) {
                         <Nome>Nome</Nome>
                     </ConatainerPerfil>
                     <DSKCONTAINERBOTAO>
-                        <DSKBOTAO>Alunos</DSKBOTAO>
-                        <DSKBOTAO>Professores</DSKBOTAO>
-                        <DSKBOTAO>Repositório</DSKBOTAO>
-                   </DSKCONTAINERBOTAO>
+                        <DSKBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</DSKBOTAO>
+                        <DSKBOTAO onClick={() => handleButtonClick('professor')}>Professores</DSKBOTAO>
+                        <DSKBOTAO onClick={() => handleButtonClick('Repositório')}>Repositório</DSKBOTAO>
+                    </DSKCONTAINERBOTAO>
                 </DSKCONTAINERSIDE>
             }   
         </Container>
