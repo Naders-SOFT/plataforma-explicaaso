@@ -150,7 +150,7 @@ const Frentes = (props) => {
         <MOBLINFO>
                 <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil}/>
                 <div>
-                  <TituloDisciplina tituloDisciplina={mat.materias}/>
+                  {/* <TituloDisciplina tituloDisciplina={mat.materias}/> */}
                   <StyledContainer>
                     <StyledH1>Frentes</StyledH1>
                     <StyledItemContainer>
@@ -163,7 +163,7 @@ const Frentes = (props) => {
         <DSKINFO>
             <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil}/>
             <div>
-              <TituloDisciplina tituloDisciplina={mat.materias}/> 
+              {/* <TituloDisciplina tituloDisciplina={mat.materias}/>  */}
               <StyledContainer>
                       <StyledH1>Frentes</StyledH1>
                       <StyledItemContainer>

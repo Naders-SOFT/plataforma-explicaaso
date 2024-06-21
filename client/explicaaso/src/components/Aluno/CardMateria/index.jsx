@@ -16,7 +16,7 @@ const CardInfo = styled.div`
 `
 
 const CardFrentes = styled.p`
-    font-size: 85%;
+    font-size: 78%;
     text-align: inter-word;
 `
 
@@ -41,8 +41,8 @@ function CardMateria(props) {
 
         &:hover {
         cursor: pointer;
-        transform: scale(1.05);
-        -webkit-transform: scale(1.05);
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
         }
     `
 
