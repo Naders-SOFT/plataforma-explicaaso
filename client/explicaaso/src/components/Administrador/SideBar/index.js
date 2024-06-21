@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import axios from "axios";
+import axios from "axios";
 
 
 
@@ -103,11 +104,12 @@ function SideBar(props) {
                 props.handleSelectedUsuarios(usuarios);
             }
 
-        } catch (error) {
+          } catch (error) {
             console.error(error);
-        }
+          }
 
-    
+        
+
     };
 
     
@@ -118,6 +120,8 @@ function SideBar(props) {
                 props.isMobile &&
                 <MOBLCONTAINERSIDE>
                     <MOBLCONTAINERBOTAO>
+                        <MOBLBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</MOBLBOTAO>
+                        <MOBLBOTAO onClick={() => handleButtonClick('professor')}>Professores</MOBLBOTAO>
                         <MOBLBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</MOBLBOTAO>
                         <MOBLBOTAO onClick={() => handleButtonClick('professor')}>Professores</MOBLBOTAO>
                         <MOBLBOTAO onClick={() => handleButtonClick('Repositório')}>Repositório</MOBLBOTAO>
@@ -132,6 +136,8 @@ function SideBar(props) {
                         <Nome>Nome</Nome>
                     </ConatainerPerfil>
                     <DSKCONTAINERBOTAO>
+                        <DSKBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</DSKBOTAO>
+                        <DSKBOTAO onClick={() => handleButtonClick('professor')}>Professores</DSKBOTAO>
                         <DSKBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</DSKBOTAO>
                         <DSKBOTAO onClick={() => handleButtonClick('professor')}>Professores</DSKBOTAO>
                         <DSKBOTAO onClick={() => handleButtonClick('Repositório')}>Repositório</DSKBOTAO>
