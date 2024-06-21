@@ -1,23 +1,33 @@
 import { Router } from 'express';
-import { checkToken, signupUser, signinUser, listUsers, listUserById, listUserByEmail, updateUser, deleteUser, deleteAllUsers } from '../controllers/user.controller.js';
+import { checkToken, signupUser, signinUser, listUsers, listUsersByTipo, listUserById, listUserByEmail, updateUser, deleteUser, deleteAllUsers } from '../controllers/user.controller.js';
 
 // Instancia o roteador:
 const router = Router();
 
-router.post('/signup', signupUser);
+// Cadastro de um usuário:
+router.post('/signup', checkToken, signupUser);
 
+// Login de um usuário:
 router.post('/login', signinUser);
 
-router.get('/list', listUsers);
+// Listagem de todos os usuários (independente do tipo):
+router.get('/list', checkToken, listUsers);
 
+router.get('/listByTipo', listUsersByTipo);
+
+// Listagem de um usuário (por ID):
 router.get('/list/:idUser', checkToken, listUserById);
 
-router.get('/listByEmail', listUserByEmail);
+// Listagem de um usuário (por email):
+router.get('/listByEmail', checkToken, listUserByEmail);
 
-router.patch('/update/:idUser', updateUser);
+// Update de um usuário (por ID):
+router.patch('/update/:idUser', checkToken, updateUser);
 
-router.delete('/delete/:idUser', deleteUser);
+// Deleção de um usuário (por ID):
+router.delete('/delete/:idUser', checkToken, deleteUser);
 
-router.delete('/deleteAll', deleteAllUsers);
+// Deleção de todos os usuários (independente do tipo):
+router.delete('/deleteAll', checkToken, deleteAllUsers);
 
 export default router; 
