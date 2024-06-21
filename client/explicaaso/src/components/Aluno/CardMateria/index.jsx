@@ -13,17 +13,18 @@ const CardInfo = styled.div`
     flex-direction: column;
     padding: 1rem;
     line-height: 1.5em;
+    height: 4rem;
 `
 
 const CardFrentes = styled.p`
-    font-size: 78%;
+    font-size: 75%;
     text-align: inter-word;
 `
 
 function CardMateria(props) {
     const Card = styled.li`
         width: ${props => props.isMobile ? '60%' : '100%'};
-        height: ${props => props.isMobile ? '50%' : '100%'};
+        height: 20em;
         display: flex;
         flex-direction: column;
         color: black;
