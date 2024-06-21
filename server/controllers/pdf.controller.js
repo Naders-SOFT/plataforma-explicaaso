@@ -15,13 +15,16 @@ export const createPdf = async (req, res) => {
         })
 
         await pdfNovo.save()
+
+        const bucketName = req.body.frente === 'Provas' ? 'provas' : 'pdfs'
         
         // Upload no minio
         // Utilizando id do mongoose como nome no minio para evitar
         // que sobrescricao de arquivos
         await uploadFile(req.file.buffer, 
                         pdfNovo._id.toString(), 
-                        req.file.mimetype);
+                        req.file.mimetype,
+                        bucketName);
 
         res.status(201).send();
     }
@@ -35,13 +38,14 @@ export const createPdf = async (req, res) => {
 
 export async function listPdfs(req, res) {
     try {
+
         // Buscando pdfs no bd
         const pdfs = await Pdf.find({})
+
         // Inserindo link assinado em cada objeto do banco de dados
         for (let pdf of pdfs) {
             pdf.link = await getObjectSignedUrl(pdf._id.toString())
             pdf.titulo = pdf.novoNome === "" ? pdf.titulo : pdf.novoNome
-            // console.log(pdf.link)
         }
 
         res.status(200).send(pdfs)
@@ -56,8 +60,11 @@ export async function deletePdf(req, res) {
         // Deletando do bd
         await Pdf.findByIdAndDelete(req.params.idPdf)
 
+
         // Nome do arquivo a ser deletado do minio é o id do bd
-        deleteFile(req.params.idPdf)
+        // Nome do bucket depende se o arquivo é prova ou material
+        const bucketName = req.params.frente === 'Provas' ? 'provas' : 'pdfs'
+        deleteFile(req.params.idPdf, bucketName)
 
         res.status(200).send()
     }
@@ -70,11 +77,13 @@ export async function listPdfsFrente(req, res) {
     try {
         // Buscando pdfs no bd
         const pdfs = await Pdf.find({frente: req.params.frente})
+
+        const bucketName = req.body.frente === 'Provas' ? 'provas' : 'pdfs'
+
         // Inserindo link assinado em cada objeto do banco de dados
         for (let pdf of pdfs) {
-            pdf.link = await getObjectSignedUrl(pdf._id.toString())
+            pdf.link = await getObjectSignedUrl(pdf._id.toString(), bucketName)
             pdf.titulo = pdf.novoNome === "" ? pdf.titulo : pdf.novoNome
-            // console.log(pdf.link)
         }
 
         res.status(200).send(pdfs)

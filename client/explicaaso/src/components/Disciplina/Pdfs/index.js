@@ -37,15 +37,15 @@ function Avisos(props) {
 
     const handleDelete = (id) => {
         // Requisicao de DELETE
-        axios.delete('http://localhost:3003/pdf/delete/'+id)
+        axios.delete('http://localhost:3003/pdf/delete/'+props.tituloFrente+'/'+id)
         .then(response => {
-            console.log('User deleted successfully');
+            console.log('PDF deleted successfully');
 
             // Removendo o pdf que foi deletado
             setPdfs(pdfs.filter(pdf => pdf._id.toString() !== id));
         })
         .catch(error => {
-            console.error('Error deleting user aaaa:', error);
+            console.error('Error deleting PDF aaaa:', error);
         })
     }
 
@@ -53,8 +53,17 @@ function Avisos(props) {
             <ItemAviso key={index} tituloAviso={pdf.titulo} link={pdf.link} idPdf={pdf._id.toString()} onDelete={handleDelete}></ItemAviso>
     ))
 
-    const token = localStorage.getItem('token')
-    const tipoUsr = token ? jwtDecode(token).tipoUsuario : false
+    const [user, setUser] = useState('');
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setUser(token ? jwtDecode(token).tipoUsuario : '');
+        
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setUser(token ? jwtDecode(token).tipoUsuario : '');
+        })
+    }, [user]);
 
     return (
         <Container>
@@ -62,7 +71,7 @@ function Avisos(props) {
                 props.isMobile &&
                 <AvisosPainel>
                     <TituloDisciplina tituloDisciplina={props.tituloFrente}/>
-                    {tipoUsr !== "aluno" && <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>}
+                    {user !== "aluno" && <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>}
                     {listaPdfs}
                 </AvisosPainel>
             }
@@ -70,7 +79,7 @@ function Avisos(props) {
                 !props.isMobile &&
                 <AvisosPainel>
                     <TituloDisciplina tituloDisciplina={props.tituloFrente}/>
-                    {tipoUsr !== "aluno" && <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>}
+                    {user !== "aluno" && <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>}
                     {listaPdfs}
                 </AvisosPainel>
             }
