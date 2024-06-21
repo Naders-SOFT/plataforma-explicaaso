@@ -45,7 +45,8 @@ export async function signupUser(req, res) {
       senha: senhaHash,
       nome: req.body.nome,
       sobrenome: req.body.sobrenome,
-      tipo: req.body.tipo
+      tipo: req.body.tipo,
+      materiaProf: req.body.materiaProf
     });
 
     await userNovo.save();
