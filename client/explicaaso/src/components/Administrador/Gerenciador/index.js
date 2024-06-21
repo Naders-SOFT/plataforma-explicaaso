@@ -104,7 +104,7 @@ const PessoaList = ({ items, itemType }) => {
           </CadastroItem>
         ))}
       </CadastroListStyled>
-      <Link to="/pagina-admin/cadastro" style={{ textDecoration: 'none' }}>
+      <Link to="/pagina-administrador/cadastro" style={{ textDecoration: 'none' }}>
         <DSKBotao style={{ marginTop: '10px', marginLeft: '5%' }}>Cadastrar</DSKBotao>
       </Link>
     </Container>
