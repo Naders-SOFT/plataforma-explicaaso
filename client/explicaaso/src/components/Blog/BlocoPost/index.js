@@ -2,15 +2,24 @@ import styled from "styled-components";
 
 
 const BlocoInfo = styled.div`
-    align-items: center;
-    background-color: #003466;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 50px;
-    width: 100%;
+  align-items: center;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 40px;
+  width: ${({ $isMobile }) => ($isMobile ? '95%' : '95%')};
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
 `
+
 
 const MOBLTITLE = styled.h2`
     color: #FF6600;
@@ -38,14 +47,14 @@ const DSKTITLEPOST = styled.h3`
     font-size: 40px;
 `
 const MOBITEXT = styled.p`
-    color: white;
+    color: black;
     font-size: 25px;
     margin: 5% 5% 5% 5%;
 
 `
 
 const DSKTEXT = styled.p`
-    color: white;
+    color: black;
     font-size: 35px;
     margin: 1% 3% 3% 3%;
     
@@ -95,35 +104,35 @@ const EDITBUTTON = styled.button`
 
 
 
-function BlocoPost(props) {
+function BlocoPost({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost}) {
     return(
-        <BlocoInfo $isMobile={props.isMobile}>
+        <BlocoInfo $isMobile={isMobile}>
             {/* Disposição mobile da página */}
     
 
-            {props.isMobile &&    
-            <MOBLTITLE>{props.titulopost}</MOBLTITLE>}
+            {isMobile &&    
+            <MOBLTITLE>{titulopost}</MOBLTITLE>}
 
-            {props.isMobile &&
-                <MOBIIMG src={props.imgSrc} alt={props.imgAlt}/>
+            {isMobile &&
+                <MOBIIMG src={imgSrc} alt={imgAlt}/>
             }
 
-            {props.isMobile &&    
-                <MOBITEXT>{props.textopost}</MOBITEXT>
+            {isMobile &&    
+                <MOBITEXT>{textopost}</MOBITEXT>
             }
             
-            {!props.isMobile &&    
-            <DSKTITLE>{props.titulopost}</DSKTITLE>}
+            {!isMobile &&    
+            <DSKTITLE>{titulopost}</DSKTITLE>}
 
-            {!props.isMobile &&
-                <DSKIMG src={props.imgSrc} alt={props.imgAlt}/>
+            {!isMobile &&
+                <DSKIMG src={imgSrc} alt={imgAlt}/>
             }
 
-            {!props.isMobile &&    
-            <DSKTEXT>{props.textopost}</DSKTEXT>}
+            {!isMobile &&    
+            <DSKTEXT>{textopost}</DSKTEXT>}
 
-            {props.editor && 
-            <EDITBUTTON $isMobile={props.isMobile}>Editar</EDITBUTTON>
+            {(editor == 'administrador' || editor == 'professor') &&
+            <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
             }
         </BlocoInfo>
     );
