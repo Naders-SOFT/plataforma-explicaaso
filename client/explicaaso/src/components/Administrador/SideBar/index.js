@@ -22,13 +22,15 @@ const MOBLCONTAINERSIDE = styled.div`
 `
 
 const DSKBOTAO = styled.button`
-    background-color: #FF6600;
-    color: white;
+    background-color: #e6f7ff;
+    cursor: pointer;
+    color: darkcyan;
     border-radius: 1vw;
+    transition: color 0.3s ease, background-color 0.3s ease;
     height: 3vw;
-    font-weight: bold;
-    font-size: 1.5vw;
-    border: none;
+    font-size: 1vw;
+    border: 2px solid darkcyan;
+    border-radius: 0.75rem;
     &:hover {
         opacity: 0.5;
         cursor: pointer;
@@ -36,14 +38,15 @@ const DSKBOTAO = styled.button`
 `
 
 const MOBLBOTAO = styled.button`
-    background-color: #FF6600;
-    color: white;
+    background-color: #e6f7ff;
+    cursor: pointer;
+    color: darkcyan;
     border-radius: 1vw;
+    transition: color 0.3s ease, background-color 0.3s ease;
     height: 5vw;
     width: 33%;
-    font-size: 3vw;
-    font-weight: bold;
-    border: none;
+    font-size: 2vw;
+    border: 2px solid darkcyan;
     &:hover {
         opacity: 0.5;
         cursor: pointer;
@@ -100,12 +103,11 @@ function SideBar(props) {
                 props.handleSelectedUsuarios(usuarios);
             }
 
-          } catch (error) {
+        } catch (error) {
             console.error(error);
-          }
+        }
 
-        
-
+    
     };
 
     

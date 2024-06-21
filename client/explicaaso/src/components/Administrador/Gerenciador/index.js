@@ -19,29 +19,17 @@ const Container = styled.div`
     width: 100%;
 `
 
-const MOBLBOTAO = styled.button`
-    background-color: #FFCC00;
-    color: white;
-    border-radius: 1vw;
-    height: 5vw;
-    width: 33%;
-    font-size: 100%;
-    font-weight: bold;
-    border: none;
-    &:hover {
-        opacity: 0.5;
-        cursor: pointer;
-    }
-`
-
 const DSKBotao = styled.button`
-  background-color: #FFCC00;
-  color: white;
+  background-color: #e6f7ff;
+  cursor: pointer;
+  color: darkcyan;
   border-radius: 1vw;
+  transition: color 0.3s ease, background-color 0.3s ease;
   height: 3vw;
-  font-weight: bold;
-  font-size: 70%;
-  border: none;
+  font-size: 50%;
+  border: 2px solid darkcyan;
+  border-radius: 0.75rem;
+  text-align: center;
   &:hover {
       opacity: 0.5;
       cursor: pointer;
