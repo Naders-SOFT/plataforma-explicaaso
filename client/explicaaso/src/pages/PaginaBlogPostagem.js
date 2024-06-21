@@ -2,6 +2,7 @@ import Header from "../components/Head/Header";
 import ContainerPost from "../components/Blog/ContainerPost";
 import styled from 'styled-components';
 import { useEffect, useState } from "react";
+import { useParams} from "react-router-dom";
 import axios from "axios";
 
 const ContainerPag = styled.div`
@@ -12,8 +13,10 @@ const ContainerPag = styled.div`
 
 function PaginaBlogPost(props) {
     const [blogPost, setBlogPost] = useState([]);
+    const {idPost} = useParams();
+
     useEffect(() => {
-        axios.get('http://localhost:3003/blog/list/:idBlogPost')
+        axios.get(`http://localhost:3003/blog/list/${idPost}`)
         .then( response => {
             setBlogPost(response.data);
         })
@@ -21,7 +24,6 @@ function PaginaBlogPost(props) {
             console.error('Error fetching data', error);
         })
     }, []);
-
 
 
     return(

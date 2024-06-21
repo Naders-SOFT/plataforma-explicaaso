@@ -103,7 +103,7 @@ const LERMAIS = styled.a`
 `;
 
 
-function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost }) {
+function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost, datapost, idPost }) {
   const [texto, setTexto] = useState('');
   
   useEffect(() => {
@@ -121,7 +121,7 @@ function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, au
         <TEXTOPOST $isMobile={isMobile}>{textopost}</TEXTOPOST>
         <IMG src={imgSrc} alt={imgAlt} />
       </DIVIMG>
-      <Link to ="/pagina-blog/post" style={{ textDecoration: 'none' }}>
+      <Link to ={`/pagina-blog/post/${idPost}`} style={{ textDecoration: 'none' }}>
           <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
         </Link>
       {(editor == 'administrador' || editor == 'professor') && 

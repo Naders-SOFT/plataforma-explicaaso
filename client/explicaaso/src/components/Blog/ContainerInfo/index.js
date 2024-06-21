@@ -80,10 +80,11 @@ function ContainerInfo({ isMobile, blogPosts }) {
               textopost={item.texto}
               autorpost={item.autor}
               datapost={item.data}
+              idPost={item._id}
               />)
             )
           );
-          console.log(renderContent.type);
+          console.log(blogPosts);
         }
 
         else{
