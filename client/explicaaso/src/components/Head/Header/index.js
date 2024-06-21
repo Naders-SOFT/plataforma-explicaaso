@@ -36,21 +36,7 @@ function Header(props) {
     ]);
 
     useEffect(() => {
-        // Ao carregar a pagina:
-        const token = localStorage.getItem("token");
-        if (token) {
-            setItensNavigation(prevItens => {
-                if (!prevItens.some(item => item.id === 5)) {
-                    return [...prevItens, { id: 5, texto: "Área Aluno", pagina: '/pagina-aluno' }];
-                }
-                return prevItens;
-            });
-        } else {
-            setItensNavigation(prevItens => prevItens.filter(item => item.id !== 5));
-        }
-
-        // Ouvindo os eventos do token em tempo real:
-        window.addEventListener("storage", () => {
+        function logicaToken() {
             const token = localStorage.getItem("token");
             if (token) {
                 setItensNavigation(prevItens => {
