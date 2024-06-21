@@ -74,6 +74,7 @@ function ContainerInfo({ isMobile, blogPosts }) {
               textopost={item.texto}
               autorpost={item.autor}
               datapost={item.data}
+              idPost={item._id}
               />)
             )
           );

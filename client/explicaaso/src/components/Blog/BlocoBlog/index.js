@@ -1,4 +1,4 @@
-import React from "react";
+import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 import '../../EditorTexto/RichText/styles.css'
 
@@ -100,7 +100,7 @@ const LERMAIS = styled.a`
   }
 `;
 
-function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost }) {
+function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost, datapost, idPost }) {
   
   const renderPost = (textopost) => {
     if(textopost){
@@ -116,7 +116,9 @@ function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, au
         <TEXTOPOST $isMobile={isMobile} className="tiptap">{renderPost(textopost)}</TEXTOPOST>
         <IMG src={imgSrc} alt={imgAlt} />
       </DIVIMG>
-      <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
+      <Link to ={`/pagina-blog/post/${idPost}`} style={{ textDecoration: 'none' }}>
+          <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
+        </Link>
       {(editor == 'administrador' || editor == 'professor') && 
         <BUTTON $isMobile={isMobile}>Editar</BUTTON>
       }
