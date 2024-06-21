@@ -85,22 +85,6 @@ const BUTTON = styled.button`
   }
 `;
 
-const LERMAIS = styled.a`
-  color: #003466;
-  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.2rem')};
-  margin: 2%;
-  text-align: ${({ $isMobile }) => ($isMobile ? 'center' : 'justify')};
-  cursor: pointer;
-  text-decoration: none;
-
-  &:link, &:visited {
-    color: #003466;
-  }
-
-  &:hover {
-    color: #FFCC00;
-  }
-`;
 
 
 function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost, datapost, idPost }) {
