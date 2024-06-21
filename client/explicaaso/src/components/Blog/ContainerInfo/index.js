@@ -3,22 +3,19 @@ import BlocoBlog from "../BlocoBlog";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
 
 const ContainerPag = styled.div`
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 0;
+`;
 
 const TITLEPAG = styled.h2`
-    color: #FF6600;
-    font-size: 40px;
-    width: 100%;
-    
-    text-align: center;
-    margin: ${($isMobile) => $isMobile ? "5%" : "3% 5% 0% 5%"};
-    bottom: ${($isMobile) => $isMobile ? "3%" : "auto"};
-`
+  color: #FF6600;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+`;
 
 const BTDIV = styled.div`
     width: ${({$isMobile}) => ($isMobile ? '70%' : '90%')};
@@ -28,17 +25,22 @@ const BTDIV = styled.div`
 `
 
 const BTADICIONAR = styled.button`
-    width: 25%;
-    margin: 0 1%;
-    padding: ${({$isMobile}) => $isMobile ? "1% 0" : "1% 0"};
-    background-color: #FFCC00;
-    border: none;
-    border-radius: 10px;
-    color: #003466;
-    font-size: ${({$isMobile}) => $isMobile ? "20px" : "30px"};
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
+    width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
+  margin: 20px 0;
+  padding: 10px 0;
+  background-color: #FFCC00;
+  border: none;
+  border-radius: 10px;
+  color: #003466;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.2rem')};
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #ffbf00;
+  }
 `
 
 const TitulosPosts = ["A educação no Brasil", "Como estudar para os Vestibulares"]

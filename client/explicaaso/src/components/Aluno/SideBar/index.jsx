@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Estilos comuns
 const ContainerSide = styled.div`
@@ -70,7 +71,9 @@ const Container = styled.div`
 
 function SideBar(props) {
   const listaBotoes = props.botoes?.map((botao, index) => (
-    <Botao key={index}>{botao.titulo}</Botao>
+    <Link to={`${botao.link}`}>
+      <Botao key={index}>{botao.titulo}</Botao>
+    </Link>
   ));
 
   return (

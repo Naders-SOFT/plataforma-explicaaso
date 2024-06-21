@@ -4,10 +4,11 @@ import TituloDisciplina from '../Titulo';
 import ItemAdicionar from '../ItemAdicionar';
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-
+import { jwtDecode } from 'jwt-decode';
 
 const AvisosPainel = styled.ul`
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
     list-style-type: none;
     padding: 0px;
@@ -52,13 +53,16 @@ function Avisos(props) {
             <ItemAviso key={index} tituloAviso={pdf.titulo} link={pdf.link} idPdf={pdf._id.toString()} onDelete={handleDelete}></ItemAviso>
     ))
 
+    const token = localStorage.getItem('token')
+    const tipoUsr = token ? jwtDecode(token).tipoUsuario : false
+
     return (
         <Container>
             {
                 props.isMobile &&
                 <AvisosPainel>
                     <TituloDisciplina tituloDisciplina={props.tituloFrente}/>
-                    <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>
+                    {tipoUsr !== "aluno" && <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>}
                     {listaPdfs}
                 </AvisosPainel>
             }
@@ -66,13 +70,12 @@ function Avisos(props) {
                 !props.isMobile &&
                 <AvisosPainel>
                     <TituloDisciplina tituloDisciplina={props.tituloFrente}/>
-                    <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>
+                    {tipoUsr !== "aluno" && <ItemAdicionar tituloDisciplina={props.tituloDisciplina} tituloFrente={props.tituloFrente}/>}
                     {listaPdfs}
                 </AvisosPainel>
             }
         </Container>
     );
-
 }
 
 export default Avisos;
