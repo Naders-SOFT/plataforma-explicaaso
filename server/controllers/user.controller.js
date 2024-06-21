@@ -126,6 +126,7 @@ export async function listUsers(req, res) {
 export async function listUsersByTipo(req, res) {
   try {
     const users = await User.find({ tipo: req.query.tipoUsuario });
+
     res.status(200);
     res.send(users);
   } catch(error) {
