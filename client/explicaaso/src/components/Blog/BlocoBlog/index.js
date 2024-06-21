@@ -4,104 +4,116 @@ import styled from "styled-components";
  * Container das informações do cursinho.
  */
 const BlocoInfo = styled.div`
-    align-items: center;
-    background-color: #003466;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 50px;
-    width: ${({$isMobile}) => ($isMobile ? '70%' : '90%')};
-`
+  align-items: center;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 40px;
+  width: ${({ $isMobile }) => ($isMobile ? '90%' : '70%')};
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+`;
 
 const TITLEPOST = styled.h3`
-    margin: 3% 5%;
-    color: white;
-    font-size: ${({$isMobile}) => $isMobile ? "25px" : "40px"};
-    margin-bottom: ${({$isMobile}) => $isMobile ? "auto" : "0"};
-`
+  color: #333333;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1.8rem' : '2rem')};
+  margin: 20px 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  text-align: ${({ $isMobile }) => ($isMobile ? 'center' : 'left')};
+`;
 
 const TEXTOPOST = styled.p`
-    font-size: ${({$isMobile}) => $isMobile ? "20px" : "30px"};
-    margin: 5%;
-    text-align: ${({$isMobile}) => $isMobile ? "flex-start" : "justify"};
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 10;
-    -webkit-box-orient: vertical;
-
-`
-
+  color: #666666;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.1rem')};
+  margin: 5%;
+  text-align: ${({ $isMobile }) => ($isMobile ? 'center' : 'justify')};
+  line-height: 1.6;
+  font-family: 'Helvetica Neue', sans-serif;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+`;
 
 const DIVIMG = styled.div`
-    display: flex;
-    flex-direction: ${({$isMobile}) => $isMobile ? "column" : "row"};
-    align-items: center;
-    color: white;
-`
+  display: flex;
+  flex-direction: ${({ $isMobile }) => ($isMobile ? 'column' : 'row')};
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+`;
 
 const IMG = styled.img`
-    width: 40%;
-    border-radius: 8px;
-    margin: 5% 5% 5% 5%;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  margin: ${({ $isMobile }) => ($isMobile ? '20px 0' : '0 20px')};
+  object-fit: cover;
 
-    @media(min-width: 768px) and (max-width: 916px){
-        display: none;
-    }
-`
-
-const LERMAIS = styled.a`
-    color: white;
-    font-size: ${({$isMobile}) => $isMobile ? "30px" : "40px"};
-    margin: 2%;
-    text-align: ${({$isMobile}) => $isMobile ? "flex-start" : "justify"};
-
-    &:link {
-        color: white;
-    }
-
-    &:visited {
-        color: white;
-    }
-
-    &:hover {
-      background-color: #FFCC00;
-    }
-
-   
-`
+  @media (min-width: 768px) and (max-width: 916px) {
+    display: none;
+  }
+`;
 
 const BUTTON = styled.button`
-    width: 20%;
-    margin: ${({$isMobile}) => $isMobile ? "3% 0" : "3% 0"};
-    padding: ${({$isMobile}) => $isMobile ? "1% 0" : "1% 0"};
-    background-color: #FFCC00;
-    border: none;
-    border-radius: 10px;
-    color: #003466;
-    font-size: ${({$isMobile}) => $isMobile ? "20px" : "30px"};
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-`
+  width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
+  margin: 20px 0;
+  padding: 10px 0;
+  background-color: #FFCC00;
+  border: none;
+  border-radius: 10px;
+  color: #003466;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.2rem')};
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
 
+  &:hover {
+    background-color: #ffbf00;
+  }
+`;
+
+const LERMAIS = styled.a`
+  color: #003466;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.2rem')};
+  margin: 2%;
+  text-align: ${({ $isMobile }) => ($isMobile ? 'center' : 'justify')};
+  cursor: pointer;
+  text-decoration: none;
+
+  &:link, &:visited {
+    color: #003466;
+  }
+
+  &:hover {
+    color: #FFCC00;
+  }
+`;
 
 function BlocoBlog(props) {
-    return(
-        <BlocoInfo $isMobile={props.isMobile}>
-            <TITLEPOST $isMobile={props.isMobile}>{props.titulopost}</TITLEPOST>
-            <DIVIMG $isMobile={props.isMobile}>
-                <TEXTOPOST $isMobile={props.isMobile}>{props.textopost}</TEXTOPOST>
-                <IMG src={props.imgSrc} alt={props.imgAlt}/>
-            </DIVIMG>
-            <BUTTON $isMobile={props.isMobile}>Ler mais</BUTTON>
-            {props.editor && 
-            <BUTTON $isMobile={props.isMobile}>Editar</BUTTON>
-            }
-        </BlocoInfo>
-    );
+  return (
+    <BlocoInfo $isMobile={props.isMobile}>
+      <TITLEPOST $isMobile={props.isMobile}>{props.titulopost}</TITLEPOST>
+      <DIVIMG $isMobile={props.isMobile}>
+        <TEXTOPOST $isMobile={props.isMobile}>{props.textopost}</TEXTOPOST>
+        <IMG src={props.imgSrc} alt={props.imgAlt} />
+      </DIVIMG>
+      <BUTTON $isMobile={props.isMobile}>Ler mais</BUTTON>
+      {props.editor && 
+        <BUTTON $isMobile={props.isMobile}>Editar</BUTTON>
+      }
+    </BlocoInfo>
+  );
 }
 
 export default BlocoBlog;

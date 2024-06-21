@@ -34,7 +34,7 @@ export async function uploadFile(fileBuffer, fileName, mimetype) {
     }
 }
 
-export async function getObjectSignedUrl(key) {
+export async function getObjectSignedUrl(key, novoNome) {
     const params = {
         Bucket: bucketName,
         Key: key
