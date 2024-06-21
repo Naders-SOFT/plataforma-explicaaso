@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import '../../EditorTexto/RichText/styles.css'
-
 
 const BlocoInfo = styled.div`
   align-items: center;
@@ -31,6 +30,7 @@ const TITLEPOST = styled.h3`
   text-align: ${({ $isMobile }) => ($isMobile ? 'center' : 'left')};
 `;
 
+const TEXTOPOST = styled.div`
 const TEXTOPOST = styled.div`
   color: #666666;
   font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.1rem')};
@@ -102,21 +102,19 @@ const LERMAIS = styled.a`
 `;
 
 function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost }) {
-  const [texto, setTexto] = useState('');
   
-  useEffect(() => {
-    const parser = new DOMParser();
-    const tempText = parser.parseFromString(textopost, 'text/html');
-
-    setTexto(tempText.body.textContent);
-    console.log(texto);
-  }, []);
+  const renderPost = (textopost) => {
+    if(textopost){
+      return <div dangerouslySetInnerHTML={{__html: textopost}}></div>;
+    }
+    return <div></div>
+  }
 
   return (
     <BlocoInfo $isMobile={isMobile}>
       <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
       <DIVIMG $isMobile={isMobile}>
-        <TEXTOPOST $isMobile={isMobile}>{textopost}</TEXTOPOST>
+        <TEXTOPOST $isMobile={isMobile} className="tiptap">{renderPost(textopost)}</TEXTOPOST>
         <IMG src={imgSrc} alt={imgAlt} />
       </DIVIMG>
       <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
