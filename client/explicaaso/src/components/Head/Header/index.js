@@ -39,23 +39,26 @@ function Header(props) {
         function logicaToken() {
             const token = localStorage.getItem("token");
             if (token) {
-                setItensNavigation(prevItens => {
-                    if (!prevItens.some(item => item.id === 5)) {
-                        return [...prevItens, { id: 5, texto: "Minha Página", pagina: '/pagina-aluno' }];
-                    }
-                    return prevItens;
-                });
-
                 if(jwtDecode(token).tipoUsuario === 'administrador') {
                     setItensNavigation(prevItens => {
+                        if (!prevItens.some(item => item.id === 5)) {
+                            return [...prevItens, { id: 5, texto: "Página do Usuário", pagina: '/pagina-aluno' }];
+                        }
                         if (!prevItens.some(item => item.id === 6)) {
                             return [...prevItens, { id: 6, texto: "Página do Administrador", pagina: '/pagina-administrador' }];
                         }
                         return prevItens;
                     });
+                } else {
+                    setItensNavigation(prevItens => {
+                        if (!prevItens.some(item => item.id === 5)) {
+                            return [...prevItens, { id: 5, texto: "Minha Página", pagina: '/pagina-aluno' }];
+                        }
+                        return prevItens;
+                    });
                 }
             } else {
-                setItensNavigation(prevItens => prevItens.filter(item => item.id !== 6));
+                setItensNavigation(prevItens => prevItens.filter(item => item.id !== 6 && item.id !== 5));
             }
         }
 
