@@ -12,9 +12,9 @@ router.post('/signup', checkToken, signupUser);
 router.post('/login', signinUser);
 
 // Listagem de todos os usuários (independente do tipo):
-router.get('/list', listUsers);
+router.get('/list', checkToken, listUsers);
 
-router.get('/listByTipo', listUsersByTipo);
+router.get('/listByTipo', checkToken, listUsersByTipo);
 
 // Listagem de um usuário (por ID):
 // Listagem de um usuário (por ID):
