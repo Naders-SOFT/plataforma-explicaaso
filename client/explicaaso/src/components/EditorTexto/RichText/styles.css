@@ -1,8 +1,6 @@
 .tiptap {
     padding: 0.5% 3%;
-    border-top: 1px solid gray;
     border-radius: 0 0 0.5% 0.5%;
-    background: whitesmoke;
     font-family: 'Segoe UI';
     font-size: 20px;
 }
