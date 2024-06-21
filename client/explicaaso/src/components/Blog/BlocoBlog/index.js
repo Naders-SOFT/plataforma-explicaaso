@@ -104,14 +104,16 @@ const LERMAIS = styled.a`
 `;
 
 
-function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost }) {
+function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost, datapost, idPost }) {
+  const [texto, setTexto] = useState('');
   
-  const renderPost = (textopost) => {
-    if(textopost){
-      return <div dangerouslySetInnerHTML={{__html: textopost}}></div>;
-    }
-    return <div></div>
-  }
+  useEffect(() => {
+    const parser = new DOMParser();
+    const tempText = parser.parseFromString(textopost, 'text/html');
+
+    setTexto(tempText.body.textContent);
+    console.log(texto);
+  }, []);
 
   return (
     <BlocoInfo $isMobile={isMobile}>
@@ -120,7 +122,7 @@ function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, au
         <TEXTOPOST $isMobile={isMobile} className="tiptap">{renderPost(textopost)}</TEXTOPOST>
         <IMG src={imgSrc} alt={imgAlt} />
       </DIVIMG>
-      <Link to ="/pagina-blog/post" style={{ textDecoration: 'none' }}>
+      <Link to ={`/pagina-blog/post/${idPost}`} style={{ textDecoration: 'none' }}>
           <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
         </Link>
       {(editor == 'administrador' || editor == 'professor') && 
