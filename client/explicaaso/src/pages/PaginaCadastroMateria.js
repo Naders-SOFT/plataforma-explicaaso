@@ -11,6 +11,7 @@ const FormContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   padding: 0;
+  margin: 10%;
 `;
 
 const CadastroTitulo = styled.h1`
@@ -62,19 +63,17 @@ const Input = styled.input`
 
 const ButtonContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   gap: 10px;
   width: 100%;
+  margin-top: 20px;
 `;
 
 const Botao = styled.button`
   width: ${({ $isAdicionarMateria }) =>
     $isAdicionarMateria ? '100%' : '60%'};
-  padding: 10px 0;
-  background-color: #FFCC00;
-  margin: 10px 0;
-  padding: 10px 0;
+  padding: 12px 0;
+  background-color: #ffcc00;
   border: none;
   border-radius: 10px;
   color: #003466;
@@ -83,10 +82,9 @@ const Botao = styled.button`
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
-  
+
   &:hover {
-    background-color: ${({ $isAdicionarMateria }) =>
-      $isAdicionarMateria ? '#006400' : '#ffbf00'};
+    background-color: #ffbf00;
   }
 `;
 
@@ -153,7 +151,6 @@ const PaginaCadastroMateria = () => {
     setFeedbackSucesso('');
   
     try {
-      // Ajustar o formato dos dados das frentes
       const frentesFormatadas = frentes.map((frente) => ({
         nomeFrente: frente.nome,
         imgFrente: frente.imagemLogo
@@ -174,27 +171,24 @@ const PaginaCadastroMateria = () => {
       );
 
       if (response.status === 201) {
-        // Limpa o formulário e exibe a mensagem de sucesso
         setNomeMateria('');
         setImagemLogo('');
         setFrentes([{ nome: '', imagemLogo: '' }]);
         setFeedbackSucesso('Matéria adicionada com sucesso!');
       } else {
-        // Lida com erros da requisição
         const errorData = await response.json();
         setFeedbackErro(errorData.error || 'Erro ao adicionar matéria.');
       }
     } catch (error) {
-      // Lida com erros de rede
       console.error('Erro ao enviar o formulário:', error);
-      setFeedbackErro(error.response.data.message); // Exibe mensagem de erro do servidor
+      setFeedbackErro(error.response.data.message);
     }
   };
 
   return (
     <FormContainer>
       <Formulario onSubmit={handleAdicionarMateria}>
-        <CadastroTitulo>Cadastro de Nova Matéria</CadastroTitulo>
+        <CadastroTitulo>Cadastro de Matéria</CadastroTitulo>
 
         <MateriaSection>
           <Label htmlFor="nomeMateria">Nome da Matéria:</Label>
@@ -208,7 +202,7 @@ const PaginaCadastroMateria = () => {
         </MateriaSection>
 
         <MateriaSection>
-          <Label htmlFor="imagemLogo">Imagem da Logo:</Label>
+          <Label htmlFor="imagemLogo">Imagem da Matéria:</Label>
           <Input
             type="text"
             id="imagemLogo"
@@ -228,7 +222,7 @@ const PaginaCadastroMateria = () => {
               onChange={(e) => handleFrenteChange(index, 'nome', e.target.value)}
               required
             />
-            <Label htmlFor={`imagemLogoFrente-${index}`}>Imagem da Logo da Frente:</Label>
+            <Label htmlFor={`imagemLogoFrente-${index}`}>Imagem da Frente:</Label>
             <Input
               type="text"
               id={`imagemLogoFrente-${index}`}
