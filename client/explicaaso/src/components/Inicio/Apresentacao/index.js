@@ -69,8 +69,8 @@ function Apresentacao() {
       cor: "white",
       tamanho: "80px",
       margem: "0 0 2px 0",
-      fonte: "'Carrois Gothic', sans-serif",
-      peso: 300,
+      fonte: "'Aclonica', sans-serif",
+      peso: 550,
     },
   ];
 
