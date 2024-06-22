@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import imagemFundo from '../../../images/background/fundoEESC.png';
 import LogoExpliCaaso from '../../Head/LogoExpliCaaso';
 import styled from 'styled-components';
+import imgFundo2 from '../../../images/background/eesc-sub2.jpg'
 
 const ApresentacaoContainer = styled.div`
   display: flex;
@@ -15,15 +16,27 @@ const ApresentacaoContainer = styled.div`
 
 const Fundo = styled.div`
   position: absolute;
-  margin: 2px 0 0 0;
-  top: 95px;
-  left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${imagemFundo});
-  background-size: cover;
-  filter: blur(4px);
-  opacity: 0.7;
+
+  ${'' /* background-image: url(${imagemFundo}); */}
+  background-image: url(${imgFundo2});
+  background-size: contain;
+  background-size: cover; // cover the entire container while maintaining aspect ratio
+  background-position: center; // center the image in the container
+  background-repeat: no-repeat;
+
+`;
+
+const BlurOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  left: 60%;
+  width: 40%; // set to 30% to cover the left 30% of the screen
+  height: 100%;
+  backdrop-filter: blur(4px); // apply the blur effect
+  ${'' /* background: inherit; // inherit the background from the parent div */}
 `;
 
 const Titulos = styled.div`
@@ -97,7 +110,9 @@ function Apresentacao() {
 
   return (
     <ApresentacaoContainer>
-      <Fundo />
+      <Fundo>
+      <BlurOverlay/>
+      </Fundo>
       <Titulos>
         <TextoDinamico
           cor={textos[0].cor}
