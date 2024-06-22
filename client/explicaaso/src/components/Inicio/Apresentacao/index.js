@@ -3,6 +3,7 @@ import imagemFundo from '../../../images/background/fundoEESC.png';
 import LogoExpliCaaso from '../../Head/LogoExpliCaaso';
 import styled from 'styled-components';
 import imgFundo2 from '../../../images/background/eesc-sub2.jpg'
+import logo from '../../../images/logos/logo-explicaaso (1).jpeg'
 
 const ApresentacaoContainer = styled.div`
   display: flex;
@@ -134,6 +135,7 @@ function Apresentacao() {
         </TextoDinamico>
       </Titulos>
       <LogoExpliCaaso size="180px" />
+      {/* <img src={logo} alt='logo'></img> */}
     </ApresentacaoContainer>
   );
 }
