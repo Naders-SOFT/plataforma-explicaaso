@@ -68,12 +68,12 @@ const Link = styled.a`
   }
 `;
 
-const noticias = [
-  <ListItem key="1"><Link href="#">Divulgadas as datas FUVEST 2024</Link></ListItem>,
-  <ListItem key="2"><Link href="#">Divulgadas as datas UNICAMP 2024</Link></ListItem>,
-  <ListItem key="3"><Link href="#">Inscrições para o Explicaaso começaram</Link></ListItem>,
-  <ListItem key="4"><Link href="#">Conheça a nova plataforma do Explicaaso</Link></ListItem>
-];
+// const noticias = [
+//   <ListItem key="1"><Link href="#">Divulgadas as datas FUVEST 2024</Link></ListItem>,
+//   <ListItem key="2"><Link href="#">Divulgadas as datas UNICAMP 2024</Link></ListItem>,
+//   <ListItem key="3"><Link href="#">Inscrições para o Explicaaso começaram</Link></ListItem>,
+//   <ListItem key="4"><Link href="#">Conheça a nova plataforma do Explicaaso</Link></ListItem>
+// ];
 
 function ContainerInfo({isMobile, noticiaPosts}) {
   const [editor, setEditor] = useState('');
