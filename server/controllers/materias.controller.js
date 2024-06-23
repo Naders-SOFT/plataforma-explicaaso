@@ -59,3 +59,13 @@ export async function listFrentesByMateria(req, res) {
         res.status(500).send(err.message)
     }
 }
+
+export async function updateMateria(req, res) {
+    try {
+        const updatedMateria = await Materia.findOneAndUpdate({ nome: req.params.materia }, req.body, { new: true });
+        res.status(200).send(updatedMateria);
+    }
+    catch(err) {
+        res.status(500).send(err.message);
+    }
+}
