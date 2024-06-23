@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import BlocoNoticia from "../BlocoNoticia";
+import React, { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 const ContainerPag = styled.div`
   display: flex;
@@ -74,7 +76,19 @@ const noticias = [
 ];
 
 function ContainerInfo(props) {
-  let editor = true;
+  const [editor, setEditor] = useState('');
+  const [renderContent, setRenderContent] = useState(<p>Carregando...</p>)
+    
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setEditor(token ? jwtDecode(token).tipoUsuario : '');
+        
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setEditor(token ? jwtDecode(token).tipoUsuario : '');
+        })
+    }, [editor]);
 
   return (
     <ContainerPag>
