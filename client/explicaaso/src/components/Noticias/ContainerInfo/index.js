@@ -75,7 +75,7 @@ const noticias = [
   <ListItem key="4"><Link href="#">Conheça a nova plataforma do Explicaaso</Link></ListItem>
 ];
 
-function ContainerInfo(props) {
+function ContainerInfo({isMobile, noticiaPosts}) {
   const [editor, setEditor] = useState('');
   const [renderContent, setRenderContent] = useState(<p>Carregando...</p>)
     
@@ -90,17 +90,37 @@ function ContainerInfo(props) {
         })
     }, [editor]);
 
+    useEffect(() => {
+      if(noticiaPosts && noticiaPosts.length > 0) {
+        setRenderContent(
+          noticiaPosts.map( ( item, index ) => (
+            <ListItem
+            key={index}
+            isMobile={isMobile}
+            titulonoticia={item.titulo}
+            idPost={item._id}
+            />)
+          )
+        );
+      }
+
+      else{
+        setRenderContent(<p>Carregando...</p>);
+      }
+  }, [noticiaPosts, isMobile]);
+
   return (
     <ContainerPag>
-      <TITLEPAG $isMobile={props.isMobile}>Notícias</TITLEPAG>
-      <BTDIV $isMobile={props.isMobile}>
-        <BTADICIONAR $isMobile={props.isMobile}>Criar Notícia</BTADICIONAR>
-      </BTDIV>
-      <BlocoNoticia
-        isMobile={props.isMobile}
-        noticias={noticias}
-        editor={editor}
-      />
+      <TITLEPAG $isMobile={isMobile}>Notícias</TITLEPAG>
+      {(editor == 'administrador' || editor == 'professor') &&
+            <BTDIV $isMobile={isMobile}>
+                <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
+            </BTDIV>
+            }
+      
+      <BlocoNoticia>
+        {renderContent};
+      </BlocoNoticia>
     </ContainerPag>
   );
 }

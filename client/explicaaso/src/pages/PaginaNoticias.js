@@ -24,7 +24,7 @@ function PaginaNoticias(props) {
     
     return (
         <ContainerPag>
-            <ContainerInfo isMobile={props.isMobile}/>
+            <ContainerInfo isMobile={props.isMobile} noticiaPosts={noticiaPosts}/>
         </ContainerPag>
     )
 }
