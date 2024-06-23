@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import PaginaBlogPost from './pages/PaginaBlogPostagem';
 import PaginaNoticias from './pages/PaginaNoticias';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -45,19 +45,37 @@ const AppContainer = styled.div`
   margin: 0;
 `
 
-const accessToken = localStorage.getItem('token');
-export const authAxios = axios.create({
-  headers: {
-    Authorization: `Bearer ${accessToken}`
-  }
-});
+// Contexto de autorização passado pras páginas inferiores
+export const AuthContext = createContext(null);
 
 // ESTRUTURA DO COMPONENTE
 function App() {
   const [isMobile, setIsMobile] = useState(true);
+  const [accessToken, setToken] = useState(localStorage.getItem('token'));
+  const authAxios = axios.create({
+      headers: {
+          Authorization: `Bearer ${accessToken}`
+      }
+      });
+
+  useEffect(() => {
+      window.addEventListener('storage', () => {
+      setToken(localStorage.getItem('token'));
+      authAxios.interceptors.request.use(
+          config => {
+              config.headers.authorization = `Bearer ${accessToken}`;
+              return config;
+          },
+          error => {
+              return Promise.reject(error);
+          }
+      );
+      });
+  }, [accessToken, authAxios]);
 
     useEffect(() => {
-        const resizeScreen = () => {
+        
+      const resizeScreen = () => {
             setIsMobile(window.innerWidth <= 768);
         }
 
@@ -75,14 +93,17 @@ function App() {
     // inteira.
     // Note que a estilização desse container é feita através 
     // de styled-components algumas linhas acima.
+    <AuthContext.Provider value={authAxios}>
     <AppContainer>
       <GlobalStyle/>
       <Router>
         <Header isMobile={isMobile}/>
         <Roteador isMobile={isMobile}/>
       </Router>
-    </AppContainer>
-  );
+      </AppContainer>
+      </AuthContext.Provider>
+    );
 }
+
 
 export default App;
