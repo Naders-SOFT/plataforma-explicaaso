@@ -113,7 +113,7 @@ const PaginaCadastroFrente = () => {
     setFeedbackSucesso('');
 
     try {
-        const url = `http://localhost:3003/createFrente/${materia.materia}`;
+        const url = `http://localhost:3003/materias/createFrente/${materia.materia}`;
         console.log("URL codificada:", url); // Verifica a URL no console
   
         const response = await axios.post(
@@ -135,8 +135,7 @@ const PaginaCadastroFrente = () => {
         setMateriaId('');
         setFeedbackSucesso('Frente adicionada com sucesso!');
       } else {
-        const errorData = await response.json();
-        setFeedbackErro(errorData.error || 'Erro ao adicionar frente.');
+        setFeedbackErro(response.error || 'Erro ao adicionar frente.');
       }
     } catch (error) {
       console.error('Erro ao enviar o formulário:', error);
