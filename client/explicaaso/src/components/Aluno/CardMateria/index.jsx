@@ -18,9 +18,9 @@ const CardInfo = styled.div`
 `;
 
 const CardFrentes = styled.p`
-    font-size: 75%;
-    text-align: inter-word;
-`
+  font-size: ${props => props.fontSize || '85%'};
+  text-align: inter-word;
+`;
 
 const Card = styled.li`
   width: ${props => props.isMobile ? '60%' : '100%'};
@@ -39,7 +39,7 @@ const Card = styled.li`
   font-family: 'Raleway',Sans-serif;
   overflow: auto;
   font-size: 20px;
-  position: relative; // Para posicionar o botão de exclusão
+  position: relative;
 
   &:hover {
     cursor: pointer;
@@ -91,7 +91,7 @@ function CardMateria(props) {
       />
       <TituloMateria>{props.materia}</TituloMateria> 
       <CardInfo>
-        <CardFrentes>{f}</CardFrentes>
+        <CardFrentes fontSize={props.fontesSize}>{f}</CardFrentes> {/* Passando o tamanho da fonte como prop */}
       </CardInfo>
       <StyledDeleteButton>
         <IoMdTrash />
