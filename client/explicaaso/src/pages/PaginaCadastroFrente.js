@@ -98,7 +98,7 @@ const MensagemSucesso = styled.p`
   margin-top: -10px;
 `;
 
-const PaginaCadastroFrente = () => {
+const PaginaCadastroFrente = (props) => {
   const [nomeFrente, setNomeFrente] = useState('');
   const [imagemLogo, setImagemLogo] = useState('');
   const [materiaId, setMateriaId] = useState('');
@@ -134,6 +134,7 @@ const PaginaCadastroFrente = () => {
         setImagemLogo('');
         setMateriaId('');
         setFeedbackSucesso('Frente adicionada com sucesso!');
+        props.useNavigate('http://localhost:3003/pagina-aluno/' + materia.materia)
       } else {
         setFeedbackErro(response.error || 'Erro ao adicionar frente.');
       }
@@ -165,15 +166,6 @@ const PaginaCadastroFrente = () => {
           onChange={(e) => setImagemLogo(e.target.value)}
           required
         />
-
-        {/* <Label htmlFor="materiaId">ID da Matéria:</Label>
-        <Input
-          type="text"
-          id="materiaId"
-          value={materiaId}
-          onChange={(e) => setMateriaId(e.target.value)}
-          required
-        /> */}
 
         <ButtonContainer>
           <Botao type="submit">

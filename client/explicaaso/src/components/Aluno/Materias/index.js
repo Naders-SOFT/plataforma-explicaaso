@@ -3,6 +3,7 @@ import CardMateria from '../CardMateria';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import imgAdicionar from '../../../images/misc/add-button-svgrepo-com.svg'
 
 
 const MOBLMATERIAS = styled.ul`
@@ -93,16 +94,25 @@ function ContainerMateria(props) {
             ))
     }
 
+    const cardAdicionar = 
+    <div>
+        <StyledLink to={'/pagina-cadastro-materia'}>
+            <CardMateria imgSrc={imgAdicionar} materia='Adicionar matéria' isMobile={props.isMobile} frentes={['']}/>
+        </StyledLink>
+    </div>
+
     return (
         <Container>
             {props.isMobile &&
                 <MOBLMATERIAS>
                     {materias}
+                    {cardAdicionar}
                 </MOBLMATERIAS>
             }
             {!props.isMobile &&
                 <DSKMATERIAS>
                     {materias}
+                    {cardAdicionar}
                 </DSKMATERIAS>
             }
         </Container>

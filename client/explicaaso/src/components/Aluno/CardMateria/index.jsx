@@ -18,9 +18,9 @@ const CardInfo = styled.div`
 `;
 
 const CardFrentes = styled.p`
-  font-size: 85%;
-  text-align: inter-word;
-`;
+    font-size: 75%;
+    text-align: inter-word;
+`
 
 const Card = styled.li`
   width: ${props => props.isMobile ? '60%' : '100%'};
