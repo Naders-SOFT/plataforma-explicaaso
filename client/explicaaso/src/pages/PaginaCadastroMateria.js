@@ -175,7 +175,7 @@ const PaginaCadastroMateria = (props) => {
         setImagemLogo('');
         setFrentes([{ nome: '', imagemLogo: '' }]);
         setFeedbackSucesso('Matéria adicionada com sucesso!');
-        props.useNavigate('http://localhost:3003/pagina-aluno')
+        // props.navigate('/pagina-aluno')
       } else {
         const errorData = await response.json();
         setFeedbackErro(errorData.error || 'Erro ao adicionar matéria.');

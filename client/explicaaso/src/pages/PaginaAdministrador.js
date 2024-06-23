@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import SideBar from '../components/Administrador/SideBar';
 import ListaItem from '../components/Administrador/Gerenciador';
 import ContainerAdmin from '../components/Administrador/Gerenciador'
-import imgPerfil from '../images/logos/pefil.jpg'
+import imgPerfil from '../images/logos/perfil.jpg'
 import Informacao from '../components/Administrador/Info';
 
 const ContainerPag = styled.div`
