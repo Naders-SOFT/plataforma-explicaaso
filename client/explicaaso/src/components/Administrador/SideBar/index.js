@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import axios from "axios";
-
-
+import { jwtDecode } from "jwt-decode";
+import { AuthContext } from "../../../App";
 
 
 const DSKCONTAINERSIDE = styled.div`
@@ -95,10 +94,13 @@ const Container = styled.div`
 `
 
 function SideBar(props) {
-    const handleButtonClick = async (type) => {
+    const authAxios = useContext(AuthContext);
 
+    const handleButtonClick = async (type) => {
         try {
-            const response =  await axios.get(`http://localhost:3003/user/listByTipo?tipoUsuario=${type}`)
+            const token = localStorage.getItem('token');
+            
+            const response =  await authAxios.get(`http://localhost:3003/user/listByTipo?tipoUsuario=${type}`)
             if(response.status === 200){
                 const usuarios = response.data;
                 props.handleSelectedUsuarios(usuarios);
@@ -107,11 +109,7 @@ function SideBar(props) {
         } catch (error) {
             console.error(error);
         }
-
-    
     };
-
-    
 
     return (
         <Container>
