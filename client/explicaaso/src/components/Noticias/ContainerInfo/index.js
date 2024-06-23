@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import BlocoNoticia from "../BlocoNoticia";
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import React, { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 const ContainerPag = styled.div`
   display: flex;
@@ -75,7 +77,7 @@ const Link = styled.a`
 //   <ListItem key="4"><Link href="#">Conheça a nova plataforma do Explicaaso</Link></ListItem>
 // ];
 
-function ContainerInfo({isMobile, noticiaPosts}) {
+function ContainerInfo(props) {
   const [editor, setEditor] = useState('');
   const [renderContent, setRenderContent] = useState(<p>Carregando...</p>)
     
@@ -89,25 +91,6 @@ function ContainerInfo({isMobile, noticiaPosts}) {
             setEditor(token ? jwtDecode(token).tipoUsuario : '');
         })
     }, [editor]);
-
-    useEffect(() => {
-      if(noticiaPosts && noticiaPosts.length > 0) {
-        setRenderContent(
-          noticiaPosts.map( ( item, index ) => (
-            <ListItem
-            key={index}
-            isMobile={isMobile}
-            titulonoticia={item.titulo}
-            idPost={item._id}
-            />)
-          )
-        );
-      }
-
-      else{
-        setRenderContent(<p>Carregando...</p>);
-      }
-  }, [noticiaPosts, isMobile]);
 
   return (
     <ContainerPag>
