@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { checkToken, signupUser, signinUser, listUsers, listUsersByTipo, listUserById, listUserByEmail, updateUser, deleteUser, deleteAllUsers } from '../controllers/user.controller.js';
-import { checkToken, signupUser, signinUser, listUsers, listUsersByTipo, listUserById, listUserByEmail, updateUser, deleteUser, deleteAllUsers } from '../controllers/user.controller.js';
 
 // Instancia o roteador:
 const router = Router();
