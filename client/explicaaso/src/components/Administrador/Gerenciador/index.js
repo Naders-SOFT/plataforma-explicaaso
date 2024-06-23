@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import PaginaCadastro from '../../../pages/PaginaCadastro';
+import axios from 'axios';
 
 const ContainerAdmin = styled.div`
   display: grid;
@@ -18,29 +19,17 @@ const Container = styled.div`
     width: 100%;
 `
 
-const MOBLBOTAO = styled.button`
-    background-color: #FFCC00;
-    color: white;
-    border-radius: 1vw;
-    height: 5vw;
-    width: 33%;
-    font-size: 100%;
-    font-weight: bold;
-    border: none;
-    &:hover {
-        opacity: 0.5;
-        cursor: pointer;
-    }
-`
-
 const DSKBotao = styled.button`
-  background-color: #FFCC00;
-  color: white;
+  background-color: #e6f7ff;
+  cursor: pointer;
+  color: darkcyan;
   border-radius: 1vw;
+  transition: color 0.3s ease, background-color 0.3s ease;
   height: 3vw;
-  font-weight: bold;
-  font-size: 70%;
-  border: none;
+  font-size: 50%;
+  border: 2px solid darkcyan;
+  border-radius: 0.75rem;
+  text-align: center;
   &:hover {
       opacity: 0.5;
       cursor: pointer;
@@ -89,22 +78,38 @@ const CadastroDate = styled.span`
   grid-column: 3;
   text-align: right;
 `
-
 // Define the ProfessorList component
-const PessoaList = ({ items, itemType }) => {
+const PessoaList = ({ items }) => {
+
+  const handleButtonClickDelete = async (item) => {
+
+    try {
+      console.log(item._id);
+        const response =  await axios.get(`http://localhost:3003/user/delete/${item._id}`)
+        if(response.status === 200){
+           console.log(response.data);
+        }
+
+      } catch (error) {
+        console.error(error);
+      }
+
+    
+
+};
+
   return (
     <Container>
       <CadastroListStyled>
         {items.map((item, index) => (
           <CadastroItem key={index} style={{ marginLeft: '5%' }}>
-            <CadastroFormat>{item.name}</CadastroFormat>
-            <CadastroSub style={{ marginRight: '30px' }}>{itemType === 'alunos' ? item.email : item.subject}</CadastroSub>
-            <CadastroDate style={{ marginRight: '30px' }}>{item.date}</CadastroDate>
-            <DSKBotao style={{ gridColumn: '4 / 4', justifySelf: 'end' }}>Remover</DSKBotao>
+            <CadastroFormat>{item.nome} {item.sobrenome}</CadastroFormat>
+            <CadastroSub style={{ marginRight: '30px' }}>{item.email}</CadastroSub>
+            <DSKBotao style={{ gridColumn: '4 / 4', justifySelf: 'end' }} onClick={() => handleButtonClickDelete(item)}>Remover</DSKBotao>
           </CadastroItem>
         ))}
       </CadastroListStyled>
-      <Link to="/pagina-admin/cadastro" style={{ textDecoration: 'none' }}>
+      <Link to="/pagina-administrador/cadastro" style={{ textDecoration: 'none' }}>
         <DSKBotao style={{ marginTop: '10px', marginLeft: '5%' }}>Cadastrar</DSKBotao>
       </Link>
     </Container>

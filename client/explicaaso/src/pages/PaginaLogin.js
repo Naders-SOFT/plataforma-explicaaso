@@ -89,9 +89,12 @@ function PaginaLogin(props) {
         setSenha('');
 
         const token = response.data.token;
+        const materiaProf = response.data.materiaProf;
 
         // Armazena o token no localStorage:
         localStorage.setItem('token', token);
+        localStorage.setItem('materiaProf', materiaProf);
+        window.dispatchEvent(new Event("storage"));
 
         const tipoUsuario = jwtDecode(token).tipoUsuario;
 
@@ -104,7 +107,7 @@ function PaginaLogin(props) {
             navigate('/pagina-administrador');
             break;
           case 'professor':
-            navigate('/pagina-professor');
+            navigate('/pagina-aluno');
             break;
           default:
             console.error('Tipo de usuário inválido');

@@ -16,7 +16,7 @@ const CardInfo = styled.div`
 `
 
 const CardFrentes = styled.p`
-    font-size: 85%;
+    font-size: 78%;
     text-align: inter-word;
 `
 
@@ -41,8 +41,8 @@ function CardMateria(props) {
 
         &:hover {
         cursor: pointer;
-        transform: scale(1.05);
-        -webkit-transform: scale(1.05);
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
         }
     `
 
@@ -56,6 +56,10 @@ function CardMateria(props) {
         border-radius: 6px 6px 0px 0px;
         opacity: 0.91;
     `
+    
+    const f = props.frentes.map(frt =>
+        frt.nomeFrente
+    ).join(' | ')
 
     return (
         <Card isMobile={props.isMobile}>
@@ -65,7 +69,7 @@ function CardMateria(props) {
                 isMobile={props.isMobile}/>
             <TituloMateria>{props.materia}</TituloMateria> 
             <CardInfo>
-                <CardFrentes>{props.frentes.join(' | ')}</CardFrentes>
+                <CardFrentes>{f}</CardFrentes>
             </CardInfo>
         </Card>
     );

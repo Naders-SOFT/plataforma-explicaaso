@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import CardMateria from '../CardMateria';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Frentes from '../../Disciplina/Frentes';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
+
 
 const MOBLMATERIAS = styled.ul`
     display: flex;
@@ -43,13 +45,53 @@ const StyledLink = styled(Link)`
 `
 
 function ContainerMateria(props) {
-    const materias = props.materias?.map((mat) => (
-        <div key={mat.materia}> 
-            <StyledLink to={`/pagina-aluno/${mat.materia}`}>
-                <CardMateria imgSrc={mat.img} materia={mat.materia} isMobile={props.isMobile} frentes={mat.frentes}/>
-            </StyledLink>
-        </div>
-    ))
+    const [user, setUser] = useState('');
+    const [materiaLecionada, setMateriaLecionada] = useState('');
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setUser(token ? jwtDecode(token).tipoUsuario : '');
+      
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setUser(token ? jwtDecode(token).tipoUsuario : '');
+        })
+    }, [user]);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setMateriaLecionada(token ? jwtDecode(token).materiaProf : '');
+    
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setMateriaLecionada(token ? jwtDecode(token).materiaProf : '');
+        })
+    }, [materiaLecionada]);
+
+    let materias
+
+    if (user !== 'professor') { // usuario é aluno ou adm
+        materias = props.materias.map((mat) => (
+            <div key={mat.nome}> 
+                <StyledLink to={`/pagina-aluno/${mat.nome}`}>
+                    <CardMateria imgSrc={mat.imagem} materia={mat.nome} isMobile={props.isMobile} frentes={mat.frentes}/>
+                </StyledLink>
+            </div>
+        ))
+    }
+    else { 
+        materias = 
+            props.materias
+            .filter(mat => mat.nome === materiaLecionada)
+            .map((mat) => (
+                <div key={mat.nome}> 
+                    <StyledLink to={`/pagina-aluno/${mat.nome}`}>
+                        <CardMateria imgSrc={mat.imagem} materia={mat.nome} isMobile={props.isMobile} frentes={mat.frentes}/>
+                    </StyledLink>
+                </div>
+            ))
+    }
 
     return (
         <Container>

@@ -3,30 +3,9 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import SideBar from '../../Aluno/SideBar';
 import TituloDisciplina from '../Titulo';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-import gramatica from '../../../images/frentes/gra.jpeg';
-import literatura from '../../../images/frentes/lit.jpeg';
-import interpretacao from '../../../images/frentes/int.jpeg';
-import ingles from '../../../images/frentes/ing.jpeg';
-import redacao from '../../../images/frentes/red.jpeg';
-import his1 from '../../../images/frentes/his1.jpeg';
-import his2 from '../../../images/frentes/his2.jpeg';
-import geo1 from '../../../images/frentes/geo1.jpeg';
-import geo2 from '../../../images/frentes/geo2.jpeg';
-import fil from '../../../images/frentes/fil.jpeg';
-import soc from '../../../images/frentes/soc.jpeg';
-import bio1 from '../../../images/frentes/bio1.jpeg';
-import bio2 from '../../../images/frentes/bio2.jpeg';
-import bio3 from '../../../images/frentes/bio3.jpeg';
-import fis1 from '../../../images/frentes/fis1.jpeg';
-import fis2 from '../../../images/frentes/fis2.jpeg';
-import fis3 from '../../../images/frentes/fis3.jpeg';
-import qui1 from '../../../images/frentes/qui1.jpeg';
-import qui2 from '../../../images/frentes/qui2.jpeg';
-import qui3 from '../../../images/frentes/qui3.jpeg';
-import mat1 from '../../../images/frentes/mat1.jpeg';
-import mat2 from '../../../images/frentes/mat2.jpeg';
-import mat3 from '../../../images/frentes/mat3.jpeg';
 import imgPerfil from '../../../images/logos/perfil.jpg'
 
 const StyledContainer = styled.div`
@@ -100,32 +79,6 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const frentes = [
-    { name: 'Gramática', image: gramatica, materia: 'Linguagens'},
-    { name: 'Literatura', image: literatura , materia: 'Literatura'},
-    { name: 'Interpretação', image: interpretacao, materia: 'Linguagens' },
-    { name: 'Inglês', image: ingles , materia: 'Linguagens'},
-    { name: 'Redação', image: redacao, materia: 'Linguagens' },
-    { name: 'História do Brasil', image: his1, materia: 'História' },
-    { name: 'História Geral', image: his2 , materia: 'História'},
-    { name: 'Geografia do Brasil', image: geo1 , materia: 'Geografia'},
-    { name: 'Geografia Geral', image: geo2, materia: 'Geografia' },
-    { name: 'Filosofia', image: fil, materia: 'Filosofia'  },
-    { name: 'Sociologia', image: soc, materia: 'Sociologia' },
-    { name: 'Biologia 1', image: bio1, materia: 'Biologia' },
-    { name: 'Biologia 2', image: bio2, materia: 'Biologia' },
-    { name: 'Biologia 3', image: bio3, materia: 'Biologia' },
-    { name: 'Física 1', image: fis1, materia: 'Física' },
-    { name: 'Física 2', image: fis2, materia: 'Física' },
-    { name: 'Física 3', image: fis3, materia: 'Física' },
-    { name: 'Química 1', image: qui1, materia: 'Química' },
-    { name: 'Química 2', image: qui2, materia: 'Química' },
-    { name: 'Química 3', image: qui3, materia: 'Química' },
-    { name: 'Matemática 1', image: mat1, materia: 'Matemática' },
-    { name: 'Matemática 2', image: mat2, materia: 'Matemática' },
-    { name: 'Matemática 3', image: mat3, materia: 'Matemática' },
-];
-
 const Card = styled.div`
     display: flex;
     flex-direction: column;
@@ -151,32 +104,45 @@ const DSKINFO = styled.div`
 `
 
 const botoes = [
-    { titulo: 'Matérias'},
-    { titulo: 'Provas'}
+    { titulo: 'Matérias', link:'/pagina-aluno'},
+    { titulo: 'Provas', link:'/pagina-provas'}
 ]
-
-const FrenteButton = ({ frente }) => {
-  return (
-    <StyledButton>
-        <StyledContentContainer>
-            <StyledLink to={`/pagina-aluno/${frente.materia}/${frente.name}`}>
-                <Card>
-                    <img src={frente.image} alt={frente.name} />
-                    <NomeFrente>{frente.name}</NomeFrente>
-                </Card>
-            </StyledLink>
-        </StyledContentContainer>
-    </StyledButton>
-  );
-};
 
 const Frentes = (props) => {
   const mat = useParams()
-  const frentesBotoes = frentes
-        .filter(frente => frente.materia === mat.materias)
-        .map((frente, index) => (
+  const [materia, setMateria] = useState([])
+    useEffect(() => {
+        axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
+        .then(response => {
+            setMateria(response.data)
+        })
+        .catch(err => {
+            console.error(err.message)
+        })
+    }, [])
+
+  const FrenteButton = ({ frente }) => {
+    console.log(frente)
+    return (
+      <StyledButton>
+          <StyledContentContainer>
+              <StyledLink to={'/pagina-aluno/'+mat.materias+'/'+frente.nomeFrente}>
+                  <Card>
+                      <img src={frente.imgFrente} alt={frente.nomeFrente} />
+                      <NomeFrente>{frente.nomeFrente}</NomeFrente>
+                  </Card>
+              </StyledLink>
+          </StyledContentContainer>
+      </StyledButton>
+    );
+  };
+
+  const frentesBotoes = materia
+    .flatMap((materiaItem) => 
+        materiaItem.frentes.map((frente, index) => (
             <FrenteButton key={index} frente={frente} />
         ))
+    );
 
   return (
     <div>
@@ -184,7 +150,7 @@ const Frentes = (props) => {
         <MOBLINFO>
                 <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil}/>
                 <div>
-                  <TituloDisciplina tituloDisciplina={mat.materias}/>
+                  {/* <TituloDisciplina tituloDisciplina={mat.materias}/> */}
                   <StyledContainer>
                     <StyledH1>Frentes</StyledH1>
                     <StyledItemContainer>
@@ -197,7 +163,7 @@ const Frentes = (props) => {
         <DSKINFO>
             <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil}/>
             <div>
-              <TituloDisciplina tituloDisciplina={mat.materias}/> 
+              {/* <TituloDisciplina tituloDisciplina={mat.materias}/>  */}
               <StyledContainer>
                       <StyledH1>Frentes</StyledH1>
                       <StyledItemContainer>

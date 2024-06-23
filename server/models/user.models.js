@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
   senha: { type: String, required: true },
   nome: { type: String, required: true},
   sobrenome: { type: String, required: true },
-  tipo: { type: String, default: 'aluno' }
+  tipo: { type: String, default: 'aluno' },
+  materiaProf: { type: String }
 }, { versionKey: false });
 
 const user = mongoose.model("user", userSchema);

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { authAxios } from '../App';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 
 const FormContainer = styled.div`
@@ -118,6 +119,7 @@ function PaginaCadastro(props) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [tipoUsuario, setTipoUsuario] = useState('aluno');
+  const [materiaProf, setMateriaProf] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [feedbackErro, setFeedbackErro] = useState('');
   const [feedbackSucesso, setFeedbackSucesso] = useState('');
@@ -143,6 +145,7 @@ function PaginaCadastro(props) {
           senha: senha,
           email: email,
           senhaConfirmada: confirmarSenha,
+          materiaProf: materiaProf
         },
         {
           headers: {
@@ -159,12 +162,27 @@ function PaginaCadastro(props) {
         setSenha('');
         setTipoUsuario('aluno');
         setConfirmarSenha('');
+        setMateriaProf('');
       }
     } catch (error) {
       console.error('Erro ao enviar o formulário:', error);
       setFeedbackErro(error.response.data.message);
     }
   };
+
+  const [materia, setMateria] = useState([])
+  useEffect(() => {
+      axios.get('http://localhost:3003/materias/listMat')
+      .then(response => {
+          setMateria(response.data)
+      })
+      .catch(err => {
+          console.error(err.message)
+      })
+  }, [])
+  const opcoesMaterias = materia.map((mat) =>
+    <option value={mat.nome}>{mat.nome}</option>
+  )
 
   return (
     <FormContainer>
@@ -179,6 +197,14 @@ function PaginaCadastro(props) {
             <option value="administrador">Administrador</option>
           </Select>
         </div>
+
+        {tipoUsuario === 'professor' && <div>
+          <Label htmlFor="materia">Matéria lecionada:</Label>
+          <Select id="materia" value={materiaProf} onChange={(e) => setMateriaProf(e.target.value)}>
+            <option value="">Nenhuma</option>
+            {opcoesMaterias}
+          </Select>
+        </div>}
 
         <div>
           <Label htmlFor="nome">Nome:</Label>

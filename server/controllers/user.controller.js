@@ -13,7 +13,7 @@ export function checkToken(req, res, next) {
 
   try {
     const secret = process.env.SECRET;
-
+    
     jwt.verify(token, secret);
 
     next();
@@ -45,7 +45,8 @@ export async function signupUser(req, res) {
       senha: senhaHash,
       nome: req.body.nome,
       sobrenome: req.body.sobrenome,
-      tipo: req.body.tipo
+      tipo: req.body.tipo,
+      materiaProf: req.body.materiaProf
     });
 
     await userNovo.save();
@@ -86,7 +87,8 @@ export async function signinUser(req, res) {
       id: user._id,
       tipoUsuario: user.tipo,
       nome: user.nome,
-      sobrenome: user.sobrenome
+      sobrenome: user.sobrenome,
+      materiaProf: user.materiaProf
     }, secret )
 
     // Resposta:
@@ -122,18 +124,29 @@ export async function listUsers(req, res) {
   }
 }
 
+export async function listUsersByTipo(req, res) {
+  try {
+    const users = await User.find({ tipo: req.query.tipoUsuario });
+    res.status(200);
+    res.send(users);
+  } catch(error) {
+    res.status(404);
+    res.send(error.message);
+  }
+}
+
 export async function listUserById(req, res) {
   try {
     const user = await User.findById(req.params.idUser, '-senha');
 
     if(!user) {
-      return res.status(404).send({ message: "Usuário não encontrado"} )
+      return res.status(404).send({ message: "Usuário não encontrado"})
     }
 
     res.status(200);
     res.send(user);
   } catch(error) {
-    res.status(500);
+    res.status(404);
     res.send(error.message);
   }
 }
@@ -145,7 +158,7 @@ export async function listUserByEmail(req, res) {
     res.status(200);
     res.send(user);
   } catch(error) {
-    res.status(500);
+    res.status(404);
     res.send(error.message);
   }
 }
@@ -171,7 +184,6 @@ export async function updateUser(req, res) {
 export async function deleteUser(req, res) {
   try {
     await User.findByIdAndDelete(req.params.idUser);
-
     res.status(200);
     res.send("Usuário deletado com sucesso");
   } catch(error) {
@@ -183,7 +195,6 @@ export async function deleteUser(req, res) {
 export async function deleteAllUsers(req, res) {
   try {
     await User.deleteMany({});
-
     res.status(200);
     res.send("Todos os usuários deletados com sucesso");
   } catch(error) {
