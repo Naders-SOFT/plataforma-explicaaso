@@ -39,6 +39,7 @@ function Roteador(props){
             <Route path='/pagina-provas' element={<PaginaDisciplina isMobile={props.isMobile} navigate={useNavigate} prova={true}/>} />
             <Route path='/pagina-aluno/:materias/:frente' element={<PaginaDisciplina isMobile={props.isMobile} navigate={useNavigate}/>} />
             <Route exact path='/pagina-blog/post/:idPost' element={<PaginaBlogPost isMobile={props.isMobile}/>} />
+            <Route exact path='/pagina-noticias/post/:idPost' element={<PaginaBlogPost isMobile={props.isMobile}/>} />
             <Route element={<ProtectedRouteAdmin/>}>
                 <Route path='/pagina-administrador' element={<PaginaAdministrador isMobile={props.isMobile}/>} />
                 <Route path='/pagina-cadastro-frentes/:materia/:adicionar' element={<PaginaCadastroFrente isMobile={props.isMobile} navigate={useNavigate}/>} />

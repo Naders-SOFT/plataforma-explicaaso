@@ -70,8 +70,12 @@ const IMG = styled.img`
 `
 
 
-function BlocoPost({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost}) {
-    const renderTexto = (textopost) => {
+function BlocoPost({ isMobile, editor, titulopost, textopost, autorpost, datapost}) {
+
+  //O post retirado do banco de dados está em formato de string e, dentro dele, 
+  //possui as tags HTML relativas à seu estilo. Queremos aqui transformar essa string
+  //em html, para que o texto seja renderizado corretamente na tela.
+  const renderTexto = (textopost) => {
         if(textopost){
             return <TEXTOPOST $isMobile={isMobile} dangerouslySetInnerHTML={{__html:textopost}}></TEXTOPOST>;
         }

@@ -77,7 +77,7 @@ const Link = styled.a`
 //   <ListItem key="4"><Link href="#">Conheça a nova plataforma do Explicaaso</Link></ListItem>
 // ];
 
-function ContainerInfo(props) {
+function ContainerInfo({isMobile, noticiaPosts}) {
   const [editor, setEditor] = useState('');
   const [renderContent, setRenderContent] = useState(<p>Carregando...</p>)
     
@@ -91,6 +91,25 @@ function ContainerInfo(props) {
             setEditor(token ? jwtDecode(token).tipoUsuario : '');
         })
     }, [editor]);
+
+    useEffect(() => {
+      if(noticiaPosts && noticiaPosts.length > 0) {
+        setRenderContent(
+          noticiaPosts.map( ( item, index ) => (
+            <ListItem
+            key={index}
+            isMobile={isMobile}
+            titulonoticia={item.titulo}
+            idPost={item._id}
+            />)
+          )
+        );
+      }
+
+      else{
+        setRenderContent(<p>Carregando...</p>);
+      }
+  }, [noticiaPosts, isMobile]);
 
   return (
     <ContainerPag>

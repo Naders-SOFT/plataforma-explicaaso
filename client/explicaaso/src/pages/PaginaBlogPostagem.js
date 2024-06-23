@@ -15,6 +15,8 @@ function PaginaBlogPost(props) {
     const [blogPost, setBlogPost] = useState([]);
     const {idPost} = useParams();
 
+    //Faz a requisição da postagem específica por meio do id
+    //obtido. O post será exibido em sua totalidade
     useEffect(() => {
         axios.get(`http://localhost:3003/blog/list/${idPost}`)
         .then( response => {
