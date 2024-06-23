@@ -74,7 +74,7 @@ function Header(props) {
     return  (
         <ContainerPag>
             <HeaderContainer $isMobile={props.isMobile}>
-                <LogosHeader $isMobile={props.isMobile}/>
+                <LogosHeader $isMobile={props.isMobile} isMobile={props.isMobile}/>
                 {props.isMobile && <MenuHamburguer itensNavigation={itensNavigation}/>}
                 {!props.isMobile && <NavigationHeader itensNavigation={itensNavigation}/>}
                 {!props.isMobile && <LoginButton/>}
