@@ -9,10 +9,10 @@ const LogosHeaderContainer = styled.div`
   min-width: auto;
 `
 
-function LogosHeader({isMobile}) {
+function LogosHeader(props) {
   return (
     <LogosHeaderContainer>
-      {!isMobile && <LogoUsp/>}
+      {!props.isMobile && <LogoUsp/>}
       <LogoExpliCaaso/>
     </LogosHeaderContainer>
   );

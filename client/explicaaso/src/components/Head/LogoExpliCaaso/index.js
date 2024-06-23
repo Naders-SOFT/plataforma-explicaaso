@@ -12,7 +12,7 @@ const LogoExpliCaasoImg = styled.img`
     width: ${props => props.size || '75px'};
     height: ${props => props.size || '75px'};
 
-    @media (min-width: 861px) and (max-width: 1050px) {
+    @media (min-width: 861px) and (max-width: 1116px) {
         width: ${props => props.size || '60px'};
         height: ${props => props.size || '60px'};
     }

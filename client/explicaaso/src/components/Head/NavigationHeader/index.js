@@ -7,7 +7,7 @@ const NavigationHeaderContainer = styled.ul`
   align-items: center;
   color: white;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   width: 100%;
   justify-content: center;
 `
@@ -17,24 +17,32 @@ const NavigationItem = styled(Link)`
   color: white;
   text-decoration: none;
   text-align: center;
-  margin: 0 10px;
+  height: 40px;
+  margin: 0 auto;
   padding: 2px 20px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   transition: background-color 0.3s ease, color 0.3s ease;
   border-radius: 8px;
   border: 2px solid transparent;
   cursor: pointer;
 
+  @media (max-width: 1116px) {
+    padding: 0 5px;
+  }
+
   &:hover {
     background-color: #FFCC00;
     color: #003466;
     border-color: #FFCC00;
+    font-weight: 600;
   }
 
   &.active {
     background-color: #FFCC00;
     color: #003466;
     border-color: #FFCC00;
+    font-weight: 600;
   }
 `;
 
