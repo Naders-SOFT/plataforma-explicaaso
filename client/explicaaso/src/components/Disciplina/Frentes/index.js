@@ -5,6 +5,7 @@ import SideBar from '../../Aluno/SideBar';
 import TituloDisciplina from '../Titulo';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { IoMdTrash } from "react-icons/io";
 
 import imgPerfil from '../../../images/logos/perfil.jpg'
 
@@ -31,10 +32,32 @@ const StyledButton = styled.button`
   transition: transform 0.3s, box-shadow 0.3s;
   font-family: 'Raleway', Sans-serif;
   overflow: hidden;
+  position: relative; // Para posicionar o botão de exclusão
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  }
+`;
+
+const StyledDeleteButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: #dc3545;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+
+  &:hover {
+    color: #c82333;
+  }
+
+  svg {
+    font-size: 30px;
   }
 `;
 
@@ -122,21 +145,23 @@ const Frentes = (props) => {
         })
     }, [])
 
-  const FrenteButton = ({ frente }) => {
-    console.log(frente)
-    return (
-      <StyledButton>
+    const FrenteButton = ({ frente}) => {
+      return (
+        <StyledButton>
           <StyledContentContainer>
-              <StyledLink to={'/pagina-aluno/'+mat.materias+'/'+frente.nomeFrente}>
-                  <Card>
-                      <img src={frente.imgFrente} alt={frente.nomeFrente} />
-                      <NomeFrente>{frente.nomeFrente}</NomeFrente>
-                  </Card>
-              </StyledLink>
+            <StyledLink to={'/pagina-aluno/'+mat.materias+'/'+frente.nomeFrente}>
+              <Card>
+                <img src={frente.imgFrente} alt={frente.nomeFrente} />
+                <NomeFrente>{frente.nomeFrente}</NomeFrente>
+              </Card>
+            </StyledLink>
+            <StyledDeleteButton>
+              <IoMdTrash />
+            </StyledDeleteButton>
           </StyledContentContainer>
-      </StyledButton>
-    );
-  };
+        </StyledButton>
+      );
+    };
 
   const frentesBotoes = materia
     .flatMap((materiaItem) => 
