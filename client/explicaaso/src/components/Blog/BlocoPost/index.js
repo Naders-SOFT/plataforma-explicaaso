@@ -70,7 +70,7 @@ const IMG = styled.img`
 `
 
 
-function BlocoPost({ isMobile, editor, titulopost, textopost, autorpost, datapost}) {
+function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, autorpost, datapost}) {
 
   //O post retirado do banco de dados está em formato de string e, dentro dele, 
   //possui as tags HTML relativas à seu estilo. Queremos aqui transformar essa string
