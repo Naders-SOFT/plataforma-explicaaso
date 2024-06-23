@@ -47,8 +47,9 @@ const BTADICIONAR = styled.button`
 
 function ContainerInfo({ isMobile, blogPosts }) {
     const [editor, setEditor] = useState('');
-    const [renderContent, setRenderContent] = useState(<p>Carregando...</p>)
+    const [renderContent, setRenderContent] = useState(<p>Carregando...</p>) //Exibe um texto padrão enquanto a requisição não está completa
     
+    //Verifica permissão de usuário para renderizar botões específicos
     useEffect(() => {
         const token = localStorage.getItem('token');
         setEditor(token ? jwtDecode(token).tipoUsuario : 'administrador');
@@ -60,6 +61,7 @@ function ContainerInfo({ isMobile, blogPosts }) {
         })
     }, [editor]);
     
+    //Cada post do array é mapeado para um bloco específico do blog
     useEffect(() => {
         if(blogPosts && blogPosts.length > 0) {
           setRenderContent(
@@ -96,15 +98,6 @@ function ContainerInfo({ isMobile, blogPosts }) {
             </BTDIV>
             }
             {renderContent}
-
-            {/* <BlocoBlog
-                isMobile={isMobile}
-                imgSrc={placeholder}
-                imgAlt="placeholder"
-                titulopost = {TitulosPosts[1]}
-                textopost = {TextosPosts[1]}
-                editor={editor}
-             /> */}
         </ContainerPag>
     )
 }

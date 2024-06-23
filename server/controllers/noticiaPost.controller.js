@@ -34,6 +34,25 @@ export async function listnoticiaPosts(req, res) {
     }
 }
 
+
+export async function listnoticiaPostById(req, res) {
+    try {
+        const post = await noticiaPost.findById(req.params.idnoticiaPost);
+
+        console.log(post);
+
+        if(!post) {
+        return res.status(404).send({ message: "Postagem não encontrada"} )
+        }
+  
+        res.status(200);
+        res.send(post);
+    } catch(error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 export async function updatenoticiaPost(req, res) {
     try {
         await blogPost.findByIdAndUpdate(req.params.idnoticiaPost, req.body);
