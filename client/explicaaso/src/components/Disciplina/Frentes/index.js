@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import SideBar from '../../Aluno/SideBar';
-import TituloDisciplina from '../Titulo';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IoMdTrash } from "react-icons/io";
@@ -32,7 +31,7 @@ const StyledButton = styled.button`
   transition: transform 0.3s, box-shadow 0.3s;
   font-family: 'Raleway', Sans-serif;
   overflow: hidden;
-  position: relative; // Para posicionar o botão de exclusão
+  position: relative;
 
   &:hover {
     transform: translateY(-5px);
@@ -138,73 +137,81 @@ const infoAdicionar = {
 }
 
 const Frentes = (props) => {
-  const mat = useParams()
-  const [materia, setMateria] = useState([])
-    useEffect(() => {
-        axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
-        .then(response => {
-            setMateria(response.data)
-        })
-        .catch(err => {
-            console.error(err.message)
-        })
-    }, [])
+  const mat = useParams();
+  const [materia, setMateria] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
+      .then(response => {
+        setMateria(response.data);
+      })
+      .catch(err => {
+        console.error(err.message);
+      });
+  }, [mat.materias]); 
+
+  const handleDelete = (nomeFrente) => {
+    console.log(`Excluindo frente: ${nomeFrente}`);
+  };
 
   const FrenteButton = ({ frente }) => {
-    const pag = frente.nomeFrente === 'Adicionar frente' ? '/pagina-cadastro-frentes/' : '/pagina-aluno/'
+    const pag = frente.nomeFrente === 'Adicionar frente' ? '/pagina-cadastro-frentes/' : '/pagina-aluno/';
+    
     return (
-      <StyledButton>
-          <StyledContentContainer>
-              <StyledLink to={pag+mat.materias+'/'+frente.nomeFrente}>
-                  <Card>
-                      <img src={frente.imgFrente} alt={frente.nomeFrente} />
-                      <NomeFrente>{frente.nomeFrente}</NomeFrente>
-                  </Card>
-              </StyledLink>
-          </StyledContentContainer>
-        </StyledButton>
-      );
-    };
+      <StyledButton key={frente.nomeFrente}>
+        <StyledContentContainer>
+          <StyledLink to={pag + mat.materias + '/' + frente.nomeFrente}>
+            <Card>
+              <img src={frente.imgFrente} alt={frente.nomeFrente} />
+              <NomeFrente>{frente.nomeFrente}</NomeFrente>
+            </Card>
+          </StyledLink>
+          {frente.nomeFrente !== 'Adicionar frente' && (
+            <StyledDeleteButton onClick={() => handleDelete(frente.nomeFrente)}> 
+              <IoMdTrash />
+            </StyledDeleteButton>
+          )}
+        </StyledContentContainer>
+      </StyledButton>
+    );
+  };
 
   const frentesBotoes = materia
-    .flatMap((materiaItem) => 
-        materiaItem.frentes.map((frente, index) => (
-            <FrenteButton key={index} frente={frente} />
-        ))
-    );
-  const botaoAdicionar = <FrenteButton key='adicionar' frente={infoAdicionar}/>
+    .flatMap((materiaItem) => materiaItem.frentes.map((frente) => (
+      <FrenteButton key={frente.nomeFrente} frente={frente} /> 
+    )));
+
+  const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
 
   return (
     <div>
-        {props.isMobile ?
+      {props.isMobile ? (
         <MOBLINFO>
-                <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil}/>
-                <div>
-                  {/* <TituloDisciplina tituloDisciplina={mat.materias}/> */}
-                  <StyledContainer>
-                    <StyledH1>Frentes</StyledH1>
-                    <StyledItemContainer>
-                        {frentesBotoes}
-                        {botaoAdicionar}
-                    </StyledItemContainer>
-                  </StyledContainer>
-                </div>
+          <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil} />
+          <div>
+            <StyledContainer>
+              <StyledH1>Frentes</StyledH1>
+              <StyledItemContainer>
+                {frentesBotoes}
+                {botaoAdicionar} 
+              </StyledItemContainer>
+            </StyledContainer>
+          </div>
         </MOBLINFO>
-        :
+      ) : (
         <DSKINFO>
-            <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil}/>
-            <div>
-              {/* <TituloDisciplina tituloDisciplina={mat.materias}/>  */}
-              <StyledContainer>
-                      <StyledH1>Frentes</StyledH1>
-                      <StyledItemContainer>
-                          {frentesBotoes}
-                          {botaoAdicionar}
-                      </StyledItemContainer>
-              </StyledContainer>
-            </div>
+          <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil} />
+          <div>
+            <StyledContainer>
+              <StyledH1>Frentes</StyledH1>
+              <StyledItemContainer>
+                {frentesBotoes}
+                {botaoAdicionar} 
+              </StyledItemContainer>
+            </StyledContainer>
+          </div>
         </DSKINFO>
-        }
+      )}
     </div>
   );
 };
