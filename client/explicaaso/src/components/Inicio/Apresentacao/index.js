@@ -54,6 +54,17 @@ const TextoDinamico = styled.h1`
   font-weight: ${props => props.peso};
 `;
 
+const LogoExpliCaasoContainer = styled.div`
+    width: auto;
+    margin: 0 15px;
+    z-index: 1;
+`
+
+const LogoExpliCaasoImg = styled.img`
+    width: 50%;
+    height: 50%;
+`
+
 function Apresentacao() {
   const textos = [
     {
@@ -134,8 +145,14 @@ function Apresentacao() {
           {texto2}
         </TextoDinamico>
       </Titulos>
-      <LogoExpliCaaso size="180px" />
-      {/* <img src={logo} alt='logo'></img> */}
+      {/* <LogoExpliCaaso size="180px" /> */}
+      
+      <LogoExpliCaasoContainer>
+        <LogoExpliCaasoImg
+          src={logo}
+          alt='logo'
+        />
+      </LogoExpliCaasoContainer>
     </ApresentacaoContainer>
   );
 }

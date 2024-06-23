@@ -17,14 +17,14 @@ const CardInfo = styled.div`
 `
 
 const CardFrentes = styled.p`
-    font-size: 75%;
+    font-size: 85%;
     text-align: inter-word;
 `
 
 function CardMateria(props) {
     const Card = styled.li`
         width: ${props => props.isMobile ? '60%' : '100%'};
-        height: 20em;
+        height: auto;
         display: flex;
         flex-direction: column;
         color: black;
