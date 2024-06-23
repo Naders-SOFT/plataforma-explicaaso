@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import BlocoNoticia from "../BlocoNoticia";
+import React, { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 const ContainerPag = styled.div`
   display: flex;
@@ -66,27 +68,59 @@ const Link = styled.a`
   }
 `;
 
-const noticias = [
-  <ListItem key="1"><Link href="#">Divulgadas as datas FUVEST 2024</Link></ListItem>,
-  <ListItem key="2"><Link href="#">Divulgadas as datas UNICAMP 2024</Link></ListItem>,
-  <ListItem key="3"><Link href="#">Inscrições para o Explicaaso começaram</Link></ListItem>,
-  <ListItem key="4"><Link href="#">Conheça a nova plataforma do Explicaaso</Link></ListItem>
-];
+// const noticias = [
+//   <ListItem key="1"><Link href="#">Divulgadas as datas FUVEST 2024</Link></ListItem>,
+//   <ListItem key="2"><Link href="#">Divulgadas as datas UNICAMP 2024</Link></ListItem>,
+//   <ListItem key="3"><Link href="#">Inscrições para o Explicaaso começaram</Link></ListItem>,
+//   <ListItem key="4"><Link href="#">Conheça a nova plataforma do Explicaaso</Link></ListItem>
+// ];
 
-function ContainerInfo(props) {
-  let editor = true;
+function ContainerInfo({isMobile, noticiaPosts}) {
+  const [editor, setEditor] = useState('');
+  const [renderContent, setRenderContent] = useState(<p>Carregando...</p>)
+    
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setEditor(token ? jwtDecode(token).tipoUsuario : '');
+        
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setEditor(token ? jwtDecode(token).tipoUsuario : '');
+        })
+    }, [editor]);
+
+    useEffect(() => {
+      if(noticiaPosts && noticiaPosts.length > 0) {
+        setRenderContent(
+          noticiaPosts.map( ( item, index ) => (
+            <ListItem
+            key={index}
+            isMobile={isMobile}
+            titulonoticia={item.titulo}
+            idPost={item._id}
+            />)
+          )
+        );
+      }
+
+      else{
+        setRenderContent(<p>Carregando...</p>);
+      }
+  }, [noticiaPosts, isMobile]);
 
   return (
     <ContainerPag>
-      <TITLEPAG $isMobile={props.isMobile}>Notícias</TITLEPAG>
-      <BTDIV $isMobile={props.isMobile}>
-        <BTADICIONAR $isMobile={props.isMobile}>Criar Notícia</BTADICIONAR>
-      </BTDIV>
-      <BlocoNoticia
-        isMobile={props.isMobile}
-        noticias={noticias}
-        editor={editor}
-      />
+      <TITLEPAG $isMobile={isMobile}>Notícias</TITLEPAG>
+      {(editor == 'administrador' || editor == 'professor') &&
+            <BTDIV $isMobile={isMobile}>
+                <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
+            </BTDIV>
+            }
+      
+      <BlocoNoticia>
+        {renderContent};
+      </BlocoNoticia>
     </ContainerPag>
   );
 }

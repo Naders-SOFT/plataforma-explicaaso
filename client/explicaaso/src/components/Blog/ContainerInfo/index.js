@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import BlocoBlog from "../BlocoBlog";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
+import React, { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 const ContainerPag = styled.div`
   display: flex;
@@ -43,38 +45,59 @@ const BTADICIONAR = styled.button`
   }
 `
 
-const TitulosPosts = ["A educação no Brasil", "Como estudar para os Vestibulares"]
-const TextosPosts = ["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt rem odit quis quaerat. In dolorem praesentium velit ea esse consequuntur cum fugit sequi voluptas ut possimus voluptatibus deserunt nisi eveniet!Lorem ipsum dolor sit amet, consecteturadipisicing elit. Dolorem voluptates vel dolorum autem ex repudiandae iste quasi. Minima explicabo qui necessitatibus porro nihil aliquid deleniti ullam repudiandae dolores corrupti eaque.",
-                     "Oi! Este é um teste de texto do blog. Para ser mais exato, é um teste de como fica a prévia da postagem! Por enquanto, tudo ocorrendo bem. Quero continuar escrevendo até chegar no limite. Lero lero lero, como vai você? Lero lero lero blablabla pipipipopopo ainda nao mas muito legal que foda. Mas e agora, para onde vamos? Ainda temos algumas linhas porque coloquei como limite de 10. Quase em 10, vamos lá time uhuuu não aguento mais isso que saco quando acaba estou quase e agora ja acabou"]
+function ContainerInfo({ isMobile, blogPosts }) {
+    const [editor, setEditor] = useState('');
+    const [renderContent, setRenderContent] = useState(<p>Carregando...</p>) //Exibe um texto padrão enquanto a requisição não está completa
+    
+    //Verifica permissão de usuário para renderizar botões específicos
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setEditor(token ? jwtDecode(token).tipoUsuario : 'administrador');
+        
 
-function ContainerInfo(props) {
-    let editor = true;
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setEditor(token ? jwtDecode(token).tipoUsuario : 'administrador');
+        })
+    }, [editor]);
+    
+    //Cada post do array é mapeado para um bloco específico do blog
+    useEffect(() => {
+        if(blogPosts && blogPosts.length > 0) {
+          setRenderContent(
+            blogPosts.map( ( item, index ) => (
+              <BlocoBlog
+              key={index}
+              isMobile={isMobile}
+              imgSrc={placeholder}
+              imgAlt="placeholder"
+              editor={editor}
+              titulopost={item.titulo}
+              textopost={item.texto}
+              autorpost={item.autor}
+              datapost={item.data}
+              idPost={item._id}
+              />)
+            )
+          );
+        }
 
+        else{
+          setRenderContent(<p>Carregando...</p>);
+        }
+    }, [blogPosts, isMobile]);
+
+
+    
     return (
         <ContainerPag>
-            <TITLEPAG $isMobile={props.isMobile}>Postagens</TITLEPAG>
-            {editor &&
-            <BTDIV $isMobile={props.isMobile}>
-                <BTADICIONAR $isMobile={props.isMobile}>Criar Post</BTADICIONAR>
+            <TITLEPAG $isMobile={isMobile}>Postagens</TITLEPAG>
+            {(editor == 'administrador' || editor == 'professor') &&
+            <BTDIV $isMobile={isMobile}>
+                <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
             </BTDIV>
             }
-            <BlocoBlog
-                isMobile={props.isMobile}
-                imgSrc={placeholder}
-                imgAlt="placeholder"
-                titulopost = {TitulosPosts[0]}
-                textopost = {TextosPosts[0]}
-                editor={editor}
-             />
-
-            <BlocoBlog
-                isMobile={props.isMobile}
-                imgSrc={placeholder}
-                imgAlt="placeholder"
-                titulopost = {TitulosPosts[1]}
-                textopost = {TextosPosts[1]}
-                editor={editor}
-             />
+            {renderContent}
         </ContainerPag>
     )
 }

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-import { authAxios } from '../App';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../App';
 
 
 const FormContainer = styled.div`
@@ -124,6 +124,7 @@ function PaginaCadastro(props) {
   const [feedbackErro, setFeedbackErro] = useState('');
   const [feedbackSucesso, setFeedbackSucesso] = useState('');
   const [senhaSugerida, setSenhaSugerida] = useState('');
+  const authAxios = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

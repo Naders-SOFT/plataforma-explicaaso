@@ -1,8 +1,7 @@
+import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
+import '../../EditorTexto/RichText/styles.css'
 
-/**
- * Container das informações do cursinho.
- */
 const BlocoInfo = styled.div`
   align-items: center;
   background-color: #f8f8f8;
@@ -31,7 +30,7 @@ const TITLEPOST = styled.h3`
   text-align: ${({ $isMobile }) => ($isMobile ? 'center' : 'left')};
 `;
 
-const TEXTOPOST = styled.p`
+const TEXTOPOST = styled.div`
   color: #666666;
   font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.1rem')};
   margin: 5%;
@@ -48,6 +47,7 @@ const DIVIMG = styled.div`
   display: flex;
   flex-direction: ${({ $isMobile }) => ($isMobile ? 'column' : 'row')};
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   margin-top: 20px;
 `;
@@ -83,34 +83,28 @@ const BUTTON = styled.button`
   }
 `;
 
-const LERMAIS = styled.a`
-  color: #003466;
-  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.2rem')};
-  margin: 2%;
-  text-align: ${({ $isMobile }) => ($isMobile ? 'center' : 'justify')};
-  cursor: pointer;
-  text-decoration: none;
 
-  &:link, &:visited {
-    color: #003466;
+function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost, datapost, idPost }) {
+  
+  const renderPost = (textopost) => {
+    if(textopost){
+      return <div dangerouslySetInnerHTML={{__html: textopost}}></div>;
+    }
+    return <div></div>
   }
 
-  &:hover {
-    color: #FFCC00;
-  }
-`;
-
-function BlocoBlog(props) {
   return (
-    <BlocoInfo $isMobile={props.isMobile}>
-      <TITLEPOST $isMobile={props.isMobile}>{props.titulopost}</TITLEPOST>
-      <DIVIMG $isMobile={props.isMobile}>
-        <TEXTOPOST $isMobile={props.isMobile}>{props.textopost}</TEXTOPOST>
-        <IMG src={props.imgSrc} alt={props.imgAlt} />
+    <BlocoInfo $isMobile={isMobile}>
+      <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
+      <DIVIMG $isMobile={isMobile}>
+        <TEXTOPOST $isMobile={isMobile} className="tiptap">{renderPost(textopost)}</TEXTOPOST>
+        <IMG src={imgSrc} alt={imgAlt} />
       </DIVIMG>
-      <BUTTON $isMobile={props.isMobile}>Ler mais</BUTTON>
-      {props.editor && 
-        <BUTTON $isMobile={props.isMobile}>Editar</BUTTON>
+      <Link to ={`/pagina-blog/post/${idPost}`} style={{ textDecoration: 'none' }}>
+          <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
+        </Link>
+      {(editor == 'administrador' || editor == 'professor') && 
+        <BUTTON $isMobile={isMobile}>Editar</BUTTON>
       }
     </BlocoInfo>
   );

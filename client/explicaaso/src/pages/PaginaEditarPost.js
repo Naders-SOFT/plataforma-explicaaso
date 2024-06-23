@@ -9,6 +9,7 @@ import Underline from '@tiptap/extension-underline';
 import Placeholder from '@tiptap/extension-placeholder';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 const ContainerPag = styled.div`
     width: 1 vw;
@@ -82,12 +83,14 @@ function PaginaEditarPost(props) {
   
     const criarPost = async (e) => {
       e.preventDefault();
+      const token = localStorage.getItem('token');
+      const autor = jwtDecode(token).nome + ' ' + jwtDecode(token).sobrenome;
 
       await axios.post('http://localhost:3003/blog/post',
         {
           titulo: titulo,
           texto: texto,
-          autor: 'aiueh',
+          autor: autor,
           imagem: ''
         },
         {

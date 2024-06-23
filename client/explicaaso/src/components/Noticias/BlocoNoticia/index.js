@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-/**
- * Container das informações do cursinho.
- */
 const BlocoInfo = styled.div`
   align-items: center;
   background-color: #f8f8f8;
@@ -22,43 +19,22 @@ const BlocoInfo = styled.div`
   }
 `;
 
-const MOBLTITLE = styled.h2`
-  color: #333333;
-  font-size: 1.8rem;
-  width: 100%;
-  text-align: center;
-  margin: 20px 0;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: 600;
-`;
-
-const DSKTITLE = styled.h2`
-  color: black;
-  font-size: 2rem;
-  text-align: center;
-  margin: 20px 0;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: 600;
-`;
-
 const LISTA = styled.ul`
   color: black;
   margin-bottom: 5%;
 `;
 
-const MOBLI = styled.li`
+const LI = styled.li`
   color: #666666;
-  list-style: none;
-  font-size: 1.1rem;
-  margin: 10px 0;
-`;
-
-const DSKLI = styled.li`
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.1rem')};
+  text-align: ${({ $isMobile }) => ($isMobile ? 'center' : 'justify')};
   list-style: none;
   font-size: 1.4rem;
   margin: 10px 0;
     color: black;
 `;
+
+
 
 const BUTTON = styled.button`
   width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
@@ -82,27 +58,11 @@ const BUTTON = styled.button`
 function BlocoNoticia(props) {
   return (
     <BlocoInfo $isMobile={props.isMobile}>
-      {props.isMobile ? (
-        <>
-          <MOBLTITLE>{props.titulo}</MOBLTITLE>
-          <LISTA>
-            {props.noticias.map((noticia, index) => (
-              <MOBLI key={index}>{noticia}</MOBLI>
-            ))}
-          </LISTA>
-        </>
-      ) : (
-        <>
-          <DSKTITLE>{props.titulo}</DSKTITLE>
-          <LISTA>
-            {props.noticias.map((noticia, index) => (
-              <DSKLI key={index}>{noticia}</DSKLI>
-            ))}
-          </LISTA>
-        </>
-      )}
-      <BUTTON $isMobile={props.isMobile}>Ler mais</BUTTON>
-      {props.editor && <BUTTON $isMobile={props.isMobile}>Editar</BUTTON>}
+    <LISTA $isMobile={props.isMobile}>
+      {props.noticias.map((noticia, index) => (
+        <LI key={index}>{noticia}</LI>
+      ))}
+    </LISTA>
     </BlocoInfo>
   );
 }

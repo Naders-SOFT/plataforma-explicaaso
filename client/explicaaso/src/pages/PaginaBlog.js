@@ -8,6 +8,8 @@ const ContainerPag = styled.div`
 `
 
 function PaginaBlog(props) {
+    //Realiza a requisição de todas as postagens criadas
+    //e armazenadas na base de dados
     const [blogPosts, setBlogPosts] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:3003/blog/list')
@@ -19,12 +21,10 @@ function PaginaBlog(props) {
         })
     }, []);
 
-    /** Exibir os blogposts e passar para o ContainerInfo */
-    console.log(blogPosts); 
 
     return(
         <ContainerPag>
-            <ContainerInfo isMobile={props.isMobile}/>
+            <ContainerInfo isMobile={props.isMobile} blogPosts={blogPosts}/>
         </ContainerPag>
     )
 

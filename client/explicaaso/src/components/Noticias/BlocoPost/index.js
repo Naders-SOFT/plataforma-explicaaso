@@ -57,25 +57,11 @@ const EDITBUTTON = styled.button`
     cursor: pointer;
 `
 
-const IMG = styled.img`
-  width: 100%;
-  max-width: 700px;
-  border-radius: 12px;
-  margin: ${({ $isMobile }) => ($isMobile ? '20px 0' : '0 20px')};
-  object-fit: cover;
-
-  @media (min-width: 768px) and (max-width: 916px) {
-    display: none;
-  }
-`
 
 
-function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, autorpost, datapost}) {
 
-  //O post retirado do banco de dados está em formato de string e, dentro dele, 
-  //possui as tags HTML relativas à seu estilo. Queremos aqui transformar essa string
-  //em html, para que o texto seja renderizado corretamente na tela.
-  const renderTexto = (textopost) => {
+function BlocoPost({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost}) {
+    const renderTexto = (textopost) => {
         if(textopost){
             return <TEXTOPOST $isMobile={isMobile} dangerouslySetInnerHTML={{__html:textopost}}></TEXTOPOST>;
         }
@@ -84,7 +70,6 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
     return(
         <BlocoInfo $isMobile={isMobile}>
             <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
-            <IMG src={imgSrc} alt={imgAlt}/>
             <TEXTOPOST $isMobile={isMobile} className="tiptap">{renderTexto(textopost)}</TEXTOPOST>
 
             {(editor == 'administrador' || editor == 'professor') &&
