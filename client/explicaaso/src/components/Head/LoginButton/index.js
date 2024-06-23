@@ -7,26 +7,24 @@ const LoginButtonContainer = styled.button`
   justify-content: center;
   background-color: #FFCC00;
   width: 105px;
-  height: 40px;
+  height: 36px;
   border: none;
   border-radius: 10px;
   margin: 0 20px 0 20px;
   color: #003466;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
 
-  @media (min-width: 861px) and (max-width: 1050px) {
-    font-size: 16px;
-    width: 98px;
-    height: 34px;
-  }
-
-  @media (max-width: 860px) {
+  @media (max-width: 1116px) {
     font-size: 14px;
     width: 94px;
     height: 32px;
+  }
+
+  &:hover {
+    height: 38px;
   }
 `
 
