@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
-// Estilos comuns
 const ContainerSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: ${({$isMobile}) => ($isMobile ? '20%' : '100%')};;
+  width: ${({ $isMobile }) => ($isMobile ? "20%" : "100%")};
   min-width: 150px;
   padding: 2rem;
   background-color: #f0f0f0;
@@ -41,7 +42,6 @@ const ContainerBotao = styled.div`
   width: 100%;
 `;
 
-// Estilos para elementos comuns
 const ImgPerfil = styled.img`
   width: 5rem;
   height: 5rem;
@@ -70,9 +70,26 @@ const Container = styled.div`
 `;
 
 function SideBar(props) {
+  const [userName, setUserName] = useState("Carregando...");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        setUserName(decodedToken.nome || "Usuário");
+      } catch (error) {
+        console.error("Erro ao decodificar token:", error);
+        setUserName("Erro");
+      }
+    } else {
+      setUserName("Usuário");
+    }
+  }, []);
+
   const listaBotoes = props.botoes?.map((botao, index) => (
-    <Link to={`${botao.link}`}>
-      <Botao key={index}>{botao.titulo}</Botao>
+    <Link key={index} to={`${botao.link}`}>
+      <Botao>{botao.titulo}</Botao>
     </Link>
   ));
 
@@ -82,7 +99,7 @@ function SideBar(props) {
         {!props.isMobile && (
           <ContainerPerfil>
             <ImgPerfil src={props.imgPerfil} alt="Perfil" />
-            <Nome>{props.nome}</Nome>
+            <Nome>{userName}</Nome>
           </ContainerPerfil>
         )}
         <ContainerBotao>{listaBotoes}</ContainerBotao>
