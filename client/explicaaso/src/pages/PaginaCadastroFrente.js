@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { IoAddCircle } from "react-icons/io5";
 import { authAxios } from '../App'; 
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const FormContainer = styled.div`
   display: flex;
@@ -103,16 +105,18 @@ const PaginaCadastroFrente = () => {
   const [feedbackErro, setFeedbackErro] = useState('');
   const [feedbackSucesso, setFeedbackSucesso] = useState('');
 
+  const materia = useParams()
+
   const handleAdicionarFrente = async (e) => {
     e.preventDefault();
     setFeedbackErro('');
     setFeedbackSucesso('');
 
     try {
-        const url = `http://localhost:3003/createFrente/${encodeURIComponent(materiaId)}`;
+        const url = `http://localhost:3003/createFrente/${materia.materia}`;
         console.log("URL codificada:", url); // Verifica a URL no console
   
-        const response = await authAxios.post(
+        const response = await axios.post(
           url,
           {
             nomeFrente: nomeFrente,
@@ -163,14 +167,14 @@ const PaginaCadastroFrente = () => {
           required
         />
 
-        <Label htmlFor="materiaId">ID da Matéria:</Label>
+        {/* <Label htmlFor="materiaId">ID da Matéria:</Label>
         <Input
           type="text"
           id="materiaId"
           value={materiaId}
           onChange={(e) => setMateriaId(e.target.value)}
           required
-        />
+        /> */}
 
         <ButtonContainer>
           <Botao type="submit">

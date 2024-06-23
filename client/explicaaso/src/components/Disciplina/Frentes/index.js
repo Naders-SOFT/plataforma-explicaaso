@@ -132,6 +132,11 @@ const botoes = [
     { titulo: 'Provas', link:'/pagina-provas'}
 ]
 
+const infoAdicionar = {
+  nomeFrente: 'Adicionar frente',
+  imgFrente: 'https://img.7segundos.com.br/Kbh4MVejdf78LrB4UHDVr5r6KnM=/1110x650/s3.7segundos.com.br/uploads/imagens/depositphotos-10757161-stock-photo-freshwater-catfish.jpg'
+}
+
 const Frentes = (props) => {
   const mat = useParams()
   const [materia, setMateria] = useState([])
@@ -145,19 +150,17 @@ const Frentes = (props) => {
         })
     }, [])
 
-    const FrenteButton = ({ frente}) => {
-      return (
-        <StyledButton>
+  const FrenteButton = ({ frente }) => {
+    const pag = frente.nomeFrente === 'Adicionar frente' ? '/pagina-cadastro-frentes/' : '/pagina-aluno/'
+    return (
+      <StyledButton>
           <StyledContentContainer>
-            <StyledLink to={'/pagina-aluno/'+mat.materias+'/'+frente.nomeFrente}>
-              <Card>
-                <img src={frente.imgFrente} alt={frente.nomeFrente} />
-                <NomeFrente>{frente.nomeFrente}</NomeFrente>
-              </Card>
-            </StyledLink>
-            <StyledDeleteButton>
-              <IoMdTrash />
-            </StyledDeleteButton>
+              <StyledLink to={pag+mat.materias+'/'+frente.nomeFrente}>
+                  <Card>
+                      <img src={frente.imgFrente} alt={frente.nomeFrente} />
+                      <NomeFrente>{frente.nomeFrente}</NomeFrente>
+                  </Card>
+              </StyledLink>
           </StyledContentContainer>
         </StyledButton>
       );
@@ -169,6 +172,7 @@ const Frentes = (props) => {
             <FrenteButton key={index} frente={frente} />
         ))
     );
+  const botaoAdicionar = <FrenteButton key='adicionar' frente={infoAdicionar}/>
 
   return (
     <div>
@@ -181,6 +185,7 @@ const Frentes = (props) => {
                     <StyledH1>Frentes</StyledH1>
                     <StyledItemContainer>
                         {frentesBotoes}
+                        {botaoAdicionar}
                     </StyledItemContainer>
                   </StyledContainer>
                 </div>
@@ -194,6 +199,7 @@ const Frentes = (props) => {
                       <StyledH1>Frentes</StyledH1>
                       <StyledItemContainer>
                           {frentesBotoes}
+                          {botaoAdicionar}
                       </StyledItemContainer>
               </StyledContainer>
             </div>

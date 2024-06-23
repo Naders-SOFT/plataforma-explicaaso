@@ -3,7 +3,7 @@ import imagemFundo from '../../../images/background/fundoEESC.png';
 import LogoExpliCaaso from '../../Head/LogoExpliCaaso';
 import styled from 'styled-components';
 import imgFundo2 from '../../../images/background/eesc-sub2.jpg'
-import logo from '../../../images/logos/logo-explicaaso (1).jpeg'
+import logo from '../../../images/logos/logo-explicaaso-upscalle.png'
 
 const ApresentacaoContainer = styled.div`
   display: flex;
@@ -26,15 +26,13 @@ const Fundo = styled.div`
   background-size: cover; // cover the entire container while maintaining aspect ratio
   background-position: center; // center the image in the container
   background-repeat: no-repeat;
-
+  backdrop-filter: blur(4px);
 `;
 
 const BlurOverlay = styled.div`
   position: absolute;
   top: 0;
-  left: 0;
-  left: 60%;
-  width: 40%; // set to 30% to cover the left 30% of the screen
+  width: 100%; // set to 30% to cover the left 30% of the screen
   height: 100%;
   backdrop-filter: blur(4px); // apply the blur effect
   ${'' /* background: inherit; // inherit the background from the parent div */}
@@ -145,14 +143,14 @@ function Apresentacao() {
           {texto2}
         </TextoDinamico>
       </Titulos>
-      {/* <LogoExpliCaaso size="180px" /> */}
+      <LogoExpliCaaso size="180px" />
       
-      <LogoExpliCaasoContainer>
+      {/* <LogoExpliCaasoContainer>
         <LogoExpliCaasoImg
           src={logo}
           alt='logo'
         />
-      </LogoExpliCaasoContainer>
+      </LogoExpliCaasoContainer> */}
     </ApresentacaoContainer>
   );
 }
