@@ -20,12 +20,12 @@ const DSKINFO = styled.div`
     flex-wrap: wrap;
     gap: 2%;
     overflow: auto;
-    height: 100%;
+    min-height: 100%;
     width: 100%;
 `
 const Container = styled.div`
     width: 100%;
-    
+    ${'' /* height: 100%; */}
 `
 function Informacao(props) {
     const [materias, setMaterias] = useState([])

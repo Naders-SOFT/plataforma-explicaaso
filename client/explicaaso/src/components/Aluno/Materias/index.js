@@ -21,11 +21,11 @@ const DSKMATERIAS = styled.ul`
     grid-template-columns: repeat(3, 1fr);
     gap: 2vw;
     list-style-type: none;
-    padding: 0px;
-    align-items: center;
+    padding: 0px 2% 0px 0px;
+    align-items: flex-start;
     justify-content: center;
     margin: 0px;
-    overflow: auto;
+    min-height: 100vh;
 `
 
 const Container = styled.div`

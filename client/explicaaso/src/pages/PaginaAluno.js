@@ -6,7 +6,7 @@ import imgPerfil from '../images/logos/perfil.jpg'
 
 const ContainerPag = styled.div`
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     background-color: #f8f8f8;
 `
 
