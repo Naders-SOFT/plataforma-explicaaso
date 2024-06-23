@@ -3,6 +3,8 @@ import BlocoPost from "../BlocoPost";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
 import { useEffect, useState } from "react";
 import { jwtDecode } from 'jwt-decode';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ContainerPag = styled.div`
     align-items: center;
@@ -36,6 +38,7 @@ const BTADICIONAR = styled.button`
 
 function ContainerPost(props) {
     const [editor, setEditor] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -48,6 +51,19 @@ function ContainerPost(props) {
         })
     }, [editor]);
     
+    const handleDelete = (id) => {
+        // Requisicao de DELETE
+        axios.delete('http://localhost:3003/blog/delete/'+id)
+        .then(() => {
+            console.log('Blog post deleted successfully');
+
+            // Removendo o pdf que foi deletado
+            navigate('/pagina-blog');
+        })
+        .catch(error => {
+            console.error('Error deleting Blog post:', error);
+        })
+    }
 
     return (
         <ContainerPag>

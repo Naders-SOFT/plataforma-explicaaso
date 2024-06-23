@@ -51,12 +51,12 @@ function ContainerInfo({ isMobile, blogPosts }) {
     
     useEffect(() => {
         const token = localStorage.getItem('token');
-        setEditor(token ? jwtDecode(token).tipoUsuario : '');
+        setEditor(token ? jwtDecode(token).tipoUsuario : 'administrador');
         
 
         window.addEventListener("storage", () => {
             const token = localStorage.getItem('token');
-            setEditor(token ? jwtDecode(token).tipoUsuario : '');
+            setEditor(token ? jwtDecode(token).tipoUsuario : 'administrador');
         })
     }, [editor]);
     

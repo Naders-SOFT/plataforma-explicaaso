@@ -7,7 +7,6 @@ export function checkToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(" ")[1];
   
-  // Verifica se existe um token passado pela requisição:
   if(!token || token === 'null') {
     return res.status(401).json({ message: "Acesso negado" });
   }
