@@ -119,7 +119,6 @@ function SideBar(props) {
                     <MOBLCONTAINERBOTAO>
                         <MOBLBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</MOBLBOTAO>
                         <MOBLBOTAO onClick={() => handleButtonClick('professor')}>Professores</MOBLBOTAO>
-                        <MOBLBOTAO onClick={() => handleButtonClick('Repositório')}>Repositório</MOBLBOTAO>
                      </MOBLCONTAINERBOTAO>
                 </MOBLCONTAINERSIDE>
             } 
