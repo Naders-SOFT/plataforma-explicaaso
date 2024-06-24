@@ -94,7 +94,7 @@ function ContainerInfo({isMobile, noticiaPosts}) {
       if(noticiaPosts && noticiaPosts.length > 0) {
         setRenderContent(
           noticiaPosts.map( ( item, index ) => (
-            <ListItem
+            <BlocoNoticia
             key={index}
             isMobile={isMobile}
             titulonoticia={item.titulo}
@@ -117,10 +117,7 @@ function ContainerInfo({isMobile, noticiaPosts}) {
                 <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
             </BTDIV>
             }
-      
-      <BlocoNoticia>
         {renderContent};
-      </BlocoNoticia>
     </ContainerPag>
   );
 }

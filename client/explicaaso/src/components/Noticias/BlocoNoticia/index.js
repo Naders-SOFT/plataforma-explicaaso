@@ -55,14 +55,12 @@ const BUTTON = styled.button`
   }
 `;
 
-function BlocoNoticia(props) {
+function BlocoNoticia({ isMobile, editor, titulonoticia, textonoticia, autornoticia, datanoticia, idnoticia }) {
   return (
-    <BlocoInfo $isMobile={props.isMobile}>
-    <LISTA $isMobile={props.isMobile}>
-      {props.noticias.map((noticia, index) => (
-        <LI key={index}>{noticia}</LI>
-      ))}
-    </LISTA>
+    <BlocoInfo $isMobile={isMobile}>
+      <LISTA $isMobile={isMobile}>
+        <LI $isMobile={isMobile}>{titulonoticia}</LI>
+      </LISTA>
     </BlocoInfo>
   );
 }
