@@ -1,13 +1,13 @@
 import './postPlaceholder.css'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RichText from "../components/EditorTexto/RichText";
 import styled from "styled-components";
 import { useEditor } from "@tiptap/react";
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import Placeholder from '@tiptap/extension-placeholder';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
@@ -60,12 +60,22 @@ const Botao = styled.button`
 `
 
 function PaginaEditarPost(props) {
+    const { idPost } = useParams();
     const [titulo, setTitulo] = useState('');
     const [texto, setTexto] = useState('');
     const navigate = useNavigate();
     const editor = useEditor({
         extensions:[
-          StarterKit,
+          StarterKit.configure({
+            bulletList: {
+              keepMarks: true,
+              keepAttributes: false, 
+            },
+            orderedList: {
+              keepMarks: true,
+              keepAttributes: false, 
+            },
+          }),
           Underline,
           Placeholder.configure({
             emptyEditorClass: 'is-editor-empty',
@@ -76,10 +86,25 @@ function PaginaEditarPost(props) {
         onUpdate: ({editor}) => {
           const html = editor.getHTML();
           setTexto(html);
-          console.log(texto);
         }
       }
     );
+
+    useEffect(() => {
+      console.log(idPost)
+      if(idPost){
+        axios.get('http://localhost:3003/blog/list/'+idPost)
+        .then( response => {
+            setTitulo(response.data.titulo);
+            setTexto(response.data.texto);
+        })
+        .catch( error => {
+            console.error('Error fetching data', error);
+        })
+
+        editor.commands.insertContent(texto);
+      }
+    }, [idPost]);
   
     const criarPost = async (e) => {
       e.preventDefault();
@@ -109,7 +134,8 @@ function PaginaEditarPost(props) {
   
     return(
         <ContainerPag $isMobile={props.isMobile}>
-          <Titulo placeholder="Título do Post" onChange={(e) => {setTitulo(e.target.value);}}/>
+          <Titulo placeholder="Título do Post" defaultValue={titulo} onChange={(e) => {setTitulo(e.target.value);}}>
+          </Titulo>
             <RichText isMobile={props.isMobile} editor={editor}/>
             <ContainerBotao>
                 <Botao $isMobile={props.isMobile} onClick={criarPost}>Postar</Botao>

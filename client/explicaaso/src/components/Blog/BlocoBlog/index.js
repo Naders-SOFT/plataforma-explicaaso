@@ -101,11 +101,9 @@ function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, au
         <IMG src={imgSrc} alt={imgAlt} />
       </DIVIMG>
       <Link to ={`/pagina-blog/post/${idPost}`} style={{ textDecoration: 'none' }}>
-          <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
-        </Link>
-      {(editor == 'administrador' || editor == 'professor') && 
-        <BUTTON $isMobile={isMobile}>Editar</BUTTON>
-      }
+        <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
+      </Link>
+      
     </BlocoInfo>
   );
 }

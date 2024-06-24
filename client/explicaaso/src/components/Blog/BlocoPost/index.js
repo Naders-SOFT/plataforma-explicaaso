@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import '../../EditorTexto/RichText/styles.css'
-
+import { NavLink as Link } from "react-router-dom";
 
 const BlocoInfo = styled.div`
   align-items: center;
@@ -70,7 +70,7 @@ const IMG = styled.img`
 `
 
 
-function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, autorpost, datapost}) {
+function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, autorpost, datapost, idPost}) {
 
   //O post retirado do banco de dados está em formato de string e, dentro dele, 
   //possui as tags HTML relativas à seu estilo. Queremos aqui transformar essa string
@@ -83,13 +83,15 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
     
     return(
         <BlocoInfo $isMobile={isMobile}>
+            {(editor == 'administrador' || editor == 'professor') &&
+            <Link to={`/pagina-blog/editar-post/${idPost}`} style={{ textDecoration: 'none' }}>
+              <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
+            </Link>
+            }
             <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
             <IMG src={imgSrc} alt={imgAlt}/>
             <TEXTOPOST $isMobile={isMobile} className="tiptap">{renderTexto(textopost)}</TEXTOPOST>
 
-            {(editor == 'administrador' || editor == 'professor') &&
-            <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
-            }
         </BlocoInfo>
     );
 }

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from "react";
 import { useParams} from "react-router-dom";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const ContainerPag = styled.div`
     width: 100%;
@@ -12,6 +13,8 @@ const ContainerPag = styled.div`
 
 
 function PaginaBlogPost(props) {
+    const token = localStorage.getItem('token');
+    const [editor, setEditor] = useState(token ? jwtDecode(token).tipoUsuario : '');
     const [blogPost, setBlogPost] = useState([]);
     const {idPost} = useParams();
 
@@ -25,13 +28,17 @@ function PaginaBlogPost(props) {
         .catch( error => {
             console.error('Error fetching data', error);
         })
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setEditor(token ? jwtDecode(token).tipoUsuario : '');
+        })
     }, []);
 
 
     return(
         <ContainerPag>
-            {/* <Header isMobile={props.isMobile}/> */}
-            <ContainerPost isMobile={props.isMobile} blogPost={blogPost}/>
+            <ContainerPost isMobile={props.isMobile} blogPost={blogPost} editor={editor}/>
         </ContainerPag>
     )
 
