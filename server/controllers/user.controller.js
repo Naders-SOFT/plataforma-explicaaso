@@ -7,6 +7,7 @@ export function checkToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(" ")[1];
   
+  // Verifica se existe um token passado pela requisição:
   if(!token || token === 'null') {
     return res.status(401).json({ message: "Acesso negado" });
   }
@@ -14,6 +15,7 @@ export function checkToken(req, res, next) {
   try {
     const secret = process.env.SECRET;
     
+    // Chega a compatibilidade do token passado:
     jwt.verify(token, secret);
 
     next();
@@ -129,6 +131,7 @@ export async function listUsers(req, res) {
   }
 }
 
+// GET DE USUÁRIOS POR TIPO:
 export async function listUsersByTipo(req, res) {
   try {
     const users = await User.find({ tipo: req.query.tipoUsuario });
@@ -140,6 +143,7 @@ export async function listUsersByTipo(req, res) {
   }
 }
 
+// GET DE UM USUÁRIO PELO ID:
 export async function listUserById(req, res) {
   try {
     const user = await User.findById(req.params.idUser, '-senha');
