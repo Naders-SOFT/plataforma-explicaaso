@@ -138,6 +138,7 @@ export async function listUsersByTipo(req, res) {
 export async function listUserById(req, res) {
   try {
     const user = await User.findById(req.params.idUser, '-senha');
+    
 
     if(!user) {
       return res.status(404).send({ message: "Usuário não encontrado"})
