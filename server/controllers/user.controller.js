@@ -2,11 +2,12 @@ import User from '../models/user.models.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-
+// Função de checagem de token (autenticação):
 export function checkToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(" ")[1];
   
+  // Verifica se existe um token passado pela requisição:
   if(!token || token === 'null') {
     return res.status(401).json({ message: "Acesso negado" });
   }
@@ -14,6 +15,7 @@ export function checkToken(req, res, next) {
   try {
     const secret = process.env.SECRET;
     
+    // Chega a compatibilidade do token passado:
     jwt.verify(token, secret);
 
     next();
@@ -40,6 +42,7 @@ export async function signupUser(req, res) {
     const salt = await bcrypt.genSalt(12);
     const senhaHash = await bcrypt.hash(req.body.senha, salt);
 
+    // Salvamento dos dados do usuário:
     const userNovo = new User({
       email: req.body.email,
       senha: senhaHash,
@@ -49,6 +52,7 @@ export async function signupUser(req, res) {
       materiaProf: req.body.materiaProf
     });
 
+    // Salvamento do objeto no banco de dados:
     await userNovo.save();
 
     res.status(201);
@@ -91,7 +95,7 @@ export async function signinUser(req, res) {
       materiaProf: user.materiaProf
     }, secret )
 
-    // Resposta:
+    // Resposta (envia o token):
     res.status(200);
     res.json(
       {
@@ -112,6 +116,7 @@ export async function signinUser(req, res) {
   }
 }
 
+// GET DE TODOS OS USERS:
 export async function listUsers(req, res) {
   try {
     const users = await User.find({});
@@ -124,6 +129,7 @@ export async function listUsers(req, res) {
   }
 }
 
+// GET DE USUÁRIOS POR TIPO:
 export async function listUsersByTipo(req, res) {
   try {
     const users = await User.find({ tipo: req.query.tipoUsuario });
@@ -135,6 +141,7 @@ export async function listUsersByTipo(req, res) {
   }
 }
 
+// GET DE UM USUÁRIO PELO ID:
 export async function listUserById(req, res) {
   try {
     const user = await User.findById(req.params.idUser, '-senha');
@@ -152,6 +159,7 @@ export async function listUserById(req, res) {
   }
 }
 
+// GET DE UM USUÁRIO POR EMAIL:
 export async function listUserByEmail(req, res) {
   try {
     const user = await User.find({ email: req.query.email });
@@ -164,6 +172,7 @@ export async function listUserByEmail(req, res) {
   }
 }
 
+// UPDATE DE UM USUÁRIO:
 export async function updateUser(req, res) {
   try {
     await User.findByIdAndUpdate(req.params.idUser, req.body);
@@ -182,6 +191,7 @@ export async function updateUser(req, res) {
   }
 }
 
+// DELEÇÃO DE UM USUÁRIO:
 export async function deleteUser(req, res) {
   try {
     await User.findByIdAndDelete(req.params.idUser);
@@ -193,6 +203,7 @@ export async function deleteUser(req, res) {
   }
 }
 
+// DELEÇÃO DE TODOS OS USUÁRIOS:
 export async function deleteAllUsers(req, res) {
   try {
     await User.deleteMany({});
