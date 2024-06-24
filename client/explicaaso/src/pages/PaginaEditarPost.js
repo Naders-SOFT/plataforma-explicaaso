@@ -63,6 +63,8 @@ function PaginaEditarPost(props) {
     const { idPost } = useParams();
     const [titulo, setTitulo] = useState('');
     const [texto, setTexto] = useState('');
+    // const [autorUpdate, setAutor] = useState('');
+    const [loaded, setLoaded] = useState(false);
     const navigate = useNavigate();
     const editor = useEditor({
         extensions:[
@@ -82,6 +84,7 @@ function PaginaEditarPost(props) {
             placeholder: 'Estou pensando em...'
           })
         ],
+        content: texto,
 
         onUpdate: ({editor}) => {
           const html = editor.getHTML();
@@ -91,20 +94,24 @@ function PaginaEditarPost(props) {
     );
 
     useEffect(() => {
-      console.log(idPost)
+      // console.log(idPost)
       if(idPost){
         axios.get('http://localhost:3003/blog/list/'+idPost)
         .then( response => {
             setTitulo(response.data.titulo);
             setTexto(response.data.texto);
+            // setAutor(response.data.autor);
         })
         .catch( error => {
             console.error('Error fetching data', error);
         })
-
-        editor.commands.insertContent(texto);
       }
-    }, [idPost]);
+
+      if(texto && !loaded){
+        setLoaded(true);
+        editor.chain().setContent(texto).run();
+      }
+    }, [idPost, editor, texto]);
   
     const criarPost = async (e) => {
       e.preventDefault();
@@ -131,6 +138,30 @@ function PaginaEditarPost(props) {
           console.error('Error submitting post', error);
         });
     }
+
+    // const updatePost = async (e) => {
+    //   e.preventDefault();
+
+    //   await axios.post(`http://localhost:3003/blog/update/${idPost}`,
+    //     {
+    //       titulo: titulo,
+    //       texto: texto,
+    //       autor: autorUpdate,
+    //       imagem: ''
+    //     },
+    //     {
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //     })
+    //     .then(() => {
+    //       console.log('Feito o update');
+    //       navigate('/pagina-blog');
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error submitting post', error);
+    //     });
+    // }
   
     return(
         <ContainerPag $isMobile={props.isMobile}>

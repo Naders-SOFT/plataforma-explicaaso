@@ -63,8 +63,9 @@ export async function listblogPostById(req, res) {
 
 export async function updateblogPost(req, res) {
     try {
+        console.log('tamo aqui');
         await blogPost.findByIdAndUpdate(req.params.idblogPost, req.body);
-
+        console.log('aohfure')
         res.status(200);
         res.send("Postagem do blog modificada com sucesso");
     } catch(error) {
