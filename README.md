@@ -87,7 +87,7 @@
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 <div align="center">
     <a href="https://github.com/Naders-SOFT/plataforma-explicaaso">
-        <img src="./client/explicaaso/src/images/sobre_nos/telaReadme.png" alt="Logo" width="800" height="400">
+        <img src="./client/explicaaso/src/images/sobre_nos/telaInicial.png" alt="Logo" width="800" height="400">
     </a>
 </div>
 
