@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import PaginaCadastro from '../../../pages/PaginaCadastro';
 import axios from 'axios';
+import { AuthContext } from '../../../App';
+import { useContext } from 'react';
 
 const ContainerAdmin = styled.div`
   display: grid;
@@ -80,14 +82,15 @@ const CadastroDate = styled.span`
 `
 // Define the ProfessorList component
 const PessoaList = ({ items }) => {
+  const authAxios = useContext(AuthContext);
 
   const handleButtonClickDelete = async (item) => {
 
     try {
-      console.log(item._id);
-        const response =  await axios.get(`http://localhost:3003/user/delete/${item._id}`)
+        const response =  await authAxios.delete(`http://localhost:3003/user/delete/${item._id}`)
         if(response.status === 200){
            console.log(response.data);
+           window.location.reload();
         }
 
       } catch (error) {
