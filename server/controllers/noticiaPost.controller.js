@@ -3,15 +3,20 @@ import noticiaPost from '../models/noticiaPost.models.js'
 export const createnoticiaPost = async (req, res) => {
 
     try {
+        const current = new Date();
+        const date = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate()}`;
+
+        console.log('teste')
         const postNovo = new noticiaPost({
             titulo: req.body.titulo,
             texto: req.body.texto,
             autor: req.body.autor,
-            data: new Date().toLocaleDateString(),
+            data: date
         })
-
-        await noticiaPost.save()
+        console.log(postNovo.data);
+        await postNovo.save();
         
+        res.status(201).send();
     }
     catch (error) {
         console.error('Error creating post:', error);

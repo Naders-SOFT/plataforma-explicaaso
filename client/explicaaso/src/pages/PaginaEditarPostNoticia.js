@@ -76,7 +76,6 @@ function PaginaEditarPost(props) {
         onUpdate: ({editor}) => {
           const html = editor.getHTML();
           setTexto(html);
-          console.log(texto);
         }
       }
     );
@@ -86,7 +85,8 @@ function PaginaEditarPost(props) {
       const token = localStorage.getItem('token');
       const autor = jwtDecode(token).nome + ' ' + jwtDecode(token).sobrenome;
 
-      await axios.post('http://localhost:3003/noticias/post',
+      console.log(token);
+      await axios.post('http://localhost:3003/noticia/post',
         {
           titulo: titulo,
           texto: texto,

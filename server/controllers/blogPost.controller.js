@@ -3,11 +3,14 @@ import blogPost from '../models/blogPost.models.js'
 
 export const createBlogPost = async (req, res) => {
     try {
+        const current = new Date();
+        const date = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate()}`;
+
         const postNovo = new blogPost({
             titulo: req.body.titulo,
             texto: req.body.texto,
             autor: req.body.autor,
-            data: new Date().toLocaleDateString(),
+            data: date,
             imagem: req.body.imagem
         })
 

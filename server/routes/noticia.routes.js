@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { createnoticiaPost, 
     listnoticiaPosts,
-    listblogPostById,
+    listnoticiaPostById,
     updatenoticiaPost,
     deletenoticiaPost } from '../controllers/noticiaPost.controller.js';
 
