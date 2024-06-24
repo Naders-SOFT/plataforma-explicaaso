@@ -16,7 +16,7 @@ function PaginaBlogPost(props) {
     const {idPost} = useParams();
 
     useEffect(() => {
-        axios.get(`http://localhost:3003/blog/list/${idPost}`)
+        axios.get(`http://localhost:3003/noticias/list/${idPost}`)
         .then( response => {
             setBlogPost(response.data);
         })

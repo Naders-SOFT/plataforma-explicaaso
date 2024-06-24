@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import PaginaSobreNos from './pages/PaginaSobreNos';
 import PaginaNoticias from './pages/PaginaNoticias';
+import PaginaEditarPostNoticia from './pages/PaginaEditarPostNoticia';
 import PaginaLogin from './pages/PaginaLogin';
 import PaginaContato from './pages/PaginaContato';
 import PaginaBlog from './pages/PaginaBlog';
@@ -27,7 +28,7 @@ function Roteador(props){
             <Route path='/pagina-contato' element={<PaginaContato isMobile={props.isMobile}/>} />
             <Route path='/pagina-noticias' element={<PaginaNoticias isMobile={props.isMobile}/>} />
             <Route path='/pagina-noticias/criar-post' element={<PaginaEditarPost isMobile={props.isMobile} navigate={useNavigate}/>} />
-            <Route path='/pagina-noticias/editar-post' element={<PaginaEditarPost isMobile={props.isMobile} navigate={useNavigate}/>} />
+            <Route path='/pagina-noticias/editar-post' element={<PaginaEditarPostNoticia isMobile={props.isMobile} navigate={useNavigate}/>} />
             <Route path='/pagina-blog' element={<PaginaBlog isMobile={props.isMobile}/>} />
             <Route path='/pagina-blog/criar-post' element={<PaginaEditarPost isMobile={props.isMobile} navigate={useNavigate}/>} />
             <Route path='/pagina-blog/editar-post/:idPost' element={<PaginaEditarPost isMobile={props.isMobile} navigate={useNavigate}/>} />
