@@ -12,7 +12,7 @@ const ContainerPag = styled.div`
 function PaginaNoticias(props) {
     const [noticiaPosts, setNoticiaPosts] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:3003/noticias/list')
+        axios.get('http://localhost:3003/noticia/list')
         .then( response => {
             setNoticiaPosts(response.data);
         })
