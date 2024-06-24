@@ -14,6 +14,7 @@ router.post('/login', signinUser);
 // Listagem de todos os usuários (independente do tipo):
 router.get('/list', checkToken, listUsers);
 
+// Listagem de usuários de acordo com o tipo:
 router.get('/listByTipo', checkToken, listUsersByTipo);
 
 // Listagem de um usuário (por ID):
