@@ -87,7 +87,7 @@
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 <div align="center">
     <a href="https://github.com/Naders-SOFT/plataforma-explicaaso">
-        <img src="./client/explicaaso/src/images/sobre_nos/telaInicial.jpg" alt="Logo" width="800" height="400">
+        <img src="./client/explicaaso/src/images/sobre_nos/telaInicial.png" alt="Logo" width="800" height="400">
     </a>
 </div>
 
@@ -251,3 +251,4 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+
