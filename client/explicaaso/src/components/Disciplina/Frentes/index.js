@@ -15,8 +15,7 @@ const ContainerFrentes = styled.div` // Novo nome: ContainerFrentes
   width: 100%;
   background-color: #f0f0f5;
   grid-template-rows: ${({$isMobile}) => ($isMobile ? 'auto 1fr%' : '250px 1fr')};
-`;
-import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
+`
 
 const StyledContainer = styled.div`
   display: flex;
@@ -124,6 +123,53 @@ const infoAdicionar = {
   imgFrente: imgAdc
 }
 
+const ConfirmacaoContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #003466;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  color: white;
+`;
+
+const ConfirmacaoTitulo = styled.h2`
+  color: #ffcc00;
+  margin-bottom: 10px;
+`;
+
+const ConfirmacaoBotoes = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+`;
+
+const BotaoConfirmacao = styled.button`
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+
+  color: ${props => !props.cancelar ? 'white' : '#003466'}; 
+  background-color: ${props => !props.cancelar ? '#dc3545' : '#ffcc00'}; 
+
+  &:hover {
+    background-color: ${props => !props.cancelar ? '#c82333' : '#ffbf00'}; 
+  }
+`;
+
 const Frentes = (props) => {
   const mat = useParams();
   const [materia, setMateria] = useState([]);
@@ -208,6 +254,20 @@ const Frentes = (props) => {
     <ContainerFrentes>
       <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil} />
       <div> 
+        {mostrarConfirmacao && (
+          <ConfirmacaoContainer>
+            <ConfirmacaoTitulo>Confirmar Exclusão</ConfirmacaoTitulo>
+            <p>Tem certeza de que deseja excluir este PDF?</p>
+            <ConfirmacaoBotoes>
+              <BotaoConfirmacao cancelar onClick={cancelarDelecao}>
+                Cancelar
+              </BotaoConfirmacao>
+              <BotaoConfirmacao onClick={confirmarDelecao}>
+                Excluir
+              </BotaoConfirmacao>
+            </ConfirmacaoBotoes>
+          </ConfirmacaoContainer>
+        )}
         <StyledContainer>
           <StyledH1>Frentes</StyledH1>
           <StyledItemContainer>
