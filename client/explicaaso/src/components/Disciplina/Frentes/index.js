@@ -7,6 +7,7 @@ import { IoMdTrash } from "react-icons/io";
 import { MdLibraryAdd } from "react-icons/md";
 
 import imgPerfil from '../../../images/logos/perfil.jpg';
+import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
 
 const ContainerFrentes = styled.div` // Novo nome: ContainerFrentes
   display: grid;
@@ -15,6 +16,7 @@ const ContainerFrentes = styled.div` // Novo nome: ContainerFrentes
   background-color: #f0f0f5;
   grid-template-rows: ${({$isMobile}) => ($isMobile ? 'auto 1fr%' : '250px 1fr')};
 `;
+import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
 
 const StyledContainer = styled.div`
   display: flex;
@@ -119,12 +121,14 @@ const botoes = [
 
 const infoAdicionar = {
   nomeFrente: 'Adicionar frente',
-  imgFrente: <MdLibraryAdd size="50%" />
-};
+  imgFrente: imgAdc
+}
 
 const Frentes = (props) => {
   const mat = useParams();
   const [materia, setMateria] = useState([]);
+  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
+  const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
 
   useEffect(() => {
     axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
@@ -137,7 +141,34 @@ const Frentes = (props) => {
   }, [mat.materias]);
 
   const handleDelete = (nomeFrente) => {
-    console.log(`Excluindo frente: ${nomeFrente}`);
+    setMostrarConfirmacao(true);
+    setFrenteParaDeletar(nomeFrente);
+  };
+
+  const confirmarDelecao = () => {
+    // console.log(`http://localhost:3003/materias/deleteFrente/${mat.materias}/${frenteParaDeletar}`)
+    axios.delete(
+        `http://localhost:3003/materias/deleteFrente/${mat.materias}/${frenteParaDeletar}`
+      )
+      .then(response => {
+        console.log('Frente deleted successfully');
+        console.log(materia)
+        setMateria(materia
+                  .flatMap((materiaItem) => 
+                  materiaItem.frentes.filter(frente => frente.nomeFrente !== frenteParaDeletar)));
+      })
+      .catch(error => {
+        console.error('Error deleting Frente:', error);
+      })
+      .finally(() => {
+        setMostrarConfirmacao(false);
+        setFrenteParaDeletar(null);
+      });
+  };
+
+  const cancelarDelecao = () => {
+    setMostrarConfirmacao(false);
+    setFrenteParaDeletar(null);
   };
 
   const FrenteButton = ({ frente }) => {
