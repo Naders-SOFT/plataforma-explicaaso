@@ -59,3 +59,69 @@ export async function listFrentesByMateria(req, res) {
         res.status(500).send(err.message)
     }
 }
+
+export async function updateMateria(req, res) {
+    try {
+        const updatedMateria = await Materia.findOneAndUpdate({ nome: req.params.materia }, req.body);
+        res.status(200).send(updatedMateria);
+    }
+    catch(err) {
+        res.status(500).send(err.message);
+    }
+}
+
+export async function createFrente(req, res) {
+    try {
+        const materia = await Materia.findOne({nome: req.params.materia})
+        materia.frentes.push(req.body)
+        materia.save()
+
+        res.status(200).send(materia);
+    }
+    catch(err) {
+        res.status(500).send(err.message);
+    }
+}
+
+export async function deleteMateria(req, res) {
+    try {
+        const deletedMateria = await Materia.findOneAndDelete({ nome: req.params.materia });
+        if (deletedMateria) {
+            res.status(200).send({ message: 'Materia deletada com sucesso' });
+        }
+        else {
+            res.status(404).send({ message: 'Materia não econtrada' });
+        }
+    }
+    catch(err) {
+        res.status(500).send(err.message);
+    }
+}
+
+export async function deleteFrente(req, res) {
+    try {
+        const materia = await Materia.findOne({ nome: req.params.materia });
+
+        // se encontrou a materia, vamos encontrar a frente
+        if (materia) {
+            // encontrando o indice da frente a ser deletada no array 
+            const index = materia.frentes.findIndex(frente => frente.nomeFrente === req.params.frente);
+
+            // se existir, remover
+            if (index !== -1) {
+                materia.frentes.splice(index, 1);
+                await materia.save();
+                res.status(200).send({ message: 'Frente deleted successfully' });
+            } 
+            else {
+                res.status(404).send({ message: 'Frente not found' });
+            }
+        } 
+        else {
+            res.status(404).send({ message: 'Materia not found' });
+        }
+    }
+    catch(err) {
+        res.status(500).send(err.message)
+    }
+}

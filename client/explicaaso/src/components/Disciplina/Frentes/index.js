@@ -28,6 +28,7 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  padding: 20px;
 `;
 
 const StyledButton = styled.button`
@@ -46,6 +47,7 @@ const StyledButton = styled.button`
   transition: transform 0.3s, box-shadow 0.3s;
   font-family: 'Raleway', Sans-serif;
   overflow: hidden;
+  position: relative;
   position: relative;
 
   &:hover {
@@ -84,6 +86,9 @@ const StyledH1 = styled.h1`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -173,16 +178,17 @@ const Frentes = (props) => {
   const [materia, setMateria] = useState([]);
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
+  const [frentesAtuais, setFrentesAtuais] = useState([])
 
-  useEffect(() => {
-    axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
-      .then(response => {
-        setMateria(response.data);
-      })
-      .catch(err => {
-        console.error(err.message);
-      });
-  }, [mat.materias]);
+  
+  axios
+    .get(`http://localhost:3003/materias/listMat/${mat.materias}`)
+    .then(response => {
+      setMateria(response.data);
+    })
+    .catch(err => {
+      console.error(err.message);
+    });
 
   const handleDelete = (nomeFrente) => {
     setMostrarConfirmacao(true);
@@ -239,10 +245,13 @@ const Frentes = (props) => {
     );
   };
 
-  const frentesBotoes = materia
+    
+  setFrentesAtuais(
+    materia
     .flatMap((materiaItem) => materiaItem.frentes.map((frente) => (
       <FrenteButton key={frente.nomeFrente} frente={frente} />
-    )));
+    )))
+  )
 
   const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
 
@@ -266,7 +275,7 @@ const Frentes = (props) => {
         )}
         <StyledContainer>
           <StyledH1>Frentes</StyledH1>
-          {frentesBotoes}
+          {frentesAtuais}
           {botaoAdicionar} 
         </StyledContainer>
       </ContentArea>
