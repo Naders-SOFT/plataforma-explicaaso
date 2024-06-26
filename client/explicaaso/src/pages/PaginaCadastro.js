@@ -109,13 +109,13 @@ const Botao = styled.button`
 const MensagemErro = styled.p`
   color: #ffcc00;
   font-size: 14px;
-  margin-top: -10px;
+  margin-top: 10px;
 `;
 
 const MensagemSucesso = styled.p`
   color: #ffcc00;
   font-size: 14px;
-  margin-top: -10px;
+  margin-top: 10px;
 `;
 
 function PaginaCadastro(props) {
