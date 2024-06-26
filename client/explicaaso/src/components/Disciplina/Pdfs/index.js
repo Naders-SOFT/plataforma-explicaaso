@@ -92,10 +92,7 @@ function Avisos(props) {
   const confirmarDelecao = () => {
     axios
       .delete(
-        'http://localhost:3003/pdf/delete/' +
-          props.tituloFrente +
-          '/' +
-          pdfParaDeletar
+        `http://localhost:3003/pdf/delete/'${props.tituloFrente}/${pdfParaDeletar}`
       )
       .then(response => {
         console.log('PDF deleted successfully');

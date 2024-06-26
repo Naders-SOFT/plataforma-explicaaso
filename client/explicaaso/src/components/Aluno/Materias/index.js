@@ -110,7 +110,7 @@ function ContainerMateria(props) {
                 ))
             )
         }
-    })
+    }, [materia])
 
     const cardAdicionar = 
     <div>
