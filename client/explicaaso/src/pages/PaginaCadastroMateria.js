@@ -4,6 +4,7 @@ import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
 import { MdLibraryAdd } from "react-icons/md";
 import { authAxios } from '../App';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const FormContainer = styled.div`
   display: flex;
@@ -130,6 +131,7 @@ const PaginaCadastroMateria = (props) => {
   const [frentes, setFrentes] = useState([{ nome: '', imagemLogo: '' }]);
   const [feedbackErro, setFeedbackErro] = useState('');
   const [feedbackSucesso, setFeedbackSucesso] = useState('');
+  const navigate = useNavigate()
 
   const handleFrenteChange = (index, field, value) => {
     const newFrentes = [...frentes];
@@ -171,15 +173,14 @@ const PaginaCadastroMateria = (props) => {
         }
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         setNomeMateria('');
         setImagemLogo('');
         setFrentes([{ nome: '', imagemLogo: '' }]);
         setFeedbackSucesso('Matéria adicionada com sucesso!');
-        // props.navigate('/pagina-aluno')
+        navigate('/pagina-aluno')
       } else {
-        const errorData = await response.json();
-        setFeedbackErro(errorData.error || 'Erro ao adicionar matéria.');
+        setFeedbackErro(response.error || 'Erro ao adicionar frente.');
       }
     } catch (error) {
       console.error('Erro ao enviar o formulário:', error);

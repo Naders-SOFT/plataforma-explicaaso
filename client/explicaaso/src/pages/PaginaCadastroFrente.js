@@ -4,6 +4,7 @@ import { IoAddCircle } from "react-icons/io5";
 import { authAxios } from '../App'; 
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const FormContainer = styled.div`
   display: flex;
@@ -105,6 +106,7 @@ const PaginaCadastroFrente = (props) => {
   const [feedbackSucesso, setFeedbackSucesso] = useState('');
 
   const materia = useParams()
+  const navigate = useNavigate()
 
   const handleAdicionarFrente = async (e) => {
     e.preventDefault();
@@ -128,12 +130,12 @@ const PaginaCadastroFrente = (props) => {
           }
         );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         setNomeFrente('');
         setImagemLogo('');
         setMateriaId('');
         setFeedbackSucesso('Frente adicionada com sucesso!');
-        props.useNavigate('http://localhost:3003/pagina-aluno/' + materia.materia)
+        navigate(`/pagina-aluno/${materia.materia}`)
       } else {
         setFeedbackErro(response.error || 'Erro ao adicionar frente.');
       }
