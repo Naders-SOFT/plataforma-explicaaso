@@ -47,10 +47,8 @@ export async function listblogPostById(req, res) {
     try {
         const post = await blogPost.findById(req.params.idBlogPost);
 
-        console.log(post);
-
         if(!post) {
-        return res.status(404).send({ message: "Postagem não encontrada"} )
+            return res.status(404).send({ message: "Postagem não encontrada"} )
         }
   
         res.status(200);
@@ -63,9 +61,8 @@ export async function listblogPostById(req, res) {
 
 export async function updateblogPost(req, res) {
     try {
-        console.log('tamo aqui');
-        await blogPost.findByIdAndUpdate(req.params.idblogPost, req.body);
-        console.log('aohfure')
+        await blogPost.findByIdAndUpdate(req.params.idBlogPost, req.body);
+        
         res.status(200);
         res.send("Postagem do blog modificada com sucesso");
     } catch(error) {
@@ -77,10 +74,10 @@ export async function updateblogPost(req, res) {
 export async function deleteblogPost(req, res) {
     try {
       //deleta o post do bd
-      await blogPost.findByIdAndDelete(req.params.idblogPost);
+      await blogPost.findByIdAndDelete(req.params.idBlogPost);
       
       //deleta a imagem do post do minio
-      deleteFile(req.params.idblogPost);
+    //   deleteFile(req.params.idblogPost);
   
       res.status(200);
       res.send("Postagem do blog deletada com sucesso");

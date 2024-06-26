@@ -6,14 +6,13 @@ export const createnoticiaPost = async (req, res) => {
         const current = new Date();
         const date = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate()}`;
 
-        console.log('teste')
         const postNovo = new noticiaPost({
             titulo: req.body.titulo,
             texto: req.body.texto,
             autor: req.body.autor,
             data: date
         })
-        console.log(postNovo.data);
+        
         await postNovo.save();
         
         res.status(201).send();

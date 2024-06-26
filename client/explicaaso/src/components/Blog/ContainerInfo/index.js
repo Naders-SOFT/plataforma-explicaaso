@@ -29,7 +29,7 @@ const TITLEPAG = styled.h2`
 // `
 
 const BTADICIONAR = styled.button`
-    width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
+  width: 100%;
   margin: 20px 0;
   padding: 10px 0;
   background-color: #FFCC00;
@@ -45,6 +45,21 @@ const BTADICIONAR = styled.button`
   &:hover {
     background-color: #ffbf00;
   }
+`
+
+const LINK = styled(Link)`
+  width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
+  margin: 20px 0;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  color: #003466;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.5rem')};
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
 `
 
 function ContainerInfo({ isMobile, blogPosts }) {
@@ -95,9 +110,9 @@ function ContainerInfo({ isMobile, blogPosts }) {
         <ContainerPag>
             <TITLEPAG $isMobile={isMobile}>Postagens</TITLEPAG>
             {(editor == 'administrador' || editor == 'professor') &&
-            <Link to='/pagina-blog/criar-post' style={{ textDecoration: 'none' }}>
+            <LINK to='/pagina-blog/criar-post' style={{ textDecoration: 'none' }}>
                 <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
-            </Link>
+            </LINK>
             }
             {renderContent}
         </ContainerPag>
