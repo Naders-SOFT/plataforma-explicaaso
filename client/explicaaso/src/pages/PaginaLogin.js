@@ -30,7 +30,7 @@ const LoginTitulo = styled.h1`
 const MensagemErro = styled.p`
   color: #ffcc00;
   font-size: 14px;
-  margin-top: -10px;
+  margin-top: 10px;
 `;
 
 const MensagemSucesso = styled.p`
@@ -40,14 +40,14 @@ const MensagemSucesso = styled.p`
 `;
 
 const Submit = styled.button`
-  width: 40%;
+  width: 30%;
   border: none;
   border-radius: 8px;
   background-color: #FFCC00;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 600;
   color: #003466;
-  height: 50px;
+  height: 40px;
   margin: 0 0 40px 0;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease; 
