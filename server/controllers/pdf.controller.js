@@ -79,7 +79,7 @@ export async function listPdfsFrente(req, res) {
         // Buscando pdfs no bd
         const pdfs = await Pdf.find({frente: req.params.frente})
 
-        const bucketName = req.body.frente === 'Provas' ? 'provas' : 'pdfs'
+        const bucketName = (req.params.frente) === 'Provas' ? 'provas' : 'pdfs'
 
         // Inserindo link assinado em cada objeto do banco de dados
         for (let pdf of pdfs) {

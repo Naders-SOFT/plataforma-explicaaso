@@ -9,7 +9,6 @@ import axios from 'axios';
 import { useBlocker, useNavigate } from 'react-router-dom';
 
 
-
 const MOBLMATERIAS = styled.ul`
     display: flex;
     flex-direction: column;

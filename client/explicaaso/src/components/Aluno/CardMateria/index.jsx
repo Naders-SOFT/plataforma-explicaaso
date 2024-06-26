@@ -94,7 +94,7 @@ function CardMateria(props) {
           const token = localStorage.getItem('token');
           setUser(token ? jwtDecode(token).tipoUsuario : '');
       })
-  }, [user]);
+  }, []);
 
   // criando uma string com os nomes das frentes da materia
   const f = props.frentes.map(frt => frt.nomeFrente).join(' | ');

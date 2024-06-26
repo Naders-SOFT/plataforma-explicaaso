@@ -35,6 +35,7 @@ export async function uploadFile(fileBuffer, fileName, mimetype, bucketName) {
 }
 
 export async function getObjectSignedUrl(key, bucketName) {
+    console.log(key, bucketName)
     const params = {
         Bucket: bucketName,
         Key: key
