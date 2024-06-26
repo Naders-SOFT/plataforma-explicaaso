@@ -15,15 +15,15 @@ const ContainerPag = styled.div`
 const LoginContainer = styled.form`
   display: flex;
   background-color: #003466;
-  width: ${({$isMobile}) => ($isMobile ? '90%' : '690px')};
+  width: ${({$isMobile}) => ($isMobile ? '80%' : '500px')};
   border-radius: 8px;
   flex-direction: column;
   align-items: center;
-  margin: 100px 0 50px 0;
+  margin: 70px 0 50px 0;
 `
 
 const LoginTitulo = styled.h1`
-  color: #FFCC00;
+  color: white;
   font-size: 36px;
 `
 

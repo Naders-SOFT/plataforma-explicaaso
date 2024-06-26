@@ -10,39 +10,45 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  margin: 70px 0 50px 0;
   padding: 0;
 `;
 
 const CadastroTitulo = styled.h1`
-  color: #ffcc00;
+  color: white;
   font-size: 36px;
 `;
 
 const Formulario = styled.form`
+  display: flex;
   background-color: #003466;
+  width: ${({$isMobile}) => ($isMobile ? '80%' : '500px')};
   border-radius: 8px;
-  padding: 40px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  max-width: 90%;
+  flex-direction: column;
+  align-items: center;
+  margin: 70px 0 50px 0;
+`;
 
-  h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #333;
-  }
+const ContainerInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin: 15px 0 40px 0;
 `;
 
 const inputStyles = css`
-  width: 93.5%;
-  padding: 12px;
-  border: 1px solid #ddd;
+  width: 98.5%;
+  padding: 0;
   border: none;
   border-radius: 4px;
-  color: white;
-  margin-bottom: 20px;
+  margin: 10px 0 0 0;
+  height: 40px;
   font-size: 16px;
   background-color: #265a9b;
+  opacity: 100%;
+  color: white;
+  padding-left: 10px;
+  outline: none;
 
   &:focus {
     outline: none;
@@ -51,13 +57,13 @@ const inputStyles = css`
 `;
 
 const selectStyles = css`
+  margin: 10px 0 0 0;
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
+  height: 40px;
+  padding: 0;
   border: none;
   border-radius: 4px;
   color: white;
-  margin-bottom: 20px;
   font-size: 16px;
   background-color: #265a9b;
 
@@ -69,7 +75,7 @@ const selectStyles = css`
 
 const Label = styled.label`
   color: white;
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 600;
 `;
 
@@ -195,47 +201,47 @@ function PaginaCadastro(props) {
 
   return (
     <FormContainer>
-      <Formulario onSubmit={handleSubmit}>
+      <Formulario $isMobile={props.isMobile} onSubmit={handleSubmit}>
         <CadastroTitulo>Cadastro de Usuário</CadastroTitulo>
 
-        <div>
+        <ContainerInput>
           <Label htmlFor="tipo">Tipo de Usuário:</Label>
           <Select id="tipo" value={tipoUsuario} onChange={(e) => setTipoUsuario(e.target.value)}>
             <option value="aluno">Aluno</option>
             <option value="professor">Professor</option>
             <option value="administrador">Administrador</option>
           </Select>
-        </div>
+        </ContainerInput>
 
-        {tipoUsuario === 'professor' && <div>
+        {tipoUsuario === 'professor' && <ContainerInput>
           <Label htmlFor="materia">Matéria lecionada:</Label>
           <Select id="materia" value={materiaProf} onChange={(e) => setMateriaProf(e.target.value)}>
             <option value="">Nenhuma</option>
             {opcoesMaterias}
           </Select>
-        </div>}
-
-        <div>
+        </ContainerInput>}
+        
+        <ContainerInput>
           <Label htmlFor="nome">Nome:</Label>
           <Input type="text" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
-        </div>
+        </ContainerInput>
 
-        <div>
+        <ContainerInput>
           <Label htmlFor="sobrenome">Sobrenome:</Label>
           <Input type="text" id="sobrenome" value={sobrenome} onChange={(e) => setSobrenome(e.target.value)} required />
-        </div>
+        </ContainerInput>
 
-        <div>
+        <ContainerInput>
           <Label htmlFor="email">Email:</Label>
           <Input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
+        </ContainerInput>
 
-        <div>
+        <ContainerInput>
           <Label htmlFor="senha">Senha:</Label>
           <Input type="password" id="senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
-        </div>
+        </ContainerInput>
 
-        <div>
+        <ContainerInput>
           <Label htmlFor="confirmar-senha">Confirmar Senha:</Label>
           <Input
             type="password"
@@ -246,7 +252,7 @@ function PaginaCadastro(props) {
           />
           {feedbackErro && <MensagemErro>{feedbackErro}</MensagemErro>}
           {feedbackSucesso && <MensagemSucesso>{feedbackSucesso}</MensagemSucesso>}
-        </div>
+        </ContainerInput>
 
         <Botao type="submit">Cadastrar</Botao>
       </Formulario>
