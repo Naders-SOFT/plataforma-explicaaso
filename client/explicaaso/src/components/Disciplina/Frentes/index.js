@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import SideBar from '../../Aluno/SideBar';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { IoMdTrash } from "react-icons/io";
 import imgPerfil from '../../../images/logos/perfil.jpg';
 import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
+import { useContext } from 'react';
+import { AuthContext } from '../../../App';
 
 const ContainerFrentes = styled.div`
   display: ${({$isMobile}) => ($isMobile ? 'flex' : 'grid')};
@@ -170,13 +171,14 @@ const BotaoConfirmacao = styled.button`
 
 const Frentes = (props) => {
   const mat = useParams();
+  const authAxios = useContext(AuthContext);
   const [materia, setMateria] = useState([]);
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
   const [frentesBotoes, setFrentesBotoes] = useState([])
 
   useEffect(() => {
-    axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
+    authAxios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
       .then(response => {
         setMateria(response.data);
       })
@@ -191,7 +193,7 @@ const Frentes = (props) => {
   };
 
   const confirmarDelecao = () => {
-    axios.delete(
+    authAxios.delete(
         `http://localhost:3003/materias/deleteFrente/${mat.materias}/${frenteParaDeletar}`
       )
       .then(response => {

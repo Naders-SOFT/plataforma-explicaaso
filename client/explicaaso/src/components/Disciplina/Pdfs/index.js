@@ -2,9 +2,10 @@ import styled from 'styled-components'
 import ItemAviso from '../ItemAviso';
 import TituloDisciplina from '../Titulo';
 import ItemAdicionar from '../ItemAdicionar';
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode';
+import { useContext } from 'react';
+import { AuthContext } from '../../../App';
 
 const ConfirmacaoContainer = styled.div`
   position: fixed;
@@ -73,9 +74,10 @@ function Avisos(props) {
   const [pdfs, setPdfs] = useState([]);
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [pdfParaDeletar, setPdfParaDeletar] = useState(null);
+  const authAxios = useContext(AuthContext)
 
   useEffect(() => {
-    axios.get(`http://localhost:3003/pdf/list/${props.tituloFrente}`)
+    authAxios.get(`http://localhost:3003/pdf/list/${props.tituloFrente}`)
       .then(response => {
         setPdfs(response.data);
       })
@@ -90,7 +92,7 @@ function Avisos(props) {
   };
 
   const confirmarDelecao = () => {
-    axios
+    authAxios
       .delete(
         `http://localhost:3003/pdf/delete/'${props.tituloFrente}/${pdfParaDeletar}`
       )
