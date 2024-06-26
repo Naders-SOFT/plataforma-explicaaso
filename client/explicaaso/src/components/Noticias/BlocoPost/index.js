@@ -2,7 +2,8 @@ import styled from "styled-components";
 import '../../EditorTexto/RichText/styles.css'
 import { useNavigate, NavLink as Link } from "react-router-dom";
 import axios from "axios";
-
+import { useContext } from "react";
+import { AuthContext } from "../../../App";
 
 const BlocoInfo = styled.div`
   align-items: center;
@@ -100,6 +101,7 @@ const LINK = styled(Link)`
 function BlocoPost({ isMobile, titulopost, textopost, autorpost, datapost, idPost, editor}) {
     
   const navigate = useNavigate();
+  const authAxios = useContext(AuthContext);
   //Renderiza o texto de acordo com a estilização imposta pelo
     //usuário no editor de texto
     const renderTexto = (textopost) => {
@@ -110,7 +112,7 @@ function BlocoPost({ isMobile, titulopost, textopost, autorpost, datapost, idPos
 
     const handleDelete = (id) => {
       // Requisicao de DELETE
-      axios.delete('http://localhost:3003/noticia/delete/'+id)
+      authAxios.delete('http://localhost:3003/noticia/delete/'+id)
       .then(() => {
           console.log('Noticia post deletado com sucesso');
 
@@ -130,7 +132,7 @@ function BlocoPost({ isMobile, titulopost, textopost, autorpost, datapost, idPos
               <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
             </LINK>
             <DELETEBUTTON $isMobile={isMobile} onClick={() => {
-              axios.delete('http://localhost:3003/noticia/delete/'+idPost)
+              authAxios.delete('http://localhost:3003/noticia/delete/'+idPost)
         .then(() => {
             console.log('Noticia post deletado com sucesso');
 

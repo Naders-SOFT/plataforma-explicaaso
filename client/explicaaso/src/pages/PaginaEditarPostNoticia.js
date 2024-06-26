@@ -1,6 +1,6 @@
 import './postPlaceholder.css'
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import RichText from "../components/EditorTexto/RichText";
 import styled from "styled-components";
 import { useEditor } from "@tiptap/react";
@@ -10,6 +10,7 @@ import Placeholder from '@tiptap/extension-placeholder';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
+import { AuthContext } from '../App';
 
 const ContainerPag = styled.div`
     width: 1 vw;
@@ -63,6 +64,7 @@ function PaginaEditarPost(props) {
     const [titulo, setTitulo] = useState('');
     const [texto, setTexto] = useState('');
     const navigate = useNavigate();
+    const authAxios = useContext();
     const editor = useEditor({
         extensions:[
           StarterKit,
@@ -86,7 +88,7 @@ function PaginaEditarPost(props) {
       const autor = jwtDecode(token).nome + ' ' + jwtDecode(token).sobrenome;
 
       console.log(token);
-      await axios.post('http://localhost:3003/noticia/post',
+      await authAxios.post('http://localhost:3003/noticia/post',
         {
           titulo: titulo,
           texto: texto,

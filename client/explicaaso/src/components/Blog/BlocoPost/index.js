@@ -121,9 +121,9 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
         }
     }
     
-    const handleDelete = (id) => {
+    const handleDelete = async () => {
         // Requisicao de DELETE
-        authAxios.delete('http://localhost:3003/blog/delete/'+id)
+        await authAxios.delete('http://localhost:3003/blog/delete/'+idPost)
         .then(() => {
             console.log('Blog post deletado com sucesso');
 
@@ -142,18 +142,7 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
             <LINK to={`/pagina-blog/editar-post/${idPost}`} style={{ textDecoration: 'none' }}>
               <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
             </LINK>
-            <DELETEBUTTON $isMobile={isMobile} onClick={() => {
-              authAxios.delete('http://localhost:3003/blog/delete/'+idPost)
-                .then(() => {
-                    console.log('Blog post deletado com sucesso');
-
-                    // Removendo o pdf que foi deletado
-                    navigate('/pagina-blog');
-                })
-                .catch(error => {
-                    console.error('Error deleting Blog post:', error);
-                })
-            }}>Deletar</DELETEBUTTON>
+            <DELETEBUTTON $isMobile={isMobile} onClick={handleDelete}>Deletar</DELETEBUTTON>
             </BTDIV>
             }
             <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
