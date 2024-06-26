@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
 import { MdLibraryAdd } from "react-icons/md";
 import { authAxios } from '../App';
+import axios from 'axios';
 
 const FormContainer = styled.div`
   display: flex;
@@ -156,7 +157,7 @@ const PaginaCadastroMateria = (props) => {
         imgFrente: frente.imagemLogo
       }));
   
-      const response = await authAxios.post(
+      const response = await axios.post(
         'http://localhost:3003/materias/create',
         {
           nome: nomeMateria,

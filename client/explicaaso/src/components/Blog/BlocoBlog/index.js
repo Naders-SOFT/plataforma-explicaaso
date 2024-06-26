@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { NavLink as Link } from "react-router-dom";
-
 import styled from "styled-components";
 import '../../EditorTexto/RichText/styles.css'
 
@@ -86,17 +84,14 @@ const BUTTON = styled.button`
 `;
 
 
-
 function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost, datapost, idPost }) {
-  const [texto, setTexto] = useState('');
   
-  useEffect(() => {
-    const parser = new DOMParser();
-    const tempText = parser.parseFromString(textopost, 'text/html');
-
-    setTexto(tempText.body.textContent);
-    console.log(texto);
-  }, []);
+  const renderPost = (textopost) => {
+    if(textopost){
+      return <div dangerouslySetInnerHTML={{__html: textopost}}></div>;
+    }
+    return <div></div>
+  }
 
   return (
     <BlocoInfo $isMobile={isMobile}>
@@ -106,11 +101,9 @@ function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, au
         <IMG src={imgSrc} alt={imgAlt} />
       </DIVIMG>
       <Link to ={`/pagina-blog/post/${idPost}`} style={{ textDecoration: 'none' }}>
-          <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
-        </Link>
-      {(editor == 'administrador' || editor == 'professor') && 
-        <BUTTON $isMobile={isMobile}>Editar</BUTTON>
-      }
+        <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
+      </Link>
+      
     </BlocoInfo>
   );
 }

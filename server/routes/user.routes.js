@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { checkToken, signupUser, signinUser, listUsers, listUsersByTipo, listUserById, listUserByEmail, updateUser, deleteUser, deleteAllUsers } from '../controllers/user.controller.js';
-import { checkToken, signupUser, signinUser, listUsers, listUsersByTipo, listUserById, listUserByEmail, updateUser, deleteUser, deleteAllUsers } from '../controllers/user.controller.js';
 
 // Instancia o roteador:
 const router = Router();
@@ -17,7 +16,6 @@ router.get('/list', checkToken, listUsers);
 // Listagem de usuários de acordo com o tipo:
 router.get('/listByTipo', checkToken, listUsersByTipo);
 
-// Listagem de um usuário (por ID):
 // Listagem de um usuário (por ID):
 router.get('/list/:idUser', checkToken, listUserById);
 
