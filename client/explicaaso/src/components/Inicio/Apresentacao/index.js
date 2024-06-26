@@ -73,7 +73,7 @@ const TextOverImage = styled.div`
   left: 23%;
   transform: translate(-50%, -50%);
   color: black;
-  font-size: 3.5rem;
+  font-size: 3vw;
   font-family: "Crete Round";
   text-decoration: underline;
 `;
@@ -84,7 +84,7 @@ const TextOverImage2 = styled.div`
   left: 23%;
   transform: translate(-50%, -50%);
   color: #DDB411;
-  font-size: 5rem;
+  font-size: 4.5vw;
   font-family: "Mochiy Pop One"
 `;
 
@@ -100,10 +100,10 @@ const StyledButton = styled.button`
   position: absolute;
   top: 70%;
   left: 22%;
-  width: 10%;
+  width: 10vw;
   transform: translate(-50%, -50%);
   padding: 10px 20px;
-  font-size: 1.5rem;
+  font-size: 1vw;
   color: black;
   background-color: #FFCC00;
   border: none;
@@ -111,8 +111,6 @@ const StyledButton = styled.button`
   cursor: pointer;
   font-family: "Crete Round"
 `;
-
-
 
 function Apresentacao() {
   const textos = [
