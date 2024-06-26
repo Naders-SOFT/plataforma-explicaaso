@@ -96,14 +96,16 @@ const Container = styled.div`
 function SideBar(props) {
     const authAxios = useContext(AuthContext);
 
+    // Função para lidar com o clique dos botões, que faz uma requisição ao servidor para obter usuários por tipo
     const handleButtonClick = async (type) => {
         try {
             const token = localStorage.getItem('token');
             
+            // Faz uma requisição para obter a lista de usuários do tipo especificado
             const response =  await authAxios.get(`http://localhost:3003/user/listByTipo?tipoUsuario=${type}`)
             if(response.status === 200){
-                const usuarios = response.data;
-                props.handleSelectedUsuarios(usuarios);
+                const usuarios = response.data;  // Obtém a lista de usuários da resposta
+                props.handleSelectedUsuarios(usuarios);  // Atualiza a lista de usuários selecionados no componente pai
             }
 
         } catch (error) {
@@ -117,6 +119,7 @@ function SideBar(props) {
                 props.isMobile &&
                 <MOBLCONTAINERSIDE>
                     <MOBLCONTAINERBOTAO>
+                        {/* Botão para selecionar alunos ou professores */}
                         <MOBLBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</MOBLBOTAO>
                         <MOBLBOTAO onClick={() => handleButtonClick('professor')}>Professores</MOBLBOTAO>
                      </MOBLCONTAINERBOTAO>
@@ -130,6 +133,7 @@ function SideBar(props) {
                         <Nome>Nome</Nome>
                     </ConatainerPerfil>
                     <DSKCONTAINERBOTAO>
+                        {/* Botão para selecionar alunos ou professores */}
                         <DSKBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</DSKBOTAO>
                         <DSKBOTAO onClick={() => handleButtonClick('professor')}>Professores</DSKBOTAO>
                     </DSKCONTAINERBOTAO>

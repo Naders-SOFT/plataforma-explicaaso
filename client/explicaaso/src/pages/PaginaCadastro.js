@@ -119,6 +119,7 @@ const MensagemSucesso = styled.p`
 `;
 
 function PaginaCadastro(props) {
+  // Definição dos estados para gerenciar os dados do formulário
   const [nome, setNome] = useState('');
   const [sobrenome, setSobrenome] = useState('');
   const [email, setEmail] = useState('');
@@ -131,16 +132,19 @@ function PaginaCadastro(props) {
   const [senhaSugerida, setSenhaSugerida] = useState('');
   const authAxios = useContext(AuthContext);
 
+  // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFeedbackErro('');
     setFeedbackSucesso('');
 
+    // Verifica se a senha e a confirmação de senha coincidem
     if (senha !== confirmarSenha) {
       setFeedbackErro('A senha e a confirmação de senha não coincidem');
       return;
     }
 
+    // Enviar os dados do formulário para o servidor
     try {
       const response = await authAxios.post(
         'http://localhost:3003/user/signup',
@@ -152,14 +156,14 @@ function PaginaCadastro(props) {
           email: email,
           senhaConfirmada: confirmarSenha,
           materiaProf: materiaProf
-        },
-        {
+        },{
           headers: {
             'Content-Type': 'application/json',
           },
         }
       );
 
+      // Se a resposta for bem-sucedida, limpa os campos do formulário e exibe mensagem de sucesso
       if (response.status === 201) {
         setFeedbackSucesso('Cadastro realizado com sucesso');
         setNome('');
@@ -176,6 +180,7 @@ function PaginaCadastro(props) {
     }
   };
 
+  // Busca a lista de matérias do servidor quando o componente é montado
   const [materia, setMateria] = useState([])
   useEffect(() => {
       axios.get('http://localhost:3003/materias/listMat')
@@ -186,9 +191,12 @@ function PaginaCadastro(props) {
           console.error(err.message)
       })
   }, [])
+  
+  // Mapeia a lista de matérias para opções de um select
   const opcoesMaterias = materia.map((mat) =>
     <option value={mat.nome}>{mat.nome}</option>
   )
+
 
   return (
     <FormContainer>
