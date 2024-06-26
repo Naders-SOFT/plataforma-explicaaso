@@ -45,9 +45,23 @@ const TEXTOPOST = styled.div`
 `
 
 const EDITBUTTON = styled.button`
+    width: 100%;
+    height: 50px;
+    background-color: #FFCC00;
+    border: none;
+    border-radius: 10px;
+    color: #003466;
+    font-size: ${({$isMobile}) => $isMobile ? "20px" : "30px"};
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+`
+
+const DELETEBUTTON = styled.button`
     width: 20%;
     margin: ${({$isMobile}) => $isMobile ? "3% 0" : "3% 0"};
     padding: ${({$isMobile}) => $isMobile ? "1% 0" : "1% 0"};
+    height: 50px;
     background-color: #FFCC00;
     border: none;
     border-radius: 10px;
@@ -76,7 +90,20 @@ const BTDIV = styled.div`
   justify-content: space-around;
   align-items: center;
 `
-
+const LINK = styled(Link)`
+  width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
+  margin: 3% 0;
+  padding: 1% 0;
+  border: none;
+  border-radius: 10px;
+  color: #003466;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.5rem')};
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+`
 
 function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, autorpost, datapost, idPost}) {
   const navigate = useNavigate();
@@ -108,10 +135,10 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
         <BlocoInfo $isMobile={isMobile}>
             {(editor == 'administrador' || editor == 'professor') &&
             <BTDIV>
-            <Link to={`/pagina-blog/editar-post/${idPost}`} style={{ textDecoration: 'none' }}>
+            <LINK to={`/pagina-blog/editar-post/${idPost}`} style={{ textDecoration: 'none' }}>
               <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
-            </Link>
-            <EDITBUTTON $isMobile={isMobile} onClick={() => {
+            </LINK>
+            <DELETEBUTTON $isMobile={isMobile} onClick={() => {
               axios.delete('http://localhost:3003/blog/delete/'+idPost)
         .then(() => {
             console.log('Blog post deletado com sucesso');
@@ -122,7 +149,7 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
         .catch(error => {
             console.error('Error deleting Blog post:', error);
         })
-            }}>Deletar</EDITBUTTON>
+            }}>Deletar</DELETEBUTTON>
             </BTDIV>
             }
             <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
