@@ -90,6 +90,7 @@ const BTDIV = styled.div`
   justify-content: space-around;
   align-items: center;
 `
+
 const LINK = styled(Link)`
   width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
   margin: 3% 0;
