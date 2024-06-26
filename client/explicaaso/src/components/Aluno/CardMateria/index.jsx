@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { IoMdTrash } from "react-icons/io";
+import { jwtDecode } from 'jwt-decode';
+import { useState, useEffect } from 'react';
 
 const TituloMateria = styled.h1`
   font-size: 150%;
@@ -80,6 +82,19 @@ const StyledDeleteButton = styled.button`
 `;
 
 function CardMateria(props) {
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+      const token = localStorage.getItem('token');
+      setUser(token ? jwtDecode(token).tipoUsuario : '');
+    
+
+      window.addEventListener("storage", () => {
+          const token = localStorage.getItem('token');
+          setUser(token ? jwtDecode(token).tipoUsuario : '');
+      })
+  }, [user]);
+
   const f = props.frentes.map(frt => frt.nomeFrente).join(' | ');
 
   return (
@@ -93,9 +108,13 @@ function CardMateria(props) {
       <CardInfo>
         <CardFrentes fontSize={props.fontesSize}>{f}</CardFrentes> {/* Passando o tamanho da fonte como prop */}
       </CardInfo>
-      <StyledDeleteButton onClick={() => props.delete(props.materia)}>
-        <IoMdTrash />
-      </StyledDeleteButton>
+      {
+        user === 'administrador' && (
+        <StyledDeleteButton onClick={() => props.delete(props.materia)}>
+          <IoMdTrash />
+        </StyledDeleteButton>
+        )
+      }
     </Card>
   );
 }
