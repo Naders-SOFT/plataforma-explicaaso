@@ -11,7 +11,7 @@ const FormContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   padding: 0;
-  margin: 10%;
+  margin: 5%;
 `;
 
 const CadastroTitulo = styled.h1`
