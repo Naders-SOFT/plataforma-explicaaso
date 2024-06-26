@@ -2,9 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import ItemExcluir from "../ItemExcluir";
 import { jwtDecode } from 'jwt-decode';
+import { useState, useEffect } from "react";
+// Import the main component
+import { Viewer, SpecialZoomLevel } from '@react-pdf-viewer/core';
+
+// Import the styles
+import '@react-pdf-viewer/core/lib/styles/index.css';
+
 
 const ItemContainer = styled.li`
-  width: 100%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -71,8 +78,17 @@ const PDFPreview = styled.embed`
 `;
 
 function ItemAviso(props) {
-  const token = localStorage.getItem('token');
-  const tipoUsr = token ? jwtDecode(token).tipoUsuario : false;
+  const [user, setUser] = useState('');
+  useEffect(() => {
+      const token = localStorage.getItem('token');
+      setUser(token ? jwtDecode(token).tipoUsuario : '');
+    
+
+      window.addEventListener("storage", () => {
+          const token = localStorage.getItem('token');
+          setUser(token ? jwtDecode(token).tipoUsuario : '');
+      })
+  }, [user]);
 
   return (
     <ItemContainer>
@@ -81,11 +97,14 @@ function ItemAviso(props) {
         <TituloAviso href={props.link} target="_blank">
           {props.tituloAviso}
         </TituloAviso>
-        {tipoUsr !== "aluno" && <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />}
+        {user !== "aluno" && <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />}
       </Header>
-      <PDFContainer> {/* Contêiner para a prévia do PDF */}
-        <PDFPreview src={props.link} type="application/pdf" />
+      {<PDFContainer>
+        {/* <PDFPreview src={props.link} type="application/pdf" /> */}
+        <Viewer fileUrl={props.link} defaultScale={SpecialZoomLevel.PageFit}/>
       </PDFContainer>
+      }
+      
     </ItemContainer>
   );
 }
