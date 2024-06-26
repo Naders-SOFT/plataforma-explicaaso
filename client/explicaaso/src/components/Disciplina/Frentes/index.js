@@ -118,7 +118,7 @@ const botoes = [
 
 const infoAdicionar = {
   nomeFrente: 'Adicionar frente',
-  imgFrente: imgAdc
+  // imgFrente: imgAdc
 }
 
 const ConfirmacaoContainer = styled.div`
