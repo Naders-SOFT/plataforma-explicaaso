@@ -56,6 +56,7 @@ function ContainerPost(props) {
             textopost = {props.noticiaPost.texto}
             autorpost={props.noticiaPost.autor}
             datapost={props.noticiaPost.data}
+            idPost={props.noticiaPost._id}
             editor={editor}/>
         </ContainerPag>
     )

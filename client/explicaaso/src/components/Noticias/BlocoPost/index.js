@@ -60,7 +60,7 @@ const EDITBUTTON = styled.button`
 
 
 
-function BlocoPost({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost}) {
+function BlocoPost({ isMobile, titulopost, textopost, autorpost, datapost, idPost, editor}) {
     const renderTexto = (textopost) => {
         if(textopost){
             return <TEXTOPOST $isMobile={isMobile} dangerouslySetInnerHTML={{__html:textopost}}></TEXTOPOST>;

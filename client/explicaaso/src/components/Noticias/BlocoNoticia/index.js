@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink as Link } from "react-router-dom";
 
 const BlocoInfo = styled.div`
   align-items: center;
@@ -19,10 +20,6 @@ const BlocoInfo = styled.div`
   }
 `;
 
-const LISTA = styled.ul`
-  color: black;
-  margin-bottom: 5%;
-`;
 
 const LI = styled.li`
   color: #666666;
@@ -34,6 +31,17 @@ const LI = styled.li`
     color: black;
 `;
 
+const LINK = styled(Link)`
+  color: black;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.1rem')};
+  font-family: 'Helvetica Neue', sans-serif;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+
+`
 
 
 const BUTTON = styled.button`
@@ -55,12 +63,10 @@ const BUTTON = styled.button`
   }
 `;
 
-function BlocoNoticia({ isMobile, editor, titulonoticia, textonoticia, autornoticia, datanoticia, idnoticia }) {
+function BlocoNoticia({ isMobile, titulonoticia, idPost }) {
   return (
     <BlocoInfo $isMobile={isMobile}>
-      <LISTA $isMobile={isMobile}>
-        <LI $isMobile={isMobile}>{titulonoticia}</LI>
-      </LISTA>
+      <LINK to ={`/pagina-noticias/post/${idPost}`}>{titulonoticia}</LINK>
     </BlocoInfo>
   );
 }
