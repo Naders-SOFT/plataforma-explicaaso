@@ -1,20 +1,7 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../App';
-import { useContext } from 'react';
-
-const ContainerAdmin = styled.div`
-  display: grid;
-  grid-template-columns: 200px auto;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "sidebar main"
-    "footer footer";
-  height: 100vh;
-  justify-items: center; /* centraliza horizontalmente o conteúdo de cada célula */
-`
 
 const Container = styled.div`
     width: 100%;
@@ -27,13 +14,12 @@ const DSKBotao = styled.button`
   border-radius: 1vw;
   transition: color 0.3s ease, background-color 0.3s ease;
   height: 3vw;
-  font-size: 50%;
+  font-size: 45%;
   border: 2px solid darkcyan;
   border-radius: 0.75rem;
   text-align: center;
   &:hover {
       opacity: 0.5;
-      cursor: pointer;
   }
   
 `
@@ -62,22 +48,12 @@ const CadastroItem = styled.li`
 const CadastroFormat = styled.span`
   grid-column: 1;
   margin-right: 10px;
-  justify: center 
-
-  @media (max-width: 600px) {
-    font-size: 10px;
-  }
 `
 
 const CadastroSub = styled.span`
   grid-column: 2;
   font-weight: bold;
   margin-right: 10px;
-`
-
-const CadastroDate = styled.span`
-  grid-column: 3;
-  text-align: right;
 `
 
 const ConfirmacaoContainer = styled.div`
@@ -169,12 +145,14 @@ const PessoaList = ({ items }) => {
     <Container>
       <CadastroListStyled>
         {items.map((item, index) => (
+
           // Renderiza cada usuário como um item da lista
           <CadastroItem key={index} style={{ marginLeft: '5%' }}>
             <CadastroFormat>{item.nome} {item.sobrenome}</CadastroFormat>
             <CadastroSub style={{ gridColumn: '2 / 3' ,marginLeft: '30px' }}>{item.email}</CadastroSub>
             <DSKBotao style={{ gridColumn: '3 / 3', justifySelf: 'end' }} onClick={() => Confirmacao(item)}>Remover Usuário</DSKBotao>
           </CadastroItem>
+          
         ))}
       </CadastroListStyled>
 

@@ -1,113 +1,95 @@
 import styled from "styled-components";
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import React, { useContext } from "react";
 import { AuthContext } from "../../../App";
+import Engrenagem from '../../../images/logos/engre.jpg';
+
+const ContainerSide = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: ${({ $isMobile }) => ($isMobile ? "20%" : "100%")};
+  min-width: 150px;
+  height: 100vh; /* Ocupa toda a altura da viewport */
+  background-color: #f0f0f0;
+  color: #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  box-sizing: border-box; /* Inclui padding e border na largura e altura */
+  padding: 2rem; /* Mantém o padding, mas agora o container ocupa toda a altura */
+`;
 
 
-const DSKCONTAINERSIDE = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: auto;
-    align-items: center;
-    justify-content: flex-start;
-    float: left;
-    color: white;
-    padding: 1vw;
-`
 
-const MOBLCONTAINERSIDE = styled.div`
-    width: 100%;
-`
+const Botao = styled.button`
+  cursor: pointer;
+  color: darkcyan;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+  background-color: #e6f7ff;
+  border: 2px solid darkcyan;
+  border-radius: 0.75rem;
+  text-align: center;
 
-const DSKBOTAO = styled.button`
-    background-color: #e6f7ff;
-    cursor: pointer;
-    color: darkcyan;
-    border-radius: 1vw;
-    transition: color 0.3s ease, background-color 0.3s ease;
-    height: 3vw;
-    font-size: 1vw;
-    border: 2px solid darkcyan;
-    border-radius: 0.75rem;
-    &:hover {
-        opacity: 0.5;
-        cursor: pointer;
-    }
-`
+  &:hover {
+    color: #002549;
+    background-color: #cceeff;
+  }
+`;
 
-const MOBLBOTAO = styled.button`
-    background-color: #e6f7ff;
-    cursor: pointer;
-    color: darkcyan;
-    border-radius: 1vw;
-    transition: color 0.3s ease, background-color 0.3s ease;
-    height: 5vw;
-    width: 33%;
-    font-size: 2vw;
-    border: 2px solid darkcyan;
-    &:hover {
-        opacity: 0.5;
-        cursor: pointer;
-    }
-`
+const ContainerBotao = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 
-const DSKCONTAINERBOTAO = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    align-items: strech;
-    justify-content: space-evenly;
-    gap: 5vw;
-    flex-direction: column;
-    width: 100%;
-`
+  @media (max-width: 768px) {
+    flex-direction: row;
+  }
+`;
 
-const MOBLCONTAINERBOTAO = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    margin: 2vw;
-`
 
 const ImgPerfil = styled.img`
-    width: 7vw;
-    height: 7vw;
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
-`
+    margin-bottom: 1rem;
+`;
 
 const ConatainerPerfil = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2vh;
-    
-`
+    margin-bottom: 2rem;
+`;
 
 const Nome = styled.h1`
-    color: black;
-    font-size: 2vw;
-`
+    color: #333;
+    font-size: 1.5rem;
+    margin: 0;
+`;
 
 const Container = styled.div`
-    width: 100%;
-`
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+`;
 
+// Componente SideBar
 function SideBar(props) {
     const authAxios = useContext(AuthContext);
 
     // Função para lidar com o clique dos botões, que faz uma requisição ao servidor para obter usuários por tipo
     const handleButtonClick = async (type) => {
         try {
-            const token = localStorage.getItem('token');
-            
-            // Faz uma requisição para obter a lista de usuários do tipo especificado
-            const response =  await authAxios.get(`http://localhost:3003/user/listByTipo?tipoUsuario=${type}`)
-            if(response.status === 200){
-                const usuarios = response.data;  // Obtém a lista de usuários da resposta
-                props.handleSelectedUsuarios(usuarios);  // Atualiza a lista de usuários selecionados no componente pai
+            const response = await authAxios.get(`http://localhost:3003/user/listByTipo?tipoUsuario=${type}`);
+            if (response.status === 200) {
+                const usuarios = response.data; // Obtém a lista de usuários da resposta
+                props.handleSelectedUsuarios(usuarios); // Atualiza a lista de usuários selecionados no componente pai
             }
-
         } catch (error) {
             console.error(error);
         }
@@ -115,30 +97,29 @@ function SideBar(props) {
 
     return (
         <Container>
-            {
-                props.isMobile &&
-                <MOBLCONTAINERSIDE>
-                    <MOBLCONTAINERBOTAO>
+            {props.isMobile ? (
+                <ContainerSide>
+                     <ContainerBotao>
                         {/* Botão para selecionar alunos ou professores */}
-                        <MOBLBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</MOBLBOTAO>
-                        <MOBLBOTAO onClick={() => handleButtonClick('professor')}>Professores</MOBLBOTAO>
-                     </MOBLCONTAINERBOTAO>
-                </MOBLCONTAINERSIDE>
-            } 
-            {
-                !props.isMobile &&
-                <DSKCONTAINERSIDE>
+                        <Botao onClick={() => handleButtonClick('aluno')}>Alunos</Botao>
+                        <Botao onClick={() => handleButtonClick('professor')}>Professores</Botao>
+                     </ContainerBotao>
+                    
+                </ContainerSide>
+            ) : (
+                <ContainerSide>
                     <ConatainerPerfil>
-                        <ImgPerfil src={props.imgPerfil}></ImgPerfil>
-                        <Nome>Nome</Nome>
+                        {/* Aparece imagem de perfil */}
+                        <ImgPerfil src={Engrenagem} alt="Perfil" />
+                        <Nome >Admin</Nome>
                     </ConatainerPerfil>
-                    <DSKCONTAINERBOTAO>
+                    <ContainerBotao>
                         {/* Botão para selecionar alunos ou professores */}
-                        <DSKBOTAO onClick={() => handleButtonClick('aluno')}>Alunos</DSKBOTAO>
-                        <DSKBOTAO onClick={() => handleButtonClick('professor')}>Professores</DSKBOTAO>
-                    </DSKCONTAINERBOTAO>
-                </DSKCONTAINERSIDE>
-            }   
+                        <Botao onClick={() => handleButtonClick('aluno')}>Alunos</Botao>
+                        <Botao onClick={() => handleButtonClick('professor')}>Professores</Botao>
+                     </ContainerBotao>
+                </ContainerSide>
+            )}
         </Container>
     );
 }
