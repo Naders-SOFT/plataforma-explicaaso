@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import '../../EditorTexto/RichText/styles.css'
-import { NavLink as Link } from "react-router-dom";
+import { useNavigate, NavLink as Link } from "react-router-dom";
+// import axios from "axios";
 
 const BlocoInfo = styled.div`
   align-items: center;
@@ -69,24 +70,49 @@ const IMG = styled.img`
   }
 `
 
+// const BTDIV = styled.div`
+//   width: 100%;
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+// `
+
 
 function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, autorpost, datapost, idPost}) {
+  // const navigate = useNavigate();
 
   //O post retirado do banco de dados está em formato de string e, dentro dele, 
   //possui as tags HTML relativas à seu estilo. Queremos aqui transformar essa string
   //em html, para que o texto seja renderizado corretamente na tela.
-  const renderTexto = (textopost) => {
+    const renderTexto = (textopost) => {
         if(textopost){
             return <TEXTOPOST $isMobile={isMobile} dangerouslySetInnerHTML={{__html:textopost}}></TEXTOPOST>;
         }
     }
     
+    // const handleDelete = (id) => {
+    //     // Requisicao de DELETE
+    //     axios.delete('http://localhost:3003/blog/delete/'+id)
+    //     .then(() => {
+    //         console.log('Blog post deletado com sucesso');
+
+    //         // Removendo o pdf que foi deletado
+    //         navigate('/pagina-blog');
+    //     })
+    //     .catch(error => {
+    //         console.error('Error deleting Blog post:', error);
+    //     })
+    // }
+    
     return(
         <BlocoInfo $isMobile={isMobile}>
             {(editor == 'administrador' || editor == 'professor') &&
+            <BTDIV>
             <Link to={`/pagina-blog/editar-post/${idPost}`} style={{ textDecoration: 'none' }}>
               <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
             </Link>
+            {/* <EDITBUTTON $isMobile={isMobile} onClick={handleDelete(idPost)}>Deletar</EDITBUTTON> */}
+            </BTDIV>
             }
             <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
             <IMG src={imgSrc} alt={imgAlt}/>

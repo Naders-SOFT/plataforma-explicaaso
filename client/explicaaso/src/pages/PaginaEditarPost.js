@@ -63,7 +63,7 @@ function PaginaEditarPost(props) {
     const { idPost } = useParams();
     const [titulo, setTitulo] = useState('');
     const [texto, setTexto] = useState('');
-    // const [autorUpdate, setAutor] = useState('');
+    const [autorUpdate, setAutor] = useState('');
     const [loaded, setLoaded] = useState(false);
     const navigate = useNavigate();
     const editor = useEditor({
@@ -84,7 +84,6 @@ function PaginaEditarPost(props) {
             placeholder: 'Estou pensando em...'
           })
         ],
-        content: texto,
 
         onUpdate: ({editor}) => {
           const html = editor.getHTML();
@@ -94,13 +93,12 @@ function PaginaEditarPost(props) {
     );
 
     useEffect(() => {
-      // console.log(idPost)
-      if(idPost){
+      if(idPost && !loaded){
         axios.get('http://localhost:3003/blog/list/'+idPost)
         .then( response => {
             setTitulo(response.data.titulo);
             setTexto(response.data.texto);
-            // setAutor(response.data.autor);
+            setAutor(response.data.autor);
         })
         .catch( error => {
             console.error('Error fetching data', error);
@@ -139,29 +137,30 @@ function PaginaEditarPost(props) {
         });
     }
 
-    // const updatePost = async (e) => {
-    //   e.preventDefault();
+    const updatePost = async (e) => {
+      e.preventDefault();
 
-    //   await axios.post(`http://localhost:3003/blog/update/${idPost}`,
-    //     {
-    //       titulo: titulo,
-    //       texto: texto,
-    //       autor: autorUpdate,
-    //       imagem: ''
-    //     },
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //     })
-    //     .then(() => {
-    //       console.log('Feito o update');
-    //       navigate('/pagina-blog');
-    //     })
-    //     .catch((error) => {
-    //       console.error('Error submitting post', error);
-    //     });
-    // }
+      await axios.patch(`http://localhost:3003/blog/update/${idPost}`,
+        {
+          titulo: titulo,
+          texto: texto,
+          autor: autorUpdate,
+          imagem: ''
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+        .then(() => {
+          console.log(texto);
+          console.log('Feito o update');
+          navigate('/pagina-blog');
+        })
+        .catch((error) => {
+          console.error('Error submitting post', error);
+        });
+    }
   
     return(
         <ContainerPag $isMobile={props.isMobile}>
@@ -169,7 +168,7 @@ function PaginaEditarPost(props) {
           </Titulo>
             <RichText isMobile={props.isMobile} editor={editor}/>
             <ContainerBotao>
-                <Botao $isMobile={props.isMobile} onClick={criarPost}>Postar</Botao>
+                <Botao $isMobile={props.isMobile} onClick={idPost ? updatePost : criarPost}>Postar</Botao>
             </ContainerBotao>
         </ContainerPag>
     );
