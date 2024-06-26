@@ -10,7 +10,7 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  margin: 70px 0 50px 0;
+  margin: 0;
   padding: 0;
 `;
 
@@ -110,13 +110,13 @@ const Botao = styled.button`
 const MensagemErro = styled.p`
   color: #ffcc00;
   font-size: 14px;
-  margin-top: -10px;
+  margin-top: 10px;
 `;
 
 const MensagemSucesso = styled.p`
   color: #ffcc00;
   font-size: 14px;
-  margin-top: -10px;
+  margin-top: 10px;
 `;
 
 function PaginaCadastro(props) {
