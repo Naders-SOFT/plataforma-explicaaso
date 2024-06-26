@@ -54,6 +54,17 @@ function ContainerMateria(props) {
     const [materiaLecionada, setMateriaLecionada] = useState('');
     const [materia, setMateria] = useState([])
     const [confirmacaoDel, setConfirmacaDel] = useState(false)
+    const [materias, setMaterias] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:3003/materias/listMat')
+        .then(response => {
+            setMaterias(response.data)
+        })
+        .catch(err => {
+            console.error(err.message)
+        })
+    }, [])
 
     // obtendo o tipo do usuario
     useEffect(() => {
@@ -94,7 +105,7 @@ function ContainerMateria(props) {
     // renderizando os cards de materia de acordo com o tipo de usuario
     useEffect(() => {
         if (user !== 'professor') { // usuario é aluno ou adm
-            setMateria(props.materias.map((mat) => (
+            setMateria(materias.map((mat) => (
                 <div key={mat.nome}> 
                     <StyledLink to={`/pagina-aluno/${mat.nome}`}>
                         <CardMateria imgSrc={mat.imagem} materia={mat.nome} isMobile={props.isMobile} frentes={mat.frentes} delete={deletar}/>
@@ -104,7 +115,7 @@ function ContainerMateria(props) {
         }
         else { 
             setMateria(
-                props.materias
+                materias
                 .filter(mat => mat.nome === materiaLecionada)
                 .map((mat) => (
                     <div key={mat.nome}> 
@@ -115,7 +126,7 @@ function ContainerMateria(props) {
                 ))
             )
         }
-    }, [user])
+    }, [])
 
     // criando o card de adicionar materia
     const cardAdicionar = 
