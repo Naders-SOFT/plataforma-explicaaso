@@ -78,12 +78,11 @@ function ContainerMateria(props) {
     }, [materiaLecionada]);
 
     const deletar = (id) => {
-
         if (window.confirm('Você quer realmente excluir essa matéria?')) {
-            axios.delete(`http://localhost:3003/materias/delete/${id}`)
+            axios
+            .delete(`http://localhost:3003/materias/delete/${id}`)
             .then(setMateria(materia.filter(mat => mat.nome != id)))
             .then(console.log('Matéria deletada com sucesso'))
-            // .then(useBlocker((transition) =>{}, []))
             .catch(err => console.error(err))
         }
     }
