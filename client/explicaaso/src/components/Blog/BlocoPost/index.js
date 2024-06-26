@@ -2,6 +2,8 @@ import styled from "styled-components";
 import '../../EditorTexto/RichText/styles.css'
 import { useNavigate, NavLink as Link } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../../App";
 
 const BlocoInfo = styled.div`
   align-items: center;
@@ -107,6 +109,7 @@ const LINK = styled(Link)`
 
 function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, autorpost, datapost, idPost}) {
   const navigate = useNavigate();
+  const authAxios = useContext(AuthContext);
 
   //O post retirado do banco de dados está em formato de string e, dentro dele, 
   //possui as tags HTML relativas à seu estilo. Queremos aqui transformar essa string
@@ -119,7 +122,7 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
     
     const handleDelete = (id) => {
         // Requisicao de DELETE
-        axios.delete('http://localhost:3003/blog/delete/'+id)
+        authAxios.delete('http://localhost:3003/blog/delete/'+id)
         .then(() => {
             console.log('Blog post deletado com sucesso');
 
@@ -139,16 +142,16 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
               <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
             </LINK>
             <DELETEBUTTON $isMobile={isMobile} onClick={() => {
-              axios.delete('http://localhost:3003/blog/delete/'+idPost)
-        .then(() => {
-            console.log('Blog post deletado com sucesso');
+              authAxios.delete('http://localhost:3003/blog/delete/'+idPost)
+                .then(() => {
+                    console.log('Blog post deletado com sucesso');
 
-            // Removendo o pdf que foi deletado
-            navigate('/pagina-blog');
-        })
-        .catch(error => {
-            console.error('Error deleting Blog post:', error);
-        })
+                    // Removendo o pdf que foi deletado
+                    navigate('/pagina-blog');
+                })
+                .catch(error => {
+                    console.error('Error deleting Blog post:', error);
+                })
             }}>Deletar</DELETEBUTTON>
             </BTDIV>
             }

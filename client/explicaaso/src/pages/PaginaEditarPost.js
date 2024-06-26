@@ -1,6 +1,6 @@
 import './postPlaceholder.css'
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import RichText from "../components/EditorTexto/RichText";
 import styled from "styled-components";
 import { useEditor } from "@tiptap/react";
@@ -10,6 +10,7 @@ import Placeholder from '@tiptap/extension-placeholder';
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
+import { AuthContext } from '../App';
 
 const ContainerPag = styled.div`
     width: 1 vw;
@@ -66,6 +67,7 @@ function PaginaEditarPost(props) {
     const [autorUpdate, setAutor] = useState('');
     const [loaded, setLoaded] = useState(false);
     const navigate = useNavigate();
+    const authAxios = useContext(AuthContext);
     const editor = useEditor({
         extensions:[
           StarterKit.configure({
@@ -94,7 +96,7 @@ function PaginaEditarPost(props) {
 
     useEffect(() => {
       if(idPost && !loaded){
-        axios.get('http://localhost:3003/blog/list/'+idPost)
+        authAxios.get('http://localhost:3003/blog/list/'+idPost)
         .then( response => {
             setTitulo(response.data.titulo);
             setTexto(response.data.texto);
@@ -116,7 +118,7 @@ function PaginaEditarPost(props) {
       const token = localStorage.getItem('token');
       const autor = jwtDecode(token).nome + ' ' + jwtDecode(token).sobrenome;
 
-      await axios.post('http://localhost:3003/blog/post',
+      await authAxios.post('http://localhost:3003/blog/post',
         {
           titulo: titulo,
           texto: texto,
@@ -140,7 +142,7 @@ function PaginaEditarPost(props) {
     const updatePost = async (e) => {
       e.preventDefault();
 
-      await axios.patch(`http://localhost:3003/blog/update/${idPost}`,
+      await authAxios.patch(`http://localhost:3003/blog/update/${idPost}`,
         {
           titulo: titulo,
           texto: texto,
