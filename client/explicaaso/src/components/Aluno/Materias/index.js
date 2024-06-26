@@ -7,6 +7,8 @@ import imgAdicionar from '../../../images/misc/add-button-svgrepo-com.svg'
 import CardConfirmacao from '../CardConfirmacao';
 import axios from 'axios';
 import { useBlocker, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../App';
 
 
 const MOBLMATERIAS = styled.ul`
@@ -54,9 +56,10 @@ function ContainerMateria(props) {
     const [materiaCard, setMateriaCard] = useState([])
     const [confirmacaoDel, setConfirmacaDel] = useState(false)
     const [materias, setMaterias] = useState([])
+    const authAxios = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get('http://localhost:3003/materias/listMat')
+        authAxios.get('http://localhost:3003/materias/listMat')
         .then(response => {
             setMaterias(response.data)
         })
@@ -93,11 +96,11 @@ function ContainerMateria(props) {
     // funcao de deletar com window confirm
     const deletar = (id) => {
         if (window.confirm('Você quer realmente excluir essa matéria?')) {
-            axios
-            .delete(`http://localhost:3003/materias/delete/${id}`)
-            .then(setMateriaCard(materiaCard.filter(mat => mat.nome != id)))
-            .then(console.log('Matéria deletada com sucesso'))
-            .catch(err => console.error(err))
+            authAxios
+                .delete(`http://localhost:3003/materias/delete/${id}`)
+                .then(setMateriaCard(materiaCard.filter(mat => mat.nome != id)))
+                .then(console.log('Matéria deletada com sucesso'))
+                .catch(err => console.error(err))
         }
     }
 
