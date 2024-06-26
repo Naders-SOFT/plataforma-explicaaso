@@ -61,6 +61,8 @@ const EDITBUTTON = styled.button`
 
 
 function BlocoPost({ isMobile, titulopost, textopost, autorpost, datapost, idPost, editor}) {
+    //Renderiza o texto de acordo com a estilização imposta pelo
+    //usuário no editor de texto
     const renderTexto = (textopost) => {
         if(textopost){
             return <TEXTOPOST $isMobile={isMobile} dangerouslySetInnerHTML={{__html:textopost}}></TEXTOPOST>;
@@ -71,7 +73,7 @@ function BlocoPost({ isMobile, titulopost, textopost, autorpost, datapost, idPos
         <BlocoInfo $isMobile={isMobile}>
             <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
             <TEXTOPOST $isMobile={isMobile} className="tiptap">{renderTexto(textopost)}</TEXTOPOST>
-
+      
             {(editor == 'administrador' || editor == 'professor') &&
             <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
             }

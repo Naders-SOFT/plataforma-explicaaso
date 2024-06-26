@@ -61,7 +61,9 @@ function ContainerInfo({ isMobile, blogPosts }) {
         })
     }, [editor]);
     
-    //Cada post do array é mapeado para um bloco específico do blog
+    //Verifica se existe um array de postagens do blog armazenados no banco, e
+    //se sim, renderiza cada postagem em um bloco de postagem específico
+    //através de um mapeamento
     useEffect(() => {
         if(blogPosts && blogPosts.length > 0) {
           setRenderContent(

@@ -85,7 +85,8 @@ const LINK = styled(Link)`
 
 
 function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost, datapost, idPost }) {
-  
+  //Renderiza o texto de acordo com a estilização imposta pelo
+  //usuário no editor de texto
   const renderPost = (textopost) => {
     if(textopost){
       return <div dangerouslySetInnerHTML={{__html: textopost}}></div>;

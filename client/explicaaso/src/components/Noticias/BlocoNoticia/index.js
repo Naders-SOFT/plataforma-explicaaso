@@ -65,6 +65,8 @@ const BUTTON = styled.button`
 `;
 
 function BlocoNoticia({ isMobile, titulonoticia, idPost }) {
+  //cada título de notícia é exibido como um link
+  //para a notícia completa
   return (
     <BlocoInfo $isMobile={isMobile}>
       <LINK to ={`/pagina-noticias/post/${idPost}`}>{titulonoticia}</LINK>
