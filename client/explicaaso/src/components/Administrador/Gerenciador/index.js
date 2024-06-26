@@ -133,38 +133,43 @@ const BotaoConfirmacao = styled.button`
   }
 `;
 
-// Define the ProfessorList component
+// Define o componente PessoaList que recebe uma lista de itens (usuários)
 const PessoaList = ({ items }) => {
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [usuarioParaDeletar, setUsuarioParaDeletar] = useState(null);
   const authAxios = useContext(AuthContext);
 
+  // Função para exibir a confirmação de deleção para o usuário selecionado
   const Confirmacao = (usuario) => {
     setUsuarioParaDeletar(usuario);
     setMostrarConfirmacao(true);
   };
 
+  // Função para confirmar a deleção do usuário
   const confirmarDelecao = async () => {
     try {
       const response = await authAxios.delete(`http://localhost:3003/user/delete/${usuarioParaDeletar._id}`);
       if (response.status === 200) {
         console.log(response.data);
-        window.location.reload();
+        window.location.reload(); // Recarrega a página após a deleção bem-sucedida
       }
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Função para cancelar a deleção do usuário
   const cancelarDelecao = () => {
     setMostrarConfirmacao(false);
     setUsuarioParaDeletar(null);
   };
 
+  // Renderiza a lista de usuários e o modal de confirmação de deleção
   return (
     <Container>
       <CadastroListStyled>
         {items.map((item, index) => (
+          // Renderiza cada usuário como um item da lista
           <CadastroItem key={index} style={{ marginLeft: '5%' }}>
             <CadastroFormat>{item.nome} {item.sobrenome}</CadastroFormat>
             <CadastroSub style={{ gridColumn: '2 / 3' ,marginLeft: '30px' }}>{item.email}</CadastroSub>
@@ -172,10 +177,13 @@ const PessoaList = ({ items }) => {
           </CadastroItem>
         ))}
       </CadastroListStyled>
+
+      {/* Link para a página de cadastro de novos usuários */}
       <Link to="/pagina-administrador/cadastro" style={{ textDecoration: 'none' }}>
         <DSKBotao style={{ marginTop: '10px', marginLeft: '5%' }}>Cadastrar Usuários</DSKBotao>
       </Link>
 
+      {/* Modal de confirmação de deleção */}
       {mostrarConfirmacao && (
         <ConfirmacaoContainer>
           <ConfirmacaoTitulo>Confirmar Exclusão</ConfirmacaoTitulo>

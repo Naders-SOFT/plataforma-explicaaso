@@ -26,29 +26,31 @@ const Container = styled.div`
 function Informacao(props) {
     const [selectedUsuarios, setSelectedUsuarios] = useState([]); // Estado inicial para o tipo selecionado
 
-
-    // Função para buscar os dados dos professores e alunos
-
-
+    // Função para atualizar o estado com os usuários selecionados
     const handleSelectedUsuarios = (selectedUsuarios) => {
         setSelectedUsuarios(selectedUsuarios);
     };
     
 
-    // definindo retorno como side bar e ao lado a lista de pessoas (professores ou alunos)
+    // Renderiza a barra lateral (SideBar) e a lista de pessoas (PessoaList)
+    // Ajusta a disposição conforme o dispositivo é móvel ou desktop
     return (
         <Container>
             {
                 props.isMobile ?
                 (
                     <MOBLINFO>
+                        {/* Passa a propriedade isMobile e a função handleSelectedUsuarios para o SideBar */}
                         <SideBar isMobile={props.isMobile} handleSelectedUsuarios={handleSelectedUsuarios} />
+                        {/* Passa a lista de usuários selecionados para o PessoaList */}
                         <PessoaList items={selectedUsuarios}/>
                         </MOBLINFO>
                 ) :
                 (
                     <DSKINFO>
+                        {/*  Passa a propriedade isMobile, faz aparecer a imgPerfil e a função handleSelectedUsuarios para o SideBar */}
                         <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil}  handleSelectedUsuarios={handleSelectedUsuarios} />
+                        {/* Passa a lista de usuários selecionados para o PessoaList */}
                         <PessoaList items={selectedUsuarios} />
                         </DSKINFO>
                 )
