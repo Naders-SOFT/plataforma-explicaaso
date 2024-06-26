@@ -168,7 +168,7 @@ function PaginaEditarPost(props) {
           <Titulo placeholder="Título da Notícia" defaultValue={titulo} onChange={(e) => {setTitulo(e.target.value);}}/>
             <RichText isMobile={props.isMobile} editor={editor}/>
             <ContainerBotao>
-                <Botao $isMobile={props.isMobile} onClick={criarPost}>Postar</Botao>
+            <Botao $isMobile={props.isMobile} onClick={idPost ? updatePost : criarPost}>Postar</Botao>
             </ContainerBotao>
         </ContainerPag>
     );
