@@ -6,6 +6,7 @@ import axios from 'axios';
 import { IoMdTrash } from "react-icons/io";
 import imgPerfil from '../../../images/logos/perfil.jpg';
 import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
+import { jwtDecode } from 'jwt-decode';
 
 const ContainerFrentes = styled.div`
   display: ${({$isMobile}) => ($isMobile ? 'flex' : 'grid')};
@@ -173,6 +174,18 @@ const Frentes = (props) => {
   const [materia, setMateria] = useState([]);
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+      const token = localStorage.getItem('token');
+      setUser(token ? jwtDecode(token).tipoUsuario : '');
+    
+
+      window.addEventListener("storage", () => {
+          const token = localStorage.getItem('token');
+          setUser(token ? jwtDecode(token).tipoUsuario : '');
+      })
+  }, [user]);
 
   useEffect(() => {
     axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
@@ -230,7 +243,7 @@ const Frentes = (props) => {
               <NomeFrente>{frente.nomeFrente}</NomeFrente>
             </Card>
           </StyledLink>
-        {frente.nomeFrente !== 'Adicionar frente' && (
+        {frente.nomeFrente !== 'Adicionar frente' && user === 'administrador' &&(
           <StyledDeleteButton onClick={() => handleDelete(frente.nomeFrente)}>
             <IoMdTrash />
           </StyledDeleteButton>
