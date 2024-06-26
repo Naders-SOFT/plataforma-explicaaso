@@ -9,7 +9,7 @@ const FormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  margin: 5%;
   padding: 0;
 `;
 
