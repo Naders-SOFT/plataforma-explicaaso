@@ -89,8 +89,8 @@ const StyledLink = styled(Link)`
   align-items: center;
 
   img {
-    width: 300px; 
-    height: 300px; 
+    width: 280px; 
+    height: 280px; 
     object-fit: cover; 
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -247,7 +247,7 @@ const Frentes = (props) => {
   const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
 
   return (
-    <ContainerFrentes>
+    <ContainerFrentes $isMobile={props.isMobile}>
       <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil} />
       <ContentArea> 
         {mostrarConfirmacao && (
