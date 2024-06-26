@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import SideBar from '../../Aluno/SideBar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IoMdTrash } from "react-icons/io";
 import imgPerfil from '../../../images/logos/perfil.jpg';
 import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
-import { jwtDecode } from 'jwt-decode';
 
 const ContainerFrentes = styled.div`
   display: ${({$isMobile}) => ($isMobile ? 'flex' : 'grid')};
@@ -15,7 +15,6 @@ const ContainerFrentes = styled.div`
   height: 100%;
   background-color: #f0f0f5;
   flex-direction: ${({$isMobile}) => ($isMobile ? 'column' : '')};
-  overflow-x: hidden; 
 `;
 
 const ContentArea = styled.div`
@@ -30,11 +29,12 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  padding: 20px;
 `;
 
 const StyledButton = styled.button`
-  width: 90%;
-  margin: 20px 0;
+  width: 95%;
+  margin-left: 0;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -49,10 +49,32 @@ const StyledButton = styled.button`
   font-family: 'Raleway', Sans-serif;
   overflow: hidden;
   position: relative;
+  position: relative;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  }
+`;
+
+const StyledDeleteButton = styled.button`
+  background-color: white;
+  border: none;
+  color: #dc3545;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+
+  &:hover {
+    color: #c82333;
+  }
+
+  svg {
+    font-size: 20px;
   }
 `;
 
@@ -89,10 +111,13 @@ const StyledLink = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   img {
-    width: 280px; 
-    height: 280px; 
+    width: 300px; 
+    height: 300px; 
     object-fit: cover; 
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -106,7 +131,17 @@ const Card = styled.div`
   align-items: center;
   width: 100%; 
 `;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; 
+`;
 
+const NomeFrente = styled.h2`
+  font-size: 1.2em;
+  font-family: 'Inter', sans-serif;
+  margin-top: 10px;
+`;
 const NomeFrente = styled.h2`
   font-size: 1.2em;
   font-family: 'Inter', sans-serif;
@@ -169,24 +204,67 @@ const BotaoConfirmacao = styled.button`
     background-color: ${props => !props.cancelar ? '#c82333' : '#ffbf00'}; 
   }
 `;
+  { titulo: 'Matérias', link: '/pagina-aluno' },
+  { titulo: 'Provas', link: '/pagina-provas' }
+];
+
+const infoAdicionar = {
+  nomeFrente: 'Adicionar frente',
+  imgFrente: imgAdc
+}
+
+const ConfirmacaoContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #003466;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  color: white;
+`;
+
+const ConfirmacaoTitulo = styled.h2`
+  color: #ffcc00;
+  margin-bottom: 10px;
+`;
+
+const ConfirmacaoBotoes = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+`;
+
+const BotaoConfirmacao = styled.button`
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+
+  color: ${props => !props.cancelar ? 'white' : '#003466'}; 
+  background-color: ${props => !props.cancelar ? '#dc3545' : '#ffcc00'}; 
+
+  &:hover {
+    background-color: ${props => !props.cancelar ? '#c82333' : '#ffbf00'}; 
+  }
+`;
 
 const Frentes = (props) => {
   const mat = useParams();
   const [materia, setMateria] = useState([]);
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
-  const [user, setUser] = useState('');
-
-  useEffect(() => {
-      const token = localStorage.getItem('token');
-      setUser(token ? jwtDecode(token).tipoUsuario : '');
-    
-
-      window.addEventListener("storage", () => {
-          const token = localStorage.getItem('token');
-          setUser(token ? jwtDecode(token).tipoUsuario : '');
-      })
-  }, [user]);
 
   useEffect(() => {
     axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
@@ -244,7 +322,7 @@ const Frentes = (props) => {
               <NomeFrente>{frente.nomeFrente}</NomeFrente>
             </Card>
           </StyledLink>
-        {frente.nomeFrente !== 'Adicionar frente' && user === 'administrador' &&(
+        {frente.nomeFrente !== 'Adicionar frente' && (
           <StyledDeleteButton onClick={() => handleDelete(frente.nomeFrente)}>
             <IoMdTrash />
           </StyledDeleteButton>
@@ -259,9 +337,14 @@ const Frentes = (props) => {
     )));
 
   const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
+    .flatMap((materiaItem) => materiaItem.frentes.map((frente) => (
+      <FrenteButton key={frente.nomeFrente} frente={frente} />
+    )));
+
+  const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
 
   return (
-    <ContainerFrentes $isMobile={props.isMobile}>
+    <ContainerFrentes>
       <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil} />
       <ContentArea> 
         {mostrarConfirmacao && (
