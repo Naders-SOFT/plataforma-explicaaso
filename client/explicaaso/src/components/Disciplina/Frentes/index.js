@@ -173,6 +173,7 @@ const Frentes = (props) => {
   const [materia, setMateria] = useState([]);
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
+  const [frentesBotoes, setFrentesBotoes] = useState([])
 
   useEffect(() => {
     axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
@@ -195,9 +196,12 @@ const Frentes = (props) => {
       )
       .then(response => {
         console.log('Frente deleted successfully');
-        setMateria(materia
-                  .flatMap((materiaItem) => 
-                  materiaItem.frentes.filter(frente => frente.nomeFrente !== frenteParaDeletar)));
+        setMateria(prevMateria => 
+        prevMateria.map(materiaItem => ({
+          ...materiaItem,
+          frentes: materiaItem.frentes.filter(frente => frente.nomeFrente !== frenteParaDeletar)
+        }))
+      );
       })
       .catch(error => {
         console.error('Error deleting Frente:', error);
@@ -239,10 +243,13 @@ const Frentes = (props) => {
     );
   };
 
-  const frentesBotoes = materia
-    .flatMap((materiaItem) => materiaItem.frentes.map((frente) => (
-      <FrenteButton key={frente.nomeFrente} frente={frente} />
-    )));
+  useEffect(() => {
+    setFrentesBotoes(materia
+      .flatMap((materiaItem) => materiaItem.frentes.map((frente) => (
+        <FrenteButton key={frente.nomeFrente} frente={frente} />
+      )))
+    );
+  }, [materia])
 
   const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
 

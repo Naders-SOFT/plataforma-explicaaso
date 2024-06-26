@@ -76,7 +76,7 @@ function ContainerMateria(props) {
             const token = localStorage.getItem('token');
             setUser(token ? jwtDecode(token).tipoUsuario : '');
         })
-    }, [user]);
+    }, []);
 
     // obtendo a materia lecionada do usuario, util para que professor nao tenha 
     // acesso a todas as disciplinas
@@ -89,7 +89,7 @@ function ContainerMateria(props) {
             const token = localStorage.getItem('token');
             setMateriaLecionada(token ? jwtDecode(token).materiaProf : '');
         })
-    }, [materiaLecionada]);
+    }, []);
 
     // funcao de deletar com window confirm
     const deletar = (id) => {
@@ -126,7 +126,7 @@ function ContainerMateria(props) {
                 ))
             )
         }
-    }, [materiaCard])
+    }, [materias])
 
     // criando o card de adicionar materia
     const cardAdicionar = 
