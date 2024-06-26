@@ -1,9 +1,10 @@
 import Header from "../components/Head/Header";
-import ContainerPost from "../components/Noticia/ContainerPost";
+import ContainerPost from "../components/Noticias/ContainerPost";
 import styled from 'styled-components';
 import { useEffect, useState } from "react";
 import { useParams} from "react-router-dom";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const ContainerPag = styled.div`
     width: 100%;
@@ -11,29 +12,36 @@ const ContainerPag = styled.div`
 
 
 
-function PaginaBlogPost(props) {
-    const [blogPost, setBlogPost] = useState([]);
+function PaginaNoticiaPost(props) {
+    const token = localStorage.getItem('token');
+    const [editor, setEditor] = useState(token ? jwtDecode(token).tipoUsuario : '');
+    const [noticiaPost, setNoticiaPost] = useState([]);
     const {idPost} = useParams();
 
+    //Faz a requisição da postagem específica por meio do id
+    //obtido. O post será exibido em sua totalidade
     useEffect(() => {
-        axios.get(`http://localhost:3003/noticias/list/${idPost}`)
+        axios.get(`http://localhost:3003/noticia/list/${idPost}`)
         .then( response => {
-            setBlogPost(response.data);
+            setNoticiaPost(response.data);
         })
         .catch( error => {
             console.error('Error fetching data', error);
+        })
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setEditor(token ? jwtDecode(token).tipoUsuario : '');
         })
     }, []);
 
 
     return(
         <ContainerPag>
-            {/* <Header isMobile={props.isMobile}/> */}
-            <ContainerPost isMobile={props.isMobile} blogPost={blogPost}/>
+            <ContainerPost isMobile={props.isMobile} noticiaPost={noticiaPost} editor={editor}/>
         </ContainerPag>
     )
 
-
 }
 
-export default PaginaBlogPost;
+export default PaginaNoticiaPost;

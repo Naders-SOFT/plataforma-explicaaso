@@ -64,24 +64,24 @@ const IMG = styled.img`
   }
 `;
 
-const BUTTON = styled.button`
+const LINK = styled(Link)`
   width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
   margin: 20px 0;
   padding: 10px 0;
-  background-color: #FFCC00;
   border: none;
   border-radius: 10px;
   color: #003466;
-  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.2rem')};
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.5rem')};
   font-weight: 600;
   text-align: center;
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
     background-color: #ffbf00;
   }
-`;
+`
 
 
 function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, autorpost, datapost, idPost }) {
@@ -100,9 +100,10 @@ function BlocoBlog({ isMobile, editor, imgSrc, imgAlt, titulopost, textopost, au
         <TEXTOPOST $isMobile={isMobile} className="tiptap">{renderPost(textopost)}</TEXTOPOST>
         <IMG src={imgSrc} alt={imgAlt} />
       </DIVIMG>
-      <Link to ={`/pagina-blog/post/${idPost}`} style={{ textDecoration: 'none' }}>
-        <BUTTON $isMobile={isMobile}>Ler mais</BUTTON>
-      </Link>
+    
+      <LINK to ={`/pagina-blog/post/${idPost}`}>
+        Ler mais
+      </LINK>
       
     </BlocoInfo>
   );
