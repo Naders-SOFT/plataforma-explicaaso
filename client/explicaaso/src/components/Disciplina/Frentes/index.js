@@ -16,6 +16,13 @@ const ContainerFrentes = styled.div`
   flex-direction: ${({$isMobile}) => ($isMobile ? 'column' : '')};
 `;
 
+const ContentArea = styled.div`
+  display: flex;
+  flex-direction: column; 
+  width: 100%;
+  padding: 20px; 
+`;
+
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,9 +31,8 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  width: 100%;
-  max-width: 300px;
-  margin: 10px;
+  width: 90%;
+  margin: 20px 0;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -75,14 +81,6 @@ const StyledH1 = styled.h1`
   margin-bottom: 20px;
 `;
 
-const StyledItemContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  justify-content: center;
-  width: 100%;
-`;
-
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
@@ -91,9 +89,10 @@ const StyledLink = styled(Link)`
   align-items: center;
 
   img {
-    width: 250px;
-    height: 250px;
-    border-radius: 8px;
+    width: 300px; 
+    height: 300px; 
+    object-fit: cover; 
+    border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
   }
@@ -103,6 +102,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%; 
 `;
 
 const NomeFrente = styled.h2`
@@ -195,7 +195,6 @@ const Frentes = (props) => {
       )
       .then(response => {
         console.log('Frente deleted successfully');
-        console.log(materia)
         setMateria(materia
                   .flatMap((materiaItem) => 
                   materiaItem.frentes.filter(frente => frente.nomeFrente !== frenteParaDeletar)));
@@ -248,9 +247,9 @@ const Frentes = (props) => {
   const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
 
   return (
-    <ContainerFrentes $isMobile={props.isMobile}>
+    <ContainerFrentes>
       <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil} />
-      <div> 
+      <ContentArea> 
         {mostrarConfirmacao && (
           <ConfirmacaoContainer>
             <ConfirmacaoTitulo>Confirmar Exclusão</ConfirmacaoTitulo>
@@ -267,12 +266,10 @@ const Frentes = (props) => {
         )}
         <StyledContainer>
           <StyledH1>Frentes</StyledH1>
-          <StyledItemContainer>
-            {frentesBotoes}
-            {botaoAdicionar}
-          </StyledItemContainer>
+          {frentesBotoes}
+          {botaoAdicionar} 
         </StyledContainer>
-      </div>
+      </ContentArea>
     </ContainerFrentes>
   );
 };
