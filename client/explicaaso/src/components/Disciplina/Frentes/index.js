@@ -15,6 +15,7 @@ const ContainerFrentes = styled.div`
   height: 100%;
   background-color: #f0f0f5;
   flex-direction: ${({$isMobile}) => ($isMobile ? 'column' : '')};
+  overflow-x: hidden; 
 `;
 
 const ContentArea = styled.div`
