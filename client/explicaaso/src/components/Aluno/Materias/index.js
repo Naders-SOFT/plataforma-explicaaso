@@ -52,7 +52,7 @@ const StyledLink = styled(Link)`
 function ContainerMateria(props) {
     const [user, setUser] = useState('');
     const [materiaLecionada, setMateriaLecionada] = useState('');
-    const [materia, setMateria] = useState([])
+    const [materiaCard, setMateriaCard] = useState([])
     const [confirmacaoDel, setConfirmacaDel] = useState(false)
     const [materias, setMaterias] = useState([])
 
@@ -64,7 +64,7 @@ function ContainerMateria(props) {
         .catch(err => {
             console.error(err.message)
         })
-    }, [])
+    }, [materias])
 
     // obtendo o tipo do usuario
     useEffect(() => {
@@ -96,7 +96,7 @@ function ContainerMateria(props) {
         if (window.confirm('Você quer realmente excluir essa matéria?')) {
             axios
             .delete(`http://localhost:3003/materias/delete/${id}`)
-            .then(setMateria(materia.filter(mat => mat.nome != id)))
+            .then(setMateriaCard(materiaCard.filter(mat => mat.nome != id)))
             .then(console.log('Matéria deletada com sucesso'))
             .catch(err => console.error(err))
         }
@@ -105,7 +105,7 @@ function ContainerMateria(props) {
     // renderizando os cards de materia de acordo com o tipo de usuario
     useEffect(() => {
         if (user !== 'professor') { // usuario é aluno ou adm
-            setMateria(materias.map((mat) => (
+            setMateriaCard(materias.map((mat) => (
                 <div key={mat.nome}> 
                     <StyledLink to={`/pagina-aluno/${mat.nome}`}>
                         <CardMateria imgSrc={mat.imagem} materia={mat.nome} isMobile={props.isMobile} frentes={mat.frentes} delete={deletar}/>
@@ -114,7 +114,7 @@ function ContainerMateria(props) {
             )))
         }
         else { 
-            setMateria(
+            setMateriaCard(
                 materias
                 .filter(mat => mat.nome === materiaLecionada)
                 .map((mat) => (
@@ -126,7 +126,7 @@ function ContainerMateria(props) {
                 ))
             )
         }
-    }, [])
+    }, [materiaCard])
 
     // criando o card de adicionar materia
     const cardAdicionar = 
@@ -141,13 +141,13 @@ function ContainerMateria(props) {
         <Container>
             {props.isMobile &&
                 <MOBLMATERIAS>
-                    {materia}
+                    {materiaCard}
                     {user === 'administrador' &&  cardAdicionar}
                 </MOBLMATERIAS>
             }
             {!props.isMobile &&
                 <DSKMATERIAS>
-                    {materia}
+                    {materiaCard}
                     {user === 'administrador' && cardAdicionar}
                 </DSKMATERIAS>
             }
