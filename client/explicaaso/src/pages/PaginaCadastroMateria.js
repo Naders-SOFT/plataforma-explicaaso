@@ -4,6 +4,7 @@ import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
 import { MdLibraryAdd } from "react-icons/md";
 import { authAxios } from '../App';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const FormContainer = styled.div`
   display: flex;
@@ -126,6 +127,7 @@ const RemoverButton = styled.button`
   font-size: 1.5rem;
 `;
 
+
 const PaginaCadastroMateria = () => {
   const [nomeMateria, setNomeMateria] = useState('');
   const [imagemLogo, setImagemLogo] = useState('');
@@ -148,6 +150,7 @@ const PaginaCadastroMateria = () => {
     setFrentes(newFrentes);
   };
 
+  const navigate = useNavigate()
   const handleAdicionarMateria = async (e) => {
     e.preventDefault();
     setFeedbackErro('');
@@ -174,16 +177,13 @@ const PaginaCadastroMateria = () => {
         }
       );
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         // Limpa o formulário e exibe a mensagem de sucesso
         setNomeMateria('');
         setImagemLogo('');
         setFrentes([{ nome: '', imagemLogo: '' }]);
         setFeedbackSucesso('Matéria adicionada com sucesso!');
-      } else {
-        // Lida com erros da requisição
-        const errorData = await response.json();
-        setFeedbackErro(errorData.error || 'Erro ao adicionar matéria.');
+        navigate('/pagina-aluno')
       }
     } catch (error) {
       // Lida com erros de rede
