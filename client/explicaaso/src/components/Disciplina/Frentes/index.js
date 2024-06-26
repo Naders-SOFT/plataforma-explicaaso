@@ -4,18 +4,17 @@ import SideBar from '../../Aluno/SideBar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IoMdTrash } from "react-icons/io";
-import { MdLibraryAdd } from "react-icons/md";
-
 import imgPerfil from '../../../images/logos/perfil.jpg';
 import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
 
-const ContainerFrentes = styled.div` // Novo nome: ContainerFrentes
-  display: grid;
-  grid-template-columns: ${({$isMobile}) => ($isMobile ? '1fr%' : '250px 1fr')};
+const ContainerFrentes = styled.div`
+  display: ${({$isMobile}) => ($isMobile ? 'flex' : 'grid')};
+  grid-template-columns: auto 1fr;
   width: 100%;
+  height: 100%;
   background-color: #f0f0f5;
-  grid-template-rows: ${({$isMobile}) => ($isMobile ? 'auto 1fr%' : '250px 1fr')};
-`
+  flex-direction: ${({$isMobile}) => ($isMobile ? 'column' : '')};
+`;
 
 const StyledContainer = styled.div`
   display: flex;
@@ -50,7 +49,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledDeleteButton = styled.button`
-  background-color: transparent;
+  background-color: white;
   border: none;
   color: #dc3545;
   position: absolute;
@@ -92,9 +91,8 @@ const StyledLink = styled(Link)`
   align-items: center;
 
   img {
-    width: 100%;
-    height: auto;
-    max-width: 200px;
+    width: 250px;
+    height: 250px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
@@ -251,7 +249,7 @@ const Frentes = (props) => {
   const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
 
   return (
-    <ContainerFrentes>
+    <ContainerFrentes $isMobile={props.isMobile}>
       <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil} />
       <div> 
         {mostrarConfirmacao && (
