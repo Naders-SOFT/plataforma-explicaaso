@@ -68,17 +68,11 @@ const Link = styled.a`
   }
 `;
 
-// const noticias = [
-//   <ListItem key="1"><Link href="#">Divulgadas as datas FUVEST 2024</Link></ListItem>,
-//   <ListItem key="2"><Link href="#">Divulgadas as datas UNICAMP 2024</Link></ListItem>,
-//   <ListItem key="3"><Link href="#">Inscrições para o Explicaaso começaram</Link></ListItem>,
-//   <ListItem key="4"><Link href="#">Conheça a nova plataforma do Explicaaso</Link></ListItem>
-// ];
-
 function ContainerInfo({isMobile, noticiaPosts}) {
   const [editor, setEditor] = useState('');
   const [renderContent, setRenderContent] = useState(<p>Carregando...</p>)
     
+  //Verifica se o usuário está logado e se sim, qual o seu tipo
     useEffect(() => {
         const token = localStorage.getItem('token');
         setEditor(token ? jwtDecode(token).tipoUsuario : '');
@@ -90,6 +84,9 @@ function ContainerInfo({isMobile, noticiaPosts}) {
         })
     }, [editor]);
 
+    //Se existem posts de notícias na base de dados, eles
+    //são mapeados um a um e exibidos dentro de um bloco
+    //de notícia em que apenas seus títulos serão exibidos 
     useEffect(() => {
       if(noticiaPosts && noticiaPosts.length > 0) {
         setRenderContent(
