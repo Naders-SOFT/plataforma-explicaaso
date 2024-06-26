@@ -180,7 +180,6 @@ const Frentes = (props) => {
   const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
   const [frentesAtuais, setFrentesAtuais] = useState([])
 
-  
   axios
     .get(`http://localhost:3003/materias/listMat/${mat.materias}`)
     .then(response => {
