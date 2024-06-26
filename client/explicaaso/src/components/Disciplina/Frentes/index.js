@@ -6,7 +6,6 @@ import axios from 'axios';
 import { IoMdTrash } from "react-icons/io";
 import imgPerfil from '../../../images/logos/perfil.jpg';
 import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
-import { jwtDecode } from 'jwt-decode';
 
 const ContainerFrentes = styled.div`
   display: ${({$isMobile}) => ($isMobile ? 'flex' : 'grid')};
@@ -29,7 +28,6 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  padding: 20px;
 `;
 
 const StyledButton = styled.button`
@@ -48,7 +46,6 @@ const StyledButton = styled.button`
   transition: transform 0.3s, box-shadow 0.3s;
   font-family: 'Raleway', Sans-serif;
   overflow: hidden;
-  position: relative;
   position: relative;
 
   &:hover {
@@ -87,9 +84,6 @@ const StyledH1 = styled.h1`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,43 +173,27 @@ const Frentes = (props) => {
   const [materia, setMateria] = useState([]);
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
-  const [frentesAtuais, setFrentesAtuais] = useState([])
-  const [user, setUser] = useState('');
 
-  // obtendo o tipo de usuario
   useEffect(() => {
-        const token = localStorage.getItem('token');
-        setUser(token ? jwtDecode(token).tipoUsuario : '');
-      
+    axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
+      .then(response => {
+        setMateria(response.data);
+      })
+      .catch(err => {
+        console.error(err.message);
+      });
+  }, [mat.materias]);
 
-        window.addEventListener("storage", () => {
-            const token = localStorage.getItem('token');
-            setUser(token ? jwtDecode(token).tipoUsuario : '');
-        })
-    }, [user]);
-
-  // obtendo as materias cadastradas no banco de dados
-  axios
-    .get(`http://localhost:3003/materias/listMat/${mat.materias}`)
-    .then(response => {
-      setMateria(response.data);
-    })
-    .catch(err => {
-      console.error(err.message);
-    });
-
-  // funcao para guardar o estado da delecao
   const handleDelete = (nomeFrente) => {
     setMostrarConfirmacao(true);
     setFrenteParaDeletar(nomeFrente);
   };
 
-  // funcao de delecao, caso tenha confirmacao do usuario
   const confirmarDelecao = () => {
     axios.delete(
         `http://localhost:3003/materias/deleteFrente/${mat.materias}/${frenteParaDeletar}`
       )
-      .then(response => { // renderizando as frentes nao deletadas
+      .then(response => {
         console.log('Frente deleted successfully');
         setMateria(materia
                   .flatMap((materiaItem) => 
@@ -230,15 +208,12 @@ const Frentes = (props) => {
       });
   };
 
-  // mudar estado da delecao para falso
   const cancelarDelecao = () => {
     setMostrarConfirmacao(false);
     setFrenteParaDeletar(null);
   };
 
-  // funcao para criar um componente botao frente
   const FrenteButton = ({ frente }) => {
-    // variavel para redirecionar para a pagina desejada
     const pag = frente.nomeFrente === 'Adicionar frente'
       ? '/pagina-cadastro-frentes/'
       : '/pagina-aluno/';
@@ -264,14 +239,11 @@ const Frentes = (props) => {
     );
   };
 
-  // criando os botoes de frente
-  setFrentesAtuais(
-    materia
+  const frentesBotoes = materia
     .flatMap((materiaItem) => materiaItem.frentes.map((frente) => (
       <FrenteButton key={frente.nomeFrente} frente={frente} />
-    )))
-  )
-  // criando o botao de adicionar frente
+    )));
+
   const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
 
   return (
@@ -294,8 +266,8 @@ const Frentes = (props) => {
         )}
         <StyledContainer>
           <StyledH1>Frentes</StyledH1>
-          {frentesAtuais}
-          {user === 'administrador' && botaoAdicionar} 
+          {frentesBotoes}
+          {botaoAdicionar} 
         </StyledContainer>
       </ContentArea>
     </ContainerFrentes>
