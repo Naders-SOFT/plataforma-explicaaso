@@ -38,7 +38,7 @@ function Informacao(props) {
         .catch(err => {
             console.error(err.message)
         })
-    }, [materias])
+    }, [])
 
     return (
         <Container>
