@@ -93,7 +93,7 @@ function CardMateria(props) {
       <CardInfo>
         <CardFrentes fontSize={props.fontesSize}>{f}</CardFrentes> {/* Passando o tamanho da fonte como prop */}
       </CardInfo>
-      <StyledDeleteButton>
+      <StyledDeleteButton onClick={() => props.delete(props.materia)}>
         <IoMdTrash />
       </StyledDeleteButton>
     </Card>

@@ -190,7 +190,6 @@ const Frentes = (props) => {
   };
 
   const confirmarDelecao = () => {
-    // console.log(`http://localhost:3003/materias/deleteFrente/${mat.materias}/${frenteParaDeletar}`)
     axios.delete(
         `http://localhost:3003/materias/deleteFrente/${mat.materias}/${frenteParaDeletar}`
       )
