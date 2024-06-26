@@ -14,8 +14,10 @@ export const createPdf = async (req, res) => {
             novoNome: req.body.novoNome
         })
 
-        await pdfNovo.save()
+        await pdfNovo.save() // salvando no bd
 
+        // definindo o nome do bucket, pois separamos em bucket de provas
+        // e bucket de materiais
         const bucketName = req.body.frente === 'Provas' ? 'provas' : 'pdfs'
         
         // Upload no minio
@@ -60,7 +62,6 @@ export async function deletePdf(req, res) {
         // Deletando do bd
         await Pdf.findByIdAndDelete(req.params.idPdf)
 
-
         // Nome do arquivo a ser deletado do minio é o id do bd
         // Nome do bucket depende se o arquivo é prova ou material
         const bucketName = req.params.frente === 'Provas' ? 'provas' : 'pdfs'
@@ -78,7 +79,7 @@ export async function listPdfsFrente(req, res) {
         // Buscando pdfs no bd
         const pdfs = await Pdf.find({frente: req.params.frente})
 
-        const bucketName = req.body.frente === 'Provas' ? 'provas' : 'pdfs'
+        const bucketName = (req.params.frente) === 'Provas' ? 'provas' : 'pdfs'
 
         // Inserindo link assinado em cada objeto do banco de dados
         for (let pdf of pdfs) {

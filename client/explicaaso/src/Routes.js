@@ -16,6 +16,8 @@ import PaginaEditarPost from './pages/PaginaEditarPost'
 import Frentes from "./components/Disciplina/Frentes";
 import ProtectedRouteAdmin from "./ProtectedRoutes/ProtectedRouteAdmin";
 import ProtectedRouteProfessor from "./ProtectedRoutes/ProtectedRouteProfessor";
+import PaginaCadastroFrente from "./pages/PaginaCadastroFrente";
+import PaginaCadastroMaterias from './pages/PaginaCadastroMateria'
 
 
 function Roteador(props){
@@ -40,6 +42,8 @@ function Roteador(props){
             <Route exact path='/pagina-noticias/post/:idPost' element={<PaginaBlogPost isMobile={props.isMobile}/>} />
             <Route element={<ProtectedRouteAdmin/>}>
                 <Route path='/pagina-administrador' element={<PaginaAdministrador isMobile={props.isMobile}/>} />
+                <Route path='/pagina-cadastro-frentes/:materia/:adicionar' element={<PaginaCadastroFrente isMobile={props.isMobile} navigate={useNavigate}/>} />
+                <Route path='/pagina-cadastro-materia' element={<PaginaCadastroMaterias isMobile={props.isMobile} navigate={useNavigate}/>} />
             </Route>
             <Route element={<ProtectedRouteAdmin/>}>
                 <Route path='/pagina-administrador/cadastro' element={<PaginaCadastro isMobile={props.isMobile} navigate={useNavigate}/>} />
