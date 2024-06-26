@@ -28,6 +28,7 @@ const Container = styled.div`
     ${'' /* height: 100%; */}
 `
 function Informacao(props) {
+    // obtendo as materias do bd e passando pro props para container materia
     const [materias, setMaterias] = useState([])
     useEffect(() => {
         axios.get('http://localhost:3003/materias/listMat')
@@ -37,7 +38,7 @@ function Informacao(props) {
         .catch(err => {
             console.error(err.message)
         })
-    }, [])
+    }, [materias])
 
     return (
         <Container>

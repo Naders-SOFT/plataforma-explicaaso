@@ -83,7 +83,8 @@ const StyledDeleteButton = styled.button`
 
 function CardMateria(props) {
   const [user, setUser] = useState('');
-
+  // obtendo o tipo de usuario para renderizar, ou nao,
+  // o botao de deletar materia
   useEffect(() => {
       const token = localStorage.getItem('token');
       setUser(token ? jwtDecode(token).tipoUsuario : '');
@@ -95,6 +96,7 @@ function CardMateria(props) {
       })
   }, [user]);
 
+  // criando uma string com os nomes das frentes da materia
   const f = props.frentes.map(frt => frt.nomeFrente).join(' | ');
 
   return (

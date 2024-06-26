@@ -55,6 +55,7 @@ function ContainerMateria(props) {
     const [materia, setMateria] = useState([])
     const [confirmacaoDel, setConfirmacaDel] = useState(false)
 
+    // obtendo o tipo do usuario
     useEffect(() => {
         const token = localStorage.getItem('token');
         setUser(token ? jwtDecode(token).tipoUsuario : '');
@@ -66,6 +67,8 @@ function ContainerMateria(props) {
         })
     }, [user]);
 
+    // obtendo a materia lecionada do usuario, util para que professor nao tenha 
+    // acesso a todas as disciplinas
     useEffect(() => {
         const token = localStorage.getItem('token');
         setMateriaLecionada(token ? jwtDecode(token).materiaProf : '');
@@ -77,6 +80,7 @@ function ContainerMateria(props) {
         })
     }, [materiaLecionada]);
 
+    // funcao de deletar com window confirm
     const deletar = (id) => {
         if (window.confirm('Você quer realmente excluir essa matéria?')) {
             axios
@@ -87,6 +91,7 @@ function ContainerMateria(props) {
         }
     }
 
+    // renderizando os cards de materia de acordo com o tipo de usuario
     useEffect(() => {
         if (user !== 'professor') { // usuario é aluno ou adm
             setMateria(props.materias.map((mat) => (
@@ -110,8 +115,9 @@ function ContainerMateria(props) {
                 ))
             )
         }
-    }, [materia])
+    }, [user])
 
+    // criando o card de adicionar materia
     const cardAdicionar = 
     <div>
         <StyledLink to={'/pagina-cadastro-materia'}>
@@ -125,13 +131,13 @@ function ContainerMateria(props) {
             {props.isMobile &&
                 <MOBLMATERIAS>
                     {materia}
-                    {cardAdicionar}
+                    {user === 'administrador' &&  cardAdicionar}
                 </MOBLMATERIAS>
             }
             {!props.isMobile &&
                 <DSKMATERIAS>
                     {materia}
-                    {cardAdicionar}
+                    {user === 'administrador' && cardAdicionar}
                 </DSKMATERIAS>
             }
         </Container>

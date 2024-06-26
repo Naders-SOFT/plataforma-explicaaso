@@ -6,6 +6,7 @@ import axios from 'axios';
 import { IoMdTrash } from "react-icons/io";
 import imgPerfil from '../../../images/logos/perfil.jpg';
 import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
+import { jwtDecode } from 'jwt-decode';
 
 const ContainerFrentes = styled.div`
   display: ${({$isMobile}) => ($isMobile ? 'flex' : 'grid')};
@@ -179,7 +180,21 @@ const Frentes = (props) => {
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
   const [frentesAtuais, setFrentesAtuais] = useState([])
+  const [user, setUser] = useState('');
 
+  // obtendo o tipo de usuario
+  useEffect(() => {
+        const token = localStorage.getItem('token');
+        setUser(token ? jwtDecode(token).tipoUsuario : '');
+      
+
+        window.addEventListener("storage", () => {
+            const token = localStorage.getItem('token');
+            setUser(token ? jwtDecode(token).tipoUsuario : '');
+        })
+    }, [user]);
+
+  // obtendo as materias cadastradas no banco de dados
   axios
     .get(`http://localhost:3003/materias/listMat/${mat.materias}`)
     .then(response => {
@@ -189,16 +204,18 @@ const Frentes = (props) => {
       console.error(err.message);
     });
 
+  // funcao para guardar o estado da delecao
   const handleDelete = (nomeFrente) => {
     setMostrarConfirmacao(true);
     setFrenteParaDeletar(nomeFrente);
   };
 
+  // funcao de delecao, caso tenha confirmacao do usuario
   const confirmarDelecao = () => {
     axios.delete(
         `http://localhost:3003/materias/deleteFrente/${mat.materias}/${frenteParaDeletar}`
       )
-      .then(response => {
+      .then(response => { // renderizando as frentes nao deletadas
         console.log('Frente deleted successfully');
         setMateria(materia
                   .flatMap((materiaItem) => 
@@ -213,12 +230,15 @@ const Frentes = (props) => {
       });
   };
 
+  // mudar estado da delecao para falso
   const cancelarDelecao = () => {
     setMostrarConfirmacao(false);
     setFrenteParaDeletar(null);
   };
 
+  // funcao para criar um componente botao frente
   const FrenteButton = ({ frente }) => {
+    // variavel para redirecionar para a pagina desejada
     const pag = frente.nomeFrente === 'Adicionar frente'
       ? '/pagina-cadastro-frentes/'
       : '/pagina-aluno/';
@@ -244,14 +264,14 @@ const Frentes = (props) => {
     );
   };
 
-    
+  // criando os botoes de frente
   setFrentesAtuais(
     materia
     .flatMap((materiaItem) => materiaItem.frentes.map((frente) => (
       <FrenteButton key={frente.nomeFrente} frente={frente} />
     )))
   )
-
+  // criando o botao de adicionar frente
   const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
 
   return (
@@ -275,7 +295,7 @@ const Frentes = (props) => {
         <StyledContainer>
           <StyledH1>Frentes</StyledH1>
           {frentesAtuais}
-          {botaoAdicionar} 
+          {user === 'administrador' && botaoAdicionar} 
         </StyledContainer>
       </ContentArea>
     </ContainerFrentes>
