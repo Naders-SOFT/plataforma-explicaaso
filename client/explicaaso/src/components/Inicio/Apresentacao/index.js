@@ -3,6 +3,8 @@ import imagemFundo from '../../../images/background/fundoEESC.png';
 import LogoExpliCaaso from '../../Head/LogoExpliCaaso';
 import styled from 'styled-components';
 import svg from '../../../images/background/svgviewer-png-output.png'
+import background from '../../../images/background/fundoEESC-upscalled.png'
+import { useNavigate } from 'react-router-dom';
 
 const ApresentacaoContainer = styled.div`
   display: flex;
@@ -56,6 +58,9 @@ const Container = styled.div`
   background-color: black;
   position: relative;
   display: inline-block;
+  background-image: url(${background});
+  background-size: cover; 
+  background-position: center; 
 `;
 
 const ImgSvd = styled.img`
@@ -64,24 +69,48 @@ const ImgSvd = styled.img`
 
 const TextOverImage = styled.div`
   position: absolute;
-  top: 50%;
-  left: 40%;
+  top: 33%;
+  left: 23%;
   transform: translate(-50%, -50%);
-  color: green;
-  font-size: 24px;
+  color: black;
+  font-size: 3.5rem;
+  font-family: "Crete Round";
+  text-decoration: underline;
+`;
+
+const TextOverImage2 = styled.div`
+  position: absolute;
+  top: 48%;
+  left: 23%;
+  transform: translate(-50%, -50%);
+  color: #DDB411;
+  font-size: 5rem;
+  font-family: "Mochiy Pop One"
 `;
 
 const ImageWithTextContainer = styled.div`
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 `;
 
-const ImageWithText = ({ src, alt, children }) => (
-  <ImageWithTextContainer>
-    <ImgSvd src={src} alt={alt} />
-    <TextOverImage>{children}</TextOverImage>
-  </ImageWithTextContainer>
-);
+const StyledButton = styled.button`
+  position: absolute;
+  top: 70%;
+  left: 22%;
+  width: 10%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  color: black;
+  background-color: #FFCC00;
+  border: none;
+  border-radius: 30%;
+  cursor: pointer;
+  font-family: "Crete Round"
+`;
 
 
 
@@ -140,11 +169,19 @@ function Apresentacao() {
     return () => clearTimeout(intervalo);
   }, [indiceLetra, indiceTexto]);
 
+  const navigate = useNavigate()
+  const botaoNavegacao = () => {
+    navigate('/pagina-sobre-nos')
+  }
+
   return (
     <Container>
-      <ImageWithText src={svg}>
-        Your text here
-      </ImageWithText>
+      <ImageWithTextContainer>
+        <ImgSvd src={svg} alt='naosei' />
+        <TextOverImage>Cusinho Popular</TextOverImage>
+        <TextOverImage2>Explicaaso</TextOverImage2>
+        <StyledButton onClick={botaoNavegacao}>Saiba mais</StyledButton>
+      </ImageWithTextContainer>
     </Container>
   )
 }
