@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IoMdTrash } from "react-icons/io";
 import imgPerfil from '../../../images/logos/perfil.jpg';
-import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
+// import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
 
 const ContainerFrentes = styled.div`
   display: ${({$isMobile}) => ($isMobile ? 'flex' : 'grid')};
@@ -118,7 +118,7 @@ const botoes = [
 
 const infoAdicionar = {
   nomeFrente: 'Adicionar frente',
-  imgFrente: imgAdc
+  // imgFrente: imgAdc
 }
 
 const ConfirmacaoContainer = styled.div`

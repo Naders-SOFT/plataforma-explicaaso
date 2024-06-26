@@ -20,12 +20,18 @@ const Input = styled.input`
   border: none;
   border-radius: 4px;
   margin: 10px 0 0 0;
-  height: 30px;
+  height: 40px;
+  font-size: 16px;
   background-color: #265a9b;
   opacity: 100%;
   color: white;
   padding-left: 10px;
   outline: none;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  }
 `
 
 function InputComponent(props) {
