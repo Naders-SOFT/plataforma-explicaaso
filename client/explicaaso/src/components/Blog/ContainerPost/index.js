@@ -3,8 +3,6 @@ import BlocoPost from "../BlocoPost";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
 import { useEffect, useState } from "react";
 import { jwtDecode } from 'jwt-decode';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const ContainerPag = styled.div`
     align-items: center;
@@ -38,7 +36,6 @@ const BTADICIONAR = styled.button`
 
 function ContainerPost(props) {
     const [editor, setEditor] = useState('');
-    // const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('token');

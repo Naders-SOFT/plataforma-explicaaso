@@ -74,10 +74,10 @@ export async function updateblogPost(req, res) {
 export async function deleteblogPost(req, res) {
     try {
       //deleta o post do bd
-      await blogPost.findByIdAndDelete(req.params.idblogPost);
+      await blogPost.findByIdAndDelete(req.params.idBlogPost);
       
       //deleta a imagem do post do minio
-      deleteFile(req.params.idblogPost);
+    //   deleteFile(req.params.idblogPost);
   
       res.status(200);
       res.send("Postagem do blog deletada com sucesso");
