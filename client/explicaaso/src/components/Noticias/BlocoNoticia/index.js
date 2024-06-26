@@ -8,7 +8,7 @@ const BlocoInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 40px;
+  margin: 10px;
   width: ${({ isMobile }) => (isMobile ? '90%' : '70%')};
   padding: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
