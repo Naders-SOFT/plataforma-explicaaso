@@ -59,7 +59,7 @@ export async function listnoticiaPostById(req, res) {
 
 export async function updatenoticiaPost(req, res) {
     try {
-        await blogPost.findByIdAndUpdate(req.params.idnoticiaPost, req.body);
+        await noticiaPost.findByIdAndUpdate(req.params.idnoticiaPost, req.body);
 
         res.status(200);
         res.send("Postagem de noticia modificada com sucesso");
@@ -71,7 +71,7 @@ export async function updatenoticiaPost(req, res) {
 
 export async function deletenoticiaPost(req, res) {
     try {
-      await blogPost.findByIdAndDelete(req.params.idnoticiaPost);
+      await noticiaPost.findByIdAndDelete(req.params.idnoticiaPost);
   
       res.status(200);
       res.send("Postagem de noticia deletada com sucesso");
