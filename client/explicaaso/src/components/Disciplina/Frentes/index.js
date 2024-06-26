@@ -33,8 +33,8 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  width: 95%;
-  margin-left: 0;
+  width: 90%;
+  margin: 20px 0;
   padding: 15px;
   display: flex;
   flex-direction: column;
