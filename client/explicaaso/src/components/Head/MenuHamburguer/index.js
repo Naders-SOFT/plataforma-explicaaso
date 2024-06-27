@@ -63,7 +63,7 @@ const MenuList = styled.ul`
   transform: translateY(${({ $active }) => ($active ? "0" : "-10px")});
   display: ${({ $active }) => ($active ? 'inline' : 'none')};
   transition: opacity 0.9s ease, transform 0.9s ease; 
-  z-index: 2;
+  z-index: 10;
   flex-direction: column;
   color: white;
   right: 0;
