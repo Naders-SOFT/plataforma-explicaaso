@@ -45,10 +45,10 @@ function Formulario(props) {
     return (
         <ContainerFormulario>
             <ButtonContainer>
-                <ButtonLink href="mailto:seuemail@example.com">
+                <ButtonLink href="mailto:explicaaso@gmail.com">
                     <ButtonIcon><CiMail /></ButtonIcon>
                 </ButtonLink>
-                <ButtonLink href="https://www.instagram.com/seuinstagram/" $instagram={true}>
+                <ButtonLink href="https://www.instagram.com/explicaaso/" $instagram={true}>
                     <ButtonIcon><CiInstagram /></ButtonIcon>
                 </ButtonLink>
             </ButtonContainer>

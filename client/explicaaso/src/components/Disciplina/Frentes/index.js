@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import SideBar from '../../Aluno/SideBar';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState, useContext } from 'react';
 import { IoMdTrash } from "react-icons/io";
 import imgPerfil from '../../../images/logos/perfil.jpg';
-// import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
+import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
+import { AuthContext } from '../../../App';
+import { jwtDecode } from 'jwt-decode';
 
 const ContainerFrentes = styled.div`
   display: ${({$isMobile}) => ($isMobile ? 'flex' : 'grid')};
@@ -20,7 +21,6 @@ const ContentArea = styled.div`
   display: flex;
   flex-direction: column; 
   width: 100%;
-  padding: 20px; 
 `;
 
 const StyledContainer = styled.div`
@@ -31,7 +31,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  width: 90%;
+  width: 100%;
   margin: 20px 0;
   padding: 15px;
   display: flex;
@@ -170,13 +170,15 @@ const BotaoConfirmacao = styled.button`
 
 const Frentes = (props) => {
   const mat = useParams();
+  const authAxios = useContext(AuthContext);
   const [materia, setMateria] = useState([]);
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
-  const [frentesBotoes, setFrentesBotoes] = useState([])
+  const [frentesBotoes, setFrentesBotoes] = useState([]);
+  const [user, setUser] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
+    authAxios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
       .then(response => {
         setMateria(response.data);
       })
@@ -185,23 +187,33 @@ const Frentes = (props) => {
       });
   }, [mat.materias]);
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setUser(token ? jwtDecode(token).tipoUsuario : '');
+
+    window.addEventListener("storage", () => {
+      const token = localStorage.getItem('token');
+      setUser(token ? jwtDecode(token).tipoUsuario : '');
+    });
+  }, []);
+
   const handleDelete = (nomeFrente) => {
     setMostrarConfirmacao(true);
     setFrenteParaDeletar(nomeFrente);
   };
 
   const confirmarDelecao = () => {
-    axios.delete(
+    authAxios.delete(
         `http://localhost:3003/materias/deleteFrente/${mat.materias}/${frenteParaDeletar}`
       )
       .then(response => {
         console.log('Frente deleted successfully');
         setMateria(prevMateria => 
-        prevMateria.map(materiaItem => ({
-          ...materiaItem,
-          frentes: materiaItem.frentes.filter(frente => frente.nomeFrente !== frenteParaDeletar)
-        }))
-      );
+          prevMateria.map(materiaItem => ({
+            ...materiaItem,
+            frentes: materiaItem.frentes.filter(frente => frente.nomeFrente !== frenteParaDeletar)
+          }))
+        );
       })
       .catch(error => {
         console.error('Error deleting Frente:', error);
@@ -222,19 +234,19 @@ const Frentes = (props) => {
       ? '/pagina-cadastro-frentes/'
       : '/pagina-aluno/';
 
-      return (
-        <StyledButton key={frente.nomeFrente}>
-          <StyledLink to={pag + mat.materias + '/' + frente.nomeFrente}>
-            <Card>
-              {typeof frente.imgFrente === 'string' ? (
-                <img src={frente.imgFrente} alt={frente.nomeFrente} />
-              ) : (
-                frente.imgFrente // Renderiza o ícone se for um elemento React
-              )}
-              <NomeFrente>{frente.nomeFrente}</NomeFrente>
-            </Card>
-          </StyledLink>
-        {frente.nomeFrente !== 'Adicionar frente' && (
+    return (
+      <StyledButton key={frente.nomeFrente}>
+        <StyledLink to={pag + mat.materias + '/' + frente.nomeFrente}>
+          <Card>
+            {typeof frente.imgFrente === 'string' ? (
+              <img src={frente.imgFrente} alt={frente.nomeFrente} />
+            ) : (
+              frente.imgFrente
+            )}
+            <NomeFrente>{frente.nomeFrente}</NomeFrente>
+          </Card>
+        </StyledLink>
+        {user === 'administrador' && frente.nomeFrente !== 'Adicionar frente' && (
           <StyledDeleteButton onClick={() => handleDelete(frente.nomeFrente)}>
             <IoMdTrash />
           </StyledDeleteButton>
@@ -244,17 +256,18 @@ const Frentes = (props) => {
   };
 
   useEffect(() => {
-    setFrentesBotoes(materia
-      .flatMap((materiaItem) => materiaItem.frentes.map((frente) => (
-        <FrenteButton key={frente.nomeFrente} frente={frente} />
-      )))
-    );
-  }, [materia])
+    const frentes = materia.flatMap((materiaItem) => materiaItem.frentes.map((frente) => (
+      <FrenteButton key={frente.nomeFrente} frente={frente} />
+    )));
 
-  const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
+    setFrentesBotoes(user === 'administrador'
+      ? [...frentes, <FrenteButton key="adicionar" frente={infoAdicionar} />]
+      : frentes
+    );
+  }, [materia, user]); 
 
   return (
-    <ContainerFrentes>
+    <ContainerFrentes $isMobile={props.isMobile}>
       <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil} />
       <ContentArea> 
         {mostrarConfirmacao && (
@@ -273,8 +286,7 @@ const Frentes = (props) => {
         )}
         <StyledContainer>
           <StyledH1>Frentes</StyledH1>
-          {frentesBotoes}
-          {botaoAdicionar} 
+          {frentesBotoes} 
         </StyledContainer>
       </ContentArea>
     </ContainerFrentes>

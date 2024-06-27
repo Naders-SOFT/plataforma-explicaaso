@@ -25,8 +25,8 @@ const CardFrentes = styled.p`
 `;
 
 const Card = styled.li`
-  width: ${props => props.isMobile ? '60%' : '100%'};
-  height: auto;
+  width: ${props => props.isMobile ? '400px' : '100%'};
+  height: ${props => props.isMobile ? '350px' : '100%'};
   display: flex;
   flex-direction: column;
   color: black;
@@ -51,34 +51,14 @@ const Card = styled.li`
 `;
 
 const ImgCard = styled.img`
-  width: 100%;
-  height: ${props => props.isMobile ? '50%' : '100%'};
+  width: ${props => props.isMobile ? '100%' : '100%'};
+  height: ${props => props.isMobile ? '55%' : '100%'};
   border-radius: 6px 6px 0px 0px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.91;
-`;
-
-const StyledDeleteButton = styled.button`
-  background-color: white;
-  border: none;
-  color: #dc3545;
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  padding: 6px;
-  border-radius: 50%;
-
-  &:hover {
-    color: #c82333;
-  }
-
-  svg {
-    font-size: 16px;
-  }
+  max-width: 900px;
+  max-height: 600px;
 `;
 
 function CardMateria(props) {
@@ -110,13 +90,6 @@ function CardMateria(props) {
       <CardInfo>
         <CardFrentes fontSize={props.fontesSize}>{f}</CardFrentes> {/* Passando o tamanho da fonte como prop */}
       </CardInfo>
-      {
-        user === 'administrador' && (
-        <StyledDeleteButton onClick={() => props.delete(props.materia)}>
-          <IoMdTrash />
-        </StyledDeleteButton>
-        )
-      }
     </Card>
   );
 }

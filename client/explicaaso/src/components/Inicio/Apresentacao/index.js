@@ -2,34 +2,23 @@ import React, { useState, useEffect } from 'react';
 import imagemFundo from '../../../images/background/fundoEESC.png';
 import LogoExpliCaaso from '../../Head/LogoExpliCaaso';
 import styled from 'styled-components';
+import svg from '../../../images/background/svgviewer-png-output.png'
+import background from '../../../images/background/fundoEESC-upscalled.png'
+import { useNavigate } from 'react-router-dom';
 
 const ApresentacaoContainer = styled.div`
   display: flex;
-  width: 100%;
-  min-height: 100vh;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
 
-const Fundo = styled.div`
-  position: absolute;
-  margin: 2px 0 0 0;
-  top: 95px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(${imagemFundo});
-  background-size: cover;
-  filter: blur(4px);
-  opacity: 0.7;
-`;
 
 const Titulos = styled.div`
-  display: flex;
-  flex-direction: column;
-  z-index: 1;
+  text-align: center;
+  z-index: 2;
+
 `;
 
 const TextoDinamico = styled.h1`
@@ -40,7 +29,91 @@ const TextoDinamico = styled.h1`
   font-weight: ${props => props.peso};
 `;
 
-function Apresentacao() {
+const FundoVale = styled.svg`
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  position: relative;
+  display: inline-block;
+  background-image: url(${background});
+  background-size: cover; 
+  background-position: center; 
+`;
+
+const ImgSvd = styled.img`
+  width: 80%;
+`
+
+const TextOverImage = styled.div`
+  position: absolute;
+  top: 33%;
+  left: 23%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 3vw;
+  font-family: "Crete Round";
+  text-decoration: underline;
+`;
+
+const TextOverImage2 = styled.div`
+  position: absolute;
+  top: 48%;
+  left: 23%;
+  transform: translate(-50%, -50%);
+  color: #DDB411;
+  font-size: 4.5vw;
+  font-family: "Mochiy Pop One"
+`;
+
+const ImageWithTextContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+`;
+
+const StyledButton = styled.button`
+  position: absolute;
+  top: 70%;
+  left: 22%;
+  width: 10vw;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  font-size: 1vw;
+  color: black;
+  background-color: #FFCC00;
+  border: none;
+  border-radius: 30%;
+  cursor: pointer;
+  font-family: "Crete Round"
+`;
+
+const BlurredDiv = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(${background});
+  background-size: cover;
+  filter: blur(5px);
+  z-index: 0;
+`;
+
+const TituloMobile = styled.p`
+  color: white;
+  font-size: 300%;
+  font-family: "Crete Round";
+  z-index: 2;
+`
+
+function Apresentacao(props) {
   const textos = [
     {
       texto: "CURSINHO POPULAR",
@@ -95,32 +168,35 @@ function Apresentacao() {
     return () => clearTimeout(intervalo);
   }, [indiceLetra, indiceTexto]);
 
+  const navigate = useNavigate()
+  const botaoNavegacao = () => {
+    navigate('/pagina-sobre-nos')
+  }
+
   return (
-    <ApresentacaoContainer>
-      <Fundo />
-      <Titulos>
-        <TextoDinamico
-          cor={textos[0].cor}
-          tamanho={textos[0].tamanho}
-          margem={textos[0].margem}
-          fonte={textos[0].fonte}
-          peso={textos[0].peso}
-        >
-          {texto1}
-        </TextoDinamico>
-        <TextoDinamico
-          cor={textos[1].cor}
-          tamanho={textos[1].tamanho}
-          margem={textos[1].margem}
-          fonte={textos[1].fonte}
-          peso={textos[1].peso}
-        >
-          {texto2}
-        </TextoDinamico>
-      </Titulos>
-      <LogoExpliCaaso size="180px" />
-    </ApresentacaoContainer>
-  );
+    <div>
+    {!props.isMobile && (
+      <Container>
+        <ImageWithTextContainer>
+          <ImgSvd src={svg} alt='naosei'/>
+          <TextOverImage>Cursinho Popular</TextOverImage>
+          <TextOverImage2>Explicaaso</TextOverImage2>
+          <StyledButton onClick={botaoNavegacao}>Saiba mais</StyledButton>
+        </ImageWithTextContainer>
+      </Container>
+    )}
+    {props.isMobile && (
+      <ApresentacaoContainer>
+        <BlurredDiv/>
+        <Titulos>
+          <TituloMobile>Cursinho Popular</TituloMobile>
+          <TituloMobile>Explicaaso</TituloMobile>
+        </Titulos>
+        <LogoExpliCaaso size='180px'/>
+      </ApresentacaoContainer>
+      )}
+    </div>
+  )
 }
 
 export default Apresentacao;

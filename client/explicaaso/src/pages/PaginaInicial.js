@@ -14,7 +14,7 @@ const PaginaContainer= styled.div`
 function PaginaInicial(props) {
   return (
     <PaginaContainer>
-      <Apresentacao/>
+      <Apresentacao isMobile={props.isMobile}/>
     </PaginaContainer>
   );
 }

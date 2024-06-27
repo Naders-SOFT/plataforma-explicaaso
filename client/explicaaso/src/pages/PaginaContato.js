@@ -73,9 +73,9 @@ function PaginaContato(props) {
                         <br />
                         não hesite em nos contatar.
                         <br />
-                        Preencha o formulário abaixo
+                        Entre em contato conosco através das nossas redes sociais ou pelo email.
                         <br />
-                        e entraremos em contato o mais breve possível.
+                        Responderemos o mais breve possível.
                     </P1>
                     <Formulario isMobile={props.isMobile}/>
                 </STYLCONTACTFORM>
