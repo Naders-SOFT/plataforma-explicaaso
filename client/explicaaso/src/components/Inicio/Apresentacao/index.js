@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import imagemFundo from '../../../images/background/fundoEESC.png';
 import LogoExpliCaaso from '../../Head/LogoExpliCaaso';
 import styled from 'styled-components';
 import svg from '../../../images/background/svgviewer-png-output.png'
@@ -14,26 +12,10 @@ const ApresentacaoContainer = styled.div`
   height: 100vh;
 `;
 
-
 const Titulos = styled.div`
   text-align: center;
   z-index: 2;
 
-`;
-
-const TextoDinamico = styled.h1`
-  color: ${props => props.cor};
-  font-size: ${props => props.tamanho};
-  margin: ${props => props.margem};
-  font-family: ${props => props.fonte};
-  font-weight: ${props => props.peso};
-`;
-
-const FundoVale = styled.svg`
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 `;
 
 const Container = styled.div`
@@ -113,60 +95,6 @@ const TituloMobile = styled.p`
 `
 
 function Apresentacao(props) {
-  const textos = [
-    {
-      texto: "CURSINHO POPULAR",
-      cor: "#FFCC00",
-      tamanho: "52px",
-      margem: "2px 0",
-      fonte: "'Crete Round', serif",
-      peso: 200,
-    },
-    {
-      texto: "ExpliCaaso",
-      cor: "white",
-      tamanho: "80px",
-      margem: "0 0 2px 0",
-      fonte: "'Carrois Gothic', sans-serif",
-      peso: 300,
-    },
-  ];
-
-  const [texto1, setTexto1] = useState('');
-  const [texto2, setTexto2] = useState('');
-  const [indiceTexto, setIndiceTexto] = useState(0);
-  const [indiceLetra, setIndiceLetra] = useState(0);
-
-  useEffect(() => {
-    const digitar = () => {
-      const textoCompleto = textos[indiceTexto].texto;
-
-      if (indiceLetra < textoCompleto.length) {
-        if (indiceTexto === 0) {
-          setTexto1(textoCompleto.slice(0, indiceLetra + 1));
-        } else {
-          setTexto2(textoCompleto.slice(0, indiceLetra + 1));
-        }
-        setIndiceLetra(indiceLetra + 1);
-      } else {
-        setTimeout(() => {
-          if (indiceTexto === textos.length - 1) {
-            setIndiceTexto(0);
-            setTexto1('');
-            setTexto2('');
-          } else {
-            setIndiceTexto(indiceTexto + 1);
-          }
-          setIndiceLetra(0);
-        }, 2000); // 2 segundos
-      }
-    };
-
-    const intervalo = setTimeout(digitar, indiceLetra === 0 ? 0 : 100);
-
-    return () => clearTimeout(intervalo);
-  }, [indiceLetra, indiceTexto]);
-
   const navigate = useNavigate()
   const botaoNavegacao = () => {
     navigate('/pagina-sobre-nos')
