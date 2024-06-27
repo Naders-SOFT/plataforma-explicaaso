@@ -8,33 +8,17 @@ import { useNavigate } from 'react-router-dom';
 
 const ApresentacaoContainer = styled.div`
   display: flex;
-  width: 100%;
-  min-height: 100vh;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
 
-const Fundo = styled.div`
-  position: absolute;
-  margin: 2px 0 0 0;
-  top: 95px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(${imagemFundo});
-  background-size: cover;
-  filter: blur(4px);
-  opacity: 0.7;
-`;
 
 const Titulos = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 2;
+
 `;
 
 const TextoDinamico = styled.h1`
@@ -112,7 +96,24 @@ const StyledButton = styled.button`
   font-family: "Crete Round"
 `;
 
-function Apresentacao() {
+const BlurredDiv = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(${background});
+  background-size: cover;
+  filter: blur(5px);
+  z-index: 0;
+`;
+
+const TituloMobile = styled.p`
+  color: white;
+  font-size: 300%;
+  font-family: "Crete Round";
+  z-index: 2;
+`
+
+function Apresentacao(props) {
   const textos = [
     {
       texto: "CURSINHO POPULAR",
@@ -173,14 +174,28 @@ function Apresentacao() {
   }
 
   return (
-    <Container>
-      <ImageWithTextContainer>
-        <ImgSvd src={svg} alt='naosei' />
-        <TextOverImage>Cusinho Popular</TextOverImage>
-        <TextOverImage2>Explicaaso</TextOverImage2>
-        <StyledButton onClick={botaoNavegacao}>Saiba mais</StyledButton>
-      </ImageWithTextContainer>
-    </Container>
+    <div>
+    {!props.isMobile && (
+      <Container>
+        <ImageWithTextContainer>
+          <ImgSvd src={svg} alt='naosei'/>
+          <TextOverImage>Cusinho Popular</TextOverImage>
+          <TextOverImage2>Explicaaso</TextOverImage2>
+          <StyledButton onClick={botaoNavegacao}>Saiba mais</StyledButton>
+        </ImageWithTextContainer>
+      </Container>
+    )}
+    {props.isMobile && (
+      <ApresentacaoContainer>
+        <BlurredDiv/>
+        <Titulos>
+          <TituloMobile>Cusinho Popular</TituloMobile>
+          <TituloMobile>Explicaaso</TituloMobile>
+        </Titulos>
+        <LogoExpliCaaso size='180px'/>
+      </ApresentacaoContainer>
+      )}
+    </div>
   )
 }
 
