@@ -136,11 +136,11 @@ No guia de instalação a seguir, vamos utilizar comandos do linux
    npm run start
    ```
 3. Agora, abra outro terminal e instale as dependências no front-end
-```sh
-  cd client/explicaaso
-  npm install
-  npm run start
-```
+  ```sh
+    cd client/explicaaso
+    npm install
+    npm run start
+  ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
