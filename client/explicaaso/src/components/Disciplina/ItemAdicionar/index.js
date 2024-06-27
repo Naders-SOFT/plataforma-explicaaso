@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from 'axios';
 import { useState } from 'react';
 
+// estiliza o container do item
 const ItemContainer = styled.li`
     width: 100%;
     display: flex;
@@ -14,6 +15,7 @@ const ItemContainer = styled.li`
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 `;
 
+// estiliza o formulário
 const Formulario = styled.form`
     width: 80%;
     max-width: 450px;
@@ -26,6 +28,7 @@ const Formulario = styled.form`
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 `;
 
+// estiliza o label para escolher arquivo
 const EscolherArqLabel = styled.label`
     cursor: pointer;
     color: darkcyan;
@@ -42,10 +45,12 @@ const EscolherArqLabel = styled.label`
     }
 `;
 
+// estiliza o input para escolher arquivo
 const EscolherArq = styled.input`
     display: none;
 `;
 
+// estiliza o input de texto
 const InputText = styled.input`
     padding: 1rem;
     border: 2px solid #ddd;
@@ -61,6 +66,7 @@ const InputText = styled.input`
     }
 `;
 
+// estiliza o botão de enviar
 const BotaoEnviar = styled.button`
     display: flex;
     align-items: center;
@@ -79,6 +85,7 @@ const BotaoEnviar = styled.button`
     }
 `;
 
+// estiliza o nome do arquivo
 const NomeArquivo = styled.p`
     margin-top: -1rem;
     color: #555;
@@ -87,25 +94,26 @@ const NomeArquivo = styled.p`
 `;
 
 function ItemAdicionar(props) {
-    const [file, setFile] = useState(null);
-    const [novoNome, setNovoNome] = useState("");
+    const [file, setFile] = useState(null); // estado para armazenar o arquivo
+    const [novoNome, setNovoNome] = useState(""); // estado para armazenar o novo nome do arquivo
   
+    // função para lidar com o submit do formulário
     const submit = async event => {
         event.preventDefault();
     
         const formData = new FormData();
-        formData.append("arq-pdf", file);
-        formData.append("disciplina", props.tituloDisciplina);
-        formData.append("frente", props.tituloFrente);
-        formData.append('novoNome', novoNome);
+        formData.append("arq-pdf", file); // adiciona o arquivo ao FormData
+        formData.append("disciplina", props.tituloDisciplina); // adiciona a disciplina ao FormData
+        formData.append("frente", props.tituloFrente); // adiciona a frente ao FormData
+        formData.append('novoNome', novoNome); // adiciona o novo nome ao FormData
 
         try {
             await axios.post("http://localhost:3003/pdf/posts", formData, {
                 headers: {'Content-Type': 'multipart/form-data'}
             });
-            window.location.reload();
+            window.location.reload(); // recarrega a página após enviar o formulário
         } catch (error) {
-            console.error(error.response.data);
+            console.error(error.response.data); // exibe erro no console
         }
     };
 
