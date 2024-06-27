@@ -65,9 +65,12 @@ function PaginaEditarPost(props) {
     const [titulo, setTitulo] = useState('');
     const [texto, setTexto] = useState('');
     const [autorUpdate, setAutor] = useState('');
-    const [loaded, setLoaded] = useState(false);
+    const [loaded, setLoaded] = useState(false); //Garantia de requisição única
     const navigate = useNavigate();
     const authAxios = useContext(AuthContext);
+    
+    //Editor do Tiptap. Utilizamos extensões pré configuradas
+    //para habilitar opções de edição no input de texto
     const editor = useEditor({
         extensions:[
           StarterKit.configure({
@@ -87,6 +90,8 @@ function PaginaEditarPost(props) {
           })
         ],
 
+        //Quando o texto interno do editor é alterado, alteramos
+        //o State texto
         onUpdate: ({editor}) => {
           const html = editor.getHTML();
           setTexto(html);
@@ -94,6 +99,10 @@ function PaginaEditarPost(props) {
       }
     );
 
+    //Nesse Effect queremos fazer a requisição do post uma única vez e
+    //colocar o conteúdo em texto da base de dados no editor. Se o ID
+    //do post não existe ou o conteúdo já foi carregado, não fazemos
+    //a requisição.
     useEffect(() => {
       if(idPost && !loaded){
         authAxios.get('http://localhost:3003/blog/list/'+idPost)
@@ -113,6 +122,7 @@ function PaginaEditarPost(props) {
       }
     }, [idPost, editor, texto]);
   
+    //Função que faz a requisição para criar um post na base de dados
     const criarPost = async (e) => {
       e.preventDefault();
       const token = localStorage.getItem('token');
@@ -139,6 +149,8 @@ function PaginaEditarPost(props) {
         });
     }
 
+    //Função que faz a requisição para atualizar o post da base de dados,
+    //sendo o post já carregado anteriormente no Effect
     const updatePost = async (e) => {
       e.preventDefault();
 
@@ -155,7 +167,6 @@ function PaginaEditarPost(props) {
           },
         })
         .then(() => {
-          console.log(texto);
           console.log('Feito o update');
           navigate('/pagina-blog');
         })

@@ -110,13 +110,14 @@ function BlocoPost({ isMobile, titulopost, textopost, autorpost, datapost, idPos
         }
     }
 
+    //Faz a requisição para remover uma notícia no clique do usuário
     const handleDelete = async () => {
       // Requisicao de DELETE
       await authAxios.delete('http://localhost:3003/noticia/delete/'+idPost)
       .then(() => {
           console.log('Noticia post deletado com sucesso');
 
-          // Removendo o pdf que foi deletado
+          // Removendo a notícia que foi deletada
           navigate('/pagina-noticias');
       })
       .catch(error => {

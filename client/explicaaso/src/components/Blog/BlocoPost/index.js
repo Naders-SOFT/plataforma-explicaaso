@@ -121,13 +121,14 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
         }
     }
     
+    //Faz a requisição para remover um post no clique do usuário
     const handleDelete = async () => {
         // Requisicao de DELETE
         await authAxios.delete('http://localhost:3003/blog/delete/'+idPost)
         .then(() => {
             console.log('Blog post deletado com sucesso');
 
-            // Removendo o pdf que foi deletado
+            // Removendo o post que foi deletado
             navigate('/pagina-blog');
         })
         .catch(error => {
@@ -137,6 +138,7 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
     
     return(
         <BlocoInfo $isMobile={isMobile}>
+            {/*Se o usuário autenticado é admin ou professor, ele pode editar ou remover posts*/}
             {(editor==='administrador' || editor === 'professor') &&
             <BTDIV>
             <LINK to={`/pagina-blog/editar-post/${idPost}`} style={{ textDecoration: 'none' }}>
