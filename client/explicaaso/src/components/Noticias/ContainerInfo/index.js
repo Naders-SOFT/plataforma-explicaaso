@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import BlocoNoticia from "../BlocoNoticia";
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import { NavLink as Link } from "react-router-dom";
+
 
 const ContainerPag = styled.div`
   display: flex;
@@ -26,7 +28,7 @@ const BTDIV = styled.div`
 `
 
 const BTADICIONAR = styled.button`
-  width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
+  width: 100%;
   margin: 20px 0;
   padding: 10px 0;
   background-color: #FFCC00;
@@ -42,31 +44,23 @@ const BTADICIONAR = styled.button`
   &:hover {
     background-color: #ffbf00;
   }
-`;
+`
 
-const ListItem = styled.li`
-  list-style: none;
-  margin: 10px 0;
-`;
 
-const Link = styled.a`
-  color: #005bb5;
+const LINK = styled(Link)`
+  width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
+  margin: 20px 0;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  color: #003466;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.5rem')};
+  font-weight: 600;
+  text-align: center;
   text-decoration: none;
-  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.1rem')};
-  font-family: 'Helvetica Neue', sans-serif;
-  transition: color 0.3s;
-
-  &:hover {
-    color: #FF69B4;
-    text-decoration: underline;
-  }
-
-  &:focus, &:active {
-    color: #003366;
-    outline: none;
-    text-decoration: underline;
-  }
-`;
+  cursor: pointer;
+  transition: background-color 0.3s;
+`
 
 function ContainerInfo({isMobile, noticiaPosts}) {
   const [editor, setEditor] = useState('');
@@ -110,9 +104,9 @@ function ContainerInfo({isMobile, noticiaPosts}) {
     <ContainerPag>
       <TITLEPAG $isMobile={isMobile}>Notícias</TITLEPAG>
       {(editor == 'administrador' || editor == 'professor') &&
-            <BTDIV $isMobile={isMobile}>
+            <LINK to='/pagina-noticias/criar-post' style={{ textDecoration: 'none' }}>
                 <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
-            </BTDIV>
+            </LINK>
             }
         {renderContent};
     </ContainerPag>

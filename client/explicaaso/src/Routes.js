@@ -31,7 +31,7 @@ function Roteador(props){
             <Route path='/pagina-noticias' element={<PaginaNoticias isMobile={props.isMobile}/>} />
             <Route element={<ProtectedRouteProfessor/>}>
                 <Route path='/pagina-noticias/criar-post' element={<PaginaEditarPostNoticia isMobile={props.isMobile} navigate={useNavigate}/>} />
-                <Route path='/pagina-noticias/editar-post' element={<PaginaEditarPostNoticia isMobile={props.isMobile} navigate={useNavigate}/>} />
+                <Route path='/pagina-noticias/editar-post/:idPost' element={<PaginaEditarPostNoticia isMobile={props.isMobile} navigate={useNavigate}/>} />
             </Route>
 
             <Route path='/pagina-blog' element={<PaginaBlog isMobile={props.isMobile}/>} />

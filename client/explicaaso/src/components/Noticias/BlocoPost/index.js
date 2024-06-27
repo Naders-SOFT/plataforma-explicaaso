@@ -110,41 +110,30 @@ function BlocoPost({ isMobile, titulopost, textopost, autorpost, datapost, idPos
         }
     }
 
-    const handleDelete = (id) => {
+    const handleDelete = async () => {
       // Requisicao de DELETE
-      authAxios.delete('http://localhost:3003/noticia/delete/'+id)
+      await authAxios.delete('http://localhost:3003/noticia/delete/'+idPost)
       .then(() => {
           console.log('Noticia post deletado com sucesso');
 
-          // Removendo o post que foi deletado
+          // Removendo o pdf que foi deletado
           navigate('/pagina-noticias');
       })
       .catch(error => {
-          console.error('Error deleting Noticia post:', error);
+          console.error('Error deleting noticia post:', error);
       })
   }
     
     return(
         <BlocoInfo $isMobile={isMobile}>
-            {(editor == 'administrador' || editor == 'professor') &&
+          {(editor == 'administrador' || editor == 'professor') &&
             <BTDIV>
             <LINK to={`/pagina-noticias/editar-post/${idPost}`} style={{ textDecoration: 'none' }}>
               <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
             </LINK>
-            <DELETEBUTTON $isMobile={isMobile} onClick={() => {
-              authAxios.delete('http://localhost:3003/noticia/delete/'+idPost)
-        .then(() => {
-            console.log('Noticia post deletado com sucesso');
-
-            // Removendo o pdf que foi deletado
-            navigate('/pagina-noticias');
-        })
-        .catch(error => {
-            console.error('Error deleting noticia post:', error);
-        })
-            }}>Deletar</DELETEBUTTON>
+            <DELETEBUTTON $isMobile={isMobile} onClick={handleDelete}>Deletar</DELETEBUTTON>
             </BTDIV>
-            }
+            }    
             
             <TITLEPOST $isMobile={isMobile}>{titulopost}</TITLEPOST>
             <TEXTOPOST $isMobile={isMobile} className="tiptap">{renderTexto(textopost)}</TEXTOPOST>
