@@ -59,7 +59,7 @@ function App() {
       });
 
   useEffect(() => {
-      window.addEventListener('storage', () => {
+    const handleStorageEvent = () => {
       setToken(localStorage.getItem('token'));
       authAxios.interceptors.request.use(
           config => {
@@ -70,8 +70,14 @@ function App() {
               return Promise.reject(error);
           }
       );
-      });
-  }, [accessToken, authAxios]);
+    }
+
+    window.addEventListener('storage', handleStorageEvent);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageEvent);
+    }
+  }, []);
 
     useEffect(() => {
         

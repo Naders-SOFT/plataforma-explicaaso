@@ -44,11 +44,14 @@ function Header(props) {
                         if (!prevItens.some(item => item.id === 5)) {
                             return [...prevItens, { id: 5, texto: "Página do Usuário", pagina: '/pagina-aluno' }];
                         }
+                        return prevItens;
+                    });
+                    setItensNavigation(prevItens => {
                         if (!prevItens.some(item => item.id === 6)) {
                             return [...prevItens, { id: 6, texto: "Página do Administrador", pagina: '/pagina-administrador' }];
                         }
                         return prevItens;
-                    });
+                    })
                 } else {
                     setItensNavigation(prevItens => {
                         if (!prevItens.some(item => item.id === 5)) {
@@ -66,9 +69,11 @@ function Header(props) {
         logicaToken();
 
         // Ouvindo os eventos do token em tempo real:
-        window.addEventListener("storage", () => {
-            logicaToken();
-        });
+        window.addEventListener("storage", logicaToken);
+
+        return () => {
+            window.removeEventListener("storage", logicaToken);
+        };
     }, []);
 
     return  (
