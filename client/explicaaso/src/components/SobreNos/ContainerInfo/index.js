@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import BoxInfo from "../BoxInfo";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
+import corpoDocente from "../../../images/sobre_nos/corpo-docente.jpg"
+import nossasAulas from "../../../images/sobre_nos/nossas-aulas.jpg"
+import quemSomos from "../../../images/sobre_nos/quem-somos.jpg"
 
 const ContainerPag = styled.div`
     align-items: center;
@@ -21,27 +24,26 @@ function ContainerInfo(props) {
         <ContainerPag>
             <BoxInfo 
             isMobile={props.isMobile}
-            imgSrc={placeholder} 
+            imgSrc={quemSomos} 
             imgAlt="placeholder"
-            titulo="Quem Somos?"
-            texto="Somos  mais do que apenas um cursinho preparatório. Somos uma comunidade  apaixonada de estudantes da Universidade de São Paulo (USP), unidos por  um propósito comum: ajudá-lo a alcançar seus objetivos acadêmicos. Nossa  equipe é composta por alunos dedicados, que entendem os desafios  enfrentados por quem busca ingressar no ensino superior.
-            No Cursinho Popular ExplicaAso, acreditamos que todos merecem  acesso a uma educação de qualidade, independentemente de suas origens ou  condições financeiras. Nossa missão é clara: capacitar estudantes como  você a conquistarem suas vagas nas melhores universidades, abrindo  portas para um futuro repleto de oportunidades."/>
+            titulo="Quem Somos"
+            texto="O ExpliCAASO é um cursinho popular com atividade no Campus USP de São Carlos, totalmente dedicado à democratização do ensino superior. Constituído por um grupo de estudantes universitários engajados, nosso cursinho busca proporcionar educação de qualidade e acessível, especialmente para aqueles que enfrentam barreiras econômicas ou sociais que dificultam o acesso ao ensino superior. Nossa missão é oferecer um ambiente acolhedor e inclusivo, onde todos os alunos possam se preparar para os exames de entrada com confiança e suporte."/>
 
             <BoxInfo 
             isMobile={props.isMobile}
-            imgSrc={placeholder} 
+            imgSrc={nossasAulas} 
             imgAlt="placeholder"
-            titulo="Informações Sobre as Aulas"
-            texto="Somos  mais do que apenas um cursinho preparatório. Somos uma comunidade  apaixonada de estudantes da Universidade de São Paulo (USP), unidos por  um propósito comum: ajudá-lo a alcançar seus objetivos acadêmicos. Nossa  equipe é composta por alunos dedicados, que entendem os desafios  enfrentados por quem busca ingressar no ensino superior.
-            No Cursinho Popular ExplicaAso, acreditamos que todos merecem  acesso a uma educação de qualidade, independentemente de suas origens ou  condições financeiras. Nossa missão é clara: capacitar estudantes como  você a conquistarem suas vagas nas melhores universidades, abrindo  portas para um futuro repleto de oportunidades."/>
+            titulo="Nossas Aulas"
+            texto="No ExpliCAASO, oferecemos aulas preparatórias para as principais provas de seleção à Universidade, como o ENEM. FUVEST, UNESP e UNICAMP, sendo lecionadas de segunda a sexta-feira, das 18h às 22h. 
+            Nossos módulos são embasados no consolidado material didático HEXAG, e incluem as disciplinas cobradas nos principais vestibulares, sendo elas: Matemática, Gramática, Literatura, Redação, História, Geografia, Biologia, Física e Química. Além das aulas em sala, como meio de preparação e apoio à teoria, são oferecidos exercícios durante a semana e simulados ao longo do ano letivo."/>
         
             <BoxInfo 
             isMobile={props.isMobile}
-            imgSrc={placeholder} 
+            imgSrc={corpoDocente} 
             imgAlt="placeholder"
             titulo="Corpo Docente"
-            texto="Somos  mais do que apenas um cursinho preparatório. Somos uma comunidade  apaixonada de estudantes da Universidade de São Paulo (USP), unidos por  um propósito comum: ajudá-lo a alcançar seus objetivos acadêmicos. Nossa  equipe é composta por alunos dedicados, que entendem os desafios  enfrentados por quem busca ingressar no ensino superior.
-            No Cursinho Popular ExplicaAso, acreditamos que todos merecem  acesso a uma educação de qualidade, independentemente de suas origens ou  condições financeiras. Nossa missão é clara: capacitar estudantes como  você a conquistarem suas vagas nas melhores universidades, abrindo  portas para um futuro repleto de oportunidades."/>
+            texto="Nosso corpo docente é composto por estudantes universitários que compartilham o compromisso com a educação acessível. Possuindo conhecimento prático em diversas áreas, adquirido principalmente através de suas próprias experiências em vestibulares, nossos professores são preparados para oferecer um ensino dinâmico e adaptativo, atendendo às necessidades de nossos alunos.
+            Além de todo suporte que nosso time de  professores se dedica a sempre oferecer, nossa equipe docente também possui monitores, os quais  apoiam com esclarecimentos de dúvidas."/>
         </ContainerPag>
     );
 }
