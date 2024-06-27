@@ -18,6 +18,7 @@ const FormContainer = styled.div`
 const CadastroTitulo = styled.h1`
   color: #ffcc00;
   font-size: 36px;
+  font-family: "Raleway"
 `;
 
 const Formulario = styled.form`
@@ -55,6 +56,7 @@ const Label = styled.label`
   color: white;
   font-size: 20px;
   font-weight: 600;
+  font-family: "Raleway"
 `;
 
 const Input = styled.input`
@@ -158,7 +160,7 @@ const PaginaCadastroFrente = (props) => {
           required
         />
 
-        <Label htmlFor="imagemLogo">Imagem da Frente:</Label>
+        <Label htmlFor="imagemLogo">Link da Imagem da Frente:</Label>
         <Input
           type="text"
           id="imagemLogo"
