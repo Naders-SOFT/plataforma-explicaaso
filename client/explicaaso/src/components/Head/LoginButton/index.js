@@ -33,12 +33,14 @@ function LoginButton() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
+  // Lógica de logout/login:
   const handleClick = () => {
+    // Realiza logout:
     if (token) {
       localStorage.removeItem('token');
       window.dispatchEvent(new Event("storage"));
       navigate('/');
-    } else {
+    } else { // Realiza login:
       navigate('/login');
     }
   };
