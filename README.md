@@ -111,6 +111,7 @@ Para poder desfrutar de todos os recursos da plataforma, vão ser necessários i
 
 ### Pré requisitos
 
+No guia de instalação a seguir, vamos utilizar comandos do linux
 * npm
   ```sh
   npm install npm@latest -g
@@ -122,8 +123,6 @@ Para poder desfrutar de todos os recursos da plataforma, vão ser necessários i
 
 
 ### Instalação
-
-No guia de instalação a seguir, vamos utilizar comandos do linux
 
 1. Clone o repositório
    ```sh
