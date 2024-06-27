@@ -95,7 +95,7 @@
 
 
 
-### Built With
+### Tecmologias utilizadas
 
 <!-- <p align="center">
   <a href="https://skillicons.dev">
@@ -111,7 +111,7 @@
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Como utilizar o projeto
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
@@ -156,7 +156,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Features implementadas
 
 - [ ] Feature 1
 - [ ] Feature 2
@@ -168,19 +168,8 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## Agradecimentos
 
 * []()
 * []()
