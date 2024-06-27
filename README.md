@@ -158,22 +158,21 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Features implementadas
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+- [x] Upload e download de materiais(pdfs)
+- [x] Implementação de um blog
+- [x] Implementação de uma página de notícias
+- [x] Sistema de registro e controle de usuários
+- [x] Página de contato e saber mais
+- [x] Possibilidade de adicionar ou remover matérias e frentes
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- ACKNOWLEDGMENTS -->
 ## Agradecimentos
+Gostaríamos de expressar nossa sincera gratidão às professoras Rosana, Simone e Bruna pela valiosa mentoria. Seu apoio foi fundamental para o desenvolvimento da plataforma de cursinho online.
 
-* []()
-* []()
-* []()
+Também agradecemos ao Cursinho Explicaaso pela oportunidade de trabalho, permitindo-nos colaborar em um projeto tão significativo.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
