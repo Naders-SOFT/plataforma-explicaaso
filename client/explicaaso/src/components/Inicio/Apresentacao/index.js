@@ -179,7 +179,7 @@ function Apresentacao(props) {
       <Container>
         <ImageWithTextContainer>
           <ImgSvd src={svg} alt='naosei'/>
-          <TextOverImage>Cusinho Popular</TextOverImage>
+          <TextOverImage>Cursinho Popular</TextOverImage>
           <TextOverImage2>Explicaaso</TextOverImage2>
           <StyledButton onClick={botaoNavegacao}>Saiba mais</StyledButton>
         </ImageWithTextContainer>
@@ -189,7 +189,7 @@ function Apresentacao(props) {
       <ApresentacaoContainer>
         <BlurredDiv/>
         <Titulos>
-          <TituloMobile>Cusinho Popular</TituloMobile>
+          <TituloMobile>Cursinho Popular</TituloMobile>
           <TituloMobile>Explicaaso</TituloMobile>
         </Titulos>
         <LogoExpliCaaso size='180px'/>
