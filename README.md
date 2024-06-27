@@ -128,18 +128,27 @@ No guia de instalação a seguir, vamos utilizar comandos do linux
    ```sh
    git clone https://github.com/Naders-SOFT/plataforma-explicaaso.git
    ```
-2. Vá para a pasta criada e instale as dependências do back-end, e incialize o servidor
+2. Navegue para a pasta server e crie um arquivo com nome .env, e configure as seguintes variáveis
+  ```sh
+  DB_CONNECTION_STRING = String de conexão do MongoDB
+  SECRET = Senha de autenticação do MongoDB
+  S3_ENDPOINT = Endpoint do hospedagem do MinIO
+  S3_ACCESS_KEY = Chave de acesso do MinIO
+  S3_SECRET_ACCESS_KEY = Chave secreta do MinIO
+  ```
+3. Na pasta server, instale as dependências do back-end, e incialize o servidor
    ```sh
-   cd server
+
    npm install
    npm run start
    ```
-3. Agora, abra outro terminal e instale as dependências no front-end
+4. Agora, abra outro terminal, instale as dependências no front-end e incialize a renderização
   ```sh
     cd client/explicaaso
     npm install
     npm run start
   ```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
