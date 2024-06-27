@@ -41,14 +41,11 @@
 <h3 align="center">Plataforma Cursinho ExpliCasso</h3>
 
   <p align="center">
-    project_description
+    Site destinado às atividades do cursinho popular, localizado em São Carlos, ExpliCAASO
     <br />
-    <a href="https://github.com/Naders-SOFT/plataforma-explicaaso"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Naders-SOFT/plataforma-explicaaso"><strong>Veja a documentação »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    |
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -56,7 +53,7 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Índice de conteúdo</summary>
   <ol>
     <li>
       <a href="#about-the-project">Sobre o projeto</a>
@@ -80,10 +77,13 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Sobre o projeto
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 <div align="center">
+  <p>
+  Projeto feito por estudantes, de graduação, do curso de ciências de computação do ICMC-USP, seguindo o modelo ágil Scrum para as disciplinas de Engenharia de Software e de Introdução ao Desenvolvimento Web, em colaboração com o cursinho popular ExpliCaaso.<br> O projeto consiste em uma plataforma web para auxiliar o corpo docente e a administração no controle e gestão de materiais e estudantes.
+  </p>
     <a href="https://github.com/Naders-SOFT/plataforma-explicaaso">
         <img src="./client/explicaaso/src/images/sobre_nos/telainicial2.jpeg" alt="Logo" width="800" height="400">
     </a>
@@ -113,43 +113,45 @@
 <!-- GETTING STARTED -->
 ## Como utilizar o projeto
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Para poder desfrutar de todos os recursos da plataforma, vão ser necessários instalar: 
+- Node.js e algum package manager(recomendamos utilizar o npm)
+- MinIO
 
-### Prerequisites
+### Pré requisitos
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
   npm install npm@latest -g
   ```
+* MinIO
+
+  recomendamos utilizar o guia disponibilizado pelo próprio provedor de serviço para realizar a instalação. O guia pode ser encontrado no [link](https://min.io/download?license=agpl&platform=windows)
+
+
 
 ### Instalação
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+No guia de instalação a seguir, vamos utilizar comandos do linux
+
+1. Clone o repositório
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/Naders-SOFT/plataforma-explicaaso.git
    ```
-3. Install NPM packages
+2. Vá para a pasta criada e instale as dependências do back-end, e incialize o servidor
    ```sh
+   cd server
    npm install
+   npm run start
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+3. Agora, abra outro terminal e instale as dependências no front-end
+```sh
+  cd client/explicaaso
+  npm install
+  npm run start
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
-## Casos de uso
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
