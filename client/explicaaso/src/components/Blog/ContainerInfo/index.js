@@ -69,7 +69,6 @@ function ContainerInfo({ isMobile, blogPosts }) {
     
     //Verifica permissão de usuário para renderizar botões específicos
     useEffect(() => {
-
         window.addEventListener("storage", () => {
             const token = localStorage.getItem('token');
             setEditor(token ? jwtDecode(token).tipoUsuario : '');

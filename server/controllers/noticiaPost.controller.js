@@ -43,8 +43,6 @@ export async function listnoticiaPostById(req, res) {
     try {
         const post = await noticiaPost.findById(req.params.idnoticiaPost);
 
-        console.log(post);
-
         if(!post) {
         return res.status(404).send({ message: "Postagem não encontrada"} )
         }

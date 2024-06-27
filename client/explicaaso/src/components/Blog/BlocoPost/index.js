@@ -137,7 +137,7 @@ function BlocoPost({ isMobile, editor, titulopost, imgSrc, imgAlt, textopost, au
     
     return(
         <BlocoInfo $isMobile={isMobile}>
-            {(editor == 'administrador' || editor == 'professor') &&
+            {(editor==='administrador' || editor === 'professor') &&
             <BTDIV>
             <LINK to={`/pagina-blog/editar-post/${idPost}`} style={{ textDecoration: 'none' }}>
               <EDITBUTTON $isMobile={isMobile}>Editar</EDITBUTTON>
