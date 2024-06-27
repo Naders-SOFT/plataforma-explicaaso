@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import SideBar from '../SideBar';
 import ContainerMateria from '../Materias';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const Info = styled.div`
   display: ${({ $isMobile }) => ($isMobile ? 'flex' : 'grid')};
@@ -23,22 +21,11 @@ const Container = styled.div`
     ${'' /* height: 100%; */}
 `
 function Informacao(props) {
-    const [materias, setMaterias] = useState([])
-    useEffect(() => {
-        axios.get('http://localhost:3003/materias/listMat')
-        .then(response => {
-            setMaterias(response.data)
-        })
-        .catch(err => {
-            console.error(err.message)
-        })
-    }, [])
-
     return (
         <Container>
             <Info $isMobile={props.isMobile}>
                 <SideBar isMobile={props.isMobile} imgPerfil={props.imgPerfil} botoes={props.botoes}/>
-                <ContainerMateria isMobile={props.isMobile} materias={materias}/>
+                <ContainerMateria isMobile={props.isMobile} />
             </Info>
         </Container>
     );

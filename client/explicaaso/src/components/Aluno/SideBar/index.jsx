@@ -72,6 +72,7 @@ const Container = styled.div`
 function SideBar(props) {
   const [userName, setUserName] = useState("Carregando...");
 
+  // obtendo o nome do usuario do local storage
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -87,6 +88,7 @@ function SideBar(props) {
     }
   }, []);
 
+  // gerando os botoes da sidebar com navegacao
   const listaBotoes = props.botoes?.map((botao, index) => (
     <Link key={index} to={`${botao.link}`}>
       <Botao>{botao.titulo}</Botao>
@@ -96,6 +98,7 @@ function SideBar(props) {
   return (
     <Container>
       <ContainerSide>
+        {/* renderizando o perfil do usuario so para desktop */}
         {!props.isMobile && (
           <ContainerPerfil>
             <ImgPerfil src={props.imgPerfil} alt="Perfil" />
