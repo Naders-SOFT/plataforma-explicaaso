@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { IoAddCircle } from "react-icons/io5";
-import { authAxios } from '../App'; 
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../App';
+
 
 const FormContainer = styled.div`
   display: flex;
@@ -104,6 +105,7 @@ const PaginaCadastroFrente = (props) => {
   const [materiaId, setMateriaId] = useState('');
   const [feedbackErro, setFeedbackErro] = useState('');
   const [feedbackSucesso, setFeedbackSucesso] = useState('');
+  const authAxios = useContext(AuthContext)
 
   const materia = useParams()
   const navigate = useNavigate()
@@ -114,10 +116,7 @@ const PaginaCadastroFrente = (props) => {
     setFeedbackSucesso('');
 
     try {
-        const url = `http://localhost:3003/materias/createFrente/${materia.materia}`;
-        console.log("URL codificada:", url); // Verifica a URL no console
-  
-        const response = await axios.post(
+        const response = await authAxios.post(
           url,
           {
             nomeFrente: nomeFrente,

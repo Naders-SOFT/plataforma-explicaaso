@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
 import { MdLibraryAdd } from "react-icons/md";
-import { authAxios } from '../App';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../App';
 
 const FormContainer = styled.div`
   display: flex;
@@ -134,6 +135,7 @@ const PaginaCadastroMateria = () => {
   const [frentes, setFrentes] = useState([{ nome: '', imagemLogo: '' }]);
   const [feedbackErro, setFeedbackErro] = useState('');
   const [feedbackSucesso, setFeedbackSucesso] = useState('');
+  const authAxios = useContext(AuthContext)
 
   const handleFrenteChange = (index, field, value) => {
     const newFrentes = [...frentes];
@@ -163,7 +165,7 @@ const PaginaCadastroMateria = () => {
         imgFrente: frente.imagemLogo
       }));
   
-      const response = await axios.post(
+      const response = await authAxios.post(
         'http://localhost:3003/materias/create',
         {
           nome: nomeMateria,
