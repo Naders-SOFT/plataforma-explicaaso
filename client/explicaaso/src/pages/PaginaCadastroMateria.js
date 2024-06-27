@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
 import { MdLibraryAdd } from "react-icons/md";
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../App'
@@ -19,6 +18,7 @@ const FormContainer = styled.div`
 const CadastroTitulo = styled.h1`
   color: #ffcc00;
   font-size: 36px;
+  font-family: "Raleway"
 `;
 
 const Formulario = styled.form`
@@ -57,6 +57,8 @@ const Label = styled.label`
   color: white;
   font-size: 20px;
   font-weight: 600;
+  font-family: "Raleway"
+
 `;
 
 const Input = styled.input`
@@ -97,12 +99,14 @@ const MensagemErro = styled.p`
   color: #ffcc00;
   font-size: 14px;
   margin-top: -10px;
+  font-family: "Raleway"
 `;
 
 const MensagemSucesso = styled.p`
   color: #ffcc00;
   font-size: 14px;
   margin-top: -10px;
+  font-family: "Raleway"
 `;
 
 const MateriaSection = styled.div`
@@ -211,7 +215,7 @@ const PaginaCadastroMateria = () => {
         </MateriaSection>
 
         <MateriaSection>
-          <Label htmlFor="imagemLogo">Imagem da Logo:</Label>
+          <Label htmlFor="imagemLogo">Link da Imagem da Logo:</Label>
           <Input
             type="text"
             id="imagemLogo"
@@ -231,7 +235,7 @@ const PaginaCadastroMateria = () => {
               onChange={(e) => handleFrenteChange(index, 'nome', e.target.value)}
               required
             />
-            <Label htmlFor={`imagemLogoFrente-${index}`}>Imagem da Logo da Frente:</Label>
+            <Label htmlFor={`imagemLogoFrente-${index}`}>Link da Imagem da Frente:</Label>
             <Input
               type="text"
               id={`imagemLogoFrente-${index}`}

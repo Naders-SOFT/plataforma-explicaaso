@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import { IoMdTrash } from "react-icons/io";
-import { jwtDecode } from 'jwt-decode';
-import { useState, useEffect } from 'react';
 
 const TituloMateria = styled.h1`
   font-size: 150%;
@@ -62,20 +59,6 @@ const ImgCard = styled.img`
 `;
 
 function CardMateria(props) {
-  const [user, setUser] = useState('');
-  // obtendo o tipo de usuario para renderizar, ou nao,
-  // o botao de deletar materia
-  useEffect(() => {
-      const token = localStorage.getItem('token');
-      setUser(token ? jwtDecode(token).tipoUsuario : '');
-    
-
-      window.addEventListener("storage", () => {
-          const token = localStorage.getItem('token');
-          setUser(token ? jwtDecode(token).tipoUsuario : '');
-      })
-  }, []);
-
   // criando uma string com os nomes das frentes da materia
   const f = props.frentes.map(frt => frt.nomeFrente).join(' | ');
 
@@ -88,7 +71,8 @@ function CardMateria(props) {
       />
       <TituloMateria>{props.materia}</TituloMateria> 
       <CardInfo>
-        <CardFrentes fontSize={props.fontesSize}>{f}</CardFrentes> {/* Passando o tamanho da fonte como prop */}
+        {/* Passando o tamanho da fonte como prop */}
+        <CardFrentes fontSize={props.fontesSize}>{f}</CardFrentes> 
       </CardInfo>
     </Card>
   );

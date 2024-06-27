@@ -1,5 +1,4 @@
 import express from 'express';
-import multer from 'multer';
 import cors from 'cors';
 import pdfRoutes from './routes/pdf.routes.js';
 import userRoutes from './routes/user.routes.js';
