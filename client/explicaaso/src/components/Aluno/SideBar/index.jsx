@@ -61,6 +61,7 @@ const Nome = styled.h1`
   color: #333;
   font-size: 1.5rem;
   margin: 0;
+  font-family: "Raleway"
 `;
 
 const Container = styled.div`
