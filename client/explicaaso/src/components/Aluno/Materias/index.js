@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import imgAdicionar from '../../../images/misc/add-button-svgrepo-com.svg'
-import axios from 'axios';
 import { AuthContext } from '../../../App';
 import { IoMdTrash } from "react-icons/io";
 

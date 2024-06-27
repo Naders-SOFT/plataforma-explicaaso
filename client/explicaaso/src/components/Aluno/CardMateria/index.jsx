@@ -51,12 +51,14 @@ const Card = styled.li`
 `;
 
 const ImgCard = styled.img`
-  width: ${props => props.isMobile ? '400px' : '100%'};
-  height: ${props => props.isMobile ? '200px' : '250px'};
+  width: ${props => props.isMobile ? '100%' : '100%'};
+  height: ${props => props.isMobile ? '55%' : '100%'};
   border-radius: 6px 6px 0px 0px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  max-width: 900px;
+  max-height: 600px;
 `;
 
 function CardMateria(props) {
