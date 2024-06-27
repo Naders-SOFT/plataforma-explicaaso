@@ -25,8 +25,8 @@ const CardFrentes = styled.p`
 `;
 
 const Card = styled.li`
-  width: ${props => props.isMobile ? '60%' : '100%'};
-  height: auto;
+  width: ${props => props.isMobile ? '400px' : '100%'};
+  height: ${props => props.isMobile ? '350px' : '100%'};
   display: flex;
   flex-direction: column;
   color: black;
@@ -52,7 +52,7 @@ const Card = styled.li`
 
 const ImgCard = styled.img`
   width: ${props => props.isMobile ? '400px' : '100%'};
-  height: ${props => props.isMobile ? '500px' : '250px'};
+  height: ${props => props.isMobile ? '200px' : '250px'};
   border-radius: 6px 6px 0px 0px;
   background-size: cover;
   background-position: center;
