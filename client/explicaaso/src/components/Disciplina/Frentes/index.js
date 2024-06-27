@@ -21,7 +21,6 @@ const ContentArea = styled.div`
   display: flex;
   flex-direction: column; 
   width: 100%;
-  padding: 20px; 
 `;
 
 const StyledContainer = styled.div`
@@ -32,7 +31,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  width: 90%;
+  width: 100%;
   margin: 20px 0;
   padding: 15px;
   display: flex;
@@ -256,7 +255,7 @@ const Frentes = (props) => {
   const botaoAdicionar = <FrenteButton key="adicionar" frente={infoAdicionar} />;
 
   return (
-    <ContainerFrentes>
+    <ContainerFrentes $isMobile={props.isMobile}>
       <SideBar isMobile={props.isMobile} botoes={botoes} imgPerfil={imgPerfil} />
       <ContentArea> 
         {mostrarConfirmacao && (
