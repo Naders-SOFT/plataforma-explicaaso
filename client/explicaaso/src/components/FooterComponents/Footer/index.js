@@ -3,11 +3,11 @@ import instaIcon from '../../../images/redes_sociais/instagram-icon.png';
 
 const FooterContainer = styled.div`
   height: 80px;
-  width: 100%;
+  width: 98%;
   background-color: white;
   display: grid;
-  margin: 22px 40px 30px 40px;
-  column-gap: 20%;
+  margin: 3% 1% 5% 1%;
+  column-gap: 15%;
 `
 
 const TituloFooter = styled.h3`
