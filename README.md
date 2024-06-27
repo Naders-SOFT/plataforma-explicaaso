@@ -34,6 +34,7 @@
 <div align="center">
   <a href="https://github.com/Naders-SOFT/plataforma-explicaaso">
     <img src="./client/explicaaso/src/images/logos/logo-explicaaso.png" alt="Logo" width="80" height="80">
+     🤝 
     <img src="https://avatars.githubusercontent.com/u/166141585?s=200&v=4" alt="Logo" width="80" height="80">
   </a>
 
@@ -58,21 +59,20 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">Sobre o projeto</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">Tecnologias utilizadas</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">Como utilizar o projeto</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisites">Pré requisitos</a></li>
+        <li><a href="#installation">Instalação</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#usage">Casos de uso</a></li>
+    <li><a href="#roadmap">Features implementadas</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -95,7 +95,7 @@
 
 
 
-### Tecmologias utilizadas
+### Tecnologias utilizadas
 
 <!-- <p align="center">
   <a href="https://skillicons.dev">
@@ -124,7 +124,7 @@ This is an example of how to list things you need to use the software and how to
   npm install npm@latest -g
   ```
 
-### Installation
+### Instalação
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
@@ -145,7 +145,7 @@ This is an example of how to list things you need to use the software and how to
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Casos de uso
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
