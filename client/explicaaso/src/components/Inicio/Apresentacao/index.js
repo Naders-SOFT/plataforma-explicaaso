@@ -41,6 +41,7 @@ const TextOverImage = styled.div`
   color: black;
   font-size: 3vw;
   font-family: "Crete Round";
+  cursor: default;
 `;
 
 const TextOverImage2 = styled.div`
@@ -50,7 +51,8 @@ const TextOverImage2 = styled.div`
   transform: translate(-50%, -50%);
   color: #DDB411;
   font-size: 4.5vw;
-  font-family: "Mochiy Pop One"
+  font-family: "Mochiy Pop One";
+  cursor: default;
 `;
 
 const ImageWithTextContainer = styled.div`
@@ -70,11 +72,16 @@ const StyledButton = styled.button`
   padding: 10px 20px;
   font-size: 1vw;
   color: black;
+  font-weight: 400;
   background-color: #FFCC00;
   border: none;
   border-radius: 30%;
   cursor: pointer;
-  font-family: "Crete Round"
+  font-family: "Crete Round";
+
+  &:hover {
+    color: white;
+  }
 `;
 
 const BlurredDiv = styled.div`

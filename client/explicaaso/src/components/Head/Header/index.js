@@ -40,12 +40,14 @@ function Header(props) {
             const token = localStorage.getItem("token");
             if (token) {
                 if(jwtDecode(token).tipoUsuario === 'administrador') {
+                    // Adiciona 'pagina de usuário' aos itens de navegação:
                     setItensNavigation(prevItens => {
                         if (!prevItens.some(item => item.id === 5)) {
                             return [...prevItens, { id: 5, texto: "Página do Usuário", pagina: '/pagina-aluno' }];
                         }
                         return prevItens;
                     });
+                    // Adiciona 'pagina de administrador' aos itens de navegação:
                     setItensNavigation(prevItens => {
                         if (!prevItens.some(item => item.id === 6)) {
                             return [...prevItens, { id: 6, texto: "Página do Administrador", pagina: '/pagina-administrador' }];
@@ -53,6 +55,7 @@ function Header(props) {
                         return prevItens;
                     })
                 } else {
+                    // Adiciona 'minha página' aos itens de navegação:
                     setItensNavigation(prevItens => {
                         if (!prevItens.some(item => item.id === 5)) {
                             return [...prevItens, { id: 5, texto: "Minha Página", pagina: '/pagina-aluno' }];
@@ -61,6 +64,7 @@ function Header(props) {
                     });
                 }
             } else {
+                // Retira os itens de id 6 e 7 dos itens de navegação:
                 setItensNavigation(prevItens => prevItens.filter(item => item.id !== 6 && item.id !== 5));
             }
         }
