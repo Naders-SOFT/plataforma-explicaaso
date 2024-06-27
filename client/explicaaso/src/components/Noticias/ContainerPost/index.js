@@ -36,6 +36,8 @@ const BTADICIONAR = styled.button`
 function ContainerPost(props) {
     const [editor, setEditor] = useState('');
 
+    //Pegamos do token armazenado em local storage o tipo do usuário
+    //autenticado, a fim de definir se ele tem permissão pra edição ou não
     useEffect(() => {
         const token = localStorage.getItem('token');
         setEditor(token ? jwtDecode(token).tipoUsuario : '');
@@ -56,6 +58,7 @@ function ContainerPost(props) {
             textopost = {props.noticiaPost.texto}
             autorpost={props.noticiaPost.autor}
             datapost={props.noticiaPost.data}
+            idPost={props.noticiaPost._id}
             editor={editor}/>
         </ContainerPag>
     )

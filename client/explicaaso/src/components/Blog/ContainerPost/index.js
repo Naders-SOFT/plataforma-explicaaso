@@ -3,8 +3,6 @@ import BlocoPost from "../BlocoPost";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
 import { useEffect, useState } from "react";
 import { jwtDecode } from 'jwt-decode';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const ContainerPag = styled.div`
     align-items: center;
@@ -38,8 +36,9 @@ const BTADICIONAR = styled.button`
 
 function ContainerPost(props) {
     const [editor, setEditor] = useState('');
-    const navigate = useNavigate();
 
+    //Pegamos do token armazenado em local storage o tipo do usuário
+    //autenticado, a fim de definir se ele tem permissão pra edição ou não
     useEffect(() => {
         const token = localStorage.getItem('token');
         setEditor(token ? jwtDecode(token).tipoUsuario : '');
@@ -50,20 +49,6 @@ function ContainerPost(props) {
             setEditor(token ? jwtDecode(token).tipoUsuario : '');
         })
     }, [editor]);
-    
-    const handleDelete = (id) => {
-        // Requisicao de DELETE
-        axios.delete('http://localhost:3003/blog/delete/'+id)
-        .then(() => {
-            console.log('Blog post deleted successfully');
-
-            // Removendo o pdf que foi deletado
-            navigate('/pagina-blog');
-        })
-        .catch(error => {
-            console.error('Error deleting Blog post:', error);
-        })
-    }
 
     return (
         <ContainerPag>
@@ -75,6 +60,7 @@ function ContainerPost(props) {
             textopost = {props.blogPost.texto}
             autorpost={props.blogPost.autor}
             datapost={props.blogPost.data}
+            idPost={props.blogPost._id}
             editor={editor}/>
         </ContainerPag>
     )

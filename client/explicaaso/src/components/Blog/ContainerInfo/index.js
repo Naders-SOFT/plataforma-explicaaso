@@ -3,6 +3,7 @@ import BlocoBlog from "../BlocoBlog";
 import placeholder from "../../../images/sobre_nos/placeholder.png"
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import { NavLink as Link } from "react-router-dom";
 
 const ContainerPag = styled.div`
   display: flex;
@@ -19,15 +20,16 @@ const TITLEPAG = styled.h2`
   margin-bottom: 2rem;
 `;
 
-const BTDIV = styled.div`
-    width: ${({$isMobile}) => ($isMobile ? '70%' : '90%')};
-    display: flex;
-    alig-items: center;
-    justify-content: flex-end;
-`
+// const BTDIV = styled.Link`
+//     width: ${({$isMobile}) => ($isMobile ? '70%' : '90%')};
+//     display: flex;
+//     alig-items: center;
+//     justify-content: flex-end;
+//     text-decoration: none;
+// `
 
 const BTADICIONAR = styled.button`
-    width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
+  width: 100%;
   margin: 20px 0;
   padding: 10px 0;
   background-color: #FFCC00;
@@ -45,23 +47,37 @@ const BTADICIONAR = styled.button`
   }
 `
 
+const LINK = styled(Link)`
+  width: ${({ $isMobile }) => ($isMobile ? '80%' : '20%')};
+  margin: 20px 0;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  color: #003466;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.5rem')};
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+`
+
 function ContainerInfo({ isMobile, blogPosts }) {
-    const [editor, setEditor] = useState('');
+    const token = localStorage.getItem('token');
+    const [editor, setEditor] = useState(token ? jwtDecode(token).tipoUsuario : '');
     const [renderContent, setRenderContent] = useState(<p>Carregando...</p>) //Exibe um texto padrão enquanto a requisição não está completa
     
     //Verifica permissão de usuário para renderizar botões específicos
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        setEditor(token ? jwtDecode(token).tipoUsuario : 'administrador');
-        
-
         window.addEventListener("storage", () => {
             const token = localStorage.getItem('token');
-            setEditor(token ? jwtDecode(token).tipoUsuario : 'administrador');
+            setEditor(token ? jwtDecode(token).tipoUsuario : '');
         })
     }, [editor]);
     
-    //Cada post do array é mapeado para um bloco específico do blog
+    //Verifica se existe um array de postagens do blog armazenados no banco, e
+    //se sim, renderiza cada postagem em um bloco de postagem específico
+    //através de um mapeamento
     useEffect(() => {
         if(blogPosts && blogPosts.length > 0) {
           setRenderContent(
@@ -93,9 +109,9 @@ function ContainerInfo({ isMobile, blogPosts }) {
         <ContainerPag>
             <TITLEPAG $isMobile={isMobile}>Postagens</TITLEPAG>
             {(editor == 'administrador' || editor == 'professor') &&
-            <BTDIV $isMobile={isMobile}>
+            <LINK to='/pagina-blog/criar-post' style={{ textDecoration: 'none' }}>
                 <BTADICIONAR $isMobile={isMobile}>Criar Post</BTADICIONAR>
-            </BTDIV>
+            </LINK>
             }
             {renderContent}
         </ContainerPag>

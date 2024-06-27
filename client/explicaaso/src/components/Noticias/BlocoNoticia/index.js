@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink as Link } from "react-router-dom";
 
 const BlocoInfo = styled.div`
   align-items: center;
@@ -7,7 +8,7 @@ const BlocoInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 40px;
+  margin: 10px;
   width: ${({ isMobile }) => (isMobile ? '90%' : '70%')};
   padding: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -19,10 +20,6 @@ const BlocoInfo = styled.div`
   }
 `;
 
-const LISTA = styled.ul`
-  color: black;
-  margin-bottom: 5%;
-`;
 
 const LI = styled.li`
   color: #666666;
@@ -34,6 +31,18 @@ const LI = styled.li`
     color: black;
 `;
 
+const LINK = styled(Link)`
+  color: black;
+  font-size: ${({ $isMobile }) => ($isMobile ? '1rem' : '1.1rem')};
+  font-family: 'Helvetica Neue', sans-serif;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #f5f5f5;
+    text-decoration: underline;
+  }
+
+`
 
 
 const BUTTON = styled.button`
@@ -55,14 +64,12 @@ const BUTTON = styled.button`
   }
 `;
 
-function BlocoNoticia(props) {
+function BlocoNoticia({ isMobile, titulonoticia, idPost }) {
+  //cada título de notícia é exibido como um link
+  //para a notícia completa
   return (
-    <BlocoInfo $isMobile={props.isMobile}>
-    <LISTA $isMobile={props.isMobile}>
-      {props.noticias.map((noticia, index) => (
-        <LI key={index}>{noticia}</LI>
-      ))}
-    </LISTA>
+    <BlocoInfo $isMobile={isMobile}>
+      <LINK to ={`/pagina-noticias/post/${idPost}`}>{titulonoticia}</LINK>
     </BlocoInfo>
   );
 }
