@@ -9,8 +9,8 @@ const FormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   padding: 0;
+  margin: 5%;
 `;
 
 const CadastroTitulo = styled.h1`
