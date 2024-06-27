@@ -4,8 +4,7 @@ import { IoAddCircle } from "react-icons/io5";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../../../App';
-
+import { AuthContext } from '../App'
 
 const FormContainer = styled.div`
   display: flex;
@@ -116,6 +115,7 @@ const PaginaCadastroFrente = (props) => {
     setFeedbackSucesso('');
 
     try {
+      const url = `http://localhost:3003/materias/createFrente/${materia.materia}`;
         const response = await authAxios.post(
           url,
           {

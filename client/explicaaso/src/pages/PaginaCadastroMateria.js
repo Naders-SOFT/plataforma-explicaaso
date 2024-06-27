@@ -5,7 +5,7 @@ import { MdLibraryAdd } from "react-icons/md";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../../../App';
+import { AuthContext } from '../App'
 
 const FormContainer = styled.div`
   display: flex;
