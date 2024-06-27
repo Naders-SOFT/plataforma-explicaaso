@@ -2,7 +2,7 @@ import { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } fro
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
 import dotenv from 'dotenv/config';
 
-
+// criando o cliente s3 que vai mandar e receber aquivos
 const s3 = new S3Client({
     endpoint: process.env.S3_ENDPOINT,
     credentials: {
@@ -14,8 +14,6 @@ const s3 = new S3Client({
     region: 'us-east-1'
 })
 
-// const bucketName = process.env.S3_BUCKET_NAME
-
 export async function uploadFile(fileBuffer, fileName, mimetype, bucketName) {
     const uploadParams = {
         Bucket: bucketName,
@@ -24,6 +22,7 @@ export async function uploadFile(fileBuffer, fileName, mimetype, bucketName) {
         ContentType: mimetype,
     }
   
+    // criando objeto para ser enviado ao minio
     const command = new PutObjectCommand(uploadParams)
     try {
         const data = await s3.send(command)
@@ -35,12 +34,12 @@ export async function uploadFile(fileBuffer, fileName, mimetype, bucketName) {
 }
 
 export async function getObjectSignedUrl(key, bucketName) {
-    console.log(key, bucketName)
     const params = {
         Bucket: bucketName,
         Key: key
     }
 
+    // gerando o link com assinatura do pdf
     const command = new GetObjectCommand(params);
     const seconds = 3600
     const url = await getSignedUrl(s3, command, { expiresIn: seconds });
@@ -54,8 +53,8 @@ export function deleteFile(fileId, bucketName) {
         Key: fileId,
     }
 
+    // criando objeto que vai ser deletado
     const command = new DeleteObjectCommand(deleteParams)
-
     try {
         s3.send(command)
     }

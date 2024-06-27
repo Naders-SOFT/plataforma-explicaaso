@@ -59,7 +59,6 @@ const TextOverImage = styled.div`
   color: black;
   font-size: 3vw;
   font-family: "Crete Round";
-  text-decoration: underline;
 `;
 
 const TextOverImage2 = styled.div`

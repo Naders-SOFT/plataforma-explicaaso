@@ -122,6 +122,7 @@ function ContainerMateria(props) {
   const [materias, setMaterias] = useState([]);
   const authAxios = useContext(AuthContext);
 
+  // obtendo todas as materias do banco de dados
   useEffect(() => {
     authAxios
       .get('http://localhost:3003/materias/listMat')
@@ -133,6 +134,7 @@ function ContainerMateria(props) {
       });
   }, [materias]);
 
+  // obtendo o tipo de usuario do token em local storage
   useEffect(() => {
     const token = localStorage.getItem('token');
     setUser(token ? jwtDecode(token).tipoUsuario : '');
@@ -143,6 +145,7 @@ function ContainerMateria(props) {
     });
   }, []);
 
+  // obtendo a materia lecionada de cada professor do token em local storage
   useEffect(() => {
     const token = localStorage.getItem('token');
     setMateriaLecionada(token ? jwtDecode(token).materiaProf : '');
@@ -153,11 +156,13 @@ function ContainerMateria(props) {
     });
   }, []);
 
+  // funcao para gerar o card de exclusao de materia
   const handleDelete = (nomeMateria) => {
     setMostrarConfirmacao(true);
     setMateriaParaDeletar(nomeMateria);
   };
 
+  // funcao de deletar permanentemente o card da materia e suas frentes
   const confirmarDelecao = () => {
     authAxios
       .delete(`http://localhost:3003/materias/delete/${materiaParaDeletar}`)
@@ -172,6 +177,7 @@ function ContainerMateria(props) {
       });
   };
 
+  // funcao para desaparecer o card de confirmacao de exclusao da materia
   const cancelarDelecao = () => {
     setMostrarConfirmacao(false);
     setMateriaParaDeletar(null);
@@ -179,6 +185,8 @@ function ContainerMateria(props) {
 
   useEffect(() => {
     const renderMateriaCards = () => {
+
+      // gerando o card para cada materia
       const cards = materias.map((mat) => (
         <CardWrapper key={mat.nome}>
           <StyledLink to={`/pagina-aluno/${mat.nome}`}>
@@ -189,6 +197,8 @@ function ContainerMateria(props) {
               frentes={mat.frentes}
             />
           </StyledLink>
+
+          {/* // gerando o botao de deletar materia para o usuario adm  */}
           {user === 'administrador' && ( 
            <StyledDeleteButton onClick={() => handleDelete(mat.nome)}>
               <IoMdTrash />
@@ -199,9 +209,12 @@ function ContainerMateria(props) {
       return cards;
     };
 
+    // renderizando todos os cards para alunos e adm
     if (user !== 'professor') {
       setMateriaCard(renderMateriaCards());
-    } else {
+    } 
+    // renderizando so o card da materia que o professor leciona
+    else {
       setMateriaCard(
         renderMateriaCards().filter((card) => card.key === materiaLecionada)
       );
@@ -223,6 +236,8 @@ function ContainerMateria(props) {
 
   return (
     <Container>
+
+      {/* mostrar card de exclusao de materia */}
       {mostrarConfirmacao && (
         <ConfirmacaoContainer>
           <ConfirmacaoTitulo>Confirmar Exclusão</ConfirmacaoTitulo>
@@ -237,8 +252,12 @@ function ContainerMateria(props) {
           </ConfirmacaoBotoes>
         </ConfirmacaoContainer>
       )}
+
+      {/* mostrar todos os cards das materias */}
       <Materias $isMobile={props.isMobile}>
         {materiaCard}
+
+        {/* somente administrador pode remover uma materia */}
         {user === 'administrador' && cardAdicionar}
       </Materias>
     </Container>
