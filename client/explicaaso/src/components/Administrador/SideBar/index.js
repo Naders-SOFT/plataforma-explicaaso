@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../App";
 import Engrenagem from '../../../images/logos/engre.jpg';
+import { Link } from 'react-router-dom';
 
 const ContainerSide = styled.div`
   display: flex;
@@ -17,6 +18,11 @@ const ContainerSide = styled.div`
   border-radius: 0.5rem;
   box-sizing: border-box; /* Inclui padding e border na largura e altura */
   padding: 2rem; /* Mantém o padding, mas agora o container ocupa toda a altura */
+
+  @media (max-width: 768px) {
+    height: auto; /* Define a altura automática para ocupar o conteúdo */
+    padding: 1rem; /* Reduz o padding para telas menores */
+  }
 `;
 
 
@@ -35,6 +41,24 @@ const Botao = styled.button`
   &:hover {
     color: #002549;
     background-color: #cceeff;
+  }
+`;
+
+const Botao_cadastrar = styled.button`
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+  background-color: #FFCC00;
+  border: none;
+  border-radius: 0.75rem;
+  text-align: center;
+  font-weight: bold;  // Adiciona negrito ao texto
+
+  &:hover {
+    color: #002549;
+    background-color: #FFB700;  // Cor de fundo amarelo mais forte ao passar o cursor
   }
 `;
 
@@ -103,6 +127,10 @@ function SideBar(props) {
                         {/* Botão para selecionar alunos ou professores */}
                         <Botao onClick={() => handleButtonClick('aluno')}>Alunos</Botao>
                         <Botao onClick={() => handleButtonClick('professor')}>Professores</Botao>
+                        
+                        <Link to="/pagina-administrador/cadastro" style={{ textDecoration: 'none' }}>
+                            <Botao_cadastrar>Cadastrar</Botao_cadastrar>
+                        </Link>
                      </ContainerBotao>
                     
                 </ContainerSide>
@@ -117,6 +145,10 @@ function SideBar(props) {
                         {/* Botão para selecionar alunos ou professores */}
                         <Botao onClick={() => handleButtonClick('aluno')}>Alunos</Botao>
                         <Botao onClick={() => handleButtonClick('professor')}>Professores</Botao>
+
+                        <Link to="/pagina-administrador/cadastro" style={{ textDecoration: 'none' }}>
+                            <Botao_cadastrar>Cadastrar</Botao_cadastrar>
+                        </Link>
                      </ContainerBotao>
                 </ContainerSide>
             )}

@@ -7,22 +7,41 @@ const Container = styled.div`
     width: 100%;
 `
 
-const DSKBotao = styled.button`
-  background-color: #e6f7ff;
+const Botao_remover = styled.button`
   cursor: pointer;
-  color: darkcyan;
-  border-radius: 1vw;
+  color: white;
   transition: color 0.3s ease, background-color 0.3s ease;
-  height: 3vw;
-  font-size: 45%;
-  border: 2px solid darkcyan;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+  background-color: #dc3545;
+  border: none;
   border-radius: 0.75rem;
   text-align: center;
+  height: 50px; 
+
   &:hover {
-      opacity: 0.5;
+    color: #002549;
+    background-color: #da2c43;
   }
-  
-`
+`;
+
+const Botao_cadastrar = styled.button`
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+  background-color: #FFCC00;
+  border: none;
+  border-radius: 0.75rem;
+  text-align: center;
+  font-weight: bold;  // Adiciona negrito ao texto
+
+  &:hover {
+    color: #002549;
+    background-color: #FFB700;  // Cor de fundo amarelo mais forte ao passar o cursor
+  }
+`;
 
 const CadastroListStyled = styled.ul`
   list-style: none;
@@ -43,17 +62,35 @@ const CadastroItem = styled.li`
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ccc;
+
+  @media (max-width: 768px) {
+    display: row;
+    flex-direction: column;
+    align-items: stretch;
+  }
 `
 
 const CadastroFormat = styled.span`
   grid-column: 1;
   margin-right: 10px;
+
+  @media (max-width: 768px) {
+    margin-right: 0;
+    font-size: 0.9rem; // Diminui o tamanho do texto em telas menores
+  }
 `
 
 const CadastroSub = styled.span`
   grid-column: 2;
   font-weight: bold;
   margin-right: 10px;
+  overflow-wrap: break-word;
+  word-break: break-all;
+
+  @media (max-width: 768px) {
+    margin-right: 0;
+    font-size: 0.9rem; // Diminui o tamanho do texto em telas menores
+  }
 `
 
 const ConfirmacaoContainer = styled.div`
@@ -150,16 +187,17 @@ const PessoaList = ({ items }) => {
           <CadastroItem key={index} style={{ marginLeft: '5%' }}>
             <CadastroFormat>{item.nome} {item.sobrenome}</CadastroFormat>
             <CadastroSub style={{ gridColumn: '2 / 3' ,marginLeft: '30px' }}>{item.email}</CadastroSub>
-            <DSKBotao style={{ gridColumn: '3 / 3', justifySelf: 'end' }} onClick={() => Confirmacao(item)}>Remover Usuário</DSKBotao>
+            <Botao_remover style={{ gridColumn: '3 / 3', justifySelf: 'end'}} onClick={() => Confirmacao(item)}>Remover</Botao_remover>
           </CadastroItem>
           
         ))}
       </CadastroListStyled>
 
-      {/* Link para a página de cadastro de novos usuários */}
-      <Link to="/pagina-administrador/cadastro" style={{ textDecoration: 'none' }}>
-        <DSKBotao style={{ marginTop: '10px', marginLeft: '5%' }}>Cadastrar Usuários</DSKBotao>
-      </Link>
+      {items.length > 0 && (
+        <Link to="/pagina-administrador/cadastro" style={{ textDecoration: 'none' }}>
+          <Botao_cadastrar style={{ marginTop: '10px', marginLeft: '5%' }}>Cadastrar</Botao_cadastrar>
+        </Link>
+      )}
 
       {/* Modal de confirmação de deleção */}
       {mostrarConfirmacao && (
