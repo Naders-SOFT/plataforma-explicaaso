@@ -8,6 +8,7 @@ import imgAdc from '../../../images/misc/add-button-svgrepo-com.svg'
 import { AuthContext } from '../../../App';
 import { jwtDecode } from 'jwt-decode';
 
+// estiliza o container das frentes
 const ContainerFrentes = styled.div`
   display: ${({$isMobile}) => ($isMobile ? 'flex' : 'grid')};
   grid-template-columns: auto 1fr;
@@ -18,12 +19,14 @@ const ContainerFrentes = styled.div`
   min-height: 100vh;
 `;
 
+// estiliza a área de conteúdo
 const ContentArea = styled.div`
   display: flex;
   flex-direction: column; 
   width: 100%;
 `;
 
+// estiliza o container
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,6 +34,7 @@ const StyledContainer = styled.div`
   padding: 20px;
 `;
 
+// estiliza o botão
 const StyledButton = styled.button`
   width: 100%;
   margin: 20px 0;
@@ -55,6 +59,7 @@ const StyledButton = styled.button`
   }
 `;
 
+// estiliza o botão de delete
 const StyledDeleteButton = styled.button`
   background-color: white;
   border: none;
@@ -76,12 +81,14 @@ const StyledDeleteButton = styled.button`
   }
 `;
 
+// estiliza o título h1
 const StyledH1 = styled.h1`
   color: #3a3a3a;
   font-family: 'Raleway',Sans-serif;
   margin-bottom: 20px;
 `;
 
+// estiliza o link
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
@@ -99,6 +106,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
+// estiliza o card
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -106,22 +114,26 @@ const Card = styled.div`
   width: 100%; 
 `;
 
+// estiliza o nome da frente
 const NomeFrente = styled.h2`
   font-size: 1.2em;
   font-family: 'Inter', sans-serif;
   margin-top: 10px;
 `;
 
+// botões de navegação
 const botoes = [
   { titulo: 'Matérias', link: '/pagina-aluno' },
   { titulo: 'Provas', link: '/pagina-provas' }
 ];
 
+// informações para adicionar nova frente
 const infoAdicionar = {
   nomeFrente: 'Adicionar frente',
-  // imgFrente: imgAdc
+  imgFrente: imgAdc
 }
 
+// estiliza o container de confirmação
 const ConfirmacaoContainer = styled.div`
   position: fixed;
   top: 50%;
@@ -135,17 +147,20 @@ const ConfirmacaoContainer = styled.div`
   color: white;
 `;
 
+// estiliza o título de confirmação
 const ConfirmacaoTitulo = styled.h2`
   color: #ffcc00;
   margin-bottom: 10px;
 `;
 
+// estiliza os botões de confirmação
 const ConfirmacaoBotoes = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
 `;
 
+// estiliza o botão de confirmação
 const BotaoConfirmacao = styled.button`
   background-color: #dc3545;
   color: #fff;
@@ -169,15 +184,17 @@ const BotaoConfirmacao = styled.button`
   }
 `;
 
+// componente principal das frentes
 const Frentes = (props) => {
-  const mat = useParams();
-  const authAxios = useContext(AuthContext);
-  const [materia, setMateria] = useState([]);
-  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
-  const [frenteParaDeletar, setFrenteParaDeletar] = useState(null);
-  const [frentesBotoes, setFrentesBotoes] = useState([]);
-  const [user, setUser] = useState('');
+  const mat = useParams(); // obtém parâmetros da url
+  const authAxios = useContext(AuthContext); // obtém contexto de autenticação
+  const [materia, setMateria] = useState([]); // estado para armazenar matérias
+  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false); // estado para exibir confirmação de exclusão
+  const [frenteParaDeletar, setFrenteParaDeletar] = useState(null); // estado para armazenar a frente a ser deletada
+  const [frentesBotoes, setFrentesBotoes] = useState([]); // estado para armazenar os botões das frentes
+  const [user, setUser] = useState(''); // estado para armazenar o tipo de usuário
 
+  // obtém as matérias da API
   useEffect(() => {
     authAxios.get(`http://localhost:3003/materias/listMat/${mat.materias}`)
       .then(response => {
@@ -188,21 +205,25 @@ const Frentes = (props) => {
       });
   }, [mat.materias]);
 
+  // obtém o tipo de usuário do token armazenado localmente
   useEffect(() => {
     const token = localStorage.getItem('token');
     setUser(token ? jwtDecode(token).tipoUsuario : '');
 
+    // escuta mudanças no localStorage para atualizar o estado do usuário
     window.addEventListener("storage", () => {
       const token = localStorage.getItem('token');
       setUser(token ? jwtDecode(token).tipoUsuario : '');
     });
   }, []);
 
+  // lida com a exclusão de uma frente
   const handleDelete = (nomeFrente) => {
     setMostrarConfirmacao(true);
     setFrenteParaDeletar(nomeFrente);
   };
 
+  // confirma a exclusão de uma frente
   const confirmarDelecao = () => {
     authAxios.delete(
         `http://localhost:3003/materias/deleteFrente/${mat.materias}/${frenteParaDeletar}`
@@ -225,11 +246,13 @@ const Frentes = (props) => {
       });
   };
 
+  // cancela a exclusão de uma frente
   const cancelarDelecao = () => {
     setMostrarConfirmacao(false);
     setFrenteParaDeletar(null);
   };
 
+  // componente para renderizar um botão de frente
   const FrenteButton = ({ frente }) => {
     const pag = frente.nomeFrente === 'Adicionar frente'
       ? '/pagina-cadastro-frentes/'
@@ -256,6 +279,7 @@ const Frentes = (props) => {
     );
   };
 
+  // atualiza os botões de frentes com base nas matérias e no tipo de usuário
   useEffect(() => {
     const frentes = materia.flatMap((materiaItem) => materiaItem.frentes.map((frente) => (
       <FrenteButton key={frente.nomeFrente} frente={frente} />
@@ -274,7 +298,7 @@ const Frentes = (props) => {
         {mostrarConfirmacao && (
           <ConfirmacaoContainer>
             <ConfirmacaoTitulo>Confirmar Exclusão</ConfirmacaoTitulo>
-            <p>Tem certeza de que deseja excluir este PDF?</p>
+            <p>Tem certeza de que deseja excluir esta frente?</p>
             <ConfirmacaoBotoes>
               <BotaoConfirmacao cancelar onClick={cancelarDelecao}>
                 Cancelar

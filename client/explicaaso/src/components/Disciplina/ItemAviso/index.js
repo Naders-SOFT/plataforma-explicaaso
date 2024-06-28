@@ -3,13 +3,13 @@ import styled from "styled-components";
 import ItemExcluir from "../ItemExcluir";
 import { jwtDecode } from 'jwt-decode';
 import { useState, useEffect } from "react";
-// Import the main component
+// importa o componente principal
 import { Viewer, SpecialZoomLevel } from '@react-pdf-viewer/core';
 
-// Import the styles
+// importa os estilos
 import '@react-pdf-viewer/core/lib/styles/index.css';
 
-
+// estiliza o container do item
 const ItemContainer = styled.li`
   width: 30%;
   display: flex;
@@ -26,6 +26,7 @@ const ItemContainer = styled.li`
   }
 `;
 
+// estiliza o tipo de aviso
 const TipoAviso = styled.div`
   width: 40px;
   height: 40px;
@@ -38,12 +39,14 @@ const TipoAviso = styled.div`
   color: black;
 `;
 
+// estiliza o cabeçalho
 const Header = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px; 
 `;
 
+// estiliza o título do aviso
 const TituloAviso = styled.a`
   flex: 1;
   font-family: 'Inter', sans-serif;
@@ -56,6 +59,7 @@ const TituloAviso = styled.a`
   white-space: nowrap;
 `;
 
+// estiliza o container do PDF
 const PDFContainer = styled.div`
   width: 100%; 
   height: 300px;
@@ -71,6 +75,7 @@ const PDFContainer = styled.div`
   }
 `;
 
+// estiliza a pré-visualização do PDF
 const PDFPreview = styled.embed`
   width: 100%;
   height: 100%;
@@ -78,12 +83,12 @@ const PDFPreview = styled.embed`
 `;
 
 function ItemAviso(props) {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(''); // estado para armazenar o tipo de usuário
   useEffect(() => {
       const token = localStorage.getItem('token');
       setUser(token ? jwtDecode(token).tipoUsuario : '');
     
-
+      // adiciona um event listener para atualizar o estado do usuário quando o token mudar
       window.addEventListener("storage", () => {
           const token = localStorage.getItem('token');
           setUser(token ? jwtDecode(token).tipoUsuario : '');
@@ -97,14 +102,13 @@ function ItemAviso(props) {
         <TituloAviso href={props.link} target="_blank">
           {props.tituloAviso}
         </TituloAviso>
+        {/* se o usuário não for aluno, exibe o botão de excluir */}
         {user !== "aluno" && <ItemExcluir onDelete={props.onDelete} idPdf={props.idPdf} />}
       </Header>
-      {<PDFContainer>
-        {/* <PDFPreview src={props.link} type="application/pdf" /> */}
+      <PDFContainer>
+        {/* visualizador de PDF */}
         <Viewer fileUrl={props.link} defaultScale={SpecialZoomLevel.PageFit}/>
       </PDFContainer>
-      }
-      
     </ItemContainer>
   );
 }

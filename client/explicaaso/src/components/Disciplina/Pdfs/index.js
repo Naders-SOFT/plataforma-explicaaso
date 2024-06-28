@@ -1,12 +1,13 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 import ItemAviso from '../ItemAviso';
 import TituloDisciplina from '../Titulo';
 import ItemAdicionar from '../ItemAdicionar';
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { useContext } from 'react';
 import { AuthContext } from '../../../App';
 
+// estiliza o container da confirmação
 const ConfirmacaoContainer = styled.div`
   position: fixed;
   top: 50%;
@@ -20,17 +21,20 @@ const ConfirmacaoContainer = styled.div`
   color: white;
 `;
 
+// estiliza o título da confirmação
 const ConfirmacaoTitulo = styled.h2`
   color: #ffcc00;
   margin-bottom: 10px;
 `;
 
+// estiliza os botões da confirmação
 const ConfirmacaoBotoes = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
 `;
 
+// estiliza o botão de confirmação
 const BotaoConfirmacao = styled.button`
   background-color: #dc3545;
   color: #fff;
@@ -54,6 +58,7 @@ const BotaoConfirmacao = styled.button`
   }
 `;
 
+// estiliza o painel de avisos
 const AvisosPainel = styled.ul`
     display: flex;
     width: 100%;
@@ -64,54 +69,53 @@ const AvisosPainel = styled.ul`
     align-items: center;
     justify-content: flex-start;
     margin: 0px;
-`
+`;
 
+// estiliza o container
 const Container = styled.div`
     width: 100%;
 `
 
 function Avisos(props) {
-  const [pdfs, setPdfs] = useState([]);
-  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
-  const [pdfParaDeletar, setPdfParaDeletar] = useState(null);
-  const authAxios = useContext(AuthContext)
+  const [pdfs, setPdfs] = useState([]); // estado para armazenar os PDFs
+  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false); // estado para controlar a exibição da confirmação
+  const [pdfParaDeletar, setPdfParaDeletar] = useState(null); // estado para armazenar o PDF a ser deletado
+  const authAxios = useContext(AuthContext); // contexto para autenticação
 
   useEffect(() => {
     authAxios.get(`http://localhost:3003/pdf/list/${props.tituloFrente}`)
       .then(response => {
-        setPdfs(response.data);
+        setPdfs(response.data); // atualiza o estado com a lista de PDFs
       })
       .catch(err => {
-        console.error(err.message);
+        console.error(err.message); // loga o erro no console
       });
   }, [props.tituloFrente]);
 
   const handleDelete = (id) => {
-    setMostrarConfirmacao(true);
-    setPdfParaDeletar(id);
+    setMostrarConfirmacao(true); // exibe a confirmação
+    setPdfParaDeletar(id); // define o PDF a ser deletado
   };
 
   const confirmarDelecao = () => {
     authAxios
-      .delete(
-        `http://localhost:3003/pdf/delete/'${props.tituloFrente}/${pdfParaDeletar}`
-      )
+      .delete(`http://localhost:3003/pdf/delete/${props.tituloFrente}/${pdfParaDeletar}`)
       .then(response => {
-        console.log('PDF deleted successfully');
-        setPdfs(pdfs.filter(pdf => pdf._id.toString() !== pdfParaDeletar));
+        console.log('PDF deleted successfully'); // loga a mensagem de sucesso
+        setPdfs(pdfs.filter(pdf => pdf._id.toString() !== pdfParaDeletar)); // atualiza a lista de PDFs
       })
       .catch(error => {
-        console.error('Error deleting PDF:', error);
+        console.error('Error deleting PDF:', error); // loga o erro no console
       })
       .finally(() => {
-        setMostrarConfirmacao(false);
-        setPdfParaDeletar(null);
+        setMostrarConfirmacao(false); // oculta a confirmação
+        setPdfParaDeletar(null); // reseta o PDF a ser deletado
       });
   };
 
   const cancelarDelecao = () => {
-    setMostrarConfirmacao(false);
-    setPdfParaDeletar(null);
+    setMostrarConfirmacao(false); // oculta a confirmação
+    setPdfParaDeletar(null); // reseta o PDF a ser deletado
   };
 
   const listaPdfs = pdfs.map((pdf, index) => (
@@ -124,7 +128,7 @@ function Avisos(props) {
     ></ItemAviso>
   ));
 
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(''); // estado para armazenar o tipo de usuário
   useEffect(() => {
     const token = localStorage.getItem('token');
     setUser(token ? jwtDecode(token).tipoUsuario : '');
