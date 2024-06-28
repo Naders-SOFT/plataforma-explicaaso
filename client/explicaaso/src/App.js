@@ -105,7 +105,6 @@ function App() {
       <Router>
         <Header isMobile={isMobile}/>
         <Roteador isMobile={isMobile}/>
-        <Footer isMobile={isMobile}/>
       </Router>
       </AppContainer>
       </AuthContext.Provider>
