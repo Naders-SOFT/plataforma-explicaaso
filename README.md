@@ -74,7 +74,7 @@
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 <div align="center">
   <p>
-  Projeto feito por estudantes, de graduação, do curso de ciências de computação do ICMC-USP, seguindo o modelo ágil Scrum para as disciplinas de Engenharia de Software e de Introdução ao Desenvolvimento Web, em colaboração com o cursinho popular ExpliCaaso.<br> O projeto consiste em uma plataforma web para auxiliar o corpo docente e a administração no controle e gestão de materiais e estudantes.
+  Projeto feito por estudantes de graduação do curso de Ciências de Computação do ICMC-USP, seguindo a metodologia ágil Scrum para as disciplinas de Engenharia de Software e de Introdução ao Desenvolvimento Web, em colaboração com o cursinho popular ExpliCaaso.<br> O projeto consiste em uma plataforma web para auxiliar o corpo docente e a administração do cursinho no controle e gestão de materiais e estudantes.
   </p>
     <a href="https://github.com/Naders-SOFT/plataforma-explicaaso">
         <img src="./client/explicaaso/src/images/sobre_nos/telainicial2.jpeg" alt="Logo" width="800" height="400">
