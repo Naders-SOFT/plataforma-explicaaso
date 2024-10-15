@@ -20,6 +20,7 @@ const ContainerSide = styled.div`
 const Botao = styled.button`
   cursor: pointer;
   color: darkcyan;
+  width: 115px;
   transition: color 0.3s ease, background-color 0.3s ease;
   padding: 1rem 1.5rem;
   margin: 1rem;
