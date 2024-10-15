@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Segoe UI';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #f8f8f8;
+    background-color: #f4f4f4;
   }
 
   code {
